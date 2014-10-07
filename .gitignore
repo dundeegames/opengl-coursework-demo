@@ -1,6 +1,7 @@
 # Additional files
 
-
+*.bmp
+*.jpg
 
 # C++ Ignore ============================
 
