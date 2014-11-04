@@ -13,6 +13,9 @@
 
 class Scene3D
 {
+
+	float rotation, rotation2, rotation3, speed;
+
 public:
 	void Init(HWND*, Input*);	//initialse function
 	void DrawScene(float);	// render scene
@@ -22,7 +25,7 @@ protected:
 	bool CreatePixelFormat(HDC);
 	void ResizeGLWindow(int, int);	//width and height
 	void InitializeOpenGL(int, int); // width and height
-	void HandleInput();
+	void HandleInput(float dt);
 
 	//vars
 	HWND* hwnd;

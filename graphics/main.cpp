@@ -205,11 +205,16 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case WM_LBUTTONDOWN:
+			myInput.setLeftMouseBtn(true);
 			/*
 			char position[20];
 			sprintf(position, "x=%d y=%d" ,myInput.getMouseX(), myInput.getMouseY());
 			MessageBox(NULL, position, "Mouse Position", MB_OK);
 			*/
+			break;
+
+		case WM_LBUTTONUP:
+			myInput.setLeftMouseBtn(false);
 			break;
 
 		case WM_PAINT:

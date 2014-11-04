@@ -21,10 +21,20 @@ public:
 	void SetKeyUp(WPARAM);
 
 	bool isKeyDown(int);
+
 	void setMouseX(int);
 	void setMouseY(int);
 	int getMouseX();
 	int getMouseY();
+
+	void setLeftMouseBtn(bool l);
+	void setMiddleMouseBtn(bool m);
+	void setRightMouseBtn(bool r);
+
+	bool leftMouseBtn();
+	bool middleMouseBtn();
+	bool rightMouseBtn();
+
 	// set mouse botton down (left, right, middle)
 	// set mouse botton up
 

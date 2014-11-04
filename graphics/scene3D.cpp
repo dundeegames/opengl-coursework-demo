@@ -80,6 +80,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	InitializeOpenGL(screenRect.right, screenRect.bottom); // initialise openGL
 
 	//OpenGL settings
+	glEnable(GL_COLOR_MATERIAL);
+
 	glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
 	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
 	glClearDepth(1.0f);									// Depth Buffer Setup
@@ -87,12 +89,17 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 
-	//Also, do any other setting variables here for your app if you wish. 
+	//Also, do any other setting variables here for your app if you wish
+	// Initialise other variables
+	rotation = 0;
+	rotation2 = 0;
+	rotation3 = 0;
+	speed = 15.0;
 }
 
 void Scene3D::DrawScene(float dt) 
 {
-	HandleInput();
+	HandleInput(dt);
 
 	int i=0;
 
@@ -100,19 +107,97 @@ void Scene3D::DrawScene(float dt)
 	glLoadIdentity();// load Identity Matrix
 
 	//set camera looking down the -z axis,  6 units away from the center
-	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
+	//Where we are, What we look at, and which way is up
+	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0);
 
-	
+
+	// rotate matrix
+		glTranslatef(-1.0f, 0.0f, 0.0f);
+		//tilt our solar system slightly so it isn’t on the eye plane
+		glRotatef(20, 1, 0, 0);
+		glPushMatrix();	// Remember where we are.  THE SUN
+
+			// render the sun
+			glColor3f(1.0f, 0.9f, 0.0f);
+			gluSphere(gluNewQuadric(), 0.40, 40,40);
+
+			glPushMatrix();
+				//render planet 1
+				
+				glRotatef(rotation,0,0.5,0.5);
+				glTranslatef(1,0,0);
+				glScalef(0.1, 0.1, 0.1);
+				glColor3f(0.8f, 0.1f, 0.1f);
+				gluSphere(gluNewQuadric(), 0.40, 40,40);
+			glPopMatrix();//GO BACK TO SUN
+
+			// Notice the indentation, this helps keep track of all the pushes and pops
+
+			glPushMatrix(); // REMEMBER WHERE WE ARE
+				// render planet 2
+				glRotatef(rotation2,0,0,1);
+				glTranslatef(1.5,0,0);
+				glScalef(0.3, 0.3, 0.3);
+				glColor3f(0.1f, 0.3f, 1.0f);
+				gluSphere(gluNewQuadric(), 0.40, 40,40);
+				glPushMatrix(); // REMEMBER WHERE WE ARE
+					// Render a moon around planet 2
+					glRotatef((rotation2*2.0),0,1,0);
+					glTranslatef(1.5,0,0);
+					glScalef(0.3, 0.3, 0.3);
+					glColor3f(0.8f, 0.8f, 0.8f);
+					gluSphere(gluNewQuadric(), 0.40, 40,40);
+				glPopMatrix();
+			glPopMatrix();//GO BACK TO SUN
+
+			// going for a new planet and moons
+			glPushMatrix(); // REMEMBER WHERE WE ARE
+				// render planet 3
+				glRotatef(rotation3,0,1,0);
+				glTranslatef(3.5,0,0);
+				glScalef(0.5, 0.5, 0.5);
+				glColor3f(0.3f, 0.3f, 1.0f);
+				gluSphere(gluNewQuadric(), 0.40, 40,40);
+				glPushMatrix(); // REMEMBER WHERE WE ARE
+					// Render a moon1 around planet 3
+					glRotatef((rotation3*3.0),0,1,0);
+					glTranslatef(1.5,0,0);
+					glScalef(0.3, 0.3, 0.3);
+					glColor3f(0.8f, 0.8f, 0.8f);
+					gluSphere(gluNewQuadric(), 0.40, 40,40);
+				glPopMatrix();	// GO BACK TO PLANET 3
+				glPushMatrix(); // REMEMBER WHERE WE ARE
+					// Render a moon2 around planet 3
+					glRotatef((rotation3*(-5.0)),0,1,0);
+					glTranslatef(2.5,0,0);
+					glScalef(0.4, 0.4, 0.4);
+					glColor3f(0.3f, 0.3f, 0.3f);
+					gluSphere(gluNewQuadric(), 0.40, 40,40);
+					glPushMatrix(); // REMEMBER WHERE WE ARE
+						// Render a moon3 around moon2
+						glRotatef((rotation3*12.0),0,1,0);
+						glTranslatef(1.5,0,0);
+						glScalef(0.4, 0.4, 0.4);
+						glColor3f(0.5f, 1.0f, 0.5f);
+						gluSphere(gluNewQuadric(), 0.40, 40,40);
+					glPopMatrix();
+				glPopMatrix();
+			glPopMatrix();//GO BACK TO SUN
+
+		glPopMatrix();
+
+	// reset colour
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+
+	// OLD CUBE and TRIANGELS ===================================================================
+	/*
 	//glScalef(2, 2, 1);
-	
 	//glTranslatef(-1, 0, 0);
 	
 	glRotatef(Yrotation, 0, 1, 0);
 	//
 	
-	
-
-
 	glBegin (GL_TRIANGLES);//Begin drawing state
 
 		glColor3f(1.0f, 0.0f, 0.0f);
@@ -196,7 +281,7 @@ void Scene3D::DrawScene(float dt)
 	//set camera looking down the -z axis,  6 units away from the center
 	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
 	// -------------------------------------------------------------------------------------------------
-
+	*/
 
 
 	/*
@@ -290,6 +375,8 @@ void Scene3D::DrawScene(float dt)
 	*/
 
 
+	// ==========================================================================================
+
 	SwapBuffers(hdc);// Swap the frame buffers.
 }		
 
@@ -303,8 +390,13 @@ void Scene3D::Resize()
 }
 
 
-void Scene3D::HandleInput()
+void Scene3D::HandleInput(float dt)
 {
+	rotation += (speed*3) * dt;
+	rotation2 += (speed*2) * dt;
+	rotation3 += speed * dt;
+
+
 	if(input->isKeyDown('W'))									// if W is pressed
 	{
 		// makes the front face wireframe, not the back face

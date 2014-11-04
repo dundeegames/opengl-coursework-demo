@@ -34,8 +34,40 @@ int Input::getMouseX()
 	return mouse.x;
 }
 
-int Input:: getMouseY()
+int Input::getMouseY()
 {
 	return mouse.y;
+}
+
+
+
+void Input::setLeftMouseBtn(bool l)
+{
+	mouse.left = l;
+}
+
+void Input::setMiddleMouseBtn(bool m)
+{
+	mouse.middle = m;
+}
+
+void Input::setRightMouseBtn(bool r)
+{
+	mouse.right = r;
+}
+
+bool Input::leftMouseBtn()
+{
+	return mouse.left;
+}
+
+bool Input::middleMouseBtn()
+{
+	return mouse.middle;
+}
+
+bool Input::rightMouseBtn()
+{
+	return mouse.right;
 }
 
