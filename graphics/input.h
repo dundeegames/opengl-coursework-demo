@@ -17,6 +17,9 @@ class Input
 
 
 public:
+
+	Input();
+
 	void SetKeyDown(WPARAM);
 	void SetKeyUp(WPARAM);
 

@@ -3,6 +3,23 @@
 
 #include "input.h"
 
+
+
+Input::Input()
+{
+	mouse.x = 0;
+	mouse.y = 0;
+	mouse.left = false;
+	mouse.middle = false;
+	mouse.right = false;
+
+	// set all keys to UP
+	for(int i = 0; i < 256; i++)
+	{
+		keys[i] = false;
+	}
+}
+
 void Input::SetKeyDown(WPARAM key)
 {
 	keys[key] = true;

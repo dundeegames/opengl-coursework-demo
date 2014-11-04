@@ -13,9 +13,15 @@
 
 class Scene3D
 {
+	typedef struct Camera
+	{
+		GLdouble x, y, z;
+		GLdouble theta, phi;
+		GLdouble distance;
+	};
 
 	float rotation, rotation2, rotation3, speed;
-
+	float Xrotation, Yrotation;
 public:
 	void Init(HWND*, Input*);	//initialse function
 	void DrawScene(float);	// render scene
@@ -34,8 +40,10 @@ protected:
 	HDC	hdc;
 	HGLRC hrc;			//hardware RENDERING CONTEXT
 	int s_wdith, s_height;
-	float Yrotation;
-	float Xrotation;
+
+private:
+	Camera camera;
+
 };
 
 #endif

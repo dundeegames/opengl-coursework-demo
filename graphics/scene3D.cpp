@@ -70,6 +70,15 @@ void Scene3D::InitializeOpenGL(int width, int height)
 
 void Scene3D::Init(HWND* wnd, Input* in)
 {
+	// init camera values 
+	camera.theta = 0.0;
+	camera.phi = 0.0;
+	camera.distance = 10.0;
+	camera.x = 0.0;
+	camera.y = 0.0;
+	camera.z = 10.0;
+
+
 	hwnd = wnd;
 	input = in;
 
@@ -108,7 +117,7 @@ void Scene3D::DrawScene(float dt)
 
 	//set camera looking down the -z axis,  6 units away from the center
 	//Where we are, What we look at, and which way is up
-	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0);
+	gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
 
 
 	// rotate matrix
@@ -397,20 +406,28 @@ void Scene3D::HandleInput(float dt)
 	rotation3 += speed * dt;
 
 
-	if(input->isKeyDown('W'))									// if W is pressed
+	if(input->isKeyDown('4'))									// if W is pressed
 	{
 		// makes the front face wireframe, not the back face
-		glPolygonMode(GL_FRONT, GL_LINE);		
-		input->SetKeyUp('W');									//force un-pressing of W
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);		
+		input->SetKeyUp('4');									//force un-pressing of W
 	}
 
-	if(input->isKeyDown('E'))									// if E is pressed
+	if(input->isKeyDown('5'))									// if E is pressed
 	{
 		//turns on normal filled rendering
-		glPolygonMode(GL_FRONT, GL_FILL);
-		input->SetKeyUp('E');									//force un-pressing of E
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		input->SetKeyUp('5');									//force un-pressing of E
 	}
 
+	if(input->isKeyDown(VK_MENU))								// if ALT is pressed
+	{
+		//turns on normal filled rendering
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		input->SetKeyUp(VK_MENU);								//force un-pressing of ALT
+	}
+
+	/*
 	if(input->isKeyDown(VK_LEFT))									// if Left arrow key is pressed
 	{
 		// makes the front face wireframe, not the back face
@@ -438,4 +455,5 @@ void Scene3D::HandleInput(float dt)
 		Xrotation += 2;			
 		input->SetKeyUp(VK_DOWN);									//force un-pressing of Right arrow key
 	}
+	*/
 }
