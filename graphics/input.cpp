@@ -1,7 +1,7 @@
 // Input class
 // Paul Robertson 2014
 
-#include "Input.h"
+#include "input.h"
 
 void Input::SetKeyDown(WPARAM key)
 {

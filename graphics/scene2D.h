@@ -6,7 +6,7 @@
 #include <MMSystem.h>
 #include <math.h>
 
-#include "Input.h"
+#include "input.h"
 #include"sprite.h"
 
 class Scene

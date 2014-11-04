@@ -1,5 +1,5 @@
-#ifndef _INPUT_H
-#define _INPUT_H
+#ifndef INPUT_H
+#define INPUT_H
 
 // Input class
 
@@ -25,8 +25,8 @@ public:
 	void setMouseY(int);
 	int getMouseX();
 	int getMouseY();
-
-
+	// set mouse botton down (left, right, middle)
+	// set mouse botton up
 
 	// add missing functions for handling mouse buttons etc
 

@@ -28,7 +28,7 @@ public:
 
 private:
 	INT64 m_frequency;
-	float m_ticksPerMs;
+	float m_ticksPerS;
 	INT64 m_startTime;
 	float m_frameTime;
 };

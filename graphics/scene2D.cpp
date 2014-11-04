@@ -1,5 +1,4 @@
-#include "scene.h"
-#include "input.h"
+#include "scene2D.h"
 
 void Scene::Initialise(HWND *lwnd, Input *in)
 {
