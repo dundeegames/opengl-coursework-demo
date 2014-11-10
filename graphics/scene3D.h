@@ -8,6 +8,8 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include "input.h"
+#include "arm.h"
+#include "planets.h"
 
 #define COLOUR_DEPTH 16	//Colour depth
 
@@ -21,7 +23,7 @@ class Scene3D
 	};
 
 	float rotation, rotation2, rotation3, speed;
-	float Xrotation, Yrotation;
+	
 public:
 	void Init(HWND*, Input*);	//initialse function
 	void DrawScene(float);	// render scene
@@ -43,7 +45,10 @@ protected:
 
 private:
 	Camera camera;
-
+	Arm robotArm;
+	//Planets solarSystem;
+	void drawCube();
+	void drawFinger();
 };
 
 #endif

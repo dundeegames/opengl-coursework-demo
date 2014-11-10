@@ -1,5 +1,8 @@
 #include "scene3D.h"
 
+
+// ------------------------------------------------------------------------------
+
 bool Scene3D::CreatePixelFormat(HDC hdc) 
 { 
     PIXELFORMATDESCRIPTOR pfd = {0}; 
@@ -33,6 +36,8 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
     return true;
 }
 
+// ------------------------------------------------------------------------------
+
 void Scene3D::ResizeGLWindow(int width, int height)// Initialize The GL Window
 {
 	if (height==0)// Prevent A Divide By Zero error
@@ -52,6 +57,8 @@ void Scene3D::ResizeGLWindow(int width, int height)// Initialize The GL Window
 	glLoadIdentity();// Reset The Modelview Matrix
 }
 
+// ------------------------------------------------------------------------------
+
 void Scene3D::InitializeOpenGL(int width, int height) 
 { 
 	hdc = GetDC(*hwnd);//  sets  global HDC
@@ -66,7 +73,7 @@ void Scene3D::InitializeOpenGL(int width, int height)
 	ResizeGLWindow(width, height);	// Setup the Screen
 }
 
-
+// ------------------------------------------------------------------------------
 
 void Scene3D::Init(HWND* wnd, Input* in)
 {
@@ -82,8 +89,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	hwnd = wnd;
 	input = in;
 
-	Xrotation = 0;
-	Yrotation = 0;
+
 
 	GetClientRect(*hwnd, &screenRect);	//get rect into our handy global rect
 	InitializeOpenGL(screenRect.right, screenRect.bottom); // initialise openGL
@@ -104,7 +110,12 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	rotation2 = 0;
 	rotation3 = 0;
 	speed = 15.0;
+
+	robotArm.Init(in);
+	//solarSystem.init();
 }
+
+// ------------------------------------------------------------------------------
 
 void Scene3D::DrawScene(float dt) 
 {
@@ -135,7 +146,7 @@ void Scene3D::DrawScene(float dt)
 				
 				glRotatef(rotation,0,0.5,0.5);
 				glTranslatef(1,0,0);
-				glScalef(0.1, 0.1, 0.1);
+				glScalef(0.1f, 0.1f, 0.1f);
 				glColor3f(0.8f, 0.1f, 0.1f);
 				gluSphere(gluNewQuadric(), 0.40, 40,40);
 			glPopMatrix();//GO BACK TO SUN
@@ -146,14 +157,14 @@ void Scene3D::DrawScene(float dt)
 				// render planet 2
 				glRotatef(rotation2,0,0,1);
 				glTranslatef(1.5,0,0);
-				glScalef(0.3, 0.3, 0.3);
+				glScalef(0.3f, 0.3f, 0.3f);
 				glColor3f(0.1f, 0.3f, 1.0f);
 				gluSphere(gluNewQuadric(), 0.40, 40,40);
 				glPushMatrix(); // REMEMBER WHERE WE ARE
 					// Render a moon around planet 2
-					glRotatef((rotation2*2.0),0,1,0);
-					glTranslatef(1.5,0,0);
-					glScalef(0.3, 0.3, 0.3);
+					glRotatef((rotation2*2.0f),0.0f,1.0f,0.0f);
+					glTranslatef(1.5f,0.0f,0.0f);
+					glScalef(0.3f, 0.3f, 0.3f);
 					glColor3f(0.8f, 0.8f, 0.8f);
 					gluSphere(gluNewQuadric(), 0.40, 40,40);
 				glPopMatrix();
@@ -169,24 +180,24 @@ void Scene3D::DrawScene(float dt)
 				gluSphere(gluNewQuadric(), 0.40, 40,40);
 				glPushMatrix(); // REMEMBER WHERE WE ARE
 					// Render a moon1 around planet 3
-					glRotatef((rotation3*3.0),0,1,0);
+					glRotatef((rotation3*3.0f),0.0f,1.0f,0.0f);
 					glTranslatef(1.5,0,0);
-					glScalef(0.3, 0.3, 0.3);
+					glScalef(0.3f, 0.3f, 0.3f);
 					glColor3f(0.8f, 0.8f, 0.8f);
 					gluSphere(gluNewQuadric(), 0.40, 40,40);
 				glPopMatrix();	// GO BACK TO PLANET 3
 				glPushMatrix(); // REMEMBER WHERE WE ARE
 					// Render a moon2 around planet 3
-					glRotatef((rotation3*(-5.0)),0,1,0);
+					glRotatef((rotation3*(-5.0f)),0.0f,1.0f,0.0f);
 					glTranslatef(2.5,0,0);
-					glScalef(0.4, 0.4, 0.4);
+					glScalef(0.4f, 0.4f, 0.4f);
 					glColor3f(0.3f, 0.3f, 0.3f);
 					gluSphere(gluNewQuadric(), 0.40, 40,40);
 					glPushMatrix(); // REMEMBER WHERE WE ARE
 						// Render a moon3 around moon2
-						glRotatef((rotation3*12.0),0,1,0);
+						glRotatef((rotation3*12.0f),0.0f,1.0f,0.0f);
 						glTranslatef(1.5,0,0);
-						glScalef(0.4, 0.4, 0.4);
+						glScalef(0.4f, 0.4f, 0.4f);
 						glColor3f(0.5f, 1.0f, 0.5f);
 						gluSphere(gluNewQuadric(), 0.40, 40,40);
 					glPopMatrix();
@@ -199,90 +210,7 @@ void Scene3D::DrawScene(float dt)
 	glColor3f(1.0f, 1.0f, 1.0f);
 
 
-	// OLD CUBE and TRIANGELS ===================================================================
-	/*
-	//glScalef(2, 2, 1);
-	//glTranslatef(-1, 0, 0);
-	
-	glRotatef(Yrotation, 0, 1, 0);
-	//
-	
-	glBegin (GL_TRIANGLES);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-2.0, 2.0, 0.0);	
-		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(-2.0, 1.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 0, 2.0, 0.0);
-				
-	glEnd();//end drawing
-
-
-	// Always load this code after translate, scale, rotate, etc----------------------------------------
-	glLoadIdentity();// load Identity Matrix
-
-	//set camera looking down the -z axis,  6 units away from the center
-	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-	// -------------------------------------------------------------------------------------------------
-
-
-
-	glScalef(0.5, 0.5, 1);
-
-
-	glBegin (GL_TRIANGLES);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(1.0, 2.0, 0.0);	
-		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(1.0, 1.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 3.0, 2.0, 0.0);
-				
-	glEnd();//end drawing
-
-
-	// Always load this code after translate, scale, rotate, etc----------------------------------------
-	glLoadIdentity();// load Identity Matrix
-
-	//set camera looking down the -z axis,  6 units away from the center
-	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-	// -------------------------------------------------------------------------------------------------
-
-	glRotatef(Yrotation, 0, 1, 0);
-	glRotatef(Xrotation, 1, 0, 0);
-	
-
-	glBegin(GL_QUADS);
-
-		// front face
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, 0.5f, 0.5f);
-		glVertex3f(0.5f, 0.5f, 0.5f);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-
-		// right face
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(0.5f, 0.5f, 0.5f);
-		glVertex3f(0.5f, 0.5f, -0.5f);
-		glVertex3f(0.5f, -0.5f, -0.5f);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-
-		// bottom face
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-		glVertex3f(0.5f, -0.5f, -0.5f);
-		glVertex3f(-0.5f, -0.5f, -0.5f);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-
-	glEnd();
-
+	// CUBE ============================================================================================
 	
 	// Always load this code after translate, scale, rotate, etc----------------------------------------
 	glLoadIdentity();// load Identity Matrix
@@ -290,104 +218,23 @@ void Scene3D::DrawScene(float dt)
 	//set camera looking down the -z axis,  6 units away from the center
 	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
 	// -------------------------------------------------------------------------------------------------
-	*/
+	
 
 
-	/*
-	glBegin (GL_TRIANGLE_STRIP);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0, 1.0, 0.0);	
+	//based on shoulder
+	glTranslatef(3.0f, 0.0f, 0.0f);
 		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(-1.0, 0.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 1.0, 1.0, 0.0);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f( 1.0, 0.0, 0.0);
-
-	glEnd();//end drawing
-	*/
-	/*
-	glBegin (GL_TRIANGLE_FAN);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(3.0, 3.0, 0.0);	
-		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(3.0, 2.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 4.0, 1.5, 0.0);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f( 4.5, 2.5, 0.0);
-
-		glColor3f(0.0f, 1.0f, 1.0f);
-		glVertex3f( 4.0, 3.5, 0.0);
-
-	glEnd();//end drawing
 
 
-	glBegin (GL_QUADS);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-3.0, -1.0, 0.0);	
-		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(-3.0, -2.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( -1.5, -2.0, 0.0);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f( -1.5, -1.5, 0.0);
-
-		//--------------------------
-
-		glColor3f(0.0f, 1.0f, 1.0f);
-		glVertex3f( 0.0, -2.5, 0.0);
-
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex3f( 0.0, -3.5, 0.0);
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f( 0.5, -3.5, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 0.5, -2.5, 0.0);
-
-
-	glEnd();//end drawing
-
-
-	glBegin (GL_POLYGON);//Begin drawing state
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(3.0, 0.0, 0.0);	
-		
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(3.0, -1.0, 0.0);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f( 4.0, -2.5, 0.0);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f( 4.5, -1.5, 0.0);
-
-		glColor3f(0.0f, 1.0f, 1.0f);
-		glVertex3f( 4.0, 0.5, 0.0);
-
-	glEnd();//end drawing
-	*/
-
-
+		robotArm.render();
+	
+	
 	// ==========================================================================================
 
 	SwapBuffers(hdc);// Swap the frame buffers.
 }		
+
+// ------------------------------------------------------------------------------
 
 void Scene3D::Resize()
 {
@@ -398,12 +245,15 @@ void Scene3D::Resize()
 	ResizeGLWindow(screenRect.right, screenRect.bottom);	
 }
 
+// ------------------------------------------------------------------------------
 
 void Scene3D::HandleInput(float dt)
 {
 	rotation += (speed*3) * dt;
 	rotation2 += (speed*2) * dt;
 	rotation3 += speed * dt;
+
+	robotArm.update();
 
 
 	if(input->isKeyDown('4'))									// if W is pressed
@@ -422,38 +272,11 @@ void Scene3D::HandleInput(float dt)
 
 	if(input->isKeyDown(VK_MENU))								// if ALT is pressed
 	{
-		//turns on normal filled rendering
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		// for some reason it pause the rendering (but the variables still updates)
 		input->SetKeyUp(VK_MENU);								//force un-pressing of ALT
 	}
 
-	/*
-	if(input->isKeyDown(VK_LEFT))									// if Left arrow key is pressed
-	{
-		// makes the front face wireframe, not the back face
-		Yrotation -= 2;	
-		input->SetKeyUp(VK_LEFT);									//force un-pressing of Left arrow key
-	}
+	
 
-	if(input->isKeyDown(VK_RIGHT))									// if Right arrow key is pressed
-	{
-		// makes the front face wireframe, not the back face
-		Yrotation += 2;			
-		input->SetKeyUp(VK_RIGHT);									//force un-pressing of Right arrow key
-	}
-
-	if(input->isKeyDown(VK_UP))									// if Left arrow key is pressed
-	{
-		// makes the front face wireframe, not the back face
-		Xrotation -= 2;	
-		input->SetKeyUp(VK_UP);									//force un-pressing of Left arrow key
-	}
-
-	if(input->isKeyDown(VK_DOWN))									// if Right arrow key is pressed
-	{
-		// makes the front face wireframe, not the back face
-		Xrotation += 2;			
-		input->SetKeyUp(VK_DOWN);									//force un-pressing of Right arrow key
-	}
-	*/
+	
 }

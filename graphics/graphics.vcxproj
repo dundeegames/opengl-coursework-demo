@@ -76,8 +76,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animatedsprite.cpp" />
+    <ClCompile Include="arm.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="planets.cpp" />
     <ClCompile Include="scene2D.cpp" />
     <ClCompile Include="scene3D.cpp" />
     <ClCompile Include="sprite.cpp" />
@@ -85,7 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h" />
+    <ClInclude Include="arm.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="planets.h" />
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />
     <ClInclude Include="sprite.h" />
