@@ -96,8 +96,11 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 	//OpenGL settings
 	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
 
-	glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
+
+
+	glShadeModel(GL_FLAT);							// Enable Smooth Shading
 	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
 	glClearDepth(1.0f);									// Depth Buffer Setup
 	glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
@@ -110,6 +113,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	rotation2 = 0;
 	rotation3 = 0;
 	speed = 15.0;
+
+
+	
+
+
+
+
 
 	robotArm.Init(in);
 	//solarSystem.init();
@@ -129,6 +139,17 @@ void Scene3D::DrawScene(float dt)
 	//set camera looking down the -z axis,  6 units away from the center
 	//Where we are, What we look at, and which way is up
 	gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
+
+	GLfloat Light_Ambient[] = {0.3f, 0.3f, 0.3f, 1.0f};
+	GLfloat Light_Diffuse[] = {1.0f, 0.0f, 1.0f, 1.0f};
+	//GLfloat Light_Position[]= {3.0f, 0.0f, 3.0f, 1.0f};
+	GLfloat Light_Position[]= {-1.0f, 0.0f, 0.0f, 0.0f};
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT,  Light_Ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE,  Light_Diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, Light_Position);
+	glEnable(GL_LIGHT0);
+
 
 
 	// rotate matrix
@@ -219,6 +240,17 @@ void Scene3D::DrawScene(float dt)
 	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
 	// -------------------------------------------------------------------------------------------------
 	
+	
+
+
+
+
+	/*
+	if (y<>0)
+		answer=x/y;
+	else
+		answer=-1;
+		*/
 
 
 	//based on shoulder

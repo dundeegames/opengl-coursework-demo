@@ -122,10 +122,6 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 	}
 	
 
-	//MessageBox (NULL, "This is a new message from Jiri.",  "NewMsg", MB_YESNO);
-
-
-
 	//GAME LOOP
 	while (TRUE)					
     {							
@@ -143,23 +139,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 		else
 		{	
 			timer.Frame();
-			/*
-			if(myInput.isKeyDown(VK_SPACE))									// if space is pressed
-			{
-				MessageBox(NULL, "Help me!", "A Dialog", MB_OK);			//display message box
-				myInput.SetKeyUp(VK_SPACE);									//force un-pressing of space
-			}
 
-			if(myInput.isKeyDown('J') && myInput.isKeyDown('K') && myInput.isKeyDown('L'))			// if J+K+L is pressed
-			{
-				MessageBox(NULL, "J + K + L is pressed.", "JKL", MB_OK);	//display message box
-				
-				//force un-pressing of space
-				myInput.SetKeyUp('J');
-				myInput.SetKeyUp('K');
-				myInput.SetKeyUp('L');
-			}
-			*/
 			if(myInput.isKeyDown(VK_ESCAPE))
 			{
 				break;

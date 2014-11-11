@@ -86,7 +86,7 @@ void Arm::handleInput()
 			break;
 		}
 			
-		input->SetKeyUp(VK_LEFT);									//force un-pressing of Left arrow key
+		//input->SetKeyUp(VK_LEFT);									//force un-pressing of Left arrow key
 	}
 
 	if(input->isKeyDown(VK_RIGHT))									// if Right arrow key is pressed
@@ -109,7 +109,7 @@ void Arm::handleInput()
 			break;
 		}		
 					
-		input->SetKeyUp(VK_RIGHT);									//force un-pressing of Right arrow key
+		//input->SetKeyUp(VK_RIGHT);									//force un-pressing of Right arrow key
 	}
 
 	if(input->isKeyDown(VK_UP))									// if Left arrow key is pressed
@@ -138,7 +138,7 @@ void Arm::handleInput()
 			break;
 		}		
 			
-		input->SetKeyUp(VK_UP);									//force un-pressing of Left arrow key
+		//input->SetKeyUp(VK_UP);									//force un-pressing of Left arrow key
 	}
 
 	if(input->isKeyDown(VK_DOWN))									// if Right arrow key is pressed
@@ -167,7 +167,7 @@ void Arm::handleInput()
 			break;
 		}		
 					
-		input->SetKeyUp(VK_DOWN);									//force un-pressing of Right arrow key
+		//input->SetKeyUp(VK_DOWN);									//force un-pressing of Right arrow key
 	}
 
 }
@@ -241,39 +241,81 @@ void Arm::drawCube()
 	glBegin(GL_QUADS);
 
 		// front face
+		glNormal3f(0.0f, 0.0f, 1.0f); 
 		glVertex3f(-0.5f, 0.5f, 0.5f);
+
+		glNormal3f(0.0f, 0.0f, 1.0f);
 		glVertex3f(0.5f, 0.5f, 0.5f);
+
+		glNormal3f(0.0f, 0.0f, 1.0f);
 		glVertex3f(0.5f, -0.5f, 0.5f);
+
+		glNormal3f(0.0f, 0.0f, 1.0f);
 		glVertex3f(-0.5f, -0.5f, 0.5f);
 
 		// back face
+		glNormal3f(0.0f, 0.0f, -1.0f);
 		glVertex3f(0.5f, 0.5f, -0.5f);
+
+		glNormal3f(0.0f, 0.0f, -1.0f);
 		glVertex3f(-0.5f, 0.5f, -0.5f);
+
+		glNormal3f(0.0f, 0.0f, -1.0f);
 		glVertex3f(-0.5f, -0.5f, -0.5f);
+
+		glNormal3f(0.0f, 0.0f, -1.0f);
 		glVertex3f(0.5f, -0.5f, -0.5f);
 		
 		// right face
+		glNormal3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(0.5f, 0.5f, 0.5f);
+
+		glNormal3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(0.5f, 0.5f, -0.5f);
+
+		glNormal3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(0.5f, -0.5f, -0.5f);
+
+		glNormal3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(0.5f, -0.5f, 0.5f);
 
 		// left face
+		glNormal3f(-1.0f, 0.0f, 0.0f);
 		glVertex3f(-0.5f, 0.5f, -0.5f);
+
+		glNormal3f(-1.0f, 0.0f, 0.0f);
 		glVertex3f(-0.5f, 0.5f, 0.5f);
+
+		glNormal3f(-1.0f, 0.0f, 0.0f);
 		glVertex3f(-0.5f, -0.5f, 0.5f);
+
+		glNormal3f(-1.0f, 0.0f, 0.0f);
 		glVertex3f(-0.5f, -0.5f, -0.5f);
 	
 		// bottom face
+		glNormal3f(0.0f, -1.0f, 0.0f);
 		glVertex3f(0.5f, -0.5f, 0.5f);
+
+		glNormal3f(0.0f, -1.0f, 0.0f);
 		glVertex3f(0.5f, -0.5f, -0.5f);
+
+		glNormal3f(0.0f, -1.0f, 0.0f);
 		glVertex3f(-0.5f, -0.5f, -0.5f);
+
+		glNormal3f(0.0f, -1.0f, 0.0f);
 		glVertex3f(-0.5f, -0.5f, 0.5f);
 
 		// top face
+		glNormal3f(0.0f, 1.0f, 0.0f);
 		glVertex3f(0.5f, 0.5f, -0.5f);
+
+		glNormal3f(0.0f, 1.0f, 0.0f);
 		glVertex3f(0.5f, 0.5f, 0.5f);
+
+		glNormal3f(0.0f, 1.0f, 0.0f);
 		glVertex3f(-0.5f, 0.5f, 0.5f);
+
+		glNormal3f(0.0f, 1.0f, 0.0f);
 		glVertex3f(-0.5f, 0.5f, -0.5f);
 		
 
@@ -297,7 +339,8 @@ void Arm::drawFinger()
 	glTranslatef(0,0.625,0);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glScalef(2.0f, 0.625f, 2.0f);
-	gluSphere(gluNewQuadric(), 0.25, 40,40);
+	gluSphere(
+			gluNewQuadric(), 0.25, 40,40);
 
 	// render forearm
 	glRotatef(60, 0, 0, 1);
@@ -306,5 +349,8 @@ void Arm::drawFinger()
 	glColor3f(0.8f, 0.1f, 0.1f);
 	// is there glCube primitive? [like gluSphere()]
 	drawCube();
+
+
+
 
 }

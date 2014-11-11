@@ -23,7 +23,14 @@ class Scene3D
 	};
 
 	float rotation, rotation2, rotation3, speed;
-	
+	//GLfloat Light_Ambient[4];
+	//GLfloat Light_Diffuse[4];
+	//GLfloat Light_Position[4];
+
+
+
+
+
 public:
 	void Init(HWND*, Input*);	//initialse function
 	void DrawScene(float);	// render scene
