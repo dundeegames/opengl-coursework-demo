@@ -23,9 +23,7 @@ class Scene3D
 		GLdouble distance;
 	};
 
-	float rotation, rotation2, rotation3, speed;
-
-	Light light1;
+	Light* light1;
 
 
 
@@ -53,7 +51,7 @@ protected:
 private:
 	Camera camera;
 	Arm robotArm;
-	//Planets solarSystem;
+	Planets solarSystem;
 	void drawCube();
 	void drawFinger();
 };

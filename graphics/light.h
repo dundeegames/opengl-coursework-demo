@@ -1,9 +1,10 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
+#include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
-#include <Windows.h>
+
 
 class Light
 {

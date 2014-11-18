@@ -1,7 +1,8 @@
-/*#ifndef PLANETS_H
+#ifndef PLANETS_H
 #define PLANETS_H
 
 // Planets class
+#include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
 
@@ -13,7 +14,7 @@ class Planets
 
 public:
 	void init();
-	void update();
+	void update(float dt);
 	void render();
 
 private:
@@ -23,4 +24,3 @@ private:
 
 
 #endif
-*/

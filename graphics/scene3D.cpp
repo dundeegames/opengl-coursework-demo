@@ -89,15 +89,12 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	hwnd = wnd;
 	input = in;
 
-
-
 	GetClientRect(*hwnd, &screenRect);	//get rect into our handy global rect
 	InitializeOpenGL(screenRect.right, screenRect.bottom); // initialise openGL
 
 	//OpenGL settings
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHTING);
-
 
 
 	glShadeModel(GL_FLAT);							// Enable Smooth Shading
@@ -109,22 +106,19 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 	//Also, do any other setting variables here for your app if you wish
 	// Initialise other variables
-	rotation = 0;
-	rotation2 = 0;
-	rotation3 = 0;
-	speed = 15.0;
-
-
 	
 
+	light1 = new Light(GL_LIGHT0);
 
 	//init(ambientRGBA  difuseRGBA  postionXYZT)
 	//T is type of light: 0.0 = ..., 1.0 = ...
-	light1.init(0.3f, 0.3f, 0.3f, 1.0f,     1.0f, 0.0f, 1.0f, 1.0f,     -1.0f, 0.0f, 0.0f, 0.0f);
+	light1->init(0.3f, 0.3f, 0.3f, 1.0f,     1.0f, 0.0f, 1.0f, 1.0f,     -1.0f, 0.0f, 0.0f, 0.0f);
 
 	robotArm.Init(in);
-	//solarSystem.init();
-}
+	solarSystem.init();
+
+
+}// end of Init
 
 // ------------------------------------------------------------------------------
 
@@ -141,131 +135,27 @@ void Scene3D::DrawScene(float dt)
 	//Where we are, What we look at, and which way is up
 	gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
 
-	/*
-	GLfloat Light_Ambient[] = {0.3f, 0.3f, 0.3f, 1.0f};
-	GLfloat Light_Diffuse[] = {1.0f, 0.0f, 1.0f, 1.0f};
-	//GLfloat Light_Position[]= {3.0f, 0.0f, 3.0f, 1.0f};
-	GLfloat Light_Position[]= {-1.0f, 0.0f, 0.0f, 0.0f};
-
-	glLightfv(GL_LIGHT0, GL_AMBIENT,  Light_Ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE,  Light_Diffuse);
-	glLightfv(GL_LIGHT0, GL_POSITION, Light_Position);
-	glEnable(GL_LIGHT0);
-	*/
-	light1.render();
-
-	// rotate matrix
-		glTranslatef(-1.0f, 0.0f, 0.0f);
-		//tilt our solar system slightly so it isn’t on the eye plane
-		glRotatef(20, 1, 0, 0);
-		glPushMatrix();	// Remember where we are.  THE SUN
-
-			// render the sun
-			glColor3f(1.0f, 0.9f, 0.0f);
-			gluSphere(gluNewQuadric(), 0.40, 40,40);
-
-			glPushMatrix();
-				//render planet 1
-				
-				glRotatef(rotation,0,0.5,0.5);
-				glTranslatef(1,0,0);
-				glScalef(0.1f, 0.1f, 0.1f);
-				glColor3f(0.8f, 0.1f, 0.1f);
-				gluSphere(gluNewQuadric(), 0.40, 40,40);
-			glPopMatrix();//GO BACK TO SUN
-
-			// Notice the indentation, this helps keep track of all the pushes and pops
-
-			glPushMatrix(); // REMEMBER WHERE WE ARE
-				// render planet 2
-				glRotatef(rotation2,0,0,1);
-				glTranslatef(1.5,0,0);
-				glScalef(0.3f, 0.3f, 0.3f);
-				glColor3f(0.1f, 0.3f, 1.0f);
-				gluSphere(gluNewQuadric(), 0.40, 40,40);
-				glPushMatrix(); // REMEMBER WHERE WE ARE
-					// Render a moon around planet 2
-					glRotatef((rotation2*2.0f),0.0f,1.0f,0.0f);
-					glTranslatef(1.5f,0.0f,0.0f);
-					glScalef(0.3f, 0.3f, 0.3f);
-					glColor3f(0.8f, 0.8f, 0.8f);
-					gluSphere(gluNewQuadric(), 0.40, 40,40);
-				glPopMatrix();
-			glPopMatrix();//GO BACK TO SUN
-
-			// going for a new planet and moons
-			glPushMatrix(); // REMEMBER WHERE WE ARE
-				// render planet 3
-				glRotatef(rotation3,0,1,0);
-				glTranslatef(3.5,0,0);
-				glScalef(0.5, 0.5, 0.5);
-				glColor3f(0.3f, 0.3f, 1.0f);
-				gluSphere(gluNewQuadric(), 0.40, 40,40);
-				glPushMatrix(); // REMEMBER WHERE WE ARE
-					// Render a moon1 around planet 3
-					glRotatef((rotation3*3.0f),0.0f,1.0f,0.0f);
-					glTranslatef(1.5,0,0);
-					glScalef(0.3f, 0.3f, 0.3f);
-					glColor3f(0.8f, 0.8f, 0.8f);
-					gluSphere(gluNewQuadric(), 0.40, 40,40);
-				glPopMatrix();	// GO BACK TO PLANET 3
-				glPushMatrix(); // REMEMBER WHERE WE ARE
-					// Render a moon2 around planet 3
-					glRotatef((rotation3*(-5.0f)),0.0f,1.0f,0.0f);
-					glTranslatef(2.5,0,0);
-					glScalef(0.4f, 0.4f, 0.4f);
-					glColor3f(0.3f, 0.3f, 0.3f);
-					gluSphere(gluNewQuadric(), 0.40, 40,40);
-					glPushMatrix(); // REMEMBER WHERE WE ARE
-						// Render a moon3 around moon2
-						glRotatef((rotation3*12.0f),0.0f,1.0f,0.0f);
-						glTranslatef(1.5,0,0);
-						glScalef(0.4f, 0.4f, 0.4f);
-						glColor3f(0.5f, 1.0f, 0.5f);
-						gluSphere(gluNewQuadric(), 0.40, 40,40);
-					glPopMatrix();
-				glPopMatrix();
-			glPopMatrix();//GO BACK TO SUN
-
-		glPopMatrix();
-
-	// reset colour
-	glColor3f(1.0f, 1.0f, 1.0f);
-
-
-	// CUBE ============================================================================================
 	
-	// Always load this code after translate, scale, rotate, etc----------------------------------------
-	glLoadIdentity();// load Identity Matrix
+	light1->render();
 
-	//set camera looking down the -z axis,  6 units away from the center
-	gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-	// -------------------------------------------------------------------------------------------------
-	
-	
+	glPushMatrix();	// Remember where we are.
 
+		solarSystem.render();
 
+	glPopMatrix();	// go back to origin
+	glPushMatrix();	// Remember where we are.
 
-
-	/*
-	if (y<>0)
-		answer=x/y;
-	else
-		answer=-1;
-		*/
-
-
-	//based on shoulder
-	glTranslatef(3.0f, 0.0f, 0.0f);
-		
-
-
+		//based on shoulder
+		glTranslatef(3.0f, 0.0f, 0.0f);
+			
 		robotArm.render();
 	
-	
+	glPopMatrix();	// go back to origin
+
 	// ==========================================================================================
 
 	SwapBuffers(hdc);// Swap the frame buffers.
+
 }		
 
 // ------------------------------------------------------------------------------
@@ -276,16 +166,16 @@ void Scene3D::Resize()
 		return;
 
 	GetClientRect(*hwnd, &screenRect);	
-	ResizeGLWindow(screenRect.right, screenRect.bottom);	
+	ResizeGLWindow(screenRect.right, screenRect.bottom);
+
 }
 
 // ------------------------------------------------------------------------------
 
 void Scene3D::HandleInput(float dt)
 {
-	rotation += (speed*3) * dt;
-	rotation2 += (speed*2) * dt;
-	rotation3 += speed * dt;
+
+	solarSystem.update(dt);
 
 	robotArm.update(dt);
 
@@ -310,7 +200,5 @@ void Scene3D::HandleInput(float dt)
 		input->SetKeyUp(VK_MENU);								//force un-pressing of ALT
 	}
 
-	
 
-	
-}
+}// end of HandleInput

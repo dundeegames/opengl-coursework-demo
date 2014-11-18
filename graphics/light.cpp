@@ -31,14 +31,23 @@ void Light::init(GLfloat aR, GLfloat aG, GLfloat aB, GLfloat aA,  GLfloat dR, GL
 	Position[2] = z;
 	Position[3] = t;
 
+
 }
 
 
 void Light::render()
-{
+{	/*
+	glLightfv(GL_LIGHT0+id, GL_AMBIENT,  Ambient);
+	glLightfv(GL_LIGHT0+id, GL_DIFFUSE,  Diffuse);
+	glLightfv(GL_LIGHT0+id, GL_POSITION, Position);
+	glEnable(GL_LIGHT0+id);
+	*/
 	glLightfv(id, GL_AMBIENT,  Ambient);
 	glLightfv(id, GL_DIFFUSE,  Diffuse);
 	glLightfv(id, GL_POSITION, Position);
 	glEnable(id);
-}
+
+
+
+	}
 
