@@ -118,8 +118,9 @@ void Scene3D::Init(HWND* wnd, Input* in)
 	
 
 
-
-
+	//init(ambientRGBA  difuseRGBA  postionXYZT)
+	//T is type of light: 0.0 = ..., 1.0 = ...
+	light1.init(0.3f, 0.3f, 0.3f, 1.0f,     1.0f, 0.0f, 1.0f, 1.0f,     -1.0f, 0.0f, 0.0f, 0.0f);
 
 	robotArm.Init(in);
 	//solarSystem.init();
@@ -140,6 +141,7 @@ void Scene3D::DrawScene(float dt)
 	//Where we are, What we look at, and which way is up
 	gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
 
+	/*
 	GLfloat Light_Ambient[] = {0.3f, 0.3f, 0.3f, 1.0f};
 	GLfloat Light_Diffuse[] = {1.0f, 0.0f, 1.0f, 1.0f};
 	//GLfloat Light_Position[]= {3.0f, 0.0f, 3.0f, 1.0f};
@@ -149,8 +151,8 @@ void Scene3D::DrawScene(float dt)
 	glLightfv(GL_LIGHT0, GL_DIFFUSE,  Light_Diffuse);
 	glLightfv(GL_LIGHT0, GL_POSITION, Light_Position);
 	glEnable(GL_LIGHT0);
-
-
+	*/
+	light1.render();
 
 	// rotate matrix
 		glTranslatef(-1.0f, 0.0f, 0.0f);
@@ -285,7 +287,7 @@ void Scene3D::HandleInput(float dt)
 	rotation2 += (speed*2) * dt;
 	rotation3 += speed * dt;
 
-	robotArm.update();
+	robotArm.update(dt);
 
 
 	if(input->isKeyDown('4'))									// if W is pressed

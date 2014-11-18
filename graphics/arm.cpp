@@ -5,6 +5,11 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 
+#define WRIST_MAXCLOSE -28.0
+#define WRIST_MAXOPEN -60.0
+#define ELBOW_MAXROTATION 70.0
+#define ELBOW_MINROTATION -70.0
+
 
 void Arm::Init(Input* in)
 {
@@ -16,20 +21,21 @@ void Arm::Init(Input* in)
 	elbowYrotation = 0.0f;
 	wristYrotation = 0.0f;
 	wristOpen = -60.0f;
+	speed = 25.0;
 
 	state = ARM;
 }
 
 // ------------------------------------------------------------------------------
 
-void Arm::update()
+void Arm::update(float dt)
 {
-	handleInput();
+	handleInput(dt);
 }
 
 // ------------------------------------------------------------------------------
 
-void Arm::handleInput()
+void Arm::handleInput(float dt)
 {
 
 	if(input->isKeyDown('A'))									// if A key is pressed
@@ -71,15 +77,15 @@ void Arm::handleInput()
 		switch(state)
 		{
 		case ARM:
-			armYrotation -= 2;
+			armYrotation -= speed*dt;
 			break;
 
 		case ELBOW:
-			elbowYrotation -= 2;
+			elbowYrotation -= speed*dt;
 			break;
 
 		case WRIST:
-			wristYrotation -= 2;
+			wristYrotation -= 2*speed*dt;
 			break;
 
 		default:
@@ -94,15 +100,15 @@ void Arm::handleInput()
 		switch(state)
 		{
 		case ARM:
-			armYrotation += 2;
+			armYrotation += speed*dt;
 			break;
 
 		case ELBOW:
-			elbowYrotation += 2;
+			elbowYrotation += speed*dt;
 			break;
 
 		case WRIST:
-			wristYrotation += 2;
+			wristYrotation += 2*speed*dt;
 			break;
 
 		default:
@@ -117,20 +123,20 @@ void Arm::handleInput()
 		switch(state)
 		{
 		case ARM:
-			armXrotation -= 2;
+			armXrotation -= speed*dt;
 			break;
 
 		case ELBOW:
-			if(elbowXrotation > -70)
+			if(elbowXrotation > ELBOW_MINROTATION)
 			{
-				elbowXrotation -= 2;
+				elbowXrotation -= speed*dt;
 			}
 			break;
 
 		case WRIST:
-			if(wristOpen > -60)
+			if(wristOpen > WRIST_MAXOPEN)
 			{
-				wristOpen -= 2;
+				wristOpen -= 2*speed*dt;
 			}
 			break;
 
@@ -146,20 +152,20 @@ void Arm::handleInput()
 		switch(state)
 		{
 		case ARM:
-			armXrotation += 2;
+			armXrotation += speed*dt;
 			break;
 
 		case ELBOW:
-			if(elbowXrotation < 70)
+			if(elbowXrotation < ELBOW_MAXROTATION)
 			{
-				elbowXrotation += 2;
+				elbowXrotation += speed*dt;
 			}			
 			break;
 
 		case WRIST:
-			if(wristOpen < -28)
+			if(wristOpen < WRIST_MAXCLOSE)
 			{
-				wristOpen += 2;
+				wristOpen += 2*speed*dt;
 			}
 			break;
 

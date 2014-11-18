@@ -10,6 +10,7 @@
 #include "input.h"
 #include "arm.h"
 #include "planets.h"
+#include "light.h"
 
 #define COLOUR_DEPTH 16	//Colour depth
 
@@ -23,9 +24,8 @@ class Scene3D
 	};
 
 	float rotation, rotation2, rotation3, speed;
-	//GLfloat Light_Ambient[4];
-	//GLfloat Light_Diffuse[4];
-	//GLfloat Light_Position[4];
+
+	Light light1;
 
 
 

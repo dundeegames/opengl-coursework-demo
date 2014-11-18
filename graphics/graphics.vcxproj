@@ -78,6 +78,7 @@
     <ClCompile Include="animatedsprite.cpp" />
     <ClCompile Include="arm.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="planets.cpp" />
     <ClCompile Include="scene2D.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="animatedsprite.h" />
     <ClInclude Include="arm.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="light.h" />
     <ClInclude Include="planets.h" />
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />

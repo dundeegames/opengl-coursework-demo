@@ -18,14 +18,15 @@ class Arm
 
 public:
 	void Init(Input*);	//initialse function
-	void update();
+	void update(float dt);
 	void render();
 
 private:
 	Input* input;
 	State state;
+	float speed;
 
-	void handleInput();
+	void handleInput(float dt);
 	void drawCube();
 	void drawFinger();
 
