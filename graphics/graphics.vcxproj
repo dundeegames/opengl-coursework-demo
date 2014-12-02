@@ -87,6 +87,7 @@
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
     <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="winmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="sprite.h" />
     <ClInclude Include="timerclass.h" />
     <ClInclude Include="vec3.h" />
+    <ClInclude Include="winmanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
