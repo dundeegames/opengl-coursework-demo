@@ -1,21 +1,33 @@
-// 3D Example Application
-// Paul Robertson 2014
+/*
+********************************************************************************
+*****                                                                      *****
+*****                     WinAPI and OpenGL laboratory                     *****
+*****                        by Jiri Klic, Dec 2014                        *****
+*****                                                                      *****
+********************************************************************************
+*/
 
 
-//Include
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
+
 #include <windows.h>
-#include <stdio.h>
+//#include <stdio.h>	// unused
+//#include <mmsystem.h>	// unused
+//#include <math.h>		// unused
+
 #include "input.h"
-#include <mmsystem.h>
-#include <math.h>
 
 #include "scene3D.h"
 //#include "scene2D.h"
 
 #include "timerclass.h"
 
-//Globals
-HWND hwnd; 				// Handle to a window
+
+
+// GLOBALS /////////////////////////////////////////////////////////////////////
+HWND hwnd; 				// Handle to a window (? why it is global?)
+
 Input myInput;
 
 Scene3D myScene;
@@ -23,90 +35,24 @@ Scene3D myScene;
 
 TimerClass timer;
 
-//Prototypes
+
+
+// FUNCTION DECLARATIONS ///////////////////////////////////////////////////////
+
 LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);
+
 BOOL WaitFor(unsigned long delay);
 
-// ?? WHY ARE THESE NOT NEEDED ANYMORE ??
-//void RegisterMyWindow(HINSTANCE);
-//BOOL InitialiseMyWindow(HINSTANCE, int);
-//int WINAPI WinMain (HINSTANCE, HINSTANCE, PSTR, int);
+void RegisterMyWindow(HINSTANCE hInstance);
+
+BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow);
 
 
-//code
 
-
-// Defines the window ----------------------------------
-void RegisterMyWindow(HINSTANCE hInstance)
-{
-    WNDCLASSEX  wcex;			// Contains window class information									
-
-    wcex.cbSize        = sizeof (wcex);						// Size in bytes of structure				
-    wcex.style         = CS_HREDRAW | CS_VREDRAW;			// Class style (in this case re-draw when width or height changes)		
-    wcex.lpfnWndProc   = WndProc;							// Pointer to the window procedure						
-    wcex.cbClsExtra    = 0;									// extra bytes								
-    wcex.cbWndExtra    = 0;								
-    wcex.hInstance     = hInstance;							// Handle to the instance that contains Window Proc						
-    wcex.hIcon         = 0; 								// System default icon 
-
-    wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);		// System default cursor
-	//wcex.hCursor       = LoadCursor (NULL, IDC_HELP);		// System default cursor	
-															
-    wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);			// Handle for background brush (colour)
-    wcex.lpszMenuName  = NULL;								// Set menu, in this case none							
-    wcex.lpszClassName = "FirstWindowClass";				// Window’s classname				
-    wcex.hIconSm       = 0; 								// Handle to small icon 
-
-	RegisterClassEx (&wcex);								// Registers the window for further calls							
-}
-
-
-// Attempts to create the window and display it ---------
-BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
-{
-  
-   hwnd = CreateWindow ("FirstWindowClass",			// Classname (same as previous slide)					
-						 "My first Triangle",  		// Window name
-
-						 //WS_OVERLAPPEDWINDOW,												// style of window being created
-						 //WS_POPUPWINDOW,													// style of window being created
-						 //WS_OVERLAPPED | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_SYSMENU,		// style of window being created
-						 WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,			// style of window being created
-
-						 //CW_USEDEFAULT,			// Horizontal location of window	
-						 //CW_USEDEFAULT,			// Vertical location of window
-						 //CW_USEDEFAULT,			// width of window
-						 //CW_USEDEFAULT,			// Height of window
-
-
-						 CW_USEDEFAULT,				// Horizontal location of window			
-						 CW_USEDEFAULT,				// Vertical location of window			
-						 800,						// width of window			
-						 600,						// Height of window
-
-						 NULL,						// parent of window					
-						 NULL,						// handle to menu					
-						 hInstance,					// Handle to instance associated with window				
-						 NULL);						// pointer to value to pass to window								
-
-   
-   if (!hwnd)
-	{
-		return FALSE;
-	}
-
-    ShowWindow (hwnd, nCmdShow);						
-    UpdateWindow (hwnd);
-
-	return TRUE;
-
-}
-
-
-// Entry point. The program start here -----------------------------------
+// ENTRY POINT - PROGRAM STARTS HERE ///////////////////////////////////////////
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow)			
-{									
-    MSG         msg;	
+{
+    MSG msg;	
 
 	RegisterMyWindow(hInstance);
 
@@ -156,7 +102,10 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 }
 
 
-// handles window messages ---------------------------------------------				
+
+// FUNCTION DEFINITIONS ////////////////////////////////////////////////////////
+
+// handles window messages -----------------------------------------------------				
 LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 
@@ -222,3 +171,86 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 															
 }
 
+
+
+
+// Defines the window ----------------------------------------------------------
+void RegisterMyWindow(HINSTANCE hInstance)
+{
+    WNDCLASSEX  wcex;			// Contains window class information									
+
+    wcex.cbSize        = sizeof (wcex);						// Size in bytes of structure				
+    wcex.style         = CS_HREDRAW | CS_VREDRAW;			// Class style (in this case re-draw when width or height changes)		
+    wcex.lpfnWndProc   = WndProc;							// Pointer to the window procedure						
+    wcex.cbClsExtra    = 0;									// extra bytes								
+    wcex.cbWndExtra    = 0;								
+    wcex.hInstance     = hInstance;							// Handle to the instance that contains Window Proc						
+    wcex.hIcon         = 0; 								// System default icon 
+
+    wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);		// System default cursor
+	//wcex.hCursor       = LoadCursor (NULL, IDC_HELP);		// System default cursor	
+															
+    wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);			// Handle for background brush (colour)
+    wcex.lpszMenuName  = NULL;								// Set menu, in this case none							
+    wcex.lpszClassName = "FirstWindowClass";				// Window’s classname				
+    wcex.hIconSm       = 0; 								// Handle to small icon 
+
+	RegisterClassEx (&wcex);								// Registers the window for further calls							
+}
+
+
+
+
+
+// Attempts to create the window and display it --------------------------------
+BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
+{
+   // GetSystemMetrics(SM_CXSCREEN);
+   // GetSystemMetrics(SM_CYSCREEN);
+  
+   hwnd = CreateWindow ("FirstWindowClass",			// Classname (same as previous slide)					
+						 "My first Triangle",  		// Window name
+
+						 //WS_OVERLAPPEDWINDOW,												// style of window being created
+						 //WS_POPUPWINDOW,													// style of window being created
+						 //WS_OVERLAPPED | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_SYSMENU,		// style of window being created
+						 WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,			// style of window being created
+
+						 //CW_USEDEFAULT,			// Horizontal location of window	
+						 //CW_USEDEFAULT,			// Vertical location of window
+						 //CW_USEDEFAULT,			// width of window
+						 //CW_USEDEFAULT,			// Height of window
+
+
+						 CW_USEDEFAULT,				// Horizontal location of window			
+						 CW_USEDEFAULT,				// Vertical location of window			
+						 800,						// width of window			
+						 600,						// Height of window
+
+						 NULL,						// parent of window					
+						 NULL,						// handle to menu					
+						 hInstance,					// Handle to instance associated with window				
+						 NULL);						// pointer to value to pass to window								
+
+   
+   if (!hwnd)
+	{
+		return FALSE;
+	}
+
+    ShowWindow (hwnd, nCmdShow);						
+    UpdateWindow (hwnd);
+
+	return TRUE;
+
+}
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////

@@ -86,7 +86,7 @@
     <ClCompile Include="scene3D.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
-    <ClCompile Include="Vec3.cpp" />
+    <ClCompile Include="vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h" />
@@ -99,7 +99,7 @@
     <ClInclude Include="scene3D.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="timerclass.h" />
-    <ClInclude Include="Vec3.h" />
+    <ClInclude Include="vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
