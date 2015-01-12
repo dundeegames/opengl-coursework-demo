@@ -11,34 +11,34 @@
 
 class Scene
 {
-	//bitmapHDC;
+  //bitmapHDC;
 
 public:
-	void Initialise(HWND*, Input*);
-	void update();
-	void displayFrame();
-	void render();
-	void resize();
-	void shutdown();
-	void setBuffers();
-	//void drawSprite(Sprite theSprite);
+  void Initialise(HWND*, Input*);
+  void update();
+  void displayFrame();
+  void render();
+  void resize();
+  void shutdown();
+  void setBuffers();
+  //void drawSprite(Sprite theSprite);
 
 private:
 
-	BOOL WaitFor(unsigned long);
+  BOOL WaitFor(unsigned long);
 
 
-	HWND *hwnd;							// pointer to the window
-	Input *myInput;						// pointer to the input class
-	HBITMAP theOldFrontBitMap;
-	RECT screenRect;		
-	HDC backHDC, frontHDC, bitmapHDC;	// Buffers
+  HWND *hwnd;              // pointer to the window
+  Input *myInput;            // pointer to the input class
+  HBITMAP theOldFrontBitMap;
+  RECT screenRect;    
+  HDC backHDC, frontHDC, bitmapHDC;  // Buffers
 
-	Sprite mySprite, wallPaper;
+  Sprite mySprite, wallPaper;
 
 
 
-	int ticker;
+  int ticker;
 
 };
 

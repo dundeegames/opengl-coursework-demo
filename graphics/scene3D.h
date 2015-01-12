@@ -12,48 +12,48 @@
 #include "planets.h"
 #include "light.h"
 
-#define COLOUR_DEPTH 16	//Colour depth
+#define COLOUR_DEPTH 16  //Colour depth
 
 class Scene3D
 {
-	typedef struct Camera
-	{
-		GLdouble x, y, z;
-		GLdouble theta, phi;
-		GLdouble distance;
-	};
+  typedef struct Camera
+  {
+    GLdouble x, y, z;
+    GLdouble theta, phi;
+    GLdouble distance;
+  };
 
-	Light* light1;
+  Light* light1;
 
 
 
 
 
 public:
-	void Init(HWND*, Input*);	//initialse function
-	void DrawScene(float);	// render scene
-	void Resize();
+  void Init(HWND*, Input*);  //initialse function
+  void DrawScene(float);  // render scene
+  void Resize();
 
 protected:
-	bool CreatePixelFormat(HDC);
-	void ResizeGLWindow(int, int);	//width and height
-	void InitializeOpenGL(int, int); // width and height
-	void HandleInput(float dt);
+  bool CreatePixelFormat(HDC);
+  void ResizeGLWindow(int, int);  //width and height
+  void InitializeOpenGL(int, int); // width and height
+  void HandleInput(float dt);
 
-	//vars
-	HWND* hwnd;
-	Input* input;
-	RECT screenRect;
-	HDC	hdc;
-	HGLRC hrc;			//hardware RENDERING CONTEXT
-	int s_wdith, s_height;
+  //vars
+  HWND* hwnd;
+  Input* input;
+  RECT screenRect;
+  HDC  hdc;
+  HGLRC hrc;      //hardware RENDERING CONTEXT
+  int s_wdith, s_height;
 
 private:
-	Camera camera;
-	Arm robotArm;
-	Planets solarSystem;
-	void drawCube();
-	void drawFinger();
+  Camera camera;
+  Arm robotArm;
+  Planets solarSystem;
+  void drawCube();
+  void drawFinger();
 };
 
 #endif

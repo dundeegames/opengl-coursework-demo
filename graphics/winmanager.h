@@ -1,11 +1,9 @@
-/*
-********************************************************************************
-*****                                                                      *****
-*****                     WinAPI and OpenGL laboratory                     *****
-*****                        by Jiri Klic, Dec 2014                        *****
-*****                                                                      *****
-********************************************************************************
-*/
+// /////////////////////////////////////////////////////////////////////////////
+/*!                                                                           \n
+*                          WinAPI and OpenGL laboratory                       \n
+*                             by Jiri Klic, Dec 2014                          \n
+*                                                                             \n
+*/ /////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -24,19 +22,19 @@ class WinManager
 {
 
 public:
-	WinManager();
-	~WinManager();
+  WinManager();
+  ~WinManager();
 
-	//LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-	//BOOL WaitFor(unsigned long delay);
-	void RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinProc)(HWND, UINT, WPARAM, LPARAM));
-	BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow);
+  //LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+  //BOOL WaitFor(unsigned long delay);
+  void RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinProc)(HWND, UINT, WPARAM, LPARAM));
+  BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow);
 
-	inline HWND getHandle() const {return hwnd;}
+  inline HWND getHandle() const {return hwnd;}
 
 
 private:
-	HWND hwnd; 				// Handle to a window
+  HWND hwnd;          // Handle to a window
 
 };
 

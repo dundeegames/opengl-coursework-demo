@@ -9,17 +9,17 @@ class AnimatedSprite : public Sprite
 {
 
 public:
-	void update(float eTime);
-	void move(float eTime);
+  void update(float eTime);
+  void move(float eTime);
 
 private:
-	float animTime;
-	float frameStepTime;
-	float elapsedTime;
-	float speed;
+  float animTime;
+  float frameStepTime;
+  float elapsedTime;
+  float speed;
 
-	int offsetX;
-	int frameWidth;
+  int offsetX;
+  int frameWidth;
 
 };
 

@@ -10,12 +10,12 @@
 
 class Planets
 {
-	float rotation, rotation2, rotation3, speed;
+  float rotation, rotation2, rotation3, speed;
 
 public:
-	void init();
-	void update(float dt);
-	void render();
+  void init();
+  void update(float dt);
+  void render();
 
 private:
 

@@ -12,9 +12,9 @@
 // INCLUDES ////////////////////////////////////////////////////////////////////
 
 #include <windows.h>
-//#include <stdio.h>	// unused
-//#include <mmsystem.h>	// unused
-//#include <math.h>		// unused
+//#include <stdio.h>  // unused
+//#include <mmsystem.h>  // unused
+//#include <math.h>    // unused
 
 #include "winmanager.h"
 #include "input.h"
@@ -31,7 +31,7 @@
 WinManager myWinManager;
 
 
-// HWND hwnd; 				// Handle to a window
+// HWND hwnd;         // Handle to a window
 
 Input myInput;
 
@@ -58,130 +58,130 @@ BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow);
 
 
 // ENTRY POINT - PROGRAM STARTS HERE ///////////////////////////////////////////
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow)			
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow)      
 {
-    MSG msg;	
-	HWND myhandle; 				// Handle to a window
+  MSG msg;  
+  HWND myhandle;         // Handle to a window
 
-	myWinManager.RegisterMyWindow(hInstance, mainWndProc);
+  myWinManager.RegisterMyWindow(hInstance, mainWndProc);
 
 
-	//RegisterMyWindow(hInstance);
+  //RegisterMyWindow(hInstance);
 
-	if (!myWinManager.InitialiseMyWindow(hInstance, nCmdShow))
-	{
-		return FALSE;
-	}
-	else
-	{
-		myhandle = myWinManager.getHandle();
-		//myScene.Initialise(&hwnd, &myInput);
-		myScene.Init(&myhandle, &myInput);
-		timer.Initialize();
-	}
-	
+  if (!myWinManager.InitialiseMyWindow(hInstance, nCmdShow))
+  {
+    return FALSE;
+  }
+  else
+  {
+    myhandle = myWinManager.getHandle();
+    //myScene.Initialise(&hwnd, &myInput);
+    myScene.Init(&myhandle, &myInput);
+    timer.Initialize();
+  }
+  
 
-	//GAME LOOP
-	while (TRUE)					
-    {							
-		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
-		{
-		    if (msg.message==WM_QUIT)
-			{
-				break;
-			}
+  //GAME LOOP
+  while (TRUE)          
+    {              
+    if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
+    {
+        if (msg.message==WM_QUIT)
+      {
+        break;
+      }
 
-			TranslateMessage (&msg);							
-			DispatchMessage (&msg);
+      TranslateMessage (&msg);              
+      DispatchMessage (&msg);
 
-		}
-		else
-		{	
-			timer.Frame();
+    }
+    else
+    {  
+      timer.Frame();
 
-			if(myInput.isKeyDown(VK_ESCAPE))
-			{
-				break;
-			}
+      if(myInput.isKeyDown(VK_ESCAPE))
+      {
+        break;
+      }
 
-			myScene.DrawScene(timer.GetTime());
-		}
-		//myScene.update();		// process input
-		//myScene.render();		// call render on scene object
+      myScene.DrawScene(timer.GetTime());
+    }
+    //myScene.update();    // process input
+    //myScene.render();    // call render on scene object
     }
   
-    //myScene.shutdown();			// release HDCs when exiting application
-	return msg.wParam ;										
+    //myScene.shutdown();      // release HDCs when exiting application
+  return msg.wParam ;                    
 }
 
 
 
 // FUNCTION DEFINITIONS ////////////////////////////////////////////////////////
 
-// handles window messages -----------------------------------------------------				
+// handles window messages -----------------------------------------------------        
 LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 
-    switch (message)											
-    {														
-		case WM_CREATE:		
-			
-			break;
+    switch (message)                      
+    {                            
+    case WM_CREATE:    
+      
+      break;
 
-		case WM_SIZE:
-			myScene.Resize();
-			//myScene.setBuffers();
-			break;	
+    case WM_SIZE:
+      myScene.Resize();
+      //myScene.setBuffers();
+      break;  
 
-		case WM_KEYDOWN:
-			myInput.SetKeyDown(wParam);				// Pass key value into input obj
-			break;
+    case WM_KEYDOWN:
+      myInput.SetKeyDown(wParam);        // Pass key value into input obj
+      break;
 
-		case WM_KEYUP:
-			myInput.SetKeyUp(wParam);				// Pass key value into input obj
-			break;
+    case WM_KEYUP:
+      myInput.SetKeyUp(wParam);        // Pass key value into input obj
+      break;
 
-		case WM_MOUSEMOVE:
-			myInput.setMouseX(LOWORD (lParam));		// Pass X position
-			myInput.setMouseY(HIWORD (lParam));		// Pass Y position
-			break;
+    case WM_MOUSEMOVE:
+      myInput.setMouseX(LOWORD (lParam));    // Pass X position
+      myInput.setMouseY(HIWORD (lParam));    // Pass Y position
+      break;
 
-		case WM_LBUTTONDOWN:
-			myInput.setLeftMouseBtn(true);
-			/*
-			char position[20];
-			sprintf(position, "x=%d y=%d" ,myInput.getMouseX(), myInput.getMouseY());
-			MessageBox(NULL, position, "Mouse Position", MB_OK);
-			*/
-			break;
+    case WM_LBUTTONDOWN:
+      myInput.setLeftMouseBtn(true);
+      /*
+      char position[20];
+      sprintf(position, "x=%d y=%d" ,myInput.getMouseX(), myInput.getMouseY());
+      MessageBox(NULL, position, "Mouse Position", MB_OK);
+      */
+      break;
 
-		case WM_LBUTTONUP:
-			myInput.setLeftMouseBtn(false);
-			break;
+    case WM_LBUTTONUP:
+      myInput.setLeftMouseBtn(false);
+      break;
 
-		case WM_PAINT:
-		    break;
+    case WM_PAINT:
+        break;
 
-		case WM_CLOSE:
+    case WM_CLOSE:
 
-			int resp;
-			
-			resp = MessageBox(hwnd, "You sure?", "Quit", MB_YESNO | MB_ICONQUESTION);
+      int resp;
+      
+      resp = MessageBox(hwnd, "You sure?", "Quit", MB_YESNO | MB_ICONQUESTION);
 
-			if(resp == IDNO)
-			{
-				return 0;
-			}
-			break;
+      if(resp == IDNO)
+      {
+        return 0;
+      }
+      break;
 
-		case WM_DESTROY:	
-			//PostQuitMessage(WM_QUIT);
-			PostQuitMessage(0);								
-			break;				
-	}													
+    case WM_DESTROY:  
+      //PostQuitMessage(WM_QUIT);
+      PostQuitMessage(0);                
+      break;        
+  }                          
 
-	return DefWindowProc (hwnd, message, wParam, lParam);		
-															
+  return DefWindowProc (hwnd, message, wParam, lParam);    
+                              
 }
 
 
@@ -190,25 +190,25 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 //// Defines the window ----------------------------------------------------------
 //void RegisterMyWindow(HINSTANCE hInstance)
 //{
-//    WNDCLASSEX  wcex;			// Contains window class information									
+//    WNDCLASSEX  wcex;      // Contains window class information                  
 //
-//    wcex.cbSize        = sizeof (wcex);						// Size in bytes of structure				
-//    wcex.style         = CS_HREDRAW | CS_VREDRAW;			// Class style (in this case re-draw when width or height changes)		
-//    wcex.lpfnWndProc   = WndProc;							// Pointer to the window procedure						
-//    wcex.cbClsExtra    = 0;									// extra bytes								
-//    wcex.cbWndExtra    = 0;								
-//    wcex.hInstance     = hInstance;							// Handle to the instance that contains Window Proc						
-//    wcex.hIcon         = 0; 								// System default icon 
+//    wcex.cbSize        = sizeof (wcex);            // Size in bytes of structure        
+//    wcex.style         = CS_HREDRAW | CS_VREDRAW;      // Class style (in this case re-draw when width or height changes)    
+//    wcex.lpfnWndProc   = WndProc;              // Pointer to the window procedure            
+//    wcex.cbClsExtra    = 0;                  // extra bytes                
+//    wcex.cbWndExtra    = 0;                
+//    wcex.hInstance     = hInstance;              // Handle to the instance that contains Window Proc            
+//    wcex.hIcon         = 0;                 // System default icon 
 //
-//    wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);		// System default cursor
-//	//wcex.hCursor       = LoadCursor (NULL, IDC_HELP);		// System default cursor	
-//															
-//    wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);			// Handle for background brush (colour)
-//    wcex.lpszMenuName  = NULL;								// Set menu, in this case none							
-//    wcex.lpszClassName = "FirstWindowClass";				// Window’s classname				
-//    wcex.hIconSm       = 0; 								// Handle to small icon 
+//    wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);    // System default cursor
+//  //wcex.hCursor       = LoadCursor (NULL, IDC_HELP);    // System default cursor  
+//                              
+//    wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);      // Handle for background brush (colour)
+//    wcex.lpszMenuName  = NULL;                // Set menu, in this case none              
+//    wcex.lpszClassName = "FirstWindowClass";        // Window’s classname        
+//    wcex.hIconSm       = 0;                 // Handle to small icon 
 //
-//	RegisterClassEx (&wcex);								// Registers the window for further calls							
+//  RegisterClassEx (&wcex);                // Registers the window for further calls              
 //}
 //
 //
@@ -221,40 +221,40 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 //   // GetSystemMetrics(SM_CXSCREEN);
 //   // GetSystemMetrics(SM_CYSCREEN);
 //  
-//   hwnd = CreateWindow ("FirstWindowClass",			// Classname (same as previous slide)					
-//						 "My first Triangle",  		// Window name
+//   hwnd = CreateWindow ("FirstWindowClass",      // Classname (same as previous slide)          
+//             "My first Triangle",      // Window name
 //
-//						 //WS_OVERLAPPEDWINDOW,												// style of window being created
-//						 //WS_POPUPWINDOW,													// style of window being created
-//						 //WS_OVERLAPPED | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_SYSMENU,		// style of window being created
-//						 WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,			// style of window being created
+//             //WS_OVERLAPPEDWINDOW,                        // style of window being created
+//             //WS_POPUPWINDOW,                          // style of window being created
+//             //WS_OVERLAPPED | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_SYSMENU,    // style of window being created
+//             WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,      // style of window being created
 //
-//						 //CW_USEDEFAULT,			// Horizontal location of window	
-//						 //CW_USEDEFAULT,			// Vertical location of window
-//						 //CW_USEDEFAULT,			// width of window
-//						 //CW_USEDEFAULT,			// Height of window
+//             //CW_USEDEFAULT,      // Horizontal location of window  
+//             //CW_USEDEFAULT,      // Vertical location of window
+//             //CW_USEDEFAULT,      // width of window
+//             //CW_USEDEFAULT,      // Height of window
 //
 //
-//						 CW_USEDEFAULT,				// Horizontal location of window			
-//						 CW_USEDEFAULT,				// Vertical location of window			
-//						 800,						// width of window			
-//						 600,						// Height of window
+//             CW_USEDEFAULT,        // Horizontal location of window      
+//             CW_USEDEFAULT,        // Vertical location of window      
+//             800,            // width of window      
+//             600,            // Height of window
 //
-//						 NULL,						// parent of window					
-//						 NULL,						// handle to menu					
-//						 hInstance,					// Handle to instance associated with window				
-//						 NULL);						// pointer to value to pass to window								
+//             NULL,            // parent of window          
+//             NULL,            // handle to menu          
+//             hInstance,          // Handle to instance associated with window        
+//             NULL);            // pointer to value to pass to window                
 //
 //   
 //   if (!hwnd)
-//	{
-//		return FALSE;
-//	}
+//  {
+//    return FALSE;
+//  }
 //
-//    ShowWindow (hwnd, nCmdShow);						
+//    ShowWindow (hwnd, nCmdShow);            
 //    UpdateWindow (hwnd);
 //
-//	return TRUE;
+//  return TRUE;
 //
 //}
 

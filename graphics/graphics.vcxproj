@@ -79,9 +79,11 @@
     <ClCompile Include="arm.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="irrquaternion.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="planets.cpp" />
+    <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="scene2D.cpp" />
     <ClCompile Include="scene3D.cpp" />
     <ClCompile Include="sprite.cpp" />
@@ -94,8 +96,10 @@
     <ClInclude Include="arm.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="irrquaternion.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="planets.h" />
+    <ClInclude Include="quaternion.h" />
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />
     <ClInclude Include="sprite.h" />
