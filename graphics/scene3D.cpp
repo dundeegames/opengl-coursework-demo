@@ -78,7 +78,7 @@ void Scene3D::InitializeOpenGL(int width, int height)
 void Scene3D::Init(HWND* wnd, Input* in)
 {
   // init camera values
-  camera.init(FIXED_POINT);
+  camera.init(FIXED_POINT, in);
 
   //camera.theta = 0.0;
   //camera.phi = 0.0;
@@ -139,10 +139,13 @@ void Scene3D::DrawScene(float dt)
   * Where we are, What we look at, and which way is up
   */
   //gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
-  gluLookAt(camera.posX(),  camera.posY(),  camera.posZ(),
-            camera.lookX(), camera.lookY(), camera.lookZ(),
-            camera.upX(),   camera.upY(),   camera.upZ() );
+
+  //gluLookAt(camera.posX(),  camera.posY(),  camera.posZ(),
+  //          camera.lookX(), camera.lookY(), camera.lookZ(),
+  //          camera.upX(),   camera.upY(),   camera.upZ() );
   
+  camera.view();
+
   light1->render();
 
   glPushMatrix();   // Remember where we are.
@@ -155,7 +158,7 @@ void Scene3D::DrawScene(float dt)
     //based on shoulder
     glTranslatef(3.0f, 0.0f, 0.0f);
       
-    robotArm.render();
+    //robotArm.render();
   
   glPopMatrix();    // go back to origin
 
@@ -184,7 +187,9 @@ void Scene3D::HandleInput(float dt)
 
   solarSystem.update(dt);
 
-  robotArm.update(dt);
+  //robotArm.update(dt);
+
+  camera.update(dt);
 
 
   if(input->isKeyDown('4'))                  // if W is pressed

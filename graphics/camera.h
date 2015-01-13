@@ -21,8 +21,7 @@
 
 
 enum Type {FIXED_POINT, ROTATING, SCROLLING, MOVEABLE, FLOATING, TRACKING, THIRD_PERSON, FIRST_PERSON};
-#define PI 3.1415
-
+#define PI 3.1415f
 
 
 class Camera
@@ -32,29 +31,23 @@ public:
   Camera();
   ~Camera();
 
-  void init(Type type_);
+  void init(Type type_, Input* in);
   void update(float dt);
-  void handleInput(Input* in);
+  void handleInput(float dt);
   Vec3 getPosition();
   Vec3 getRotation();
   Vec3 getForward();
 
 
-  inline float posX() { return position.getX(); };
-  inline float posY() { return position.getY(); };
-  inline float posZ() { return position.getZ(); };
+  void view();
 
-  inline float lookX() { return lookAt.getX(); };
-  inline float lookY() { return lookAt.getY(); };
-  inline float lookZ() { return lookAt.getZ(); };
-
-  inline float upX() { return up.getX(); };
-  inline float upY() { return up.getY(); };
-  inline float upZ() { return up.getZ(); };
 
 
 private:
   Vec3 position;
+  Vec3 forward;      
+  Vec3 up;
+  Vec3 right;
 
   /*!
   * Pitch (Rotation around x- axis)
@@ -63,15 +56,9 @@ private:
   */
   Vec3 rotation;
 
-  //! LookAt = position + forward
-  Vec3 lookAt;
-
-  Vec3 forward;      
-  Vec3 up;
-  Vec3 right;
-
   Type type;
-
+  Input* input;
+  float sensitivity;
 };
 
 

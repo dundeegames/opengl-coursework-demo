@@ -38,36 +38,36 @@ void Arm::update(float dt)
 void Arm::handleInput(float dt)
 {
 
-  if(input->isKeyDown('A'))                  // if A key is pressed
+  if(input->isKeyDown('I'))                  // if A key is pressed
   {
     // change state
     if(state != ARM)
     {
       state = ARM;
     }
-    input->SetKeyUp('A');                  //force un-pressing of A key
+    //input->SetKeyUp('A');                  //force un-pressing of A key
   }
 
 
-  if(input->isKeyDown('E'))                  // if E key is pressed
+  if(input->isKeyDown('O'))                  // if E key is pressed
   {
     // change state
     if(state != ELBOW)
     {
       state = ELBOW;
     }
-    input->SetKeyUp('E');                  //force un-pressing of E key
+    //input->SetKeyUp('E');                  //force un-pressing of E key
   }
 
 
-  if(input->isKeyDown('W'))                  // if W key is pressed
+  if(input->isKeyDown('P'))                  // if W key is pressed
   {
     // change state
     if(state != WRIST)
     {
       state = WRIST;
     }
-    input->SetKeyUp('W');                  //force un-pressing of W key
+    //input->SetKeyUp('W');                  //force un-pressing of W key
   }
 
 
@@ -189,7 +189,7 @@ void Arm::render()
     glRotatef(armXrotation, 1, 0, 0);
     // render the SHOULDER
     //glColor3f(1.0f, 0.9f, 0.0f);
-    gluSphere(gluNewQuadric(), 0.25, 40,40);
+    gluSphere(gluNewQuadric(), 0.25, 12,12);
 
     glPushMatrix();
       //render arm
@@ -204,7 +204,7 @@ void Arm::render()
       glTranslatef(0,0.625,0);
       glColor3f(1.0f, 1.0f, 1.0f);
       glScalef(2.0f, 0.625f, 2.0f);
-      gluSphere(gluNewQuadric(), 0.25, 40,40);
+      gluSphere(gluNewQuadric(), 0.25, 12,12);
 
       // render forearm
       glRotatef(elbowXrotation, 1, 0, 0);
@@ -220,7 +220,7 @@ void Arm::render()
       glTranslatef(0,0.625,0);
       glColor3f(1.0f, 1.0f, 1.0f);
       glScalef(2.0f, 0.625f, 2.0f);
-      gluSphere(gluNewQuadric(), 0.25, 40,40);
+      gluSphere(gluNewQuadric(), 0.25, 12,12);
       glPushMatrix();  // Remember where we are.  THE WRIST
 
         //Render Finger1

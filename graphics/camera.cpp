@@ -15,17 +15,17 @@ Camera::~Camera()
 
 // -----------------------------------------------------------------------------
 
-void Camera::init(Type type_)
+void Camera::init(Type type_, Input* in)
 {
   type = type_;
-  position = Vec3(0,0,10);
-  rotation = Vec3();
-  forward = Vec3();
-  up = Vec3(0,1,0);
+  input = in;
+  sensitivity = 2.5f;
+  position = Vec3(0.0f, 0.0f, 10.0f);
+  rotation = Vec3(0.0f, 0.0f, 0.0f);
+  forward = Vec3(0.0f, 0.0f, -1.0f);
+  up = Vec3(0.0f, 1.0f, 0.0f);
 
   right = forward.cross(up);
-  lookAt = Vec3();
-  //lookAt = position + forward;
 
 }
 
@@ -33,6 +33,8 @@ void Camera::init(Type type_)
 
 void Camera::update(float dt)
 {
+
+  handleInput(dt);
 
   float cosR, cosP, cosY;  //temp values for sin/cos from 
   float sinR, sinP, sinY; 
@@ -81,15 +83,47 @@ void Camera::update(float dt)
   */
   right = forward.cross(up);
 
-  //! LookAt = position + forward
-  //lookAt = position + forward;
-
 }
 
 // -----------------------------------------------------------------------------
 
-void Camera::handleInput(Input* in)
+void Camera::handleInput(float dt)
 {
+  if(input->isKeyDown('W'))                  // if W key is pressed
+  {
+    position = position.add( forward, dt * sensitivity );
+    //position += forward;
+    //position.add( forward );
+  }
+  else if(input->isKeyDown('S'))             // if S key is pressed
+  {
+    position = position.subtract( forward, dt * sensitivity );
+    //position -= forward;
+  }
+
+
+  if(input->isKeyDown('D'))                  // if D key is pressed
+  {
+    position = position.add( right, dt * sensitivity );
+    //position += right;
+  }
+  else if(input->isKeyDown('A'))             // if A key is pressed
+  {
+    position = position.subtract( right, dt * sensitivity );
+    //position -= right;
+  }
+
+
+  if(input->isKeyDown('E'))                  // if E key is pressed
+  {
+    position = position.add( up, dt * sensitivity );
+    //position += right;
+  }
+  else if(input->isKeyDown('F'))             // if F key is pressed
+  {
+    position = position.subtract( up, dt * sensitivity );
+    //position -= right;
+  }
 
 }
 
@@ -116,7 +150,17 @@ Vec3 Camera::getForward()
 
 // -----------------------------------------------------------------------------
 
+void Camera::view()
+{
+  //! LookAt = position + forward
+  Vec3 lookAt = position + forward;
 
+
+  gluLookAt(position.getX(),  position.getY(),  position.getZ(),
+            lookAt.getX(),    lookAt.getY(),    lookAt.getZ(),
+            up.getX(),        up.getY(),        up.getZ() );
+
+}
 
 
 
