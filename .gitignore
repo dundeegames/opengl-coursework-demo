@@ -3,6 +3,9 @@
 *.bmp
 *.jpg
 
+bin/
+
+
 # C++ Ignore ============================
 
 # Compiled Object files

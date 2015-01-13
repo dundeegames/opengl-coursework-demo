@@ -123,8 +123,6 @@ Vec3 Vec3::scale(float scale){
 }
 
 
-
-
 // Question: How is possible to access private elements[] of v1, passed to func as Vec3& ??
 Vec3 Vec3::add(const Vec3& v1, float scale){
         Vec3 sum(
