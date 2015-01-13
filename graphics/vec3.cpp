@@ -75,7 +75,10 @@ Vec3& Vec3::set(float x, float y, float z){
         this->elements[2] = z;
         return *this;
 }
- 
+
+
+
+// Question: Why to return Vec3& when setting parameters? How to use such feature??
 Vec3& Vec3::setX(float x){
         this->elements[0] = x;
         return *this;
@@ -118,7 +121,11 @@ Vec3 Vec3::scale(float scale){
                 );
         return scaled;
 }
- 
+
+
+
+
+// Question: How is possible to access private elements[] of v1, passed to func as Vec3& ??
 Vec3 Vec3::add(const Vec3& v1, float scale){
         Vec3 sum(
                 (this->elements[0] + v1[0]*scale),

@@ -37,14 +37,21 @@ public:
   void handleInput(Input* in);
   Vec3 getPosition();
   Vec3 getRotation();
-
+  Vec3 getForward();
 
 
 private:
   Vec3 position;
-  Vec3 rotation;      // Pitch (Rotation around x- axis), Yaw (Rotation around y-axis), Roll (Rotation around z-axis)
 
-  Vec3 forward;      // LookAt = position + forward
+  /*!
+  * Pitch (Rotation around x- axis)
+  * Yaw   (Rotation around y-axis)
+  * Roll  (Rotation around z-axis)
+  */
+  Vec3 rotation;
+
+  //! LookAt = position + forward
+  Vec3 forward;      
   Vec3 up;
   Vec3 right;
 
