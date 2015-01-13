@@ -77,13 +77,15 @@ void Scene3D::InitializeOpenGL(int width, int height)
 
 void Scene3D::Init(HWND* wnd, Input* in)
 {
-  // init camera values 
-  camera.theta = 0.0;
-  camera.phi = 0.0;
-  camera.distance = 10.0;
-  camera.x = 0.0;
-  camera.y = 0.0;
-  camera.z = 10.0;
+  // init camera values
+  camera.init(FIXED_POINT);
+
+  //camera.theta = 0.0;
+  //camera.phi = 0.0;
+  //camera.distance = 10.0;
+  //camera.x = 0.0;
+  //camera.y = 0.0;
+  //camera.z = 10.0;
 
 
   hwnd = wnd;
@@ -95,13 +97,14 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //OpenGL settings
   glEnable(GL_COLOR_MATERIAL);
   glEnable(GL_LIGHTING);
+  glEnable(GL_TEXTURE_2D);
 
 
-  glShadeModel(GL_FLAT);              // Enable Smooth Shading
-  glClearColor(0.0f, 0.0f, 0.0f, 0.5f);        // Black Background
-  glClearDepth(1.0f);                  // Depth Buffer Setup
-  glEnable(GL_DEPTH_TEST);              // Enables Depth Testing
-  glDepthFunc(GL_LEQUAL);                // The Type Of Depth Testing To Do
+  glShadeModel(GL_FLAT);                  // Enable Smooth Shading
+  glClearColor(0.0f, 0.0f, 0.0f, 0.5f);   // Black Background
+  glClearDepth(1.0f);                     // Depth Buffer Setup
+  glEnable(GL_DEPTH_TEST);                // Enables Depth Testing
+  glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Really Nice Perspective Calculations
 
   //Also, do any other setting variables here for your app if you wish
@@ -118,7 +121,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   solarSystem.init();
 
 
-}// end of Init
+} // end of Init
 
 // ------------------------------------------------------------------------------
 
@@ -131,34 +134,38 @@ void Scene3D::DrawScene(float dt)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-  //set camera looking down the -z axis,  6 units away from the center
-  //Where we are, What we look at, and which way is up
-  gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
-
+  /*!
+  * set camera looking down the -z axis,  6 units away from the center
+  * Where we are, What we look at, and which way is up
+  */
+  //gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
+  gluLookAt(camera.posX(),  camera.posY(),  camera.posZ(),
+            camera.lookX(), camera.lookY(), camera.lookZ(),
+            camera.upX(),   camera.upY(),   camera.upZ() );
   
   light1->render();
 
-  glPushMatrix();  // Remember where we are.
+  glPushMatrix();   // Remember where we are.
 
     solarSystem.render();
 
-  glPopMatrix();  // go back to origin
-  glPushMatrix();  // Remember where we are.
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
 
     //based on shoulder
     glTranslatef(3.0f, 0.0f, 0.0f);
       
     robotArm.render();
   
-  glPopMatrix();  // go back to origin
+  glPopMatrix();    // go back to origin
 
-  // ==========================================================================================
+  // ----------------------------------------
 
-  SwapBuffers(hdc);// Swap the frame buffers.
+  SwapBuffers(hdc); // Swap the frame buffers
 
 }    
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void Scene3D::Resize()
 {

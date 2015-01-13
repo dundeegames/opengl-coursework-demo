@@ -15,8 +15,17 @@ Camera::~Camera()
 
 // -----------------------------------------------------------------------------
 
-void Camera::init()
+void Camera::init(Type type_)
 {
+  type = type_;
+  position = Vec3(0,0,10);
+  rotation = Vec3();
+  forward = Vec3();
+  up = Vec3(0,1,0);
+
+  right = forward.cross(up);
+  lookAt = Vec3();
+  //lookAt = position + forward;
 
 }
 
@@ -34,12 +43,13 @@ void Camera::update(float dt)
   * Only Want to calculate these values once. 
   * For speeds sake. 
   */
-  //cosY = cosf(Yaw*PI/180);
-  //cosP = cosf(Pitch*PI/180);
-  //cosR = cosf(Roll*PI/180);
-  //sinY = sinf(Yaw*PI/180);
-  //sinP = sinf(Pitch*PI/180);
-  //sinR = sinf(Roll*PI/180);
+  cosY = cosf( rotation[0]*PI/180);        // Yall
+  cosP = cosf( rotation[1]*PI/180);        // Pitch
+  cosR = cosf( rotation[2]*PI/180);        // Roll
+
+  sinY = sinf( rotation[0]*PI/180);        // Yall
+  sinP = sinf( rotation[1]*PI/180);        // Pitch
+  sinR = sinf( rotation[2]*PI/180);        // Roll
 
 
   /*!
@@ -49,9 +59,9 @@ void Camera::update(float dt)
   * Look direction,  position and the up vector
   * This function could also calculate the right vector
   */
-  //forward.x = sinY * cosP;
-  //forward.y = sinP;
-  //forward.z = cosP * -cosY;
+  forward.setX(sinY * cosP);
+  forward.setY(sinP);
+  forward.setZ(cosP * -cosY);
 
 
   /*!
@@ -60,15 +70,19 @@ void Camera::update(float dt)
   */
 
   //! Up Vector
-  //up.x = -cosY * sinR - sinY * sinP * cosR;
-  //up.y = cosP * cosR;
-  //up.z = -sinY * sinR - sinP * cosR * -cosY;
+  up.setX(-cosY * sinR - sinY * sinP * cosR);
+  up.setY(cosP * cosR);
+  up.setZ(-sinY * sinR - sinP * cosR * -cosY);
 
   /*!
   * Side Vector (right)
   * this is a cross product between the forward and up vector.
   * If you don’t need to calculate this,  don’t do it. 
   */
+  right = forward.cross(up);
+
+  //! LookAt = position + forward
+  //lookAt = position + forward;
 
 }
 

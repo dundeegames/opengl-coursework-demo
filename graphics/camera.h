@@ -32,12 +32,25 @@ public:
   Camera();
   ~Camera();
 
-  void init();
+  void init(Type type_);
   void update(float dt);
   void handleInput(Input* in);
   Vec3 getPosition();
   Vec3 getRotation();
   Vec3 getForward();
+
+
+  inline float posX() { return position.getX(); };
+  inline float posY() { return position.getY(); };
+  inline float posZ() { return position.getZ(); };
+
+  inline float lookX() { return lookAt.getX(); };
+  inline float lookY() { return lookAt.getY(); };
+  inline float lookZ() { return lookAt.getZ(); };
+
+  inline float upX() { return up.getX(); };
+  inline float upY() { return up.getY(); };
+  inline float upZ() { return up.getZ(); };
 
 
 private:
@@ -51,6 +64,8 @@ private:
   Vec3 rotation;
 
   //! LookAt = position + forward
+  Vec3 lookAt;
+
   Vec3 forward;      
   Vec3 up;
   Vec3 right;

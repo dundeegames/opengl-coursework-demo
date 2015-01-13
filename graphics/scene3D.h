@@ -11,22 +11,18 @@
 #include "arm.h"
 #include "planets.h"
 #include "light.h"
+#include "camera.h"
 
 #define COLOUR_DEPTH 16  //Colour depth
 
 class Scene3D
 {
-  typedef struct Camera
-  {
-    GLdouble x, y, z;
-    GLdouble theta, phi;
-    GLdouble distance;
-  };
-
-  Light* light1;
-
-
-
+  //typedef struct Camera
+  //{
+  //  GLdouble x, y, z;
+  //  GLdouble theta, phi;
+  //  GLdouble distance;
+  //};
 
 
 public:
@@ -49,6 +45,7 @@ protected:
   int s_wdith, s_height;
 
 private:
+  Light* light1;
   Camera camera;
   Arm robotArm;
   Planets solarSystem;
