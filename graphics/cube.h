@@ -12,7 +12,10 @@
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
-
+#include <Windows.h>
+#include <Gl/gl.h>
+#include <gl/glu.h>
+#include "include/SOIL_old.h"
 
 
 
@@ -23,8 +26,10 @@ public:
   Cube();
   ~Cube();
   void render();
+  void init();
 
 private:
+  Gluint myTexture;
 
 
 };

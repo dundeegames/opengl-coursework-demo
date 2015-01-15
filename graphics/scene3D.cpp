@@ -100,6 +100,12 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glEnable(GL_TEXTURE_2D);
 
 
+  /*!
+  * Specify texture calculation
+  */
+  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+
   glShadeModel(GL_FLAT);                  // Enable Smooth Shading
   glClearColor(0.0f, 0.0f, 0.0f, 0.5f);   // Black Background
   glClearDepth(1.0f);                     // Depth Buffer Setup

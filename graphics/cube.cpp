@@ -1,11 +1,5 @@
 #include "cube.h"
 
-#include <Windows.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
-
-
-
 
 Cube::Cube()
 {
@@ -18,6 +12,20 @@ Cube::~Cube()
 
 }
 
+// -----------------------------------------------------------------------------
+
+void Cube::init()
+{
+  /*!
+  * Load a PNG using the SOIL (Simple OpenGL Image  Library)
+  */
+  myTexture = SOIL_load_OGL_texture("bin/crate.png",
+                SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+                );
+
+}
+
 
 // -----------------------------------------------------------------------------
 
@@ -26,24 +34,30 @@ void Cube::render()
   glBegin(GL_TRIANGLES);
 
     // front face
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);
 
-    glNormal3f(0.0f, 0.0f, 1.0f); 
+    glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(0.0f, 0.0f);
     glVertex3f(-0.5f, 0.5f, 0.5f);
 
-    glNormal3f(0.0f, 0.0f, 1.0f); 
+    glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f);
     glVertex3f(-0.5f, -0.5f, 0.5f);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f);
     glVertex3f(0.5f, -0.5f, 0.5f);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f);
     glVertex3f(0.5f, -0.5f, 0.5f);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(1.0f, 0.0f);
     glVertex3f(0.5f, 0.5f, 0.5f);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
+    glTexCoord2f(0.0f, 0.0f);
     glVertex3f(-0.5f, 0.5f, 0.5f);
 
 
