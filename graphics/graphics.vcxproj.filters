@@ -63,6 +63,9 @@
     <ClCompile Include="irrquaternion.cpp">
       <Filter>math</Filter>
     </ClCompile>
+    <ClCompile Include="cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="irrquaternion.h">
       <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

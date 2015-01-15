@@ -8,6 +8,7 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include "input.h"
+#include "cube.h"
 #include "arm.h"
 #include "planets.h"
 #include "light.h"
@@ -47,6 +48,7 @@ protected:
 private:
   Light* light1;
   Camera camera;
+  Cube box1;
   Arm robotArm;
   Planets solarSystem;
   void drawCube();

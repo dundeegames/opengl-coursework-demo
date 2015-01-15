@@ -80,6 +80,7 @@
     <ClCompile Include="animatedsprite.cpp" />
     <ClCompile Include="arm.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="cube.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="irrquaternion.cpp" />
     <ClCompile Include="light.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="animatedsprite.h" />
     <ClInclude Include="arm.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="cube.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="irrquaternion.h" />
     <ClInclude Include="light.h" />

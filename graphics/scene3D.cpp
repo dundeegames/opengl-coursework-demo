@@ -157,7 +157,7 @@ void Scene3D::DrawScene(float dt)
 
     //based on shoulder
     glTranslatef(3.0f, 0.0f, 0.0f);
-      
+    box1.render();  
     //robotArm.render();
   
   glPopMatrix();    // go back to origin
