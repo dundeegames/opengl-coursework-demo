@@ -125,6 +125,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   robotArm.Init(in);
   solarSystem.init();
+  box1.init();
 
 
 } // end of Init

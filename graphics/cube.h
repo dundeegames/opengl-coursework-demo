@@ -15,7 +15,7 @@
 #include <Windows.h>
 #include <Gl/gl.h>
 #include <gl/glu.h>
-#include "include/SOIL_old.h"
+#include "include/SOIL.h"
 
 
 
@@ -29,7 +29,7 @@ public:
   void init();
 
 private:
-  Gluint myTexture;
+  GLuint myTexture;
 
 
 };
