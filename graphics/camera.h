@@ -58,7 +58,7 @@ private:
 
   Type type;
   Input* input;
-  float sensitivity;
+  //float sensitivity;
 };
 
 

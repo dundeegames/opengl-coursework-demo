@@ -19,7 +19,7 @@ void Camera::init(Type type_, Input* in)
 {
   type = type_;
   input = in;
-  sensitivity = 2.5f;
+  //sensitivity = 2.5f;
   position = Vec3(0.0f, 0.0f, 10.0f);
   rotation = Vec3(0.0f, 0.0f, 0.0f);
   forward = Vec3(0.0f, 0.0f, -1.0f);
@@ -89,39 +89,40 @@ void Camera::update(float dt)
 
 void Camera::handleInput(float dt)
 {
+
   if(input->isKeyDown('W'))                  // if W key is pressed
   {
-    position = position.add( forward, dt * sensitivity );
+    position = position.add( forward, dt * input->getSensitivity() );
     //position += forward;
     //position.add( forward );
   }
   else if(input->isKeyDown('S'))             // if S key is pressed
   {
-    position = position.subtract( forward, dt * sensitivity );
+    position = position.subtract( forward, dt * input->getSensitivity() );
     //position -= forward;
   }
 
 
   if(input->isKeyDown('D'))                  // if D key is pressed
   {
-    position = position.add( right, dt * sensitivity );
+    position = position.add( right, dt * input->getSensitivity() );
     //position += right;
   }
   else if(input->isKeyDown('A'))             // if A key is pressed
   {
-    position = position.subtract( right, dt * sensitivity );
+    position = position.subtract( right, dt * input->getSensitivity() );
     //position -= right;
   }
 
 
   if(input->isKeyDown('E'))                  // if E key is pressed
   {
-    position = position.add( up, dt * sensitivity );
+    position = position.add( up, dt * input->getSensitivity() );
     //position += right;
   }
   else if(input->isKeyDown('F'))             // if F key is pressed
   {
-    position = position.subtract( up, dt * sensitivity );
+    position = position.subtract( up, dt * input->getSensitivity() );
     //position -= right;
   }
 
@@ -161,6 +162,10 @@ void Camera::view()
             up.getX(),        up.getY(),        up.getZ() );
 
 }
+
+// -----------------------------------------------------------------------------
+
+
 
 
 

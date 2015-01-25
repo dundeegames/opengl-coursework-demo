@@ -13,6 +13,8 @@ Input::Input()
   mouse.middle = false;
   mouse.right = false;
 
+  sensitivity = 2.5f;
+
   // set all keys to UP
   for(int i = 0; i < 256; i++)
   {
@@ -86,5 +88,11 @@ bool Input::middleMouseBtn()
 bool Input::rightMouseBtn()
 {
   return mouse.right;
+}
+
+
+float Input::getSensitivity()
+{
+  return sensitivity;
 }
 

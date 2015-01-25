@@ -5,14 +5,15 @@
 
 #include <Windows.h>
 
+typedef struct Mouse
+{
+  int x,y;
+  bool left, middle, right;
+};
+
+
 class Input
 {
-
-  typedef struct Mouse
-  {
-    int x,y;
-    bool left, middle, right;
-  };
 
 
 
@@ -29,6 +30,7 @@ public:
   void setMouseY(int);
   int getMouseX();
   int getMouseY();
+  float getSensitivity();
 
   void setLeftMouseBtn(bool l);
   void setMiddleMouseBtn(bool m);
@@ -46,6 +48,7 @@ public:
 private:
   bool keys[256];
   Mouse mouse;
+  float sensitivity;
 
 };
 

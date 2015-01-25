@@ -192,6 +192,22 @@ void Scene3D::Resize()
 void Scene3D::HandleInput(float dt)
 {
 
+  if(input->leftMouseBtn())
+  {
+    captureMouse();
+  }
+  else if(input->isKeyDown(VK_CONTROL))
+  {
+    releaseMouse();
+  }
+
+  if(mouseCaptured)
+  {
+    rotateCamera();
+  }
+
+
+
   solarSystem.update(dt);
 
   //robotArm.update(dt);
@@ -221,3 +237,34 @@ void Scene3D::HandleInput(float dt)
 
 
 }// end of HandleInput
+
+// -----------------------------------------------------------------------------
+
+void Scene3D::captureMouse()
+{
+  mouseCaptured = true;
+  ShowCursor(FALSE);
+
+  center.X = screenRect.right / 2;
+  center.Y = screenRect.bottom / 2;
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Scene3D::releaseMouse()
+{
+  mouseCaptured = false;
+  ShowCursor(TRUE);
+}
+
+// -----------------------------------------------------------------------------
+
+void Scene3D::rotateCamera()
+{
+  int deltaX = input->getMouseX() - center.X;
+  int deltaY = input->getMouseY() - center.Y;
+
+
+
+}

@@ -53,6 +53,16 @@ private:
   Planets solarSystem;
   void drawCube();
   void drawFinger();
+
+
+
+  COORD center;
+  bool mouseCaptured;
+  void captureMouse();
+  void releaseMouse();
+
+  void rotateCamera();
+
 };
 
 #endif
