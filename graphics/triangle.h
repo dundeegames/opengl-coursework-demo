@@ -1,14 +1,14 @@
 // /////////////////////////////////////////////////////////////////////////////
 /*!                                                                           \n
-*                    Cube class - - WinAPI and OpenGL laboratory              \n
+*                                                                             \n
 *                             by Jiri Klic, Jan 2015                          \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
 
 
 
-#ifndef CUBE_H
-#define CUBE_H
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
@@ -20,22 +20,22 @@
 
 
 
-class Cube : public Geometry
+class Triangle : public Geometry
 {
 
 public:
-  Cube();
-  ~Cube();
+  Triangle();
+  ~Triangle();
   void draw();
 
-private:
 
+private:
 
 
 };
 
 
-#endif // CUBE_H
+#endif // TRIANGLE_H
 
 
 

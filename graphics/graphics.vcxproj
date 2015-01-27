@@ -81,6 +81,8 @@
     <ClCompile Include="arm.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
+    <ClCompile Include="geometry.cpp" />
+    <ClCompile Include="guad.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="irrquaternion.cpp" />
     <ClCompile Include="light.cpp" />
@@ -91,6 +93,7 @@
     <ClCompile Include="scene3D.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
+    <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="winmanager.cpp" />
   </ItemGroup>
@@ -99,6 +102,8 @@
     <ClInclude Include="arm.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="quad.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="irrquaternion.h" />
     <ClInclude Include="light.h" />
@@ -108,6 +113,7 @@
     <ClInclude Include="scene3D.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="timerclass.h" />
+    <ClInclude Include="triangle.h" />
     <ClInclude Include="vec3.h" />
     <ClInclude Include="winmanager.h" />
   </ItemGroup>

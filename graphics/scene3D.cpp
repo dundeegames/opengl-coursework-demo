@@ -80,13 +80,6 @@ void Scene3D::Init(HWND* wnd, Input* in)
   // init camera values
   camera.init(FIXED_POINT, in);
 
-  //camera.theta = 0.0;
-  //camera.phi = 0.0;
-  //camera.distance = 10.0;
-  //camera.x = 0.0;
-  //camera.y = 0.0;
-  //camera.z = 10.0;
-
 
   hwnd = wnd;
   input = in;
@@ -107,7 +100,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   glShadeModel(GL_FLAT);                  // Enable Smooth Shading
-  glClearColor(0.0f, 0.0f, 0.0f, 0.5f);   // Black Background
+  //glClearColor(0.0f, 0.0f, 0.0f, 0.5f);   // Black Background
+  glClearColor(0.5f, 0.5f, 0.5f, 1.0f);   // Black Background
   glClearDepth(1.0f);                     // Depth Buffer Setup
   glEnable(GL_DEPTH_TEST);                // Enables Depth Testing
   glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
@@ -125,8 +119,12 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   robotArm.Init(in);
   solarSystem.init();
-  box1.init();
-
+  //box1.init();
+  box = new Cube();
+  box->loadTexture("bin/crate.png");
+  quad = new Quad();
+  triangle = new Triangle();
+  triangle->setColor3f(255.0, 0.0, 0.0);
 
 } // end of Init
 
@@ -164,10 +162,19 @@ void Scene3D::DrawScene(float dt)
 
     //based on shoulder
     glTranslatef(3.0f, 0.0f, 0.0f);
-    box1.render();  
+    //box1.render();
+    box->draw();
     //robotArm.render();
   
   glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    glTranslatef(-3.0f, 0.0f, 0.0f);
+    quad->draw();
+
+  glPopMatrix();    // go back to origin
+
+    triangle->draw();
 
   // ----------------------------------------
 

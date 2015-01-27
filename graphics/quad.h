@@ -1,14 +1,14 @@
 // /////////////////////////////////////////////////////////////////////////////
 /*!                                                                           \n
-*                    Cube class - - WinAPI and OpenGL laboratory              \n
+*                  Quad class - - WinAPI and OpenGL laboratory                \n
 *                             by Jiri Klic, Jan 2015                          \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
 
 
 
-#ifndef CUBE_H
-#define CUBE_H
+#ifndef QUAD_H
+#define QUAD_H
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
@@ -20,22 +20,21 @@
 
 
 
-class Cube : public Geometry
+class Quad : public Geometry
 {
 
 public:
-  Cube();
-  ~Cube();
+  Quad();
+  ~Quad();
   void draw();
 
 private:
 
 
-
 };
 
 
-#endif // CUBE_H
+#endif // QUAD_H
 
 
 

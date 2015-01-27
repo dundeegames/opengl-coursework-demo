@@ -13,28 +13,27 @@
 #include "planets.h"
 #include "light.h"
 #include "camera.h"
+#include "quad.h"
+#include "triangle.h"
 
-#define COLOUR_DEPTH 16  //Colour depth
+
+#define COLOUR_DEPTH 16             //Colour depth
+
+
 
 class Scene3D
 {
-  //typedef struct Camera
-  //{
-  //  GLdouble x, y, z;
-  //  GLdouble theta, phi;
-  //  GLdouble distance;
-  //};
 
 
 public:
-  void Init(HWND*, Input*);  //initialse function
-  void DrawScene(float);  // render scene
+  void Init(HWND*, Input*);         //initialse function
+  void DrawScene(float);            // render scene
   void Resize();
 
 protected:
   bool CreatePixelFormat(HDC);
-  void ResizeGLWindow(int, int);  //width and height
-  void InitializeOpenGL(int, int); // width and height
+  void ResizeGLWindow(int, int);    //width and height
+  void InitializeOpenGL(int, int);  // width and height
   void HandleInput(float dt);
 
   //vars
@@ -42,13 +41,17 @@ protected:
   Input* input;
   RECT screenRect;
   HDC  hdc;
-  HGLRC hrc;      //hardware RENDERING CONTEXT
+  HGLRC hrc;                        //hardware RENDERING CONTEXT
   int s_wdith, s_height;
 
 private:
   Light* light1;
   Camera camera;
-  Cube box1;
+  //Cube box1;
+  Geometry* box;
+  Geometry* quad;
+  Geometry* triangle;
+
   Arm robotArm;
   Planets solarSystem;
   void drawCube();
