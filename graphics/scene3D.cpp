@@ -139,16 +139,8 @@ void Scene3D::DrawScene(float dt)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-  /*!
-  * set camera looking down the -z axis,  6 units away from the center
-  * Where we are, What we look at, and which way is up
-  */
-  //gluLookAt(camera.x, camera.y, camera.z,     0, 0, 0,     0, 1, 0);
 
-  //gluLookAt(camera.posX(),  camera.posY(),  camera.posZ(),
-  //          camera.lookX(), camera.lookY(), camera.lookZ(),
-  //          camera.upX(),   camera.upY(),   camera.upZ() );
-  
+
   camera.view();
 
   light1->render();
