@@ -1,9 +1,24 @@
+// /////////////////////////////////////////////////////////////////////////////
+/*!                                                                           \n
+*                       Light class - Graphics programming                    \n
+*                             by Jiri Klic, Jan 2015                          \n
+*                                                                             \n
+*/ /////////////////////////////////////////////////////////////////////////////
+
+
+
 #ifndef LIGHT_H
 #define LIGHT_H
 
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
+
+
+
+enum Light_Type {AMBIENT, DIFFUSE};
 
 
 class Light
@@ -12,18 +27,22 @@ class Light
 public:
   Light(int id_);
   ~Light();
-  void init(GLfloat aR, GLfloat aG, GLfloat aB, GLfloat aA,  GLfloat dR, GLfloat dG, GLfloat dB, GLfloat dA, GLfloat x, GLfloat y, GLfloat z, GLfloat t);
+  void init(Light_Type tp, GLfloat x, GLfloat y, GLfloat z, GLfloat t, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
+
   void render();
 
 
 private:
-  int id;
-  GLfloat Ambient[4];
-  GLfloat Diffuse[4];
+  GLfloat Colour[4];
   GLfloat Position[4];
-
+  int id;
+  Light_Type type;
 
 };
 
 
-#endif
+#endif // LIGHT_H
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////

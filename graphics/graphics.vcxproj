@@ -91,7 +91,7 @@
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="scene2D.cpp" />
     <ClCompile Include="scene3D.cpp" />
-    <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="oldsprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vec3.cpp" />
@@ -111,7 +111,7 @@
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />
-    <ClInclude Include="sprite.h" />
+    <ClInclude Include="oldsprite.h" />
     <ClInclude Include="timerclass.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="vec3.h" />

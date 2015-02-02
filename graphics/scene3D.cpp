@@ -9,15 +9,15 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
     int pixelformat; 
  
     pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);  // Set the size of the structure
-    pfd.nVersion = 1;              // Always set this to 1
-  // Pass in the appropriate OpenGL flags
+    pfd.nVersion = 1;                           // Always set this to 1
+    // Pass in the appropriate OpenGL flags
     pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER; 
-    pfd.dwLayerMask = PFD_MAIN_PLANE;      // standard mask (this is ignored anyway)
-    pfd.iPixelType = PFD_TYPE_RGBA;        // RGB and Alpha pixel type
-    pfd.cColorBits = COLOUR_DEPTH;        // Here we use our #define for the color bits
-    pfd.cDepthBits = COLOUR_DEPTH;        // Ignored for RBA
-    pfd.cAccumBits = 0;              // nothing for accumulation
-    pfd.cStencilBits = 0;            // nothing for stencil
+    pfd.dwLayerMask = PFD_MAIN_PLANE;   // standard mask (this is ignored anyway)
+    pfd.iPixelType = PFD_TYPE_RGBA;     // RGB and Alpha pixel type
+    pfd.cColorBits = COLOUR_DEPTH;      // Here we use our #define for the color bits
+    pfd.cDepthBits = COLOUR_DEPTH;      // Ignored for RBA
+    pfd.cAccumBits = 0;                 // nothing for accumulation
+    pfd.cStencilBits = 0;               // nothing for stencil
  
   //Gets a best match on the pixel format as passed in from device
     if ( (pixelformat = ChoosePixelFormat(hdc, &pfd)) == false ) 
@@ -38,11 +38,14 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 
 // ------------------------------------------------------------------------------
 
-void Scene3D::ResizeGLWindow(int width, int height)// Initialize The GL Window
+/*!
+* Initialize The GL Window
+*/
+void Scene3D::ResizeGLWindow(int width, int height)
 {
-  if (height==0)// Prevent A Divide By Zero error
+  if (height==0)  // Prevent A Divide By Zero error
   {
-    height=1;// Make the Height Equal One
+    height=1;     // Make the Height Equal One
   }
 
   glViewport(0,0,width,height);
@@ -110,12 +113,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
   
-
-  light1 = new Light(GL_LIGHT0);
+  ambient = new Light(GL_LIGHT0);
+  light1 = new Light(GL_LIGHT1);
 
   //init(ambientRGBA  difuseRGBA  postionXYZT)
   //T is type of light: 0.0 = ..., 1.0 = ...
-  light1->init(0.3f, 0.3f, 0.3f, 1.0f,     1.0f, 0.0f, 1.0f, 1.0f,     -1.0f, 0.0f, 0.0f, 0.0f);
+  ambient->init(AMBIENT, 0.0f, 0.0f, 0.0f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f);
+  light1->init(DIFFUSE, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
 
   robotArm.Init(in);
   solarSystem.init();
@@ -143,6 +147,7 @@ void Scene3D::DrawScene(float dt)
 
   camera.view();
 
+  ambient->render();
   light1->render();
 
   glPushMatrix();   // Remember where we are.

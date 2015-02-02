@@ -1,6 +1,17 @@
+// /////////////////////////////////////////////////////////////////////////////
+/*!                                                                           \n
+*                Scene3D class - - WinAPI and OpenGL laboratory               \n
+*                             by Jiri Klic, Jan 2015                          \n
+*                                                                             \n
+*/ /////////////////////////////////////////////////////////////////////////////
+
+
+
 #ifndef SCENE3D_H
 #define SCENE3D_H
 
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <windows.h>
 #include <stdio.h>
 #include <mmsystem.h>
@@ -45,6 +56,7 @@ protected:
   int s_wdith, s_height;
 
 private:
+  Light* ambient;
   Light* light1;
   Camera camera;
   //Cube box1;
@@ -68,4 +80,9 @@ private:
 
 };
 
-#endif
+
+#endif // SCENE3D_H
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////

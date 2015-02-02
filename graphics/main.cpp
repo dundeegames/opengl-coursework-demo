@@ -134,7 +134,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
       break;  
 
     case WM_KEYDOWN:
-      myInput.SetKeyDown(wParam);        // Pass key value into input obj
+      myInput.SetKeyDown(wParam);        // Pass key value into input objI:/03_STUDY/02_YEAR2/03_GRAPHICS/graphics
       break;
 
     case WM_KEYUP:

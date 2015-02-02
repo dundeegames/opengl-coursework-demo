@@ -13,41 +13,51 @@ Light::~Light()
 
 }
 
+// -----------------------------------------------------------------------------
 
-void Light::init(GLfloat aR, GLfloat aG, GLfloat aB, GLfloat aA,  GLfloat dR, GLfloat dG, GLfloat dB, GLfloat dA, GLfloat x, GLfloat y, GLfloat z, GLfloat t)
+void Light::init(Light_Type tp, GLfloat x, GLfloat y, GLfloat z, GLfloat t,
+                                GLfloat R, GLfloat G, GLfloat B, GLfloat A)
 {
-  Ambient[0] = aR;
-  Ambient[1] = aG;
-  Ambient[2] = aB;
-  Ambient[3] = aA;
-
-  Diffuse[0] = dR;
-  Diffuse[1] = dG;
-  Diffuse[2] = dB;
-  Diffuse[3] = dA;
+  type = tp;
 
   Position[0] = x;
   Position[1] = y;
   Position[2] = z;
   Position[3] = t;
 
+  Colour[0] = R;
+  Colour[1] = G;
+  Colour[2] = B;
+  Colour[3] = A;
 
 }
 
+// -----------------------------------------------------------------------------
 
 void Light::render()
-{  /*
-  glLightfv(GL_LIGHT0+id, GL_AMBIENT,  Ambient);
-  glLightfv(GL_LIGHT0+id, GL_DIFFUSE,  Diffuse);
-  glLightfv(GL_LIGHT0+id, GL_POSITION, Position);
-  glEnable(GL_LIGHT0+id);
-  */
-  glLightfv(id, GL_AMBIENT,  Ambient);
-  glLightfv(id, GL_DIFFUSE,  Diffuse);
+{
+  switch(type)
+  {
+  case AMBIENT:
+    glLightfv(id, GL_AMBIENT,  Colour);
+    break;
+
+  case DIFFUSE:
+    glLightfv(id, GL_DIFFUSE,  Colour);
+    break;
+
+  default:
+    break;
+
+  }  
+  
   glLightfv(id, GL_POSITION, Position);
   glEnable(id);
 
 
+}
 
-  }
+
+
+// 80 //////////////////////////////////////////////////////////////////////////
 

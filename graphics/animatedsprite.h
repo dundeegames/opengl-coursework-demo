@@ -1,11 +1,11 @@
 #ifndef _ANIMATED_SPRITE_H
 #define _ANIMATED_SPRITE_H
 
-#include"sprite.h"
-#include"timerclass.h"
+#include "oldsprite.h"
+#include "timerclass.h"
 
 
-class AnimatedSprite : public Sprite
+class AnimatedSprite : public OldSprite
 {
 
 public:

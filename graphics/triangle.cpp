@@ -2,7 +2,7 @@
 
 Triangle::Triangle()
 {
-
+  slope = 0.0f;
 }
 
 
@@ -25,7 +25,7 @@ void Triangle::draw()
 
     glNormal3f(0.0f, 0.0f, 1.0f);
     glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(0.0f, 0.5f, 0.5f);
+    glVertex3f(slope, 0.5f, 0.5f);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
     glTexCoord2f(0.0f, 1.0f);

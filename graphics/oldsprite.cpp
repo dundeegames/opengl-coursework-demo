@@ -1,6 +1,6 @@
-#include"sprite.h"
+#include "oldsprite.h"
 
-void Sprite::Initialise(sprite_type type_, LPSTR filename, int xpos, int ypos, HDC* _bitmapBuf, HDC* _backBuf)
+void OldSprite::Initialise(old_old_sprite_type type_, LPSTR filename, int xpos, int ypos, HDC* _bitmapBuf, HDC* _backBuf)
 {
   type = type_;
   bitmapBuf = _bitmapBuf;
@@ -17,7 +17,7 @@ void Sprite::Initialise(sprite_type type_, LPSTR filename, int xpos, int ypos, H
 }
 
 
-void Sprite::LoadABitmap(LPSTR szFileName)
+void OldSprite::LoadABitmap(LPSTR szFileName)
 {
   bitmap = (HBITMAP)LoadImage(NULL, szFileName, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
@@ -28,7 +28,7 @@ void Sprite::LoadABitmap(LPSTR szFileName)
 }
 
 
-void Sprite::drawSprite()
+void OldSprite::drawSprite()
 {
   HBITMAP originalBitMap;
 

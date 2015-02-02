@@ -7,7 +7,7 @@
 #include <math.h>
 
 #include "input.h"
-#include"sprite.h"
+#include "oldsprite.h"
 
 class Scene
 {
@@ -34,7 +34,7 @@ private:
   RECT screenRect;    
   HDC backHDC, frontHDC, bitmapHDC;  // Buffers
 
-  Sprite mySprite, wallPaper;
+  OldSprite mySprite, wallPaper;
 
 
 
