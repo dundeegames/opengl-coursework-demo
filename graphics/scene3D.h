@@ -24,7 +24,7 @@
 #include "planets.h"
 #include "light.h"
 #include "camera.h"
-#include "quad.h"
+#include "sprite.h"
 #include "triangle.h"
 
 
@@ -59,7 +59,6 @@ private:
   Light* ambient;
   Light* light1;
   Camera camera;
-  //Cube box1;
   Geometry* box;
   Geometry* quad;
   Geometry* triangle;

@@ -16,7 +16,6 @@ Geometry::~Geometry()
 
 }
 
-
 // -----------------------------------------------------------------------------
 
 void Geometry::loadTexture(const char* file)
@@ -41,7 +40,32 @@ void Geometry::setColor3f(GLfloat red_, GLfloat green_, GLfloat blue_)
 
 }
 
+// -----------------------------------------------------------------------------
 
+void Geometry::setColor4f(GLfloat red_, GLfloat green_, GLfloat blue_, GLfloat alpha_)
+{
+  red = red_;
+  green = green_;
+  blue = blue_;
+  alpha = alpha_;
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Geometry::setPosition(float x_, float y_)
+{
+  positionX = x_;
+  positionY = y_;
+}
+
+// -----------------------------------------------------------------------------
+
+void Geometry::move(float x_, float y_)
+{
+  positionX = x_;
+  positionY = y_;
+}
 
 
 // 80 //////////////////////////////////////////////////////////////////////////

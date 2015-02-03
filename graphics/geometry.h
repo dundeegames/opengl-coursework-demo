@@ -5,7 +5,7 @@
 *                                                                             \n
 *       Used as Base Class for geometry primitives:                           \n
 *                                                                             \n
-*       Cube, Quad, Triangle                                                  \n
+*       Cube, Quad, Triangle, Sprite                                          \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
 
@@ -31,12 +31,39 @@ public:
   ~Geometry();
 
   void loadTexture(const char* file);
-  virtual void draw() = 0;
+  void setTexture(GLuint texture_) {myTexture = texture_; }
+
   void setColor3f(GLfloat red_, GLfloat green_, GLfloat blue_);
+  void setColor4f(GLfloat red_, GLfloat green_, GLfloat blue_, GLfloat alpha_);
+  void serOpacity(GLfloat alpha_) {alpha = alpha_; };
+
+
+  virtual void draw() = 0;
+  
+  void setPosition(float x_, float y_);
+  void move(float x_, float y_);
+
+  inline const float x() const {return positionX; }
+  inline const float y() const {return positionY; }
+  inline const float z() const {return positionZ; }
+  inline const float getWidth() const {return width; }
+  inline const float getHeight() const {return height; }
+
+  void setWidth(float w_) {width = w_; };
+  void setHeight(float h_) {height = h_; };
+  void setDepth(float d_) {depth = d_; };
 
 
 
 protected:
+  float positionX;
+  float positionY;
+  float positionZ;
+
+  float width;
+  float height;
+  float depth;
+
   GLuint myTexture;
   GLfloat red;
   GLfloat green;

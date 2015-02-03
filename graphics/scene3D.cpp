@@ -126,7 +126,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //box1.init();
   box = new Cube();
   box->loadTexture("bin/crate.png");
-  quad = new Quad();
+  quad = new Sprite();
   triangle = new Triangle();
   triangle->setColor3f(255.0, 0.0, 0.0);
 

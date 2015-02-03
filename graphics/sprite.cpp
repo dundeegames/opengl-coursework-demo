@@ -1,21 +1,20 @@
-#include "quad.h"
+#include "sprite.h"
 
 
-Quad::Quad()
+Sprite::Sprite()
 {
 
 }
 
 
-Quad::~Quad()
+Sprite::~Sprite()
 {
 
 }
-
 
 // -----------------------------------------------------------------------------
 
-void Quad::draw()
+void Sprite::draw()
 {
 
   glBindTexture(GL_TEXTURE_2D, myTexture);	//tells opengl which texture to use
@@ -56,12 +55,6 @@ void Quad::draw()
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
 
-
 }
-
-
-
-
-
 
 // 80 //////////////////////////////////////////////////////////////////////////
