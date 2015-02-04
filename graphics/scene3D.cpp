@@ -64,19 +64,19 @@ void Scene3D::ResizeGLWindow(int width, int height)
 
 void Scene3D::InitializeOpenGL(int width, int height) 
 { 
-  hdc = GetDC(*hwnd);//  sets  global HDC
+  hdc = GetDC(*hwnd);             //  sets  global HDC
 
-    if (!CreatePixelFormat(hdc))//  sets  pixel format
+    if (!CreatePixelFormat(hdc))  //  sets  pixel format
         PostQuitMessage (0);
 
 
     hrc = wglCreateContext(hdc);  //  creates  rendering context from  hdc
-    wglMakeCurrent(hdc, hrc);    //  Use this HRC.
+    wglMakeCurrent(hdc, hrc);     //  Use this HRC.
 
   ResizeGLWindow(width, height);  // Setup the Screen
 }
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void Scene3D::Init(HWND* wnd, Input* in)
 {
@@ -101,10 +101,11 @@ void Scene3D::Init(HWND* wnd, Input* in)
   */
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-
-  glShadeModel(GL_FLAT);                  // Enable Smooth Shading
-  //glClearColor(0.0f, 0.0f, 0.0f, 0.5f);   // Black Background
-  glClearColor(0.5f, 0.5f, 0.5f, 1.0f);   // Black Background
+  
+  //glShadeModel(GL_FLAT);                  // Enable Flat Shading
+  glShadeModel(GL_SMOOTH);                  // Enable Smooth Shading
+  //glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   // Black(Transparent) Background
+  //glClearColor(0.5f, 0.5f, 0.5f, 1.0f);   // Gray Background
   glClearDepth(1.0f);                     // Depth Buffer Setup
   glEnable(GL_DEPTH_TEST);                // Enables Depth Testing
   glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
@@ -137,13 +138,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
 void Scene3D::DrawScene(float dt) 
 {
   HandleInput(dt);
-
-  int i=0;
+  
+  
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-
+  drawBackground(0.0f, 800.0f, 600.0f, 0.0f);
 
   camera.view();
 
@@ -272,3 +273,59 @@ void Scene3D::rotateCamera()
 
 
 }
+
+// ------------------------------------------------------------------------------
+
+void Scene3D::drawBackground(float left, float right, float bottom, float top)
+{
+  // TODO Ask for the feedback on this func()
+
+
+  float z = 0.0f; // for debugging purposes
+  glDisable(GL_DEPTH_TEST);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //gluOrtho2D(left, right, bottom, top);
+  glOrtho(left, right, bottom, top, 1 ,150.0f);
+
+  glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
+  glLoadIdentity();             // Reset The Modelview Matrix
+
+  
+
+  //set camera looking down the -z axis,  6 units away from the center
+  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
+
+  glBegin(GL_TRIANGLES);
+
+    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
+      glVertex3f(right, top, z);
+      glVertex3f(left, top, z);
+
+    glColor3f(0.07f, 0.07f, 0.07f);     // Bottom colour of gradient
+      glVertex3f(left, bottom, z);
+      glVertex3f(left, bottom, z);
+      glVertex3f(right, bottom, z);
+
+    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
+      glVertex3f(right, top, z);
+
+    glColor3f(1.0f, 1.0f, 1.0f);        // reset colour
+
+  glEnd();
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //calculate aspect ratio
+  gluPerspective(45.0f,(GLfloat)(right/bottom), 1 ,150.0f);
+
+  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
+  glLoadIdentity();// Reset The Modelview Matrix
+
+  glEnable(GL_DEPTH_TEST);
+}
+
+// 80 //////////////////////////////////////////////////////////////////////////

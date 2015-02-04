@@ -62,19 +62,16 @@ private:
   Geometry* box;
   Geometry* quad;
   Geometry* triangle;
-
   Arm robotArm;
   Planets solarSystem;
+  COORD center;
+
+  void drawBackground(float left, float right, float bottom, float top);
   void drawCube();
   void drawFinger();
-
-
-
-  COORD center;
   bool mouseCaptured;
   void captureMouse();
   void releaseMouse();
-
   void rotateCamera();
 
 };
