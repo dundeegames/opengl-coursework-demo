@@ -26,6 +26,7 @@
 #include "camera.h"
 #include "sprite.h"
 #include "triangle.h"
+#include "gui.h"
 
 
 #define COLOUR_DEPTH 16             //Colour depth
@@ -65,11 +66,9 @@ private:
   Arm robotArm;
   Planets solarSystem;
   COORD center;
-
-  void drawBackground(float left, float right, float bottom, float top);
-  void drawCube();
-  void drawFinger();
+  Gui gui;
   bool mouseCaptured;
+
   void captureMouse();
   void releaseMouse();
   void rotateCamera();

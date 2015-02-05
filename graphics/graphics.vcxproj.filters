@@ -16,18 +16,15 @@
     <Filter Include="math">
       <UniqueIdentifier>{79692089-2ded-4c71-820b-9a04ee1b2b8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{f14eb4d3-e863-40db-8ee1-6dbe45c638dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animatedsprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="timerclass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scene3D.cpp">
@@ -43,12 +40,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="winmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vec3.cpp">
@@ -75,15 +66,24 @@
     <ClCompile Include="sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="timerclass.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="winmanager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="gui.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="timerclass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene3D.h">
@@ -99,12 +99,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="light.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="winmanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vec3.h">
@@ -130,6 +124,21 @@
     </ClInclude>
     <ClInclude Include="sprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="timerclass.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="winmanager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="gui.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

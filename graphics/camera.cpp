@@ -20,9 +20,9 @@ void Camera::init(Type type_, Input* in)
   type = type_;
   input = in;
   //sensitivity = 2.5f;
-  position = Vec3(0.0f, 0.0f, 10.0f);
-  rotation = Vec3(0.0f, 0.0f, 0.0f);
-  forward = Vec3(0.0f, 0.0f, -1.0f);
+  position = Vec3(10.0f, 7.0f, 10.0f);
+  rotation = Vec3(-45.0f, -30.0f, 0.0f);
+  forward = Vec3(0.0f, 0.0f, 0.0f);
   up = Vec3(0.0f, 1.0f, 0.0f);
 
   right = forward.cross(up);

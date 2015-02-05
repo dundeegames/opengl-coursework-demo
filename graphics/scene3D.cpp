@@ -144,12 +144,14 @@ void Scene3D::DrawScene(float dt)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-  drawBackground(0.0f, 800.0f, 600.0f, 0.0f);
+  gui.drawBackground(screenRect.left, screenRect.right, screenRect.bottom, screenRect.top);
 
   camera.view();
 
   ambient->render();
   light1->render();
+
+  gui.drawGrid();
 
   glPushMatrix();   // Remember where we are.
 
@@ -276,56 +278,7 @@ void Scene3D::rotateCamera()
 
 // ------------------------------------------------------------------------------
 
-void Scene3D::drawBackground(float left, float right, float bottom, float top)
-{
-  // TODO Ask for the feedback on this func()
 
 
-  float z = 0.0f; // for debugging purposes
-  glDisable(GL_DEPTH_TEST);
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //gluOrtho2D(left, right, bottom, top);
-  glOrtho(left, right, bottom, top, 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
-  glLoadIdentity();             // Reset The Modelview Matrix
-
-  
-
-  //set camera looking down the -z axis,  6 units away from the center
-  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-
-  glBegin(GL_TRIANGLES);
-
-    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
-      glVertex3f(left, top, z);
-
-    glColor3f(0.07f, 0.07f, 0.07f);     // Bottom colour of gradient
-      glVertex3f(left, bottom, z);
-      glVertex3f(left, bottom, z);
-      glVertex3f(right, bottom, z);
-
-    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
-
-    glColor3f(1.0f, 1.0f, 1.0f);        // reset colour
-
-  glEnd();
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //calculate aspect ratio
-  gluPerspective(45.0f,(GLfloat)(right/bottom), 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
-  glLoadIdentity();// Reset The Modelview Matrix
-
-  glEnable(GL_DEPTH_TEST);
-}
 
 // 80 //////////////////////////////////////////////////////////////////////////
