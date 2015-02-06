@@ -81,6 +81,7 @@
     <ClCompile Include="arm.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
+    <ClCompile Include="font.cpp" />
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="input.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="arm.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
+    <ClInclude Include="font.h" />
     <ClInclude Include="geometry.h" />
     <ClInclude Include="gui.h" />
     <ClInclude Include="input.h" />

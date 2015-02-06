@@ -22,7 +22,7 @@ void Sprite::draw()
   glBegin(GL_TRIANGLES);
 
     // front face
-    glColor3f(red, green, blue);
+    glColor4f(red, green, blue, alpha);
 
     glNormal3f(0.0f, 0.0f, 1.0f);
     glTexCoord2f(0.0f, 0.0f);

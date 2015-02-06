@@ -81,6 +81,9 @@
     <ClCompile Include="gui.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="font.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
@@ -138,6 +141,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="gui.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="font.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
