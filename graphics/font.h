@@ -3,7 +3,7 @@
 *                   Font class - WinAPI and OpenGL laboratory                 \n
 *                             by Jiri Klic, Jan 2015                          \n
 *                                                                             \n
-* Inspired by Font class from Abertay Framework for PS Vita                   \n
+* Based on Font class from Abertay Framework for PS Vita                      \n
 * Mr. Grant Clark.[2015].Abertay Framework.Console Game Development           \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
@@ -19,8 +19,19 @@
 #include <fstream>    // std::filebuf
 #include <string>
 #include <sstream>
+#include <cassert>    // assert
 
-#include "sprite.h"
+#include <windows.h>     // Header File For Windows
+#include <math.h>        // Header File For Windows Math Library
+#include <stdio.h>       // Header File For Standard Input/Output
+#include <stdarg.h>      // Header File For Variable Argument Routines
+#include <gl\gl.h>       // Header File For The OpenGL32 Library
+#include <gl\glu.h>      // Header File For The GLu32 Library
+#include "include/SOIL.h"
+
+#define	FONT_MAX_ASCII	256
+#define	FONT_MAX_LINE	1024
+#define	FONT_MAX_PATH	256
 
 
 enum TextJustification
@@ -50,7 +61,7 @@ struct CharDescriptor
 };
 
 
-struct Charset
+struct CharacterSet
 {
 	int LineHeight;
 	int Base;
@@ -67,14 +78,31 @@ public:
 
   // TODO add support for colour 
   void RenderText(float x_, float y_, float scale, const TextJustification justification, const char * text, ...);
-
-
+  //void BuildText(HDC* hdc_);
+  //void KillFont();
+  //void print(const char* fmt);
 
 private:
-	Charset character_set;
+	CharacterSet charSet;
 	GLuint myTexture;
+  GLuint base_list;
 
-	bool ParseFont( std::istream& Stream, Charset& CharsetDesc );
+	bool ParseFont( std::istream& Stream, CharacterSet& CharsetDesc );
+  float Font::GetStringLength(const char * text);
+  void compileText();
+
+
+  //HDC*      hDC;       // Private GDI Device Context
+
+  //GLuint  base;            // Base Display List For The Font Set
+  //GLfloat  cnt1;           // 1st Counter Used To Move Text & For Coloring
+  //GLfloat  cnt2;           // 2nd Counter Used To Move Text & For Coloring
+
+  //bool  keys[256];         // Array Used For The Keyboard Routine
+  //bool  active;            // Window Active Flag Set To TRUE By Default
+  //bool  fullscreen;        // Fullscreen Flag Set To Fullscreen Mode By Default
+
+
 
 };
 

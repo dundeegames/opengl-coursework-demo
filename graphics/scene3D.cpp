@@ -95,12 +95,10 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glEnable(GL_LIGHTING);
   glEnable(GL_TEXTURE_2D);
 
-
   /*!
   * Specify texture calculation
   */
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
   
   //glShadeModel(GL_FLAT);                  // Enable Flat Shading
   glShadeModel(GL_SMOOTH);                  // Enable Smooth Shading
@@ -110,6 +108,15 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glEnable(GL_DEPTH_TEST);                // Enables Depth Testing
   glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Really Nice Perspective Calculations
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+  // BMFont
+  glAlphaFunc( GL_GREATER, 0 );							// set the alpha transparency
+  glEnable( GL_ALPHA_TEST );								// and turn it on
+
 
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
@@ -124,6 +131,10 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   robotArm.Init(in);
   solarSystem.init();
+  font.Load("bin/gangofthree");
+
+
+
   //box1.init();
   box = new Cube();
   box->loadTexture("bin/crate.png");
@@ -153,6 +164,8 @@ void Scene3D::DrawScene(float dt)
 
   gui.drawGrid();
 
+  
+
   glPushMatrix();   // Remember where we are.
 
     solarSystem.render();
@@ -177,6 +190,10 @@ void Scene3D::DrawScene(float dt)
     triangle->draw();
 
   // ----------------------------------------
+
+
+  font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!");
+
 
   SwapBuffers(hdc); // Swap the frame buffers
 

@@ -27,6 +27,7 @@
 #include "sprite.h"
 #include "triangle.h"
 #include "gui.h"
+#include "font.h"
 
 
 #define COLOUR_DEPTH 16             //Colour depth
@@ -67,6 +68,7 @@ private:
   Planets solarSystem;
   COORD center;
   Gui gui;
+  Font font;
   bool mouseCaptured;
 
   void captureMouse();
