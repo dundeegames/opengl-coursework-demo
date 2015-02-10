@@ -256,73 +256,9 @@ float Font::GetStringLength(const char * text)
 
 void Font::compileText()
 {
-  // compile all charset characters into display lists
-//	if(!text)
-//		return;
-//
-//	va_list args;
-//	char text_buffer[256];
-//
-//	va_start(args, text);
-//	std::vsprintf(text_buffer, text, args);
-//
-//	UInt32 character_count = strlen(text_buffer);
-//	float string_length = GetStringLength(text_buffer); // returns width of string in pixels
-//
-//	Vector2 cursor = Vector2(pos.x, pos.y);
-//
-//	switch(justification)
-//	{
-//	case TJ_CENTRE:
-//		cursor.x -= string_length*0.5f*scale;
-//		break;
-//	case TJ_RIGHT:
-//		cursor.x -= string_length*scale;
-//		break;
-//	default:
-//		break;
-//	}
-//
-//	Sprite sprite;
-//	sprite.set_texture(font_texture_);
-//	for( UInt32 character_index = 0; character_index < character_count; ++character_index )
-//	{
-  //  int CharX   = character_set.Chars[(int)(text_buffer[character_index])].x;
-		//int CharY   = character_set.Chars[(int)(text_buffer[character_index])].y;
-		//int Width   = character_set.Chars[(int)(text_buffer[character_index])].Width;
-		//int Height  = character_set.Chars[(int)(text_buffer[character_index])].Height;
-		//int OffsetX = character_set.Chars[(int)(text_buffer[character_index])].XOffset;
-		//int OffsetY = character_set.Chars[(int)(text_buffer[character_index])].YOffset;
-
-		//Vector2 uv_pos((float) CharX / (float) character_set.Width,  ((float) (CharY) / (float) character_set.Height));
-		//Vector2 uv_size((float) (Width) / (float) character_set.Width, (float)(Height) / (float) character_set.Height);
-		//Vector2 size(((float)Width)*scale, ((float)Height)*scale);
-		//Vector3 sprite_position = Vector3(cursor.x+((float)OffsetX*scale)+size.x*0.5f, cursor.y + scale*((float)Height*0.5f +  (float)OffsetY), pos.z);
-
-		//sprite.set_position(sprite_position);
-		//sprite.set_width(size.x);
-		//sprite.set_height(size.y);
-		//sprite.set_uv_position(uv_pos);
-		//sprite.set_uv_width(uv_size.x);
-		//sprite.set_uv_height(uv_size.y);
-		//sprite.set_colour(colour);
-		//renderer->DrawSprite(sprite);
-		//cursor.x += ((float)character_set.Chars[static_cast<UInt32>(text_buffer[character_index])].XAdvance)*scale;
-//	}
-//}
-
-
-
-
   base_list = glGenLists(FONT_MAX_ASCII);   // create display lists
   glBindTexture(GL_TEXTURE_2D, myTexture);  // tells opengl which texture to use
 
-  //float UV_X = 0;
-  //float UV_Y = 0;
-  //float UV_W = 0;
-  //float UV_H = 0;
-  //float OFF_X = 0;
-  //float OFF_X = 0;
 
   for (int ch = 0; ch < FONT_MAX_ASCII; ch++)
   {
@@ -333,21 +269,6 @@ void Font::compileText()
       
 
       glBegin(GL_TRIANGLES);
-        //glTexCoord2f( , );
-        //glVertex2f( , );
-
-        //glTexCoord2f( , );
-        //glVertex2f( , );
-
-        //glTexCoord2f( , );
-        //glVertex2f( , );
-
-        //glTexCoord2f( , );
-        //glVertex2f( , );
-
- 
-
-
 
         glTexCoord2f(  (float)charSet.Chars[ch].x / (float)charSet.Width,
           ( (float)(charSet.Chars[ch].y + charSet.Chars[ch].Height) / (float)charSet.Height ) );

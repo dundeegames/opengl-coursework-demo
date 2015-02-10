@@ -192,7 +192,7 @@ void Scene3D::DrawScene(float dt)
   // ----------------------------------------
 
 
-  font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!\n Punk");
+  font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!");
   //font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!");
 
 
