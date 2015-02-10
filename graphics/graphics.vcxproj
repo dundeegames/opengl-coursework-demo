@@ -93,6 +93,7 @@
     <ClCompile Include="scene2D.cpp" />
     <ClCompile Include="scene3D.cpp" />
     <ClCompile Include="oldsprite.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
     <ClCompile Include="triangle.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />
     <ClInclude Include="oldsprite.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="timerclass.h" />
     <ClInclude Include="triangle.h" />
