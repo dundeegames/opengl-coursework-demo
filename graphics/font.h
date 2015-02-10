@@ -15,18 +15,15 @@
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
-#include <iostream>   // std::ios, std::istream, std::cout
-#include <fstream>    // std::filebuf
+#include <iostream>         // std::ios, std::istream, std::cout
+#include <fstream>          // std::filebuf
 #include <string>
 #include <sstream>
-#include <cassert>    // assert
+#include <cassert>          // assert
 
-#include <windows.h>     // Header File For Windows
-#include <math.h>        // Header File For Windows Math Library
-#include <stdio.h>       // Header File For Standard Input/Output
-#include <stdarg.h>      // Header File For Variable Argument Routines
-#include <gl\gl.h>       // Header File For The OpenGL32 Library
-#include <gl\glu.h>      // Header File For The GLu32 Library
+#include <windows.h>        // Header File For Windows
+#include <gl\gl.h>          // Header File For The OpenGL32 Library
+#include <gl\glu.h>         // Header File For The GLu32 Library
 #include "include/SOIL.h"
 
 #define	FONT_MAX_ASCII	256
@@ -34,11 +31,20 @@
 #define	FONT_MAX_PATH	256
 
 
-enum TextJustification
+struct Colour
 {
-	TJ_LEFT = 0,
-	TJ_CENTRE,
-	TJ_RIGHT,
+  float R;
+  float G;
+  float B;
+  float A;
+  Colour(float r_, float g_, float b_, float a_)
+  {
+    R = r_;
+    G = g_;
+    B = b_;
+    A = a_;
+  }
+
 };
 
 
@@ -76,11 +82,9 @@ public:
   ~Font();
   bool Load(const char* font_name);
 
-  // TODO add support for colour 
-  void RenderText(float x_, float y_, float scale, const TextJustification justification, const char * text, ...);
-  //void BuildText(HDC* hdc_);
-  //void KillFont();
-  //void print(const char* fmt);
+  void RenderText(RECT& viewport, Colour colour, float x_, float y_,
+                  float scale, const char * text, ...);
+
 
 private:
 	CharacterSet charSet;
@@ -90,19 +94,6 @@ private:
 	bool ParseFont( std::istream& Stream, CharacterSet& CharsetDesc );
   float Font::GetStringLength(const char * text);
   void compileText();
-
-
-  //HDC*      hDC;       // Private GDI Device Context
-
-  //GLuint  base;            // Base Display List For The Font Set
-  //GLfloat  cnt1;           // 1st Counter Used To Move Text & For Coloring
-  //GLfloat  cnt2;           // 2nd Counter Used To Move Text & For Coloring
-
-  //bool  keys[256];         // Array Used For The Keyboard Routine
-  //bool  active;            // Window Active Flag Set To TRUE By Default
-  //bool  fullscreen;        // Fullscreen Flag Set To Fullscreen Mode By Default
-
-
 
 };
 

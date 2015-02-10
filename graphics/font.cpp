@@ -4,10 +4,6 @@
 Font::Font()
 {
   myTexture = NULL;
-
-  //hDC=NULL;
-  //active = TRUE;    
-  //fullscreen = TRUE;
 }
 
 
@@ -16,7 +12,6 @@ Font::~Font()
   glDeleteLists(base_list, FONT_MAX_ASCII);
 	glDeleteTextures(1, &myTexture);
 }
-
 
 // -----------------------------------------------------------------------------
 
@@ -154,7 +149,8 @@ bool Font::ParseFont( std::istream& Stream, CharacterSet& CharsetDesc )
 
 // -----------------------------------------------------------------------------
 
-void Font::RenderText(float posX, float posY, float scale, const TextJustification justification, const char * text, ...)
+void Font::RenderText(RECT& viewport, Colour colour, float x_, float y_,
+                      float scale, const char * text, ...)
 {
   assert(text != NULL);
   if(!text)
@@ -162,20 +158,6 @@ void Font::RenderText(float posX, float posY, float scale, const TextJustificati
     return;
   }
 
-  //glMatrixMode(GL_PROJECTION);
-  //glLoadIdentity();
-
-  ////gluOrtho2D(left, right, bottom, top);
-  //glOrtho(0.0f, 800.0f, 600.0f, 0.0f, 1.0f ,150.0f);
-
-  //glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
-  //glLoadIdentity();             // Reset The Modelview Matrix
-
-	// invert y axis since OpenGL uses it updown
-	//glScalef(1.0f, -1.0f, 1.0f);
-	//glTranslatef(0.0f, -600.0f, 0.0f);
-
-//bmf
 
   glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);	
   glDisable(GL_LIGHTING);
@@ -186,8 +168,8 @@ void Font::RenderText(float posX, float posY, float scale, const TextJustificati
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
-  //gluOrtho2D(left, right, bottom, top);
-  glOrtho(0.0f, 800.0f, 600.0f, 0.0f, 1.0f ,150.0f);
+
+  glOrtho(viewport.left, viewport.right, viewport.bottom, viewport.top, 1.0f ,150.0f);
 
 
   glMatrixMode(GL_MODELVIEW);
@@ -198,33 +180,9 @@ void Font::RenderText(float posX, float posY, float scale, const TextJustificati
   gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
   glBindTexture(GL_TEXTURE_2D, myTexture);  // tells opengl which texture to use
 
-  //va_list args;
-  //char text_buffer[256];
-
-  //va_start(args, text);
-  //std::vsprintf(text_buffer, text, args);
-
-  //int character_count = strlen(text_buffer);
-  //float string_length = GetStringLength(text_buffer);
-
-
-  //switch(justification)
-  //{
-  //case TJ_CENTRE:
-  //  posX -= string_length*0.5f*scale;
-  //  break;
-
-  //case TJ_RIGHT:
-  //  posX -= string_length*scale;
-  //  break;
-
-  //default:
-  //  break;
-  //}
-
   int count = strlen(text);
-  //glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
-  glTranslatef(posX,posY,0);
+  glColor4f(colour.R, colour.G, colour.B, colour.A);
+  glTranslatef(x_,y_,0);
     glScalef(scale, scale, 1.f);
   glCallLists(count, GL_UNSIGNED_BYTE, text);  
 
@@ -332,65 +290,6 @@ void Font::compileText()
 
 // -----------------------------------------------------------------------------
 
-//void Font::BuildText(HDC* hdc_)
-//{
-//  hDC = hdc_;
-//  HFONT  font;                          // Windows Font ID
-//  HFONT  oldfont;                       // Used For Good House Keeping
-//
-//  base = glGenLists(96);                // Storage For 96 Characters
-//
-//  font = CreateFont(  -24,              // Height Of Font
-//            0,                          // Width Of Font
-//            0,                          // Angle Of Escapement
-//            0,                          // Orientation Angle
-//            FW_BOLD,                    // Font Weight
-//            FALSE,                      // Italic
-//            FALSE,                      // Underline
-//            FALSE,                      // Strikeout
-//            ANSI_CHARSET,               // Character Set Identifier
-//            OUT_TT_PRECIS,              // Output Precision
-//            CLIP_DEFAULT_PRECIS,        // Clipping Precision
-//            ANTIALIASED_QUALITY,        // Output Quality
-//            FF_DONTCARE|DEFAULT_PITCH,  // Family And Pitch
-//            "tahoma.ttf");                   // Font Name
-//
-//  oldfont = (HFONT)SelectObject(*hDC, font);      // Selects The Font We Want
-//  wglUseFontBitmaps(*hDC, 32, 96, base);           // Builds 96 Characters Starting At Character 32
-//  SelectObject(*hDC, oldfont);                     // Selects The Font We Want
-//  DeleteObject(font);                             // Delete The Font
-//
-//
-//
-//}
 
-// -----------------------------------------------------------------------------
-
-//void Font::KillFont()
-//{
-//  glDeleteLists(base, 96);              // Delete All 96 Characters
-//}
-
-// -----------------------------------------------------------------------------
-
-//void Font::print(const char* fmt)
-//{
-//  char    text[256];                    // Holds Our String
-//  va_list    ap;                          // Pointer To List Of Arguments
-//
-//  if (fmt == NULL)                      // If There's No Text
-//    return;                              // Do Nothing
-//
-//  va_start(ap, fmt);                    // Parses The String For Variables
-//      vsprintf(text, fmt, ap);          // And Converts Symbols To Actual Numbers
-//  va_end(ap);                            // Results Are Stored In Text
-//
-//  glPushAttrib(GL_LIST_BIT);            // Pushes The Display List Bits
-//  glListBase(base - 32);                // Sets The Base Character to 32
-//  glCallLists(strlen(text), GL_UNSIGNED_BYTE, text);  // Draws The Display List Text
-//  glPopAttrib();                        // Pops The Display List
-//
-//
-//}
 
 // 80 //////////////////////////////////////////////////////////////////////////

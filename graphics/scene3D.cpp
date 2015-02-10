@@ -131,8 +131,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   robotArm.Init(in);
   solarSystem.init();
-  font.Load("bin/gangofthree");
-
+  //font.Load("bin/gangofthree");
+  font.Load("bin/tahoma");
 
 
   //box1.init();
@@ -192,9 +192,11 @@ void Scene3D::DrawScene(float dt)
   // ----------------------------------------
 
 
-  font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!");
-  //font.RenderText(150.0f, 100.0f, 0.3, TJ_LEFT, "Hello, World!");
+  font.RenderText(screenRect, Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  150.0f, 100.0f, 0.2, "Hello, World!");
 
+  font.RenderText(screenRect, Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  150.0f, 100.0f, 1.0f, "Buddy");
 
   SwapBuffers(hdc); // Swap the frame buffers
 
