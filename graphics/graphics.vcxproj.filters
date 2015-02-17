@@ -87,6 +87,9 @@
     <ClCompile Include="Shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="resourcemanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
@@ -150,6 +153,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resourcemanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
