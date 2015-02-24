@@ -28,7 +28,7 @@ public:
   // returns display list
   // TODO edit for different subdivisions in x and y
   GLuint getQuad();
-  GLuint getPlane();
+  GLuint getPlane(float width, float height, int sub_w, int sub_h);
   GLuint getCube();
   GLuint getSphere();     // made from quads, pitching on poles
   GLuint getSoccerBall(); // Sphere from pentagons
@@ -39,7 +39,8 @@ public:
   GLuint getTorus();
 
 private:
-
+  void drawQuad();
+  void drawPlane(float width, float height, int sub_w, int sub_h);
 
 };
 

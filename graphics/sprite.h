@@ -25,6 +25,7 @@ class Sprite : public Geometry
 public:
   Sprite();
   ~Sprite();
+  
   void draw();
 
 
@@ -32,7 +33,9 @@ public:
 
 
 private:
+  GLuint DisplayList;
 
+  void setDList();
 
 };
 

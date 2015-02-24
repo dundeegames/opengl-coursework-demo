@@ -109,7 +109,6 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Really Nice Perspective Calculations
 
-  glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
@@ -155,7 +154,8 @@ void Scene3D::DrawScene(float dt)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-  gui.drawBackground(screenRect.left, screenRect.right, screenRect.bottom, screenRect.top);
+  gui.drawBackground((float)screenRect.left, (float)screenRect.right,
+                     (float)screenRect.bottom, (float)screenRect.top);
 
   camera.view();
 
@@ -191,12 +191,15 @@ void Scene3D::DrawScene(float dt)
 
   // ----------------------------------------
 
-
+  glEnable(GL_BLEND); // enable only when needed
   font.RenderText(screenRect, Colour(1.0f, 1.0f, 1.0f, 1.0f),
-                  150.0f, 100.0f, 0.2, "Hello, World!");
+                  150.0f, 100.0f, 0.2f, "Hello, World!");
 
+  
   font.RenderText(screenRect, Colour(0.0f, 0.0f, 0.0f, 0.5f),
                   150.0f, 100.0f, 1.0f, "Buddy");
+
+  glDisable(GL_BLEND);
 
   SwapBuffers(hdc); // Swap the frame buffers
 
@@ -272,8 +275,8 @@ void Scene3D::captureMouse()
   mouseCaptured = true;
   ShowCursor(FALSE);
 
-  center.X = screenRect.right / 2;
-  center.Y = screenRect.bottom / 2;
+  center.X = (SHORT)(screenRect.right / 2);
+  center.Y = (SHORT)(screenRect.bottom / 2);
 
 }
 
