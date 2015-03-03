@@ -26,9 +26,9 @@ public:
   ~Shape();
 
   void init();
-	void render1();
-	void render2();
-	void render3();
+  void render1();
+  void render2();
+  void render3();
 
 
 private:

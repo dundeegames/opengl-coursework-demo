@@ -26,9 +26,9 @@
 #include <gl\glu.h>         // Header File For The GLu32 Library
 #include "include/SOIL.h"
 
-#define	FONT_MAX_ASCII	256
-#define	FONT_MAX_LINE	1024
-#define	FONT_MAX_PATH	256
+#define  FONT_MAX_ASCII  256
+#define  FONT_MAX_LINE  1024
+#define  FONT_MAX_PATH  256
 
 
 struct Colour
@@ -55,25 +55,25 @@ class Font
 struct CharDescriptor
 {
 
-	int x, y;
-	int Width, Height;
-	int XOffset, YOffset;
-	int XAdvance;
-	int Page;
+  int x, y;
+  int Width, Height;
+  int XOffset, YOffset;
+  int XAdvance;
+  int Page;
 
-	CharDescriptor() : x( 0 ), y( 0 ), Width( 0 ), Height( 0 ), XOffset( 0 ), YOffset( 0 ),
-		XAdvance( 0 ), Page( 0 )
-	{ }
+  CharDescriptor() : x( 0 ), y( 0 ), Width( 0 ), Height( 0 ), XOffset( 0 ), YOffset( 0 ),
+    XAdvance( 0 ), Page( 0 )
+  { }
 };
 
 
 struct CharacterSet
 {
-	int LineHeight;
-	int Base;
-	int Width, Height;
-	int Pages;
-	CharDescriptor Chars[256];
+  int LineHeight;
+  int Base;
+  int Width, Height;
+  int Pages;
+  CharDescriptor Chars[256];
 };
 
 
@@ -87,11 +87,11 @@ public:
 
 
 private:
-	CharacterSet charSet;
-	GLuint myTexture;
+  CharacterSet charSet;
+  GLuint myTexture;
   GLuint base_list;
 
-	bool ParseFont( std::istream& Stream, CharacterSet& CharsetDesc );
+  bool ParseFont( std::istream& Stream, CharacterSet& CharsetDesc );
   float Font::GetStringLength(const char * text);
   void compileText();
 

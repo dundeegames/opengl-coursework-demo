@@ -88,6 +88,7 @@
     <ClCompile Include="irrquaternion.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="planets.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="resourcemanager.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="timerclass.cpp" />
+    <ClCompile Include="TokenStream.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="winmanager.cpp" />
@@ -112,6 +114,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="irrquaternion.h" />
     <ClInclude Include="light.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="planets.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="resourcemanager.h" />
@@ -121,6 +124,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="timerclass.h" />
+    <ClInclude Include="TokenStream.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="vec3.h" />
     <ClInclude Include="winmanager.h" />

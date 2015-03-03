@@ -10,7 +10,7 @@ Font::Font()
 Font::~Font()
 {
   glDeleteLists(base_list, FONT_MAX_ASCII);
-	glDeleteTextures(1, &myTexture);
+  glDeleteTextures(1, &myTexture);
 }
 
 // -----------------------------------------------------------------------------
@@ -159,11 +159,11 @@ void Font::RenderText(RECT& viewport, Colour colour, float x_, float y_,
   }
 
 
-  glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);	
+  glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);  
   glDisable(GL_LIGHTING);
-	glDisable(GL_DEPTH_TEST);
+  glDisable(GL_DEPTH_TEST);
 
-	glListBase(base_list);
+  glListBase(base_list);
 
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();

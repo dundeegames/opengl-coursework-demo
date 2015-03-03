@@ -19,6 +19,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{f14eb4d3-e863-40db-8ee1-6dbe45c638dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{89941e40-75a5-4241-a80f-44a93ccf8891}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animatedsprite.cpp">
@@ -90,6 +93,12 @@
     <ClCompile Include="resourcemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenStream.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
@@ -157,6 +166,12 @@
     </ClInclude>
     <ClInclude Include="resourcemanager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenStream.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

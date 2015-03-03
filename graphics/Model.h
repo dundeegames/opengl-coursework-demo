@@ -21,21 +21,21 @@ class Model
 {
 
 public:
-	
-	bool Load(char*, char*);
-	void Render();
-	
+  
+  bool Load(char*, char*);
+  void Render();
+  
 private:
-	
-	void LoadTexture(char*);
-	bool LoadModel(char*);
-	
-	int m_vertexCount;
-	GLuint texture;
+  
+  void LoadTexture(char*);
+  bool LoadModel(char*);
+  
+  int m_vertexCount;
+  GLuint texture;
 
-	// vectors for storing model data, for your use
-	vector<float> vertex, normals, texCoords;
-	
+  // vectors for storing model data, for your use
+  vector<float> vertex, normals, texCoords;
+  
 };
 
 #endif

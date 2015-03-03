@@ -61,7 +61,7 @@ GLuint ResourceManager::getQuad()
 {
   GLuint QuadDList = 0;
   
-  glNewList(QuadDList, GL_COMPILE);		// Like glBegin and End
+  glNewList(QuadDList, GL_COMPILE);    // Like glBegin and End
 
     drawQuad();
 
@@ -76,7 +76,7 @@ GLuint ResourceManager::getPlane(float width, float height, int sub_w, int sub_h
 {
   GLuint PlaneDList = 0;
 
-  glNewList(PlaneDList, GL_COMPILE);		// Like glBegin and End
+  glNewList(PlaneDList, GL_COMPILE);    // Like glBegin and End
 
     drawPlane(width, height, sub_w, sub_h);
 
@@ -92,7 +92,7 @@ GLuint ResourceManager::getCube()
 {
   GLuint CubeDList = 0;
 
-  glNewList(CubeDList, GL_COMPILE);		// Like glBegin and End
+  glNewList(CubeDList, GL_COMPILE);    // Like glBegin and End
 
     //drawPlane(width, height, sub_w, sub_h);
 

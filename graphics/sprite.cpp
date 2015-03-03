@@ -17,7 +17,7 @@ Sprite::~Sprite()
 void Sprite::setDList()
 {
 
-  glNewList(DisplayList, GL_COMPILE);		// Like glBegin and End
+  glNewList(DisplayList, GL_COMPILE);    // Like glBegin and End
 
     glBegin(GL_TRIANGLES);
 
@@ -55,7 +55,7 @@ void Sprite::setDList()
 
 void Sprite::draw()
 {
-  glBindTexture(GL_TEXTURE_2D, myTexture);	//tells opengl which texture to use
+  glBindTexture(GL_TEXTURE_2D, myTexture);  //tells opengl which texture to use
   // front face
   glColor4f(red, green, blue, alpha);
 

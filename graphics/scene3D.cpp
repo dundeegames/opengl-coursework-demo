@@ -113,8 +113,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   // BMFont
-  glAlphaFunc( GL_GREATER, 0 );							// set the alpha transparency
-  glEnable( GL_ALPHA_TEST );								// and turn it on
+  glAlphaFunc( GL_GREATER, 0 );              // set the alpha transparency
+  glEnable( GL_ALPHA_TEST );                // and turn it on
 
 
   //Also, do any other setting variables here for your app if you wish

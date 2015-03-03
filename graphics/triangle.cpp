@@ -16,7 +16,7 @@ Triangle::~Triangle()
 
 void Triangle::draw()
 {
-  glBindTexture(GL_TEXTURE_2D, myTexture);	//tells opengl which texture to use
+  glBindTexture(GL_TEXTURE_2D, myTexture);  //tells opengl which texture to use
 
   glBegin(GL_TRIANGLES);
 
