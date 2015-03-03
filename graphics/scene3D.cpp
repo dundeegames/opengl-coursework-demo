@@ -134,7 +134,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   font.Load("bin/tahoma");
 
 
-  if( model.Load("Models/SmallSphere.obj","bin/crate.png") == false)
+  if( model.Load("Models/teapot.obj","bin/crate.png") == false)
   {
     //exit(-1);
   }
@@ -198,6 +198,7 @@ void Scene3D::DrawScene(float dt)
   glPopMatrix();    // go back to origin
   glPushMatrix();   // Remember where we are.
 
+    glScalef(0.1, 0.1, 0.1);
     model.Render();
 
   glPopMatrix();    // go back to origin

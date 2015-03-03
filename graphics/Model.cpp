@@ -24,38 +24,36 @@ void Model::Render()
   // You must insert code here to render your model
   // This function will be called from Scene3D.drawScene()
   // enble and specify pointers to vertex arrays
-  //glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+  glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
 
   glEnableClientState(GL_VERTEX_ARRAY);
-  //glEnableClientState(GL_NORMAL_ARRAY);
+  glEnableClientState(GL_NORMAL_ARRAY);
   //glEnableClientState(GL_COLOR_ARRAY);
-  //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 
 
   glVertexPointer (3, GL_FLOAT, 0, vertex.data());
-  //glNormalPointer (GL_FLOAT, 0, normals.data());
+  glNormalPointer (GL_FLOAT, 0, normals.data());
   //glColorPointer(3, GL_FLOAT, 0, colors.data());
-  //glTexCoordPointer(2, GL_FLOAT, 0, texCoords.data());
+  glTexCoordPointer(2, GL_FLOAT, 0, texCoords.data());
 
 
 
   //dereferencing method of choice
-  //glPushMatrix();
-  //  glTranslatef(2, 2, 0);                  // move to upper-right corner
-
-    // m_vertexCount
+  glPushMatrix();
+    glTranslatef(10, 10, 30);                  // move to upper-right corner
     glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
-  //glPopMatrix();
+  glPopMatrix();
 
 
 
   glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
-  //glDisableClientState(GL_NORMAL_ARRAY);
+  glDisableClientState(GL_NORMAL_ARRAY);
   //glDisableClientState(GL_COLOR_ARRAY);
-  //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
-  //glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
+  glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
 
 }
 
@@ -182,7 +180,7 @@ bool Model::LoadModel(char* filename)
 
   // "Unroll" the loaded obj information into a list of triangles.
   
-  int numFaces = ( int )faces.size( ) / 9;
+  int numFaces = (int)faces.size() / 9;
   m_vertexCount = numFaces * 3;
   
   // You must add code here to sort the model data
@@ -202,9 +200,9 @@ bool Model::LoadModel(char* filename)
 
 
     //if(normals_)
-    vertex.push_back( norms[( faces[i + 2] - 1 )].getX() );
-    vertex.push_back( norms[( faces[i + 2] - 1 )].getY() );
-    vertex.push_back( norms[( faces[i + 2] - 1 )].getZ() );
+    normals.push_back( norms[( faces[i + 2] - 1 )].getX() );
+    normals.push_back( norms[( faces[i + 2] - 1 )].getY() );
+    normals.push_back( norms[( faces[i + 2] - 1 )].getZ() );
 
   }
   
