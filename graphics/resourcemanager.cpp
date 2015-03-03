@@ -90,9 +90,16 @@ GLuint ResourceManager::getPlane(float width, float height, int sub_w, int sub_h
 
 GLuint ResourceManager::getCube()
 {
-  GLuint DispList = 0;
-  
-  return DispList;
+  GLuint CubeDList = 0;
+
+  glNewList(CubeDList, GL_COMPILE);		// Like glBegin and End
+
+    //drawPlane(width, height, sub_w, sub_h);
+
+  glEndList();
+
+
+  return CubeDList;
 }
 
 // -----------------------------------------------------------------------------
