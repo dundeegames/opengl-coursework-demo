@@ -29,6 +29,8 @@
 #include "gui.h"
 #include "font.h"
 
+#include "Model.h"
+
 
 #define COLOUR_DEPTH 16             //Colour depth
 
@@ -69,6 +71,8 @@ private:
   COORD center;
   Gui gui;
   Font font;
+  Model model;
+
   bool mouseCaptured;
 
   void captureMouse();

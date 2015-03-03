@@ -23,7 +23,40 @@ void Model::Render()
 {
   // You must insert code here to render your model
   // This function will be called from Scene3D.drawScene()
-  
+  // enble and specify pointers to vertex arrays
+  //glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  //glEnableClientState(GL_NORMAL_ARRAY);
+  //glEnableClientState(GL_COLOR_ARRAY);
+  //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+
+
+  glVertexPointer (3, GL_FLOAT, 0, vertex.data());
+  //glNormalPointer (GL_FLOAT, 0, normals.data());
+  //glColorPointer(3, GL_FLOAT, 0, colors.data());
+  //glTexCoordPointer(2, GL_FLOAT, 0, texCoords.data());
+
+
+
+  //dereferencing method of choice
+  //glPushMatrix();
+  //  glTranslatef(2, 2, 0);                  // move to upper-right corner
+
+    // m_vertexCount
+    glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
+  //glPopMatrix();
+
+
+
+  glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
+  //glDisableClientState(GL_NORMAL_ARRAY);
+  //glDisableClientState(GL_COLOR_ARRAY);
+  //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+  //glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
+
 }
 
 bool Model::LoadModel(char* filename)
@@ -155,43 +188,25 @@ bool Model::LoadModel(char* filename)
   // You must add code here to sort the model data
   // Model data is stored in stored in vectors verts, norms, texC and faces
   // Sort through the data and store it in the vectors provided (see header file)
-  int vIndex = 0, nIndex = 0, tIndex = 0;
 
-  //vertices_ = new float[totalVerts_ * 3];
+  for( int i = 0; i < (int)faces.size(); i+=3 )
+  {
+    vertex.push_back( verts[( faces[i + 0] - 1 )].getX() );
+    vertex.push_back( verts[( faces[i + 0] - 1 )].getY() );
+    vertex.push_back( verts[( faces[i + 0] - 1 )].getZ() );
 
-  //if( ( int )norms.size( ) != 0 )
-  //{
-  //  normals_ = new float[totalVerts_ * 3];
-  //}
 
-  //if( ( int )texC.size( ) != 0 )
-  //{
-  //  texCoords_ = new float[totalVerts_ * 2];
-  //}
+    //if(texCoords_)
+    texCoords.push_back( texC[( faces[i + 1] - 1 )].getX() );
+    texCoords.push_back( texC[( faces[i + 1] - 1 )].getY() );
 
-  //for( int i = 0; i < (int)faces.size(); f+=3 )
-  //{
-  //  vertices_[vIndex + 0] = verts[( faces[f + 0] - 1 ) * 3 + 0];
-  //  vertices_[vIndex + 1] = verts[( faces[f + 0] - 1 ) * 3 + 1];
-  //  vertices_[vIndex + 2] = verts[( faces[f + 0] - 1 ) * 3 + 2];
 
-  //  vIndex += 3;
+    //if(normals_)
+    vertex.push_back( norms[( faces[i + 2] - 1 )].getX() );
+    vertex.push_back( norms[( faces[i + 2] - 1 )].getY() );
+    vertex.push_back( norms[( faces[i + 2] - 1 )].getZ() );
 
-  //  if(texCoords_)
-  //  {
-  //  texCoords_[tIndex + 0] = texC[( faces[f + 1] - 1 ) * 2 + 0];
-  //  texCoords_[tIndex + 1] = texC[( faces[f + 1] - 1 ) * 2 + 1];
-  //  tIndex += 2;
-  //  }
-
-  //  if(normals_)
-  //  {
-  //  normals_[nIndex + 0] = norms[( faces[f + 2] - 1 ) * 3 + 0];
-  //  normals_[nIndex + 1] = norms[( faces[f + 2] - 1 ) * 3 + 1];
-  //  normals_[nIndex + 2] = norms[( faces[f + 2] - 1 ) * 3 + 2];
-  //  nIndex += 3;
-  //  }
-  //}
+  }
   
   
   

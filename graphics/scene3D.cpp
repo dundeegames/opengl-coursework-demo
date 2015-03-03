@@ -134,6 +134,11 @@ void Scene3D::Init(HWND* wnd, Input* in)
   font.Load("bin/tahoma");
 
 
+  if( model.Load("Models/SmallSphere.obj","bin/crate.png") == false)
+  {
+    //exit(-1);
+  }
+
   //box1.init();
   box = new Cube();
   box->loadTexture("bin/crate.png");
@@ -186,8 +191,16 @@ void Scene3D::DrawScene(float dt)
     quad->draw();
 
   glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
 
     triangle->draw();
+
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    model.Render();
+
+  glPopMatrix();    // go back to origin
 
   // ----------------------------------------
 
