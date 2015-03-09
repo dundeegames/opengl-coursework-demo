@@ -85,12 +85,15 @@
     <ClCompile Include="geometry.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="irrquaternion.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\abertay\abfw_matrix44.cpp" />
+    <ClCompile Include="math\abertay\abfw_quaternion.cpp" />
+    <ClCompile Include="math\quaternion.cpp" />
+    <ClCompile Include="math\standford\st_quaternion.cpp" />
+    <ClCompile Include="math\vec3.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="planets.cpp" />
-    <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="resourcemanager.cpp" />
     <ClCompile Include="scene2D.cpp" />
     <ClCompile Include="scene3D.cpp" />
@@ -100,7 +103,6 @@
     <ClCompile Include="timerclass.cpp" />
     <ClCompile Include="TokenStream.cpp" />
     <ClCompile Include="triangle.cpp" />
-    <ClCompile Include="vec3.cpp" />
     <ClCompile Include="winmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -112,11 +114,21 @@
     <ClInclude Include="geometry.h" />
     <ClInclude Include="gui.h" />
     <ClInclude Include="input.h" />
-    <ClInclude Include="irrquaternion.h" />
     <ClInclude Include="light.h" />
+    <ClInclude Include="math\abertay\abfw_matrix44.h" />
+    <ClInclude Include="math\abertay\abfw_quaternion.h" />
+    <ClInclude Include="math\irrlicht\irr_Math.h" />
+    <ClInclude Include="math\irrlicht\irr_matrix4.h" />
+    <ClInclude Include="math\irrlicht\irr_quaternion.h" />
+    <ClInclude Include="math\pipho\pip_math.h" />
+    <ClInclude Include="math\pipho\pip_matrix.h" />
+    <ClInclude Include="math\pipho\pip_quaternion.h" />
+    <ClInclude Include="math\pipho\pip_vector.h" />
+    <ClInclude Include="math\quaternion.h" />
+    <ClInclude Include="math\standford\st_quaternion.h" />
+    <ClInclude Include="math\vec3.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="planets.h" />
-    <ClInclude Include="quaternion.h" />
     <ClInclude Include="resourcemanager.h" />
     <ClInclude Include="scene2D.h" />
     <ClInclude Include="scene3D.h" />
@@ -126,8 +138,13 @@
     <ClInclude Include="timerclass.h" />
     <ClInclude Include="TokenStream.h" />
     <ClInclude Include="triangle.h" />
-    <ClInclude Include="vec3.h" />
     <ClInclude Include="winmanager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math\abertay\abfw_quaternion.inl" />
+    <None Include="math\pipho\pip_matrix.inl" />
+    <None Include="math\pipho\pip_quaternion.inl" />
+    <None Include="math\pipho\pip_vector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

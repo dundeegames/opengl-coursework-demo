@@ -22,6 +22,18 @@
     <Filter Include="System">
       <UniqueIdentifier>{89941e40-75a5-4241-a80f-44a93ccf8891}</UniqueIdentifier>
     </Filter>
+    <Filter Include="math\Abertay">
+      <UniqueIdentifier>{15aecddd-803a-46e1-8812-edec3ed6fd23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\stanford">
+      <UniqueIdentifier>{83cc8212-df77-40a2-afe0-59e2d9ac79e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\Irrlicht">
+      <UniqueIdentifier>{ac0f6b08-87b8-4d92-a8ac-2baeed77fd2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\Pipho">
+      <UniqueIdentifier>{bdb93dc0-8da1-45eb-9ad1-f37e4b702770}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animatedsprite.cpp">
@@ -44,15 +56,6 @@
     </ClCompile>
     <ClCompile Include="light.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vec3.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="quaternion.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="irrquaternion.cpp">
-      <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="cube.cpp">
       <Filter>Source Files</Filter>
@@ -99,6 +102,21 @@
     <ClCompile Include="TokenStream.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="math\abertay\abfw_matrix44.cpp">
+      <Filter>math\Abertay</Filter>
+    </ClCompile>
+    <ClCompile Include="math\abertay\abfw_quaternion.cpp">
+      <Filter>math\Abertay</Filter>
+    </ClCompile>
+    <ClCompile Include="math\standford\st_quaternion.cpp">
+      <Filter>math\stanford</Filter>
+    </ClCompile>
+    <ClCompile Include="math\quaternion.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\vec3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h">
@@ -118,15 +136,6 @@
     </ClInclude>
     <ClInclude Include="light.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vec3.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="quaternion.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="irrquaternion.h">
-      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="cube.h">
       <Filter>Header Files</Filter>
@@ -173,5 +182,55 @@
     <ClInclude Include="TokenStream.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="math\abertay\abfw_matrix44.h">
+      <Filter>math\Abertay</Filter>
+    </ClInclude>
+    <ClInclude Include="math\abertay\abfw_quaternion.h">
+      <Filter>math\Abertay</Filter>
+    </ClInclude>
+    <ClInclude Include="math\pipho\pip_math.h">
+      <Filter>math\Pipho</Filter>
+    </ClInclude>
+    <ClInclude Include="math\pipho\pip_matrix.h">
+      <Filter>math\Pipho</Filter>
+    </ClInclude>
+    <ClInclude Include="math\pipho\pip_quaternion.h">
+      <Filter>math\Pipho</Filter>
+    </ClInclude>
+    <ClInclude Include="math\pipho\pip_vector.h">
+      <Filter>math\Pipho</Filter>
+    </ClInclude>
+    <ClInclude Include="math\standford\st_quaternion.h">
+      <Filter>math\stanford</Filter>
+    </ClInclude>
+    <ClInclude Include="math\quaternion.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vec3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\irrlicht\irr_Math.h">
+      <Filter>math\Irrlicht</Filter>
+    </ClInclude>
+    <ClInclude Include="math\irrlicht\irr_matrix4.h">
+      <Filter>math\Irrlicht</Filter>
+    </ClInclude>
+    <ClInclude Include="math\irrlicht\irr_quaternion.h">
+      <Filter>math\Irrlicht</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math\abertay\abfw_quaternion.inl">
+      <Filter>math\Abertay</Filter>
+    </None>
+    <None Include="math\pipho\pip_matrix.inl">
+      <Filter>math\Pipho</Filter>
+    </None>
+    <None Include="math\pipho\pip_quaternion.inl">
+      <Filter>math\Pipho</Filter>
+    </None>
+    <None Include="math\pipho\pip_vector.inl">
+      <Filter>math\Pipho</Filter>
+    </None>
   </ItemGroup>
 </Project>

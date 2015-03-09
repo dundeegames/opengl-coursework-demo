@@ -17,7 +17,7 @@
 #include <gl/glu.h>
 
 #include "input.h"
-#include "vec3.h"
+#include "math/vec3.h"
 
 
 enum Type {FIXED_POINT, ROTATING, SCROLLING, MOVEABLE, FLOATING, TRACKING, THIRD_PERSON, FIRST_PERSON};

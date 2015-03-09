@@ -25,7 +25,7 @@ using namespace std;
 // MY CLASS INCLUDES ///////////////////////////////////////////////////////////
 #include "TokenStream.h"
 #include <vector>
-#include "Vec3.h"
+#include "math/vec3.h"
 #include "SOIL.h"
 
 
