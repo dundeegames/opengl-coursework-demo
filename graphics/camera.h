@@ -20,9 +20,11 @@
 #include "math/vec3.h"
 
 
-enum Type {FIXED_POINT, ROTATING, SCROLLING, MOVEABLE, FLOATING, TRACKING, THIRD_PERSON, FIRST_PERSON};
+enum CameraType {FIXED_POINT, ROTATING, SCROLLING, MOVEABLE, FLOATING, TRACKING, THIRD_PERSON, FIRST_PERSON};
 #define PI 3.1415f
 
+
+// TODO does camera need dt in update?
 
 class Camera
 {
@@ -31,7 +33,7 @@ public:
   Camera();
   ~Camera();
 
-  void init(Type type_, Input* in);
+  void init(CameraType type_, Input* in);
   void update(float dt);
   void handleInput(float dt);
   Vec3 getPosition();
@@ -56,7 +58,7 @@ private:
   */
   Vec3 rotation;
 
-  Type type;
+  CameraType type;
   Input* input;
   //float sensitivity;
 };

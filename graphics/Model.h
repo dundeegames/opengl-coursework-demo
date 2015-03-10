@@ -33,14 +33,19 @@ class Model
 {
 
 public:
+  Model();
+  ~Model();
+
+
   bool Load(char* modelFilename, char* textureFilename);
+
+  void LoadTexture(char*);
+  bool LoadModel(char*);
+
   void Render();
 
 
-private:
-  void LoadTexture(char*);
-  bool LoadModel(char*);
-  
+private:  
   int m_vertexCount;
   GLuint texture;
 

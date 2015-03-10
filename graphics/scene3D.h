@@ -71,7 +71,7 @@ private:
   COORD center;
   Gui gui;
   Font font;
-  Model model;
+  std::vector<Model> models;
 
   bool mouseCaptured;
 

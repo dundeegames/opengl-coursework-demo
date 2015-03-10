@@ -15,7 +15,7 @@ Camera::~Camera()
 
 // -----------------------------------------------------------------------------
 
-void Camera::init(Type type_, Input* in)
+void Camera::init(CameraType type_, Input* in)
 {
   type = type_;
   input = in;

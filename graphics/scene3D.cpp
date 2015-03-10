@@ -134,10 +134,10 @@ void Scene3D::Init(HWND* wnd, Input* in)
   font.Load("bin/tahoma");
 
 
-  if( model.Load("Models/teapot.obj","bin/crate.png") == false)
-  {
-    //exit(-1);
-  }
+  //if( model.Load("bin/Models/teapot.obj","bin/crate.png") == false)
+  //{
+  //  //exit(-1);
+  //}
 
   //box1.init();
   box = new Cube();
@@ -199,7 +199,15 @@ void Scene3D::DrawScene(float dt)
   glPushMatrix();   // Remember where we are.
 
     glScalef(0.1, 0.1, 0.1);
-    model.Render();
+
+
+
+    for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
+    {
+      glTranslatef(2.0f, 0.0f, 10.0f);
+      it->Render();
+    }
+    //models[].Render();
 
   glPopMatrix();    // go back to origin
 
@@ -323,31 +331,39 @@ void Scene3D::rotateCamera()
 
 void Scene3D::loadFile()
 {
+  OPENFILENAME ofn;
 
-  MessageBox(*hwnd, "Load File?", "Load Test", MB_YESNO | MB_ICONQUESTION);
+  char szFileName[MAX_PATH] = "";
 
-  //OPENFILENAME ofn;
+  ZeroMemory(&ofn, sizeof(ofn));
 
-  //char szFileName[MAX_PATH] = "";
+  ofn.lStructSize = sizeof(ofn); // SEE NOTE BELOW
+  ofn.hwndOwner = *hwnd;
+  //ofn.lpstrFilter = "Obj Files (*.obj)\0*.txt\0All Files (*.*)\0*.*\0";
+  ofn.lpstrFile = szFileName;
+  ofn.nMaxFile = MAX_PATH;
+  ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
+  ofn.lpstrDefExt = "obj";
 
-  //ZeroMemory(&ofn, sizeof(ofn));
+  if(GetOpenFileName(&ofn))
+  {
+    // Do something usefull with the filename stored in szFileName
+    Model tempModel;
 
-  //ofn.lStructSize = sizeof(ofn); // SEE NOTE BELOW
-  //ofn.hwndOwner = *hwnd;
-  //ofn.lpstrFilter = "Text Files (*.txt)\0*.txt\0All Files (*.*)\0*.*\0";
-  //ofn.lpstrFile = szFileName;
-  //ofn.nMaxFile = MAX_PATH;
-  //ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
-  //ofn.lpstrDefExt = "txt";
-
-  //if(GetOpenFileName(&ofn))
-  //{
-  //    // Do something usefull with the filename stored in szFileName 
-  //}
-
-
+    if( tempModel.LoadModel(ofn.lpstrFile) == true)
+    {
+      //MessageBox(*hwnd, "File open!", "Success", MB_OK | MB_ICONINFORMATION);
+      models.push_back(tempModel);
+    }
+    else
+    {
+      MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);
+    }
 
 
+
+    
+  }
 
 }
 

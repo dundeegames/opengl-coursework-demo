@@ -103,6 +103,7 @@
     <ClCompile Include="timerclass.cpp" />
     <ClCompile Include="TokenStream.cpp" />
     <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="viewport.cpp" />
     <ClCompile Include="winmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="timerclass.h" />
     <ClInclude Include="TokenStream.h" />
     <ClInclude Include="triangle.h" />
+    <ClInclude Include="viewport.h" />
     <ClInclude Include="winmanager.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,22 @@
 #include "model.h"
 
 
+Model::Model()
+{
+  m_vertexCount = NULL;
+  texture = NULL;
+}
+
+// -----------------------------------------------------------------------------
+
+Model::~Model()
+{
+
+
+}
+
+// -----------------------------------------------------------------------------
+
 bool Model::Load(char* modelFilename, char* textureFilename)
 {
   bool result;
@@ -18,6 +34,8 @@ bool Model::Load(char* modelFilename, char* textureFilename)
   
   return true;
 }
+
+// -----------------------------------------------------------------------------
 
 void Model::Render()
 {
@@ -42,7 +60,7 @@ void Model::Render()
 
   //dereferencing method of choice
   glPushMatrix();
-    glTranslatef(10, 10, 30);                  // move to upper-right corner
+    //glTranslatef(10, 10, 30);                  // move to upper-right corner
     glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
   glPopMatrix();
 
@@ -56,6 +74,8 @@ void Model::Render()
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
 
 }
+
+// -----------------------------------------------------------------------------
 
 bool Model::LoadModel(char* filename)
 {
@@ -218,6 +238,8 @@ bool Model::LoadModel(char* filename)
   return true;
 }
 
+// -----------------------------------------------------------------------------
+
 void Model::LoadTexture(char* filename)
 {
   
@@ -237,5 +259,11 @@ void Model::LoadTexture(char* filename)
 
 }
 
+// -----------------------------------------------------------------------------
 
 
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////
