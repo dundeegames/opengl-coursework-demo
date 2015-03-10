@@ -259,26 +259,32 @@ void Scene3D::HandleInput(float dt)
   camera.update(dt);
 
 
-  if(input->isKeyDown('4'))                  // if W is pressed
+  if(input->isKeyDown('4'))                 // if 4 is pressed
   {
     // makes the front face wireframe, not the back face
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
-    input->SetKeyUp('4');                  //force un-pressing of W
+    input->SetKeyUp('4');                   //force un-pressing of 4
   }
 
-  if(input->isKeyDown('5'))                  // if E is pressed
+  if(input->isKeyDown('5'))                 // if 5 is pressed
   {
     //turns on normal filled rendering
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    input->SetKeyUp('5');                  //force un-pressing of E
+    input->SetKeyUp('5');                   //force un-pressing of 5
   }
 
-  if(input->isKeyDown(VK_MENU))                // if ALT is pressed
+  if(input->isKeyDown(VK_MENU))             // if ALT is pressed
   {
     // for some reason it pause the rendering (but the variables still updates)
-    input->SetKeyUp(VK_MENU);                //force un-pressing of ALT
+    input->SetKeyUp(VK_MENU);               //force un-pressing of ALT
   }
 
+  if(input->isKeyDown('L'))                 // if L is pressed
+  {
+    // Load file
+    loadFile();
+    input->SetKeyUp('L');                   //force un-pressing of L
+  }
 
 }// end of HandleInput
 
@@ -314,6 +320,41 @@ void Scene3D::rotateCamera()
 }
 
 // ------------------------------------------------------------------------------
+
+void Scene3D::loadFile()
+{
+
+  MessageBox(*hwnd, "Load File?", "Load Test", MB_YESNO | MB_ICONQUESTION);
+
+  //OPENFILENAME ofn;
+
+  //char szFileName[MAX_PATH] = "";
+
+  //ZeroMemory(&ofn, sizeof(ofn));
+
+  //ofn.lStructSize = sizeof(ofn); // SEE NOTE BELOW
+  //ofn.hwndOwner = *hwnd;
+  //ofn.lpstrFilter = "Text Files (*.txt)\0*.txt\0All Files (*.*)\0*.*\0";
+  //ofn.lpstrFile = szFileName;
+  //ofn.nMaxFile = MAX_PATH;
+  //ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
+  //ofn.lpstrDefExt = "txt";
+
+  //if(GetOpenFileName(&ofn))
+  //{
+  //    // Do something usefull with the filename stored in szFileName 
+  //}
+
+
+
+
+
+}
+
+// -----------------------------------------------------------------------------
+
+
+
 
 
 

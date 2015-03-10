@@ -79,6 +79,8 @@ private:
   void releaseMouse();
   void rotateCamera();
 
+  void loadFile();
+
 };
 
 
