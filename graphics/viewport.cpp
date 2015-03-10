@@ -39,8 +39,7 @@ void Viewport::setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_)
 
 void Viewport::update(float dt)
 {
-
-
+  camera.update(dt);
 
 }
 
@@ -48,7 +47,33 @@ void Viewport::update(float dt)
 
 void Viewport::setRender()
 {
+  setView();
 
+  drawBackground();
+
+  camera.view();
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Viewport::setView()
+{
+  if (height==0)  // Prevent A Divide By Zero error
+  {
+    height=1;     // Make the Height Equal One
+  }
+
+  glViewport(x, y, width, height);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //calculate aspect ratio
+  gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1 ,150.0f);
+
+  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
+  glLoadIdentity();// Reset The Modelview Matrix
 
 }
 

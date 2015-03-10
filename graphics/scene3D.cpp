@@ -43,21 +43,23 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 */
 void Scene3D::ResizeGLWindow(int width, int height)
 {
-  if (height==0)  // Prevent A Divide By Zero error
-  {
-    height=1;     // Make the Height Equal One
-  }
+  viewport1.setSize(0, 0, width, height);
 
-  glViewport(0,0,width,height);
+  //if (height==0)  // Prevent A Divide By Zero error
+  //{
+  //  height=1;     // Make the Height Equal One
+  //}
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
+  //glViewport(0,0,width,height);
 
-  //calculate aspect ratio
-  gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1 ,150.0f);
+  //glMatrixMode(GL_PROJECTION);
+  //glLoadIdentity();
 
-  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
-  glLoadIdentity();// Reset The Modelview Matrix
+  ////calculate aspect ratio
+  //gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1 ,150.0f);
+
+  //glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
+  //glLoadIdentity();// Reset The Modelview Matrix
 }
 
 // ------------------------------------------------------------------------------
@@ -82,6 +84,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 {
   // init camera values
   camera.init(FIXED_POINT, in);
+  viewport1.init(FIXED_POINT, in);
 
 
   hwnd = wnd;
@@ -159,10 +162,11 @@ void Scene3D::DrawScene(float dt)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
   glLoadIdentity();// load Identity Matrix
 
-  gui.drawBackground((float)screenRect.left, (float)screenRect.right,
-                     (float)screenRect.bottom, (float)screenRect.top);
+  //gui.drawBackground((float)screenRect.left, (float)screenRect.right,
+  //                   (float)screenRect.bottom, (float)screenRect.top);
 
-  camera.view();
+  //camera.view();
+  viewport1.setRender();
 
   ambient->render();
   light1->render();
@@ -243,14 +247,13 @@ void Scene3D::Resize()
 
 void Scene3D::HandleInput(float dt)
 {
-
   if(input->leftMouseBtn())
   {
-    captureMouse();
+    //captureMouse();
   }
   else if(input->isKeyDown(VK_CONTROL))
   {
-    releaseMouse();
+    //releaseMouse();
   }
 
   if(mouseCaptured)
@@ -259,12 +262,12 @@ void Scene3D::HandleInput(float dt)
   }
 
 
-
   solarSystem.update(dt);
 
   //robotArm.update(dt);
 
-  camera.update(dt);
+  //camera.update(dt);
+  viewport1.update(dt);
 
 
   if(input->isKeyDown('4'))                 // if 4 is pressed

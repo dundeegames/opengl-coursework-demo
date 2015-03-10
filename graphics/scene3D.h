@@ -29,6 +29,7 @@
 #include "gui.h"
 #include "font.h"
 
+#include "viewport.h"
 #include "Model.h"
 
 
@@ -71,6 +72,8 @@ private:
   COORD center;
   Gui gui;
   Font font;
+  Viewport viewport1;
+
   std::vector<Model> models;
 
   bool mouseCaptured;

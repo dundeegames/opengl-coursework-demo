@@ -43,6 +43,7 @@ private:
 
   Camera camera;
 
+  void setView();
   void drawBackground();
 
 };
