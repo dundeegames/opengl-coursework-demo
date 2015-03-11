@@ -82,7 +82,7 @@ public:
   ~Font();
   bool Load(const char* font_name);
 
-  void RenderText(RECT& viewport, Colour colour, float x_, float y_,
+  void RenderText(Colour colour, float x_, float y_,
                   float scale, const char * text, ...);
 
 

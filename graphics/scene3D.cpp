@@ -45,21 +45,6 @@ void Scene3D::ResizeGLWindow(int width, int height)
 {
   viewport1.setSize(0, 0, width, height);
 
-  //if (height==0)  // Prevent A Divide By Zero error
-  //{
-  //  height=1;     // Make the Height Equal One
-  //}
-
-  //glViewport(0,0,width,height);
-
-  //glMatrixMode(GL_PROJECTION);
-  //glLoadIdentity();
-
-  ////calculate aspect ratio
-  //gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1 ,150.0f);
-
-  //glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
-  //glLoadIdentity();// Reset The Modelview Matrix
 }
 
 // ------------------------------------------------------------------------------
@@ -82,11 +67,6 @@ void Scene3D::InitializeOpenGL(int width, int height)
 
 void Scene3D::Init(HWND* wnd, Input* in)
 {
-  // init camera values
-  camera.init(FIXED_POINT, in);
-  viewport1.init(FIXED_POINT, in);
-
-
   hwnd = wnd;
   input = in;
 
@@ -122,25 +102,22 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
-  
+ 
+  gui.init();
+  viewport1.init(FIXED_POINT, in, &gui);
+
+
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
 
-  //init(ambientRGBA  difuseRGBA  postionXYZT)
+  //init(LIGHT_TYPE  postionXYZT  colourRGBA)
   //T is type of light: 0.0 = ..., 1.0 = ...
   ambient->init(AMBIENT, 0.0f, 0.0f, 0.0f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f);
   light1->init(DIFFUSE, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
 
-  robotArm.Init(in);
+  //robotArm.Init(in);
   solarSystem.init();
-  //font.Load("bin/gangofthree");
-  font.Load("bin/tahoma");
 
-
-  //if( model.Load("bin/Models/teapot.obj","bin/crate.png") == false)
-  //{
-  //  //exit(-1);
-  //}
 
   //box1.init();
   box = new Cube();
@@ -160,74 +137,16 @@ void Scene3D::DrawScene(float dt)
   
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
-  glLoadIdentity();// load Identity Matrix
-
-  //gui.drawBackground((float)screenRect.left, (float)screenRect.right,
-  //                   (float)screenRect.bottom, (float)screenRect.top);
-
-  //camera.view();
-  viewport1.setRender();
-
-  ambient->render();
-  light1->render();
-
-  gui.drawGrid();
-
-  
-
-  glPushMatrix();   // Remember where we are.
-
-    solarSystem.render();
-
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    //based on shoulder
-    glTranslatef(3.0f, 0.0f, 0.0f);
-    //box1.render();
-    box->draw();
-    //robotArm.render();
-  
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    glTranslatef(-3.0f, 0.0f, 0.0f);
-    quad->draw();
-
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    triangle->draw();
-
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    glScalef(0.1, 0.1, 0.1);
+  glLoadIdentity();       // load Identity Matrix
 
 
+  viewport1.begin();
 
-    for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
-    {
-      glTranslatef(2.0f, 0.0f, 10.0f);
-      it->Render();
-    }
-    //models[].Render();
+    render(); // render all lighting, geometry, etc.
 
-  glPopMatrix();    // go back to origin
+  viewport1.end();
 
-  // ----------------------------------------
-
-  glEnable(GL_BLEND); // enable only when needed
-  font.RenderText(screenRect, Colour(1.0f, 1.0f, 1.0f, 1.0f),
-                  150.0f, 100.0f, 0.2f, "Hello, World!");
-
-  
-  font.RenderText(screenRect, Colour(0.0f, 0.0f, 0.0f, 0.5f),
-                  150.0f, 100.0f, 1.0f, "Buddy");
-
-  glDisable(GL_BLEND);
-
-  SwapBuffers(hdc); // Swap the frame buffers
+  SwapBuffers(hdc);       // Swap the frame buffers
 
 }    
 
@@ -372,6 +291,55 @@ void Scene3D::loadFile()
 
 // -----------------------------------------------------------------------------
 
+void Scene3D::render()
+{
+  ambient->render();
+  light1->render();
+
+  gui.drawGrid();
+
+  
+
+  glPushMatrix();   // Remember where we are.
+
+    solarSystem.render();
+
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    //based on shoulder
+    glTranslatef(3.0f, 0.0f, 0.0f);
+    //box1.render();
+    box->draw();
+    //robotArm.render();
+  
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    glTranslatef(-3.0f, 0.0f, 0.0f);
+    quad->draw();
+
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    triangle->draw();
+
+  glPopMatrix();    // go back to origin
+  glPushMatrix();   // Remember where we are.
+
+    glScalef(0.1, 0.1, 0.1);
+
+    for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
+    {
+      glTranslatef(2.0f, 0.0f, 10.0f);
+      it->Render();
+    }
+
+  glPopMatrix();    // go back to origin
+
+}
+
+// -----------------------------------------------------------------------------
 
 
 

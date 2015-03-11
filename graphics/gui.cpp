@@ -15,6 +15,13 @@ Gui::~Gui()
 
 // -----------------------------------------------------------------------------
 
+void Gui::init()
+{  
+  font.Load("bin/tahoma");
+}
+
+// -----------------------------------------------------------------------------
+
 void Gui::drawBackground(float left, float right, float bottom, float top)
 {
   // TODO Ask for the feedback on this func()
@@ -103,6 +110,28 @@ void Gui::drawGrid()
   glEnd();
 
 }
+
+// -----------------------------------------------------------------------------
+
+void Gui::renderText()
+{
+  glEnable(GL_BLEND); // enable only when needed
+  font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  150.0f, 80.0f, 0.5f, "Hello, World!");
+
+  
+  font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  150.0f, 100.0f, 1.0f, "Buddy");
+
+  glDisable(GL_BLEND);
+
+
+}
+
+
+
+
+
 
 
 // 80 //////////////////////////////////////////////////////////////////////////

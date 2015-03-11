@@ -44,15 +44,15 @@ void WinManager::RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinPro
 BOOL WinManager::InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
 {
   // center the screen
-  //int screenWidth = 800;
-  //int screenHeight = 600;
-  //int x = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) >> 1;
-  //int y = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) >> 1;
+  int screenWidth = 800;
+  int screenHeight = 600;
+  int x = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) >> 1;
+  int y = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) >> 1;
 
-  int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-  int screenHeight = GetSystemMetrics(SM_CYSCREEN);
-  int x = 0;
-  int y = 0;
+  //int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+  //int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+  //int x = 0;
+  //int y = 0;
   
   hwnd = CreateWindow ("FirstWindowClass",      // Classname (same as previous slide)          
           "My first Triangle",                  // Window name
@@ -63,8 +63,8 @@ BOOL WinManager::InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
           * WS_OVERLAPPED | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_SYSM
           * WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
           */
-          WS_OVERLAPPEDWINDOW | WS_MAXIMIZE,
-
+          //WS_OVERLAPPEDWINDOW | WS_MAXIMIZE,
+          WS_OVERLAPPEDWINDOW,
 
           /**
           * CW_USEDEFAULT,      // Horizontal location of window 

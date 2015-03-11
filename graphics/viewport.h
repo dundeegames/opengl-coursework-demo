@@ -15,6 +15,7 @@
 #include <windows.h>
 
 #include "camera.h"
+#include "gui.h"
 
 
 class Viewport
@@ -24,12 +25,12 @@ public:
   Viewport();
   ~Viewport();
 
-  void init(CameraType type, Input* in);
+  void init(CameraType type, Input* in, Gui* gui_);
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
   void update(float dt);
-  void setRender();
-
+  void begin();
+  void end();
 
 private:
   GLint x;
@@ -42,9 +43,7 @@ private:
   float bottom;
 
   Camera camera;
-
-  void setView();
-  void drawBackground();
+  Gui* gui;
 
 };
 

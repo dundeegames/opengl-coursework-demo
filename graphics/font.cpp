@@ -149,7 +149,7 @@ bool Font::ParseFont( std::istream& Stream, CharacterSet& CharsetDesc )
 
 // -----------------------------------------------------------------------------
 
-void Font::RenderText(RECT& viewport, Colour colour, float x_, float y_,
+void Font::RenderText(Colour colour, float x_, float y_,
                       float scale, const char * text, ...)
 {
   assert(text != NULL);
@@ -160,24 +160,11 @@ void Font::RenderText(RECT& viewport, Colour colour, float x_, float y_,
 
 
   glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);  
-  glDisable(GL_LIGHTING);
-  glDisable(GL_DEPTH_TEST);
+  glPushMatrix();                           // Remember where we are.
 
   glListBase(base_list);
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
 
-
-  glOrtho(viewport.left, viewport.right, viewport.bottom, viewport.top, 1.0f ,150.0f);
-
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();             // Reset The Modelview Matrix
-
-
-  //set camera looking down the -z axis,  6 units away from the center
-  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
   glBindTexture(GL_TEXTURE_2D, myTexture);  // tells opengl which texture to use
 
   int count = strlen(text);
@@ -187,7 +174,8 @@ void Font::RenderText(RECT& viewport, Colour colour, float x_, float y_,
   glCallLists(count, GL_UNSIGNED_BYTE, text);  
 
 
-  glBindTexture(GL_TEXTURE_2D, NULL);  // tells opengl which texture to use
+  glBindTexture(GL_TEXTURE_2D, NULL);       // tells opengl which texture to use
+  glPopMatrix();                            // go back to origin
   glPopAttrib();
 
 }

@@ -63,7 +63,6 @@ protected:
 private:
   Light* ambient;
   Light* light1;
-  Camera camera;
   Geometry* box;
   Geometry* quad;
   Geometry* triangle;
@@ -71,7 +70,6 @@ private:
   Planets solarSystem;
   COORD center;
   Gui gui;
-  Font font;
   Viewport viewport1;
 
   std::vector<Model> models;
@@ -83,6 +81,8 @@ private:
   void rotateCamera();
 
   void loadFile();
+
+  void render();
 
 };
 

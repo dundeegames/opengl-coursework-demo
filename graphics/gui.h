@@ -16,6 +16,8 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 
+#include "font.h"
+
 
 
 class Gui
@@ -24,12 +26,16 @@ class Gui
 public:
   Gui();
   ~Gui();
+
+  //void init(Font* font_);
+  void init();
   void drawBackground(float left, float right, float bottom, float top);
   void drawGrid();
+  void renderText();
 
 
 private:
-
+  Font font;
 
 };
 
