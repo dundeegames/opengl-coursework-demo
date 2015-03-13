@@ -1,9 +1,12 @@
 # Additional files
 
-*.bmp
-*.jpg
 
 bin/
+doc/
+include/
+media/
+temp/
+
 
 
 # C++ Ignore ============================
