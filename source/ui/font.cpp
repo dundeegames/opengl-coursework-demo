@@ -166,8 +166,11 @@ void Font::RenderText(Colour colour, float x_, float y_,
   
   glPushMatrix();                           // Remember where we are.
 
-    glTranslatef(x_,y_,0);
-      glScalef(scale, scale, 1.f);
+    //glScalef(scale, scale, 1.f);
+    //  glTranslatef(x_,y_,0);
+
+    glTranslatef(x_,y_,0);  
+      glScalef(scale, scale, 1.f);    
     glCallLists(count, GL_UNSIGNED_BYTE, text);  
 
   glPopMatrix();                            // go back to origin

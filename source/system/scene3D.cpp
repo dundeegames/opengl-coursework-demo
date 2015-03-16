@@ -1,8 +1,5 @@
 #include <system/scene3D.h>
 
-#define VIEW_POS_X 35
-#define VIEW_POS_Y 90
-
 
 
 // ------------------------------------------------------------------------------
@@ -46,7 +43,10 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 * Initialize The GL Window
 */
 void Scene3D::ResizeGLWindow(int width, int height)
-{  
+{ 
+  const GLint VIEW_POS_X  = 35;
+  const GLint VIEW_POS_Y = 90;
+
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
   
@@ -165,7 +165,7 @@ void Scene3D::DrawScene(float dt)
 
   viewport1.begin();
 
-  //  render(); // render all lighting, geometry, etc.
+    render(); // render all lighting, geometry, etc.
 
     viewport2.begin();
       render(); // render all lighting, geometry, etc.
@@ -187,7 +187,8 @@ void Scene3D::DrawScene(float dt)
     viewport5.end();
       gui.test4();
 
-  //viewport1.end();
+  viewport1.end();
+    gui.renderText();
 
   SwapBuffers(hdc);       // Swap the frame buffers
 

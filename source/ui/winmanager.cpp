@@ -88,7 +88,8 @@ BOOL WinManager::InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
     return FALSE;
   }
 
-  ShowWindow (hwnd, nCmdShow);            
+  //ShowWindow (hwnd, nCmdShow);   
+  ShowWindow (hwnd, SW_SHOWMAXIMIZED);
   UpdateWindow (hwnd);
 
   return TRUE;

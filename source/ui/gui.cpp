@@ -56,6 +56,9 @@ void Gui::drawGrid()
 
 void Gui::renderText()
 {
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  
   glEnable(GL_BLEND); // enable only when needed
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
                   150.0f, 80.0f, 0.5f, "Hello, World!");
@@ -65,14 +68,20 @@ void Gui::renderText()
                   150.0f, 100.0f, 1.0f, "Buddy");
 
   glDisable(GL_BLEND);
-
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 }
 
 // -----------------------------------------------------------------------------
 
 void Gui::test1()
 {
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  
   glEnable(GL_BLEND); // enable only when needed
+
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
                   50.0f, 80.0f, 0.5f, "Test1!");
 
@@ -81,13 +90,19 @@ void Gui::test1()
                   50.0f, 100.0f, 1.0f, "Test1");
 
   glDisable(GL_BLEND);
-
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 }
 
 
 void Gui::test2()
 {
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  
   glEnable(GL_BLEND); // enable only when needed
+
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
                   575.0f, 80.0f, 0.5f, "Test2!");
 
@@ -97,36 +112,50 @@ void Gui::test2()
 
   glDisable(GL_BLEND);
 
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 }
 
 
 void Gui::test3()
 {
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);  
+
   glEnable(GL_BLEND); // enable only when needed
+
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
-                  100.0f, 80.0f, 0.5f, "Test3!");
+                  100.0f, 480.0f, 0.5f, "Test3!");
 
   
   font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
-                  100.0f, 100.0f, 1.0f, "Test3");
+                  100.0f, 500.0f, 1.0f, "Test3");
 
   glDisable(GL_BLEND);
-
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 }
 
 
 void Gui::test4()
 {
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);  
+
   glEnable(GL_BLEND); // enable only when needed
+
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
-                  150.0f, 80.0f, 0.5f, "Test4!");
+                  575.0f, 480.0f, 0.5f, "Test4!");
 
   
   font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
-                  150.0f, 100.0f, 1.0f, "Test4");
+                  575.0f, 500.0f, 1.0f, "Test4");
 
   glDisable(GL_BLEND);
-
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 }
 
 

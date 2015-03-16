@@ -29,7 +29,7 @@ public:
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
   void update(float dt);
-  void begin();
+  void begin(bool perspective = true);
   void end();
 
 private:
@@ -44,6 +44,8 @@ private:
 
   Camera camera;
 
+  void orthographicView();
+  void perspectiveView();
   void drawBackground();
 
 };

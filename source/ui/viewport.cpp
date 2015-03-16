@@ -45,7 +45,7 @@ void Viewport::update(float dt)
 
 // -----------------------------------------------------------------------------
 
-void Viewport::begin()
+void Viewport::begin(bool perspective)
 {
   //set viewport
   if (height==0)  // Prevent A Divide By Zero error
@@ -55,18 +55,14 @@ void Viewport::begin()
 
   glViewport(x, y, width, height);
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //calculate aspect ratio
-  gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);       // Select The Modelview Matrix
-  glLoadIdentity();                 // Reset The Modelview Matrix
-
-
-
+  orthographicView();
   drawBackground();
+
+
+  if(perspective)
+  {
+    perspectiveView();
+  }
 
   camera.view();
 
@@ -76,25 +72,18 @@ void Viewport::begin()
 
 void Viewport::end()
 {
-  //glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);  
-  glMatrixMode(GL_PROJECTION);
+  //set viewport
+  if (height==0)  // Prevent A Divide By Zero error
+  {
+    height=1;     // Make the Height Equal One
+  }
 
-  glLoadIdentity();
-  glOrtho(left, right, bottom, top, 1.0f ,150.0f);
-
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();             // Reset The Modelview Matrix
-
-  //set camera looking down the -z axis,  6 units away from the center
-  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-
-  glDisable(GL_LIGHTING);
-  glDisable(GL_DEPTH_TEST);
-
-
-  //glPopAttrib();
-
+  // COMMENT THIS LINE TO SHOW BUG!
+  glViewport(x, y, width, height);
+  
+  
+  orthographicView();
+  
 }
 
 // -----------------------------------------------------------------------------
@@ -104,20 +93,6 @@ void Viewport::drawBackground()
   float z = 0.0f; // for debugging purposes
   glDisable(GL_DEPTH_TEST);
   glDisable(GL_LIGHTING);
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //gluOrtho2D(left, right, bottom, top);
-  glOrtho(left, right, bottom, top, 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
-  glLoadIdentity();             // Reset The Modelview Matrix
-
-  
-
-  //set camera looking down the -z axis,  6 units away from the center
-  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
 
   glBegin(GL_TRIANGLES);
 
@@ -137,24 +112,54 @@ void Viewport::drawBackground()
 
   glEnd();
 
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 
- // glPopAttrib();
+}
+
+// -----------------------------------------------------------------------------
+
+void Viewport::orthographicView()
+{
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //gluOrtho2D(left, right, bottom, top);
+  glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)bottom, (GLdouble)top, 1.0 ,150.0);
+
+  glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
+  glLoadIdentity();             // Reset The Modelview Matrix
+  
+
+  //set camera looking down the -z axis,  6 units away from the center
+  gluLookAt(0.0, 0.0, 10.0,     0.0, 0.0, 0.0,     0.0, 1.0, 0.0); //Where we are, What we look at, and which way is up
 
 
+}
+
+// -----------------------------------------------------------------------------
+
+void Viewport::perspectiveView()
+{
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
   //calculate aspect ratio
-  gluPerspective(45.0f,(GLfloat)(right/bottom), 1 ,150.0f);
+  gluPerspective(45.0, (GLdouble)width/(GLdouble)height, 1.0 ,150.0);
 
-  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
-  glLoadIdentity();// Reset The Modelview Matrix
-
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_LIGHTING);
-
+  glMatrixMode(GL_MODELVIEW);       // Select The Modelview Matrix
+  glLoadIdentity();                 // Reset The Modelview Matrix
 
 }
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 // 80 //////////////////////////////////////////////////////////////////////////
