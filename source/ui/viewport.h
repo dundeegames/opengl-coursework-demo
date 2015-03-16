@@ -25,7 +25,7 @@ public:
   Viewport();
   ~Viewport();
 
-  void init(CameraType type, Input* in, Gui* gui_);
+  void init(CameraType type, Input* in);
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
   void update(float dt);
@@ -43,7 +43,8 @@ private:
   float bottom;
 
   Camera camera;
-  Gui* gui;
+
+  void drawBackground();
 
 };
 

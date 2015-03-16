@@ -29,9 +29,13 @@ public:
 
   //void init(Font* font_);
   void init();
-  void drawBackground(float left, float right, float bottom, float top);
   void drawGrid();
   void renderText();
+
+  void test1();
+  void test2();
+  void test3();
+  void test4();
 
 
 private:

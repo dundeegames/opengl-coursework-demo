@@ -71,7 +71,11 @@ private:
   Planets solarSystem;
   COORD center;
   Gui gui;
-  Viewport viewport1;
+  Viewport viewport1;   // Main
+  Viewport viewport2;   // Bottom-Left
+  Viewport viewport3;   // Bottom-Right
+  Viewport viewport4;   // Top-Left
+  Viewport viewport5;   // Top-Right
 
   std::vector<Model> models;
 

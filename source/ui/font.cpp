@@ -157,26 +157,22 @@ void Font::RenderText(Colour colour, float x_, float y_,
   {
     return;
   }
-
-
-  glPushAttrib(GL_LIST_BIT | GL_CURRENT_BIT  | GL_ENABLE_BIT | GL_TRANSFORM_BIT);  
-  glPushMatrix();                           // Remember where we are.
+  int count = strlen(text); 
 
   glListBase(base_list);
 
-
   glBindTexture(GL_TEXTURE_2D, myTexture);  // tells opengl which texture to use
-
-  int count = strlen(text);
   glColor4f(colour.R, colour.G, colour.B, colour.A);
-  glTranslatef(x_,y_,0);
-    glScalef(scale, scale, 1.f);
-  glCallLists(count, GL_UNSIGNED_BYTE, text);  
+  
+  glPushMatrix();                           // Remember where we are.
 
+    glTranslatef(x_,y_,0);
+      glScalef(scale, scale, 1.f);
+    glCallLists(count, GL_UNSIGNED_BYTE, text);  
+
+  glPopMatrix();                            // go back to origin
 
   glBindTexture(GL_TEXTURE_2D, NULL);       // tells opengl which texture to use
-  glPopMatrix();                            // go back to origin
-  glPopAttrib();
 
 }
 

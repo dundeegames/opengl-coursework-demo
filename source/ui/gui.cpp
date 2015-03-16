@@ -22,64 +22,6 @@ void Gui::init()
 
 // -----------------------------------------------------------------------------
 
-void Gui::drawBackground(float left, float right, float bottom, float top)
-{
-  // TODO Ask for the feedback on this func()
-
-
-  float z = 0.0f; // for debugging purposes
-  glDisable(GL_DEPTH_TEST);
-  glDisable(GL_LIGHTING);
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //gluOrtho2D(left, right, bottom, top);
-  glOrtho(left, right, bottom, top, 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
-  glLoadIdentity();             // Reset The Modelview Matrix
-
-  
-
-  //set camera looking down the -z axis,  6 units away from the center
-  gluLookAt(0, 0, 10,     0, 0, 0,     0, 1, 0); //Where we are, What we look at, and which way is up
-
-  glBegin(GL_TRIANGLES);
-
-    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
-      glVertex3f(left, top, z);
-
-    glColor3f(0.07f, 0.07f, 0.07f);     // Bottom colour of gradient
-      glVertex3f(left, bottom, z);
-      glVertex3f(left, bottom, z);
-      glVertex3f(right, bottom, z);
-
-    glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
-
-    glColor3f(1.0f, 1.0f, 1.0f);        // reset colour
-
-  glEnd();
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //calculate aspect ratio
-  gluPerspective(45.0f,(GLfloat)(right/bottom), 1 ,150.0f);
-
-  glMatrixMode(GL_MODELVIEW);// Select The Modelview Matrix
-  glLoadIdentity();// Reset The Modelview Matrix
-
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_LIGHTING);
-
-
-}
-
-// -----------------------------------------------------------------------------
-
 void Gui::drawGrid()
 {
 
@@ -106,7 +48,6 @@ void Gui::drawGrid()
       glVertex3f(-5.0f, 0.0f, 0.0f);
       glVertex3f(5.0f, 0.0f, 0.0f);
 
-
   glEnd();
 
 }
@@ -125,12 +66,68 @@ void Gui::renderText()
 
   glDisable(GL_BLEND);
 
+}
+
+// -----------------------------------------------------------------------------
+
+void Gui::test1()
+{
+  glEnable(GL_BLEND); // enable only when needed
+  font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  50.0f, 80.0f, 0.5f, "Test1!");
+
+  
+  font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  50.0f, 100.0f, 1.0f, "Test1");
+
+  glDisable(GL_BLEND);
 
 }
 
 
+void Gui::test2()
+{
+  glEnable(GL_BLEND); // enable only when needed
+  font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  575.0f, 80.0f, 0.5f, "Test2!");
+
+  
+  font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  575.0f, 100.0f, 1.0f, "Test2");
+
+  glDisable(GL_BLEND);
+
+}
 
 
+void Gui::test3()
+{
+  glEnable(GL_BLEND); // enable only when needed
+  font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  100.0f, 80.0f, 0.5f, "Test3!");
+
+  
+  font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  100.0f, 100.0f, 1.0f, "Test3");
+
+  glDisable(GL_BLEND);
+
+}
+
+
+void Gui::test4()
+{
+  glEnable(GL_BLEND); // enable only when needed
+  font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
+                  150.0f, 80.0f, 0.5f, "Test4!");
+
+  
+  font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
+                  150.0f, 100.0f, 1.0f, "Test4");
+
+  glDisable(GL_BLEND);
+
+}
 
 
 

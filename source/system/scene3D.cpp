@@ -1,5 +1,9 @@
 #include <system/scene3D.h>
 
+#define VIEW_POS_X 35
+#define VIEW_POS_Y 90
+
+
 
 // ------------------------------------------------------------------------------
 
@@ -42,8 +46,24 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 * Initialize The GL Window
 */
 void Scene3D::ResizeGLWindow(int width, int height)
-{
+{  
+  GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
+  GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
+  
+  // Main
   viewport1.setSize(0, 0, width, height);
+  
+  // Bottom-Left
+  viewport2.setSize(VIEW_POS_X, 0, viewWidth, viewHeight);
+  
+  
+  viewport3.setSize( (VIEW_POS_X + viewWidth + 4), 0, viewWidth, viewHeight);
+  
+  
+  viewport4.setSize(VIEW_POS_X, (viewHeight + 4), viewWidth, viewHeight);
+
+
+  viewport5.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
 
 }
 
@@ -104,8 +124,11 @@ void Scene3D::Init(HWND* wnd, Input* in)
   // Initialise other variables
  
   gui.init();
-  viewport1.init(FIXED_POINT, in, &gui);
-
+  viewport1.init(FIXED_POINT, in);
+  viewport2.init(FIXED_POINT, in);
+  viewport3.init(FIXED_POINT, in);
+  viewport4.init(FIXED_POINT, in);
+  viewport5.init(FIXED_POINT, in);
 
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
@@ -142,9 +165,29 @@ void Scene3D::DrawScene(float dt)
 
   viewport1.begin();
 
-    render(); // render all lighting, geometry, etc.
+  //  render(); // render all lighting, geometry, etc.
 
-  viewport1.end();
+    viewport2.begin();
+      render(); // render all lighting, geometry, etc.
+    viewport2.end();
+      gui.test1();
+
+    viewport3.begin();
+      render(); // render all lighting, geometry, etc.
+    viewport3.end();
+      gui.test2();
+
+    viewport4.begin();
+      render(); // render all lighting, geometry, etc.
+    viewport4.end();
+      gui.test3();
+
+    viewport5.begin();
+      render(); // render all lighting, geometry, etc.
+    viewport5.end();
+      gui.test4();
+
+  //viewport1.end();
 
   SwapBuffers(hdc);       // Swap the frame buffers
 
@@ -187,6 +230,10 @@ void Scene3D::HandleInput(float dt)
 
   //camera.update(dt);
   viewport1.update(dt);
+  viewport2.update(dt);
+  viewport3.update(dt);
+  viewport4.update(dt);
+  viewport5.update(dt);
 
 
   if(input->isKeyDown('4'))                 // if 4 is pressed
@@ -327,7 +374,7 @@ void Scene3D::render()
   glPopMatrix();    // go back to origin
   glPushMatrix();   // Remember where we are.
 
-    glScalef(0.1, 0.1, 0.1);
+    glScalef(0.1f, 0.1f, 0.1f);
 
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {
