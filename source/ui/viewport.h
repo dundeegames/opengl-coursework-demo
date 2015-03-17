@@ -28,6 +28,7 @@ public:
   void init(CameraType type, Input* in);
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
+
   void update(float dt);
   void begin(bool perspective = true);
   void end();
@@ -37,10 +38,10 @@ private:
   GLint y;
   GLsizei width;
   GLsizei height;
-  float left;
-  float right;
-  float top;
-  float bottom;
+  GLdouble left;
+  GLdouble right;
+  GLdouble top;
+  GLdouble bottom;
 
   Camera camera;
 

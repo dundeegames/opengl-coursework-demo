@@ -170,30 +170,27 @@ void Scene3D::DrawScene(float dt)
 
     viewport2.begin();
       render(); // render all lighting, geometry, etc.
-    //viewport2.end();
-    //  gui.test1();
+    viewport2.end();
+    gui.test1();
 
     viewport3.begin();
       render(); // render all lighting, geometry, etc.
-    //viewport3.end();
-    //  gui.test2();
+    viewport3.end();
+      gui.test1();
 
     viewport4.begin();
       render(); // render all lighting, geometry, etc.
-    //viewport4.end();
-    //  gui.test3();
+    viewport4.end();
+      gui.test1();
 
     viewport5.begin();
       render(); // render all lighting, geometry, etc.
-    //viewport5.end();
-    //  gui.test4();
+    viewport5.end();
+      gui.test1();
 
-  //viewport1.end();
-  //  gui.renderText();
-  //  gui.test1();
-  //  gui.test2();
-  //  gui.test3();
-  //  gui.test4();
+  viewport1.end();
+    gui.renderText();
+
 
 
   SwapBuffers(hdc);       // Swap the frame buffers

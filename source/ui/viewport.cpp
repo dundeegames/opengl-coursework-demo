@@ -28,10 +28,27 @@ void Viewport::setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_)
   width = w_;
   height = h_;
 
-  left = (float)x;
-  right = (float)(x + width);
-  top = (float)y;
-  bottom = (float)(y + height);
+  //left = (GLdouble)x;
+  //right = (GLdouble)(x + width);
+  //top = (GLdouble)(y + height);
+  //bottom = (GLdouble)y;
+
+  //left = (GLdouble)x;
+  //right = (GLdouble)(x + width);
+  //top = (GLdouble)y;
+  //bottom = (GLdouble)(y + height);
+
+  left = 0.0;
+  right = (GLdouble)width;
+  top = 0.0;
+  bottom = (GLdouble)height;
+
+
+
+  //left = -(GLdouble)width / 2.0;
+  //right = (GLdouble)width / 2.0;
+  //top = (GLdouble)height / 2.0;
+  //bottom = -(GLdouble)height / 2.0;
 
 }
 
@@ -97,16 +114,16 @@ void Viewport::drawBackground()
   glBegin(GL_TRIANGLES);
 
     glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
-      glVertex3f(left, top, z);
+      glVertex3f( (GLfloat)right, (GLfloat)top, z);
+      glVertex3f( (GLfloat)left, (GLfloat)top, z);
 
     glColor3f(0.07f, 0.07f, 0.07f);     // Bottom colour of gradient
-      glVertex3f(left, bottom, z);
-      glVertex3f(left, bottom, z);
-      glVertex3f(right, bottom, z);
+      glVertex3f( (GLfloat)left, (GLfloat)bottom, z);
+      glVertex3f( (GLfloat)left, (GLfloat)bottom, z);
+      glVertex3f( (GLfloat)right, (GLfloat)bottom, z);
 
     glColor3f(0.533f, 0.615f, 0.698f);  // Top colour of gradient
-      glVertex3f(right, top, z);
+      glVertex3f( (GLfloat)right, (GLfloat)top, z);
 
     glColor3f(1.0f, 1.0f, 1.0f);        // reset colour
 
@@ -126,7 +143,7 @@ void Viewport::orthographicView()
 
   //gluOrtho2D(left, right, bottom, top);
   
-  glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)bottom, (GLdouble)top, 1.0 ,150.0);
+  glOrtho(left, right, bottom, top, 1.0 ,150.0);
   //glOrtho(0.0, (GLdouble)right, (GLdouble)bottom, 0.0, 1.0 ,150.0);
   //glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)top, (GLdouble)bottom, 1.0 ,150.0);
   //glOrtho(-1.0, 1.0, -1.0, 1.0, 5, 100);
@@ -158,6 +175,12 @@ void Viewport::perspectiveView()
 }
 
 // -----------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 
