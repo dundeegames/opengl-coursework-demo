@@ -61,11 +61,11 @@ void Gui::renderText()
   
   glEnable(GL_BLEND); // enable only when needed
   font.RenderText(Colour(1.0f, 1.0f, 1.0f, 1.0f),
-                  150.0f, 80.0f, 0.5f, "Hello, World!");
+                  5.0f, 5.0f, 0.5f, "Hello, World!");
 
   
   font.RenderText(Colour(0.0f, 0.0f, 0.0f, 0.5f),
-                  150.0f, 100.0f, 1.0f, "Buddy");
+                  5.0f, 5.0f, 1.0f, "Buddy");
 
   glDisable(GL_BLEND);
   

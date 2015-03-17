@@ -125,7 +125,11 @@ void Viewport::orthographicView()
   glLoadIdentity();
 
   //gluOrtho2D(left, right, bottom, top);
+  
   glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)bottom, (GLdouble)top, 1.0 ,150.0);
+  //glOrtho(0.0, (GLdouble)right, (GLdouble)bottom, 0.0, 1.0 ,150.0);
+  //glOrtho((GLdouble)left, (GLdouble)right, (GLdouble)top, (GLdouble)bottom, 1.0 ,150.0);
+  //glOrtho(-1.0, 1.0, -1.0, 1.0, 5, 100);
 
   glMatrixMode(GL_MODELVIEW);   // Select The Modelview Matrix
   glLoadIdentity();             // Reset The Modelview Matrix
@@ -145,6 +149,7 @@ void Viewport::perspectiveView()
   glLoadIdentity();
 
   //calculate aspect ratio
+  //glFrustum((GLdouble)left, (GLdouble)right, (GLdouble)bottom, (GLdouble)top, 1.0 ,150.0);
   gluPerspective(45.0, (GLdouble)width/(GLdouble)height, 1.0 ,150.0);
 
   glMatrixMode(GL_MODELVIEW);       // Select The Modelview Matrix
