@@ -294,6 +294,9 @@
     <ClInclude Include="..\..\source\math\pipho\pip_vector.h">
       <Filter>math\pipho</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\resources\resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\math\abertay\abfw_quaternion.inl">
@@ -320,5 +323,10 @@
     <None Include="..\..\source\math\pipho\pip_vector.inl">
       <Filter>math\pipho</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\source\resources\resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

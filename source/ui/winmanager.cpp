@@ -25,7 +25,9 @@ void WinManager::RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinPro
     wcex.cbClsExtra    = 0;                               // extra bytes                
     wcex.cbWndExtra    = 0;                
     wcex.hInstance     = hInstance;                       // Handle to the instance that contains Window Proc            
-    wcex.hIcon         = 0;                               // System default icon 
+    
+    //wcex.hIcon         = 0;                               // System default icon
+    wcex.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE (IDI_ICON1));   // custom icon    
 
     wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);    // System default cursor
     //wcex.hCursor       = LoadCursor (NULL, IDC_HELP);   // System default cursor  
@@ -33,7 +35,10 @@ void WinManager::RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinPro
     wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);       // Handle for background brush (colour)
     wcex.lpszMenuName  = NULL;                            // Set menu, in this case none              
     wcex.lpszClassName = "FirstWindowClass";              // Window’s classname        
+    
     wcex.hIconSm       = 0;                               // Handle to small icon 
+    wcex.hIconSm       = LoadIcon(hInstance, MAKEINTRESOURCE (IDI_ICON1));   // custom small icon
+
 
   RegisterClassEx (&wcex);                                // Registers the window for further calls    
 
