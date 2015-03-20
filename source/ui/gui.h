@@ -19,6 +19,15 @@
 #include <ui/font.h>
 
 
+// DEFINES /////////////////////////////////////////////////////////////////////
+
+// Colours
+#define COLOUR_WHITE      1.0f, 1.0f, 1.0f
+#define COLOUR_BLACK      0.0f, 0.0f, 0.0f
+#define COLOUR_BROWN      0.27f, 0.27f, 0.27f
+#define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
+#define COLOUR_GREEN      0.0f, 0.27f, 0.1f
+
 
 class Gui
 {

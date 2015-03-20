@@ -129,6 +129,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     case WM_SIZE:
       myScene.Resize();
+      //myScene.DrawScene(timer.GetTime());
       //myScene.setBuffers();
       break;  
 
