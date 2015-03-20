@@ -378,11 +378,11 @@ void Scene3D::render()
   glPopMatrix();    // go back to origin
   glPushMatrix();   // Remember where we are.
 
-    glScalef(0.1f, 0.1f, 0.1f);
+    //glScalef(0.1f, 0.1f, 0.1f);
 
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {
-      glTranslatef(2.0f, 0.0f, 10.0f);
+      //glTranslatef(2.0f, 0.0f, 10.0f);
       it->Render();
     }
 
