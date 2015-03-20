@@ -37,7 +37,7 @@ public:
   ~Gui();
 
   //void init(Font* font_);
-  void init();
+  void init(Font* fnt);
   void drawGrid();
   void renderText();
 
@@ -45,7 +45,7 @@ public:
 
 
 private:
-  Font font;
+  Font* font;
 
 };
 

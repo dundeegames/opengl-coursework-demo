@@ -50,6 +50,9 @@ void Scene3D::ResizeGLWindow(int width, int height)
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
   
+  //GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X) / 2);
+  //GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y) / 2);
+
   // Main
   viewport1.setSize(0, 0, width, height);
   
@@ -64,6 +67,14 @@ void Scene3D::ResizeGLWindow(int width, int height)
 
 
   viewport5.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
+
+  //viewport3.setSize( (VIEW_POS_X + viewWidth), 0, viewWidth, viewHeight);
+  //
+  //
+  //viewport4.setSize(VIEW_POS_X, viewHeight, viewWidth, viewHeight);
+
+
+  //viewport5.setSize( (VIEW_POS_X + viewWidth), viewHeight, viewWidth, viewHeight);
 
 }
 
@@ -123,12 +134,14 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
  
-  gui.init();
-  viewport1.init(FIXED_POINT, in);
-  viewport2.init(FIXED_POINT, in);
-  viewport3.init(FIXED_POINT, in);
-  viewport4.init(FIXED_POINT, in);
-  viewport5.init(FIXED_POINT, in);
+  font.Load("../../media/fonts/tahoma");
+  gui.init(&font);
+  viewport1.init(VIEW_MAIN, FIXED_POINT, in, &font);
+  viewport2.init(VIEW_SIDE, FIXED_POINT, in, &font);
+  viewport3.init(VIEW_FRONT, FIXED_POINT, in, &font);
+  viewport4.init(VIEW_TOP, FIXED_POINT, in, &font);
+  viewport5.init(VIEW_PERSP, FIXED_POINT, in, &font);
+  viewport5.select();
 
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
@@ -171,22 +184,22 @@ void Scene3D::DrawScene(float dt)
     viewport2.begin();
       render(); // render all lighting, geometry, etc.
     viewport2.end();
-    gui.test1();
+      //gui.test1();
 
     viewport3.begin();
       render(); // render all lighting, geometry, etc.
     viewport3.end();
-      gui.test1();
+      //gui.test1();
 
     viewport4.begin();
       render(); // render all lighting, geometry, etc.
     viewport4.end();
-      gui.test1();
+      //gui.test1();
 
     viewport5.begin();
       render(); // render all lighting, geometry, etc.
     viewport5.end();
-      gui.test1();
+      //gui.test1();
 
   viewport1.end();
     gui.renderText();

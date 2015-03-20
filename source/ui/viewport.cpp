@@ -14,10 +14,13 @@ Viewport::~Viewport()
 
 // -----------------------------------------------------------------------------
 
-void Viewport::init(CameraType type, Input* in)
+void Viewport::init(ViewportType view, CameraType cmr, Input* in, Font* fnt)
 {
-  camera.init(type, in);
-
+  type = view;
+  camera.init(cmr, in);
+  font = fnt;
+  selected = false;
+  activated = true;
 }
 
 // -----------------------------------------------------------------------------
@@ -107,6 +110,7 @@ void Viewport::end()
   
   
   orthographicView();
+  drawLabel();
   
 }
 
@@ -116,23 +120,22 @@ void Viewport::drawBackground(bool gradient)
 {
   if(gradient)
   {
-    float z = 0.0f;                   // for debugging purposes
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_LIGHTING);
 
     glBegin(GL_TRIANGLES);
 
       glColor3f(GRADIENT_TOP);        // Top colour of gradient
-        glVertex3f( (GLfloat)right, (GLfloat)top, z);
-        glVertex3f( (GLfloat)left, (GLfloat)top, z);
+        glVertex3f( (GLfloat)right, (GLfloat)top, Z_POSITION);
+        glVertex3f( (GLfloat)left, (GLfloat)top, Z_POSITION);
 
       glColor3f(GRADIENT_BOTTOM);     // Bottom colour of gradient
-        glVertex3f( (GLfloat)left, (GLfloat)bottom, z);
-        glVertex3f( (GLfloat)left, (GLfloat)bottom, z);
-        glVertex3f( (GLfloat)right, (GLfloat)bottom, z);
+        glVertex3f( (GLfloat)left, (GLfloat)bottom, Z_POSITION);
+        glVertex3f( (GLfloat)left, (GLfloat)bottom, Z_POSITION);
+        glVertex3f( (GLfloat)right, (GLfloat)bottom, Z_POSITION);
 
       glColor3f(GRADIENT_TOP);        // Top colour of gradient
-        glVertex3f( (GLfloat)right, (GLfloat)top, z);
+        glVertex3f( (GLfloat)right, (GLfloat)top, Z_POSITION);
 
       glColor3f(COLOUR_WHITE);        // reset colour
 
@@ -183,11 +186,101 @@ void Viewport::perspectiveView()
 
 // -----------------------------------------------------------------------------
 
+void Viewport::drawLabel()
+{
+  //float center = ((float)(width) * 0.5f);
+
+
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  
+  glEnable(GL_BLEND); // enable only when needed
+
+  if( (type != VIEW_MAIN) && (type != VIEW_GAME) )
+  {
+    drawSelectionRect();
+  }
+
+
+  switch(type)
+  {
+  case VIEW_MAIN:
+    break;
+
+  case VIEW_PERSP:
+    font->RenderText(Colour(COLOUR_GREEN, 1.0f),
+                      PERSP_OFFSET, 10.0f, 0.25f, "Persp");
+    break;
+
+  case VIEW_TOP:
+    font->RenderText(Colour(COLOUR_GREEN, 1.0f),
+                      TOP_OFFSET, 10.0f, 0.25f, "Top");
+    break;
+
+  case VIEW_SIDE:
+    font->RenderText(Colour(COLOUR_GREEN, 1.0f),
+                      SIDE_OFFSET, 10.0f, 0.25f, "Side");
+    break;
+
+  case VIEW_FRONT:
+    font->RenderText(Colour(COLOUR_GREEN, 1.0f),
+                      FRONT_OFFSET, 10.0f, 0.25f, "Front");
+    break;
+
+  case VIEW_GAME:
+    break;
+
+  default:
+    break;
+
+  }
 
 
 
 
+  glDisable(GL_BLEND);
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
 
+}
+
+// -----------------------------------------------------------------------------
+
+void Viewport::drawSelectionRect()
+{
+  if(selected)
+  {
+    glColor3f(COLOUR_DRKYELLOW);
+  }
+  else
+  {
+    glColor3f(COLOUR_DRKGRAY);
+  }
+
+  glLineWidth(8.0f);
+
+  glBegin(GL_LINES);
+    
+    glVertex3f( (GLfloat)right, (GLfloat)top, Z_POSITION);
+    glVertex3f( (GLfloat)left, (GLfloat)top, Z_POSITION);
+
+    glVertex3f( (GLfloat)left, (GLfloat)top, Z_POSITION);
+    glVertex3f( (GLfloat)left, (GLfloat)bottom, Z_POSITION);
+
+    glVertex3f( (GLfloat)left, (GLfloat)bottom, Z_POSITION);
+    glVertex3f( (GLfloat)right, (GLfloat)bottom, Z_POSITION);
+
+    glVertex3f( (GLfloat)right, (GLfloat)bottom, Z_POSITION);
+    glVertex3f( (GLfloat)right, (GLfloat)top, Z_POSITION);
+  glEnd();
+
+
+  glColor3f(COLOUR_WHITE);      // reset colour
+
+}
+
+// -----------------------------------------------------------------------------
 
 
 
