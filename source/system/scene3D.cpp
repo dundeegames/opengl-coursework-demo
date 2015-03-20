@@ -163,9 +163,9 @@ void Scene3D::DrawScene(float dt)
   glLoadIdentity();       // load Identity Matrix
 
 
-  viewport1.begin();
+  viewport1.begin(true, false);
 
-    render(); // render all lighting, geometry, etc.
+    //render(); // render all lighting, geometry, etc.
 
 
     viewport2.begin();

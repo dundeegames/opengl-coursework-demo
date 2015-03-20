@@ -18,6 +18,21 @@
 #include <ui/gui.h>
 
 
+// DEFINES /////////////////////////////////////////////////////////////////////
+
+// Colours
+#define GRADIENT_TOP      0.533f, 0.615f, 0.698f
+#define GRADIENT_BOTTOM   0.07f, 0.07f, 0.07f
+
+#define COLOUR_WHITE      1.0f, 1.0f, 1.0f
+#define COLOUR_BROWN      0.27f, 0.27f, 0.27f
+#define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
+
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
+
 class Viewport
 {
 
@@ -30,7 +45,7 @@ public:
 
 
   void update(float dt);
-  void begin(bool perspective = true);
+  void begin(bool perspective = true, bool grad_bgr = true);
   void end();
 
 private:
@@ -47,7 +62,7 @@ private:
 
   void orthographicView();
   void perspectiveView();
-  void drawBackground();
+  void drawBackground(bool gradient);
 
 };
 
