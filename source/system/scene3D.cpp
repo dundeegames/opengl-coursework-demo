@@ -261,6 +261,13 @@ void Scene3D::HandleInput(float dt)
     input->SetKeyUp(VK_MENU);               //force un-pressing of ALT
   }
 
+  if(input->isKeyDown('I'))                 // if L is pressed
+  {
+    // Load file
+    insertFile();
+    input->SetKeyUp('I');                   //force un-pressing of L
+  }
+
   if(input->isKeyDown('L'))                 // if L is pressed
   {
     // Load file
@@ -321,21 +328,8 @@ void Scene3D::loadFile()
 
   if(GetOpenFileName(&ofn))
   {
-    //// Do something usefull with the filename stored in szFileName
-    //Model tempModel;
-
-    //if( tempModel.LoadModel(ofn.lpstrFile) == true)
-    //{
-    //  //MessageBox(*hwnd, "File open!", "Success", MB_OK | MB_ICONINFORMATION);
-    //  models.push_back(tempModel);
-    //}
-    //else
-    //{
-    //  MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);
-    //}
-
     // Do something usefull with the filename stored in szFileName
-    Model* tempModel = resManager.loadModel(ofn.lpstrFile, false);
+    Model* tempModel = resManager.getModel(ofn.lpstrFile, false);
 
     if(tempModel != NULL)
     {
@@ -345,11 +339,27 @@ void Scene3D::loadFile()
     {
       // report an error
       MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);      
-    }
-
-    
+    }    
   }
 
+}
+
+// -----------------------------------------------------------------------------
+
+void Scene3D::insertFile()
+{
+  // Do something usefull with the filename stored in szFileName
+  Model* tempModel = resManager.getModel("Prince.obj");
+
+  if(tempModel != NULL)
+  {
+    models.push_back(*tempModel);
+  }
+  else
+  {
+    // report an error
+    MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);      
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -394,7 +404,7 @@ void Scene3D::render()
 
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {
-      //glTranslatef(2.0f, 0.0f, 10.0f);
+      glTranslatef(0.2f, 0.0f, 2.0f);
       it->Render();
     }
 

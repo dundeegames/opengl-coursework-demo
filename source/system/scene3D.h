@@ -68,7 +68,6 @@ protected:
   int s_wdith, s_height;
 
 private:
- int counter;
   ResourceManager resManager;
 
   Light* ambient;
@@ -95,6 +94,7 @@ private:
   void releaseMouse();
   void rotateCamera();
 
+  void insertFile();
   void loadFile();
 
   void render();

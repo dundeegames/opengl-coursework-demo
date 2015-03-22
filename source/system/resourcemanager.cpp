@@ -116,32 +116,37 @@ void ResourceManager::loadFont(const char* file, bool stdandard_path)
 
 // -----------------------------------------------------------------------------
 
-//Model* ResourceManager::getModel(const char* file, bool stdandard_path)
-//{
-//  Model* tempModel = new Model();
-//
-//  if(model_list.find(file) == model_list.end())
-//  {
-//    tempModel = loadModel(file, stdandard_path);
-//    if(tempModel != NULL)
-//    {
-//      model_list[file] = tempModel;
-//      return tempModel;
-//    }
-//    else
-//    {
-//      return NULL;
-//    }
-//  }
-//  else
-//  {
-//    *tempModel = *model_list[file];
-//    return tempModel;
-//  }
-//
-//
-//
-//}
+Model* ResourceManager::getModel(const char* file, bool stdandard_path)
+{
+  if(stdandard_path)
+  {
+    Model* tempModel = new Model();
+
+    if(model_list.find(file) == model_list.end())
+    {
+      tempModel = loadModel(file, stdandard_path);
+      if(tempModel != NULL)
+      {
+        model_list[file] = tempModel;
+        return tempModel;
+      }
+      else
+      {
+        return NULL;
+      }
+    }
+    else
+    {
+      *tempModel = *model_list[file];
+      return tempModel;
+    }
+  }
+  else
+  {
+    return loadModel(file, stdandard_path);
+  }
+
+}
 
 // -----------------------------------------------------------------------------
 
