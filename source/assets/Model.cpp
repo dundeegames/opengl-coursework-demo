@@ -1,8 +1,9 @@
-#include <assets/Model.h>
+#include <assets/model.h>
 
 
 Model::Model()
 {
+  ready = true;
   m_vertexCount = NULL;
   texture = NULL;
 }
@@ -13,6 +14,19 @@ Model::~Model()
 {
 
 
+}
+
+// -----------------------------------------------------------------------------
+
+Model& Model::operator=(const Model& m2)
+{
+  this->m_vertexCount = m2.m_vertexCount;
+  this->texture = m2.texture;
+  this->vertex = m2.vertex;
+  this->normals = m2.normals;
+  this->texCoords = m2.texCoords;
+
+  return *this;
 }
 
 // -----------------------------------------------------------------------------
@@ -30,9 +44,21 @@ bool Model::Load(char* modelFilename, char* textureFilename)
   }
 
   // Load the texture for this model.
-  LoadTexture(textureFilename);
+  //LoadTexture(textureFilename);
   
   return true;
+}
+
+// -----------------------------------------------------------------------------
+
+void Model::setModel(int vCount, std::vector<float>& vert,
+                     std::vector<float>& norm, std::vector<float>& tex)
+{
+  m_vertexCount = vCount;
+  vertex = vert;
+  normals = norm;
+  texCoords = tex;
+
 }
 
 // -----------------------------------------------------------------------------
@@ -108,7 +134,7 @@ bool Model::LoadModel(char* filename)
   memset( buffer, '\0', fileSize );
 
   TokenStream tokenStream, lineStream, faceStream;
-  string tempLine, token;
+  std::string tempLine, token;
 
   fileStream.read( buffer, fileSize );
   tokenStream.SetTokenStream( buffer );
@@ -118,8 +144,8 @@ bool Model::LoadModel(char* filename)
   tokenStream.ResetStream( );
 
   float tempx, tempy, tempz;
-  vector<Vec3> verts, norms, texC;
-  vector<int> faces;
+  std::vector<Vec3> verts, norms, texC;
+  std::vector<int> faces;
   
 
   char lineDelimiters[2] = { '\n', ' ' };
@@ -240,24 +266,24 @@ bool Model::LoadModel(char* filename)
 
 // -----------------------------------------------------------------------------
 
-void Model::LoadTexture(char* filename)
-{
-  
-  texture = SOIL_load_OGL_texture
-  (
-    filename,
-    SOIL_LOAD_AUTO,
-    SOIL_CREATE_NEW_ID,
-    SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_INVERT_Y
-  );
-
-  //check for an error during the load process
-  if(texture==0 )
-  {
-    printf( "SOIL loading error: '%s'\n", SOIL_last_result() );
-  }
-
-}
+//void Model::LoadTexture(char* filename)
+//{
+//  
+//  texture = SOIL_load_OGL_texture
+//  (
+//    filename,
+//    SOIL_LOAD_AUTO,
+//    SOIL_CREATE_NEW_ID,
+//    SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_INVERT_Y
+//  );
+//
+//  //check for an error during the load process
+//  if(texture==0 )
+//  {
+//    printf( "SOIL loading error: '%s'\n", SOIL_last_result() );
+//  }
+//
+//}
 
 // -----------------------------------------------------------------------------
 

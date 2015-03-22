@@ -20,9 +20,7 @@
 #include <gl/glu.h>
 
 #include <ui/input.h>
-#include <ui/camera.h>
 #include <ui/gui.h>
-#include <ui/font.h>
 #include <ui/viewport.h>
 
 #include <assets/cube.h>
@@ -31,7 +29,7 @@
 #include <assets/light.h>
 #include <assets/sprite.h>
 #include <assets/triangle.h>
-#include <assets/Model.h>
+#include <assets/model.h>
 
 #include <system/resourcemanager.h>
 
@@ -41,6 +39,10 @@
 #define COLOUR_DEPTH 16             //Colour depth
 
 
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Scene3D
 {

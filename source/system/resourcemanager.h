@@ -13,13 +13,18 @@
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <windows.h>
+#include <fstream>
 #include <Gl/gl.h>
 #include <gl/glu.h>
 #include <soil/SOIL.h>
 #include <map>
 #include <string>
+#include <vector>
 
 #include <ui/font.h>
+#include <system/TokenStream.h>
+#include <math/vec3.h>
+#include <assets/model.h>
 
 
 
@@ -34,22 +39,20 @@ public:
 
   void init();
 
-  GLuint getTexture(const char* file);
-  Font* getFont(const char* file);
-
+  GLuint getTexture(const char* file, bool stdandard_path = true);
+  Font* getFont(const char* file, bool stdandard_path = true);
+  Model getModel(const char* file, bool stdandard_path);
 
   // returns display list
   // TODO edit for different subdivisions in x and y
-  GLuint getQuad();
-  GLuint getPlane(float width, float height, int sub_w, int sub_h);
-  GLuint getCube();
-  GLuint getSphere();     // made from quads, pitching on poles
-  GLuint getSoccerBall(); // Sphere from pentagons
-  GLuint getCubeSPhere(); // Sphere from cube
-
-  GLuint getCylinder();
-
-  GLuint getTorus();
+  Model* getQuad();
+  Model* getPlane(float width, float height, int sub_w, int sub_h);
+  Model* getCube();
+  Model* getSphere();     // made from quads, pitching on poles
+  Model* getSoccerBall(); // Sphere from pentagons
+  Model* getCubeSPhere(); // Sphere from cube
+  Model* getCylinder();
+  Model* getTorus();
 
 private:
   void drawQuad();
@@ -60,10 +63,13 @@ private:
   std::string models_path;
 
   std::map<const char*, GLuint> texture_list;
-  void loadTexture(const char* file);
+  bool loadTexture(const char* file, bool stdandard_path);
 
   std::map<const char*, Font*> font_list;
-  void loadFont(const char* file);
+  void loadFont(const char* file, bool stdandard_path);
+
+  std::map<const char*, Model> model_list;
+  bool loadModel(const char* file, bool stdandard_path);
 
 };
 

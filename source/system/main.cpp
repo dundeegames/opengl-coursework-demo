@@ -20,7 +20,6 @@
 #include <ui/input.h>
 
 #include <system/scene3D.h>
-//#include <system/scene2D.h>
 #include <system/timerclass.h>
 
 
@@ -45,16 +44,6 @@ TimerClass timer;
 LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 
-/*
-LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);
-
-BOOL WaitFor(unsigned long delay);
-
-void RegisterMyWindow(HINSTANCE hInstance);
-
-BOOL InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow);
-*/
-
 
 // ENTRY POINT - PROGRAM STARTS HERE ///////////////////////////////////////////
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow)      
@@ -62,10 +51,9 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
   MSG msg;  
   HWND myhandle;         // Handle to a window
 
+
   myWinManager.RegisterMyWindow(hInstance, mainWndProc);
 
-
-  //RegisterMyWindow(hInstance);
 
   if (!myWinManager.InitialiseMyWindow(hInstance, nCmdShow))
   {
@@ -74,7 +62,6 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
   else
   {
     myhandle = myWinManager.getHandle();
-    //myScene.Initialise(&hwnd, &myInput);
     myScene.Init(&myhandle, &myInput);
     timer.Initialize();
   }
@@ -82,7 +69,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 
   //GAME LOOP
   while (TRUE)          
-    {              
+  {              
     if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
     {
         if (msg.message==WM_QUIT)
@@ -107,9 +94,9 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
     }
     //myScene.update();    // process input
     //myScene.render();    // call render on scene object
-    }
+  }
   
-    //myScene.shutdown();      // release HDCs when exiting application
+  //myScene.shutdown();      // release HDCs when exiting application
   return msg.wParam ;                    
 }
 

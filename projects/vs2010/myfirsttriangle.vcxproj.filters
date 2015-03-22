@@ -79,13 +79,7 @@
     <ClCompile Include="..\..\source\assets\light.cpp">
       <Filter>assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\assets\Model.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\assets\planets.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\assets\Shape.cpp">
       <Filter>assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\assets\sprite.cpp">
@@ -129,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\math\standford\st_quaternion.cpp">
       <Filter>math\standford</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\model.cpp">
+      <Filter>assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,13 +171,7 @@
     <ClInclude Include="..\..\source\assets\light.h">
       <Filter>assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\assets\Model.h">
-      <Filter>assets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\assets\planets.h">
-      <Filter>assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\assets\Shape.h">
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\sprite.h">
@@ -278,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\resources\resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\model.h">
+      <Filter>assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

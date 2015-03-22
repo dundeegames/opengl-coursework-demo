@@ -334,7 +334,18 @@ void Scene3D::loadFile()
       MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);
     }
 
+    //// Do something usefull with the filename stored in szFileName
+    //Model tempModel = resManager.getModel(ofn.lpstrFile, false);
 
+    //if(tempModel.isReady())
+    //{
+    //  models.push_back(tempModel);
+    //}
+    //else
+    //{
+    //  // report an error
+    //  MessageBox(*hwnd, "File did not open!", "Error", MB_OK | MB_ICONERROR);      
+    //}
 
     
   }

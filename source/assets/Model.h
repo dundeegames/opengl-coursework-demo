@@ -20,14 +20,16 @@
 #include <fstream>
 #include <gl/gl.h>
 #include <gl/glu.h>
-using namespace std;
 
-// MY CLASS INCLUDES ///////////////////////////////////////////////////////////
 #include <system/TokenStream.h>
 #include <vector>
 #include <math/vec3.h>
 #include <SOIL.h>
 
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Model
 {
@@ -35,22 +37,29 @@ class Model
 public:
   Model();
   ~Model();
+  Model& operator=(const Model& m2);
 
+  void setReady(bool rd) {ready = rd;}
+  bool isReady() {return ready;}
 
   bool Load(char* modelFilename, char* textureFilename);
+  bool LoadModel(char* filename);
 
-  void LoadTexture(char*);
-  bool LoadModel(char*);
+  void setTexture(GLuint texture_) {texture = texture_; }
+
+  void setModel(int vCount, std::vector<float>& vert,
+                std::vector<float>& norm, std::vector<float>& tex);
 
   void Render();
 
 
-private:  
+private:
+  bool ready;
   int m_vertexCount;
   GLuint texture;
 
   // vectors for storing model data, for your use
-  vector<float> vertex, normals, texCoords;
+  std::vector<float> vertex, normals, texCoords;
 
 };
 
