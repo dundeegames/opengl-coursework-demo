@@ -39,12 +39,6 @@ public:
   ~Model();
   Model& operator=(const Model& m2);
 
-  void setReady(bool rd) {ready = rd;}
-  bool isReady() {return ready;}
-
-  bool Load(char* modelFilename, char* textureFilename);
-  bool LoadModel(char* filename);
-
   void setTexture(GLuint texture_) {texture = texture_; }
 
   void setModel(int vCount, std::vector<float>& vert,
@@ -54,7 +48,6 @@ public:
 
 
 private:
-  bool ready;
   int m_vertexCount;
   GLuint texture;
 

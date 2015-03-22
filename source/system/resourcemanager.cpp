@@ -116,34 +116,36 @@ void ResourceManager::loadFont(const char* file, bool stdandard_path)
 
 // -----------------------------------------------------------------------------
 
-Model ResourceManager::getModel(const char* file, bool stdandard_path)
-{
-
-  if(model_list.find(file) == model_list.end())
-  {
-    if(loadModel(file, stdandard_path) )
-    {
-      return model_list[file];
-    }
-    else
-    {
-      Model model;
-      model.setReady(false);
-      return model;
-    }
-  }
-  else
-  {
-    return model_list[file];
-  }
-
-
-
-}
+//Model* ResourceManager::getModel(const char* file, bool stdandard_path)
+//{
+//  Model* tempModel = new Model();
+//
+//  if(model_list.find(file) == model_list.end())
+//  {
+//    tempModel = loadModel(file, stdandard_path);
+//    if(tempModel != NULL)
+//    {
+//      model_list[file] = tempModel;
+//      return tempModel;
+//    }
+//    else
+//    {
+//      return NULL;
+//    }
+//  }
+//  else
+//  {
+//    *tempModel = *model_list[file];
+//    return tempModel;
+//  }
+//
+//
+//
+//}
 
 // -----------------------------------------------------------------------------
 
-bool ResourceManager::loadModel(const char* file, bool stdandard_path)
+Model* ResourceManager::loadModel(const char* file, bool stdandard_path)
 {
   std::string path;
 
@@ -165,7 +167,7 @@ bool ResourceManager::loadModel(const char* file, bool stdandard_path)
    
   if( fileStream.is_open() == false )
   {
-    return false;
+    return NULL;
   }
 
   fileStream.seekg( 0, std::ios::end );
@@ -174,14 +176,14 @@ bool ResourceManager::loadModel(const char* file, bool stdandard_path)
 
   if( fileSize <= 0 )
   {
-    return false;
+    return NULL;
   }
 
   char *buffer = new char[fileSize];
 
   if( buffer == 0 )
   {
-    return false;
+    return NULL;
   }
 
   memset( buffer, '\0', fileSize );
@@ -316,12 +318,12 @@ bool ResourceManager::loadModel(const char* file, bool stdandard_path)
   faces.clear();
 
 
-  Model model;
-  model.setModel(vertexCount, vertices, normals, uvs);
-  model_list[file] = model;
+  Model* model = new Model();
+  model->setModel(vertexCount, vertices, normals, uvs);
+  //model_list[file] = model;
 
 
-  return true;
+  return model;
 
 }
 

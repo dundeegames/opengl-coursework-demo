@@ -68,6 +68,7 @@ protected:
   int s_wdith, s_height;
 
 private:
+ int counter;
   ResourceManager resManager;
 
   Light* ambient;

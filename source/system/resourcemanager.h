@@ -41,7 +41,8 @@ public:
 
   GLuint getTexture(const char* file, bool stdandard_path = true);
   Font* getFont(const char* file, bool stdandard_path = true);
-  Model getModel(const char* file, bool stdandard_path);
+  //Model* getModel(const char* file, bool stdandard_path);
+  Model* loadModel(const char* file, bool stdandard_path);
 
   // returns display list
   // TODO edit for different subdivisions in x and y
@@ -68,8 +69,9 @@ private:
   std::map<const char*, Font*> font_list;
   void loadFont(const char* file, bool stdandard_path);
 
-  std::map<const char*, Model> model_list;
-  bool loadModel(const char* file, bool stdandard_path);
+  //std::map<const char*, Model*> model_list;
+  //Model* loadModel(const char* file, bool stdandard_path);
+  //bool loadModel(const char* file, bool stdandard_path);
 
 };
 
