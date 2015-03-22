@@ -67,6 +67,7 @@ protected:
 
 private:
   ResourceManager resManager;
+
   Light* ambient;
   Light* light1;
   Geometry* box;
@@ -76,7 +77,6 @@ private:
   Planets solarSystem;
   COORD center;
 
-  Font font;
   Gui gui;
   Viewport viewport1;   // Main
   Viewport viewport2;   // Bottom-Left

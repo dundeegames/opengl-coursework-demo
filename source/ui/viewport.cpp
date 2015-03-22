@@ -14,11 +14,11 @@ Viewport::~Viewport()
 
 // -----------------------------------------------------------------------------
 
-void Viewport::init(ViewportType view, CameraType cmr, Input* in, Font* fnt)
+void Viewport::init(ViewportType view, CameraType cmr, Input* in, ResourceManager* resMngr)
 {
   type = view;
   camera.init(cmr, in);
-  font = fnt;
+  font = resMngr->getFont("tahoma");
   selected = false;
   activated = true;
 }

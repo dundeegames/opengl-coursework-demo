@@ -123,13 +123,12 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
  
-  font.Load("../../media/fonts/tahoma");
-  gui.init(&font);
-  viewport1.init(VIEW_MAIN, FIXED_POINT, in, &font);
-  viewport2.init(VIEW_SIDE, FIXED_POINT, in, &font);
-  viewport3.init(VIEW_FRONT, FIXED_POINT, in, &font);
-  viewport4.init(VIEW_TOP, FIXED_POINT, in, &font);
-  viewport5.init(VIEW_PERSP, FIXED_POINT, in, &font);
+  gui.init(&resManager);
+  viewport1.init(VIEW_MAIN, FIXED_POINT, in, &resManager);
+  viewport2.init(VIEW_SIDE, FIXED_POINT, in, &resManager);
+  viewport3.init(VIEW_FRONT, FIXED_POINT, in, &resManager);
+  viewport4.init(VIEW_TOP, FIXED_POINT, in, &resManager);
+  viewport5.init(VIEW_PERSP, FIXED_POINT, in, &resManager);
   viewport5.select();
 
   ambient = new Light(GL_LIGHT0);
@@ -146,8 +145,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   //box1.init();
   box = new Cube();
-  //box->loadTexture("../../media/images/crate.png");
-  box->setTexture(resManager.getTexture("../../media/images/crate.png") );
+  box->setTexture(resManager.getTexture("crate.png") );
   quad = new Sprite();
   triangle = new Triangle();
   triangle->setColor3f(255.0, 0.0, 0.0);

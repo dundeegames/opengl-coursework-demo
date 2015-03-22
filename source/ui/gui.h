@@ -17,7 +17,7 @@
 #include <gl/glu.h>
 
 #include <ui/font.h>
-#include <SOIL.h>
+#include <system/resourcemanager.h>
 
 
 // DEFINES /////////////////////////////////////////////////////////////////////
@@ -37,17 +37,14 @@ public:
   Gui();
   ~Gui();
 
-  //void init(Font* font_);
-  void init(Font* fnt);
+  void init(ResourceManager* resMngr);
   void drawGrid();
   void renderText();
 
 
 private:
   Font* font;
-
   GLuint myTexture;
-  void loadTexture(const char* file);
 
 };
 

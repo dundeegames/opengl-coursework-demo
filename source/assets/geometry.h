@@ -18,7 +18,7 @@
 #include <Windows.h>
 #include <Gl/gl.h>
 #include <gl/glu.h>
-#include <SOIL.h>
+//#include <SOIL.h>
 
 // TODO rotate(), rotateBy(); 
 

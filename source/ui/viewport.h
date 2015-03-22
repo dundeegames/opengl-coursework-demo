@@ -18,6 +18,8 @@
 #include <ui/gui.h>
 #include <ui/font.h>
 
+#include <system/resourcemanager.h>
+
 
 // DEFINES /////////////////////////////////////////////////////////////////////
 #define Z_POSITION        0.0f
@@ -54,7 +56,7 @@ public:
   Viewport();
   ~Viewport();
 
-  void init(ViewportType view, CameraType cmr, Input* in, Font* fnt);
+  void init(ViewportType view, CameraType cmr, Input* in, ResourceManager* resMngr);
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
 

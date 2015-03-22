@@ -15,10 +15,11 @@ Gui::~Gui()
 
 // -----------------------------------------------------------------------------
 
-void Gui::init(Font* fnt)
+void Gui::init(ResourceManager* resMngr)
 {  
-  font = fnt;
-  loadTexture("../../media/images/menuSheet.png");
+  font = resMngr->getFont("tahoma");
+  myTexture = resMngr->getTexture("menuSheet.png");
+
 }
 
 // -----------------------------------------------------------------------------
@@ -79,23 +80,6 @@ void Gui::renderText()
 }
 
 // -----------------------------------------------------------------------------
-
-void Gui::loadTexture(const char* file)
-{
-   /*!
-  * Load a PNG using the SOIL (Simple OpenGL Image  Library)
-  */
-  myTexture = SOIL_load_OGL_texture(file,
-                SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
-                );
-
-}
-
-// -----------------------------------------------------------------------------
-
-
-
 
 
 
