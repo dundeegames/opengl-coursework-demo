@@ -34,7 +34,7 @@ public:
   ~Camera();
 
   void init(CameraType type_, Input* in);
-  void update(float dt);
+  void update();
   void handleInput(float dt);
   Vec3 getPosition();
   Vec3 getRotation();

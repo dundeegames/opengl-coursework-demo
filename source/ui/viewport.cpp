@@ -66,7 +66,11 @@ void Viewport::setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_)
 
 void Viewport::update(float dt)
 {
-  camera.update(dt);
+  if(selected)
+  {
+    camera.handleInput(dt);
+  }
+  camera.update();
 
 }
 

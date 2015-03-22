@@ -40,9 +40,6 @@
     <ClCompile Include="..\..\source\system\resourcemanager.cpp">
       <Filter>system</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\system\scene2D.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\system\scene3D.cpp">
       <Filter>system</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
     <ClCompile Include="..\..\source\ui\winmanager.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\assets\animatedsprite.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\assets\arm.cpp">
       <Filter>assets</Filter>
     </ClCompile>
@@ -86,9 +80,6 @@
       <Filter>assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\assets\Model.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\assets\oldsprite.cpp">
       <Filter>assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\assets\planets.cpp">
@@ -144,9 +135,6 @@
     <ClInclude Include="..\..\source\system\resourcemanager.h">
       <Filter>system</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\system\scene2D.h">
-      <Filter>system</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\system\scene3D.h">
       <Filter>system</Filter>
     </ClInclude>
@@ -174,9 +162,6 @@
     <ClInclude Include="..\..\source\ui\winmanager.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\assets\animatedsprite.h">
-      <Filter>assets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\assets\arm.h">
       <Filter>assets</Filter>
     </ClInclude>
@@ -190,9 +175,6 @@
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\Model.h">
-      <Filter>assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\assets\oldsprite.h">
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\planets.h">

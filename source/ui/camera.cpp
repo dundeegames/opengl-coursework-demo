@@ -31,10 +31,10 @@ void Camera::init(CameraType type_, Input* in)
 
 // -----------------------------------------------------------------------------
 
-void Camera::update(float dt)
+void Camera::update()
 {
 
-  handleInput(dt);
+  //handleInput(dt);
 
   float cosR, cosP, cosY;  //temp values for sin/cos from 
   float sinR, sinP, sinY; 
