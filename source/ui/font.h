@@ -80,6 +80,7 @@ struct CharacterSet
 public:
   Font();
   ~Font();
+
   bool Load(const char* font_name);
 
   void RenderText(Colour colour, float x_, float y_,

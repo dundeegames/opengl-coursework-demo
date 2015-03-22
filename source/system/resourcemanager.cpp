@@ -15,6 +15,34 @@ ResourceManager::~ResourceManager()
 
 // -----------------------------------------------------------------------------
 
+GLuint ResourceManager::getTexture(const char* file)
+{
+  if(texture_list.find(file) == texture_list.end())
+  {
+    loadTexture(file);
+  }
+
+  return texture_list[file];
+
+}
+
+// -----------------------------------------------------------------------------
+
+void ResourceManager::loadTexture(const char* file)
+{
+   /*!
+  * Load a PNG using the SOIL (Simple OpenGL Image  Library)
+  */
+  texture_list[file] = SOIL_load_OGL_texture(file,
+               SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+               SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+               );
+
+}
+
+
+// -----------------------------------------------------------------------------
+
 void ResourceManager::drawQuad()
 {
   glBegin(GL_TRIANGLES);

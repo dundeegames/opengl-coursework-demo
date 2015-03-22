@@ -50,9 +50,6 @@ void Scene3D::ResizeGLWindow(int width, int height)
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
   
-  //GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X) / 2);
-  //GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y) / 2);
-
   // Main
   viewport1.setSize(0, 0, width, height);
   
@@ -67,14 +64,6 @@ void Scene3D::ResizeGLWindow(int width, int height)
 
 
   viewport5.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
-
-  //viewport3.setSize( (VIEW_POS_X + viewWidth), 0, viewWidth, viewHeight);
-  //
-  //
-  //viewport4.setSize(VIEW_POS_X, viewHeight, viewWidth, viewHeight);
-
-
-  //viewport5.setSize( (VIEW_POS_X + viewWidth), viewHeight, viewWidth, viewHeight);
 
 }
 
@@ -157,7 +146,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   //box1.init();
   box = new Cube();
-  box->loadTexture("../../media/images/crate.png");
+  //box->loadTexture("../../media/images/crate.png");
+  box->setTexture(resManager.getTexture("../../media/images/crate.png") );
   quad = new Sprite();
   triangle = new Triangle();
   triangle->setColor3f(255.0, 0.0, 0.0);

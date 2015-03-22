@@ -30,7 +30,6 @@ public:
   Geometry();
   ~Geometry();
 
-  void loadTexture(const char* file);
   void setTexture(GLuint texture_) {myTexture = texture_; }
 
   void setColor3f(GLfloat red_, GLfloat green_, GLfloat blue_);

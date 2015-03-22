@@ -33,7 +33,11 @@
 #include <assets/triangle.h>
 #include <assets/Model.h>
 
+#include <system/resourcemanager.h>
 
+
+
+// DEFINES /////////////////////////////////////////////////////////////////////
 #define COLOUR_DEPTH 16             //Colour depth
 
 
@@ -62,6 +66,7 @@ protected:
   int s_wdith, s_height;
 
 private:
+  ResourceManager resManager;
   Light* ambient;
   Light* light1;
   Geometry* box;

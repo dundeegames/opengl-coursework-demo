@@ -17,6 +17,7 @@
 #include <gl/glu.h>
 
 #include <ui/font.h>
+#include <SOIL.h>
 
 
 // DEFINES /////////////////////////////////////////////////////////////////////
@@ -41,11 +42,12 @@ public:
   void drawGrid();
   void renderText();
 
-  void test1();
-
 
 private:
   Font* font;
+
+  GLuint myTexture;
+  void loadTexture(const char* file);
 
 };
 

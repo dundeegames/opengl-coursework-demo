@@ -17,6 +17,10 @@
 #include <gl/glu.h>
 #include <soil/SOIL.h>
 
+#include <map>
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class ResourceManager
 {
@@ -24,6 +28,10 @@ class ResourceManager
 public:
   ResourceManager();
   ~ResourceManager();
+
+  GLuint getTexture(const char* file);
+  
+
 
   // returns display list
   // TODO edit for different subdivisions in x and y
@@ -41,6 +49,10 @@ public:
 private:
   void drawQuad();
   void drawPlane(float width, float height, int sub_w, int sub_h);
+
+  std::map<const char*, GLuint> texture_list;
+  void loadTexture(const char* file);
+
 
 };
 

@@ -18,6 +18,7 @@ Gui::~Gui()
 void Gui::init(Font* fnt)
 {  
   font = fnt;
+  loadTexture("../../media/images/menuSheet.png");
 }
 
 // -----------------------------------------------------------------------------
@@ -63,6 +64,7 @@ void Gui::renderText()
   glDisable(GL_LIGHTING);
   
   glEnable(GL_BLEND); // enable only when needed
+
   font->RenderText(Colour(COLOUR_WHITE, 1.0f),
                   150.0f, 35.0f, 0.5f, "Hello, World!");
 
@@ -78,25 +80,26 @@ void Gui::renderText()
 
 // -----------------------------------------------------------------------------
 
-void Gui::test1()
+void Gui::loadTexture(const char* file)
 {
-  glDisable(GL_DEPTH_TEST);
-  glDisable(GL_LIGHTING);
-  
-  glEnable(GL_BLEND); // enable only when needed
+   /*!
+  * Load a PNG using the SOIL (Simple OpenGL Image  Library)
+  */
+  myTexture = SOIL_load_OGL_texture(file,
+                SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+                );
 
-  font->RenderText(Colour(COLOUR_GREEN, 1.0f),
-                  10.0f, 10.0f, 0.5f, "Test1!");
-
-  
-  font->RenderText(Colour(COLOUR_BLACK, 0.5f),
-                  10.0f, 30.0f, 1.0f, "Test1");
-
-  glDisable(GL_BLEND);
-  
-  glEnable(GL_LIGHTING);
-  glEnable(GL_DEPTH_TEST);
 }
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
