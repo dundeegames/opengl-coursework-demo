@@ -156,6 +156,7 @@
     </ClInclude>
     <ClInclude Include="..\..\source\math\vec3.h" />
     <ClInclude Include="..\..\source\resources\resource.h" />
+    <ClInclude Include="..\..\source\system\macros.h" />
     <ClInclude Include="..\..\source\system\resourcemanager.h" />
     <ClInclude Include="..\..\source\system\scene3D.h" />
     <ClInclude Include="..\..\source\system\timerclass.h" />

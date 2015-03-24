@@ -27,8 +27,10 @@ class Sprite
 public:
   Sprite();
   ~Sprite();
-  void init(GLuint tex_ = NULL, float x_ = 0.0f, float y_ = 0.0f, float w_ = 100.0f, float h_ = 100.0f,
-            float uvx_ = 0.0f, float uvy_ = 0.0f, float uvw = 1.0f, float uvh = 1.0f);
+  void setValues(GLuint tex_ = NULL, float x_ = 0.0f, float y_ = 0.0f,
+                                     float w_ = 100.0f, float h_ = 100.0f,
+                                     float uvx_ = 0.0f, float uvy_ = 0.0f,
+                                     float uvw = 1.0f, float uvh = 1.0f);
 
   void draw();
 

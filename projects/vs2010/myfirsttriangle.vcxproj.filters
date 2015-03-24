@@ -273,6 +273,9 @@
     <ClInclude Include="..\..\source\assets\model.h">
       <Filter>assets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\system\macros.h">
+      <Filter>system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\source\math\abertay\abfw_quaternion.inl">

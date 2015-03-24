@@ -64,7 +64,7 @@ void Sprite::set_uv_position(float x_, float y_)
 
 // -----------------------------------------------------------------------------
 
-void Sprite::init(GLuint tex_, float x_, float y_, float w_, float h_,
+void Sprite::setValues(GLuint tex_, float x_, float y_, float w_, float h_,
                               float uvx_, float uvy_, float uvw_, float uvh_)
 {
 

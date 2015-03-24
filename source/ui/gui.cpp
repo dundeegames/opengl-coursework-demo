@@ -1,37 +1,5 @@
 #include <ui/gui.h>
-
-
-// DEFINES /////////////////////////////////////////////////////////////////////
-#define RIB_ORIGIN_X        0.0f
-#define RIB_ORIGIN_Y        32.0f
-#define RIB_HEIGHT          46.0f
-#define RIB_LR_WIDTH        8.0f
-#define RIB_M_WIDTH         (windowWidth - (2*RIB_LR_WIDTH))
-#define RIB_M_X             (RIB_ORIGIN_X + RIB_LR_WIDTH)
-#define RIB_R_X             (windowWidth - RIB_LR_WIDTH)
-
-#define TEXTURE_WIDTH       256.0f
-#define RIB_L_UV_X          (0.0f / TEXTURE_WIDTH)
-#define RIB_L_UV_Y          (0.0f / TEXTURE_WIDTH)
-#define RIB_L_UV_W          (0.0f / TEXTURE_WIDTH)
-#define RIB_L_UV_W          (0.0f / TEXTURE_WIDTH)
-
-#define RIB_M_UV_X          (0.0f / TEXTURE_WIDTH)
-#define RIB_M_UV_Y          (0.0f / TEXTURE_WIDTH)
-#define RIB_M_UV_W          (0.0f / TEXTURE_WIDTH)
-#define RIB_M_UV_W          (0.0f / TEXTURE_WIDTH)
-
-#define RIB_UV_X            (0.0f / TEXTURE_WIDTH)
-#define RIB_UV_Y            (0.0f / TEXTURE_WIDTH)
-#define RIB_UV_W            (0.0f / TEXTURE_WIDTH)
-#define RIB_UV_W            (0.0f / TEXTURE_WIDTH)
-//#define RIB_HEIGHT
-
-
-
-
-
-// FUNCTIONS ///////////////////////////////////////////////////////////////////
+#include <system/macros.h>
 
 Gui::Gui()
 {
@@ -53,7 +21,7 @@ void Gui::init(ResourceManager* resMngr)
   menuTexture = resMngr->getTexture("menuSheet.png");
 
 
-  initMenu();
+  resizeMenu();
 
 }
 
@@ -63,6 +31,9 @@ void Gui::setWindowSize(float width, float height)
 {
   windowWidth = width;
   windowHeight = height;
+
+
+  resizeMenu();
 
 }
 
@@ -125,16 +96,16 @@ void Gui::renderText()
 
 // -----------------------------------------------------------------------------
 
-void Gui::initMenu()
+void Gui::resizeMenu()
 {
-  ribbonLeft.init(menuTexture, RIB_ORIGIN_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
-          (0.0f / 256.0f), 0.0f, (8.0f / 256.0f), (46.0f / 256.0f));
+  ribbonLeft.setValues(menuTexture, RIB_ORIGIN_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
+                                RIB_L_UV_X, RIB_UV_Y, RIB_LR_UV_W, RIB_UV_H);
 
-  ribbonMiddle.init(menuTexture, RIB_M_X, RIB_ORIGIN_Y, RIB_M_WIDTH, RIB_HEIGHT,
-          (8.0f / 256.0f), 0.0f, (30.0f / 256.0f), (46.0f / 256.0f));
+  ribbonMiddle.setValues(menuTexture, RIB_M_X, RIB_ORIGIN_Y, RIB_M_WIDTH, RIB_HEIGHT,
+                                RIB_M_UV_X, RIB_UV_Y, RIB_M_UV_W, RIB_UV_H);
 
-  ribbonRight.init(menuTexture, RIB_R_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
-          (38.0f / 256.0f), 0.0f, (8.0f / 256.0f), (46.0f / 256.0f));
+  ribbonRight.setValues(menuTexture, RIB_R_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
+                                RIB_R_UV_X, RIB_UV_Y, RIB_LR_UV_W, RIB_UV_H);
 
 
 

@@ -19,18 +19,12 @@
 
 #include <ui/font.h>
 #include <assets/sprite.h>
+#include <system/macros.h>
 #include <system/resourcemanager.h>
 
 
-// DEFINES /////////////////////////////////////////////////////////////////////
 
-// Colours
-#define COLOUR_WHITE      1.0f, 1.0f, 1.0f
-#define COLOUR_BLACK      0.0f, 0.0f, 0.0f
-#define COLOUR_BROWN      0.27f, 0.27f, 0.27f
-#define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
-#define COLOUR_GREEN      0.0f, 0.27f, 0.1f
-
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Gui
 {
@@ -53,10 +47,13 @@ private:
   Sprite ribbonLeft;
   Sprite ribbonMiddle;
   Sprite ribbonRight;
-//  Sprite sidebar;
+
+  Sprite sidebarTop;
+  Sprite sidebarMid;
+  Sprite sidebarBtm;
 
 
-  void initMenu();
+  void resizeMenu();
   
   Font* font;
   GLuint menuTexture;
