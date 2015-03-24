@@ -25,7 +25,7 @@
 
 // Ribbon Coordinates
 #define RIB_ORIGIN_X        46.0f
-#define RIB_ORIGIN_Y        32.0f
+#define RIB_ORIGIN_Y        0.0f
 #define RIB_HEIGHT          46.0f
 #define RIB_LR_WIDTH        8.0f
 #define RIB_M_WIDTH         (windowWidth - (2*RIB_LR_WIDTH) - RIB_ORIGIN_X)
@@ -45,7 +45,7 @@
 
 // Sidebar Coordinates
 #define SDB_ORIGIN_X        0.0f
-#define SDB_ORIGIN_Y        78.0f
+#define SDB_ORIGIN_Y        46.0f
 #define SDB_WIDTH           46.0f
 #define SDB_T_HEIGHT        23.0f
 #define SDB_B_HEIGHT        46.0f

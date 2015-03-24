@@ -45,7 +45,7 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 void Scene3D::ResizeGLWindow(int width, int height)
 { 
   const GLint VIEW_POS_X  = 46;
-  const GLint VIEW_POS_Y = 78;
+  const GLint VIEW_POS_Y = 46;
 
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);

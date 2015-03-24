@@ -33,7 +33,7 @@ void WinManager::RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinPro
     //wcex.hCursor       = LoadCursor (NULL, IDC_HELP);   // System default cursor  
                               
     wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);       // Handle for background brush (colour)
-    wcex.lpszMenuName  = NULL;                            // Set menu, in this case none              
+    wcex.lpszMenuName  = MAKEINTRESOURCE (IDR_TOP_MENU);  // Set menu, in this case none              
     wcex.lpszClassName = "FirstWindowClass";              // Window’s classname        
     
     wcex.hIconSm       = 0;                               // Handle to small icon 
@@ -83,7 +83,9 @@ BOOL WinManager::InitialiseMyWindow(HINSTANCE hInstance, int nCmdShow)
           screenHeight,         // Height of window
 
           NULL,                 // parent of window          
-          NULL,                 // handle to menu          
+          //NULL,                 // handle to menu
+          LoadMenu(hInstance, MAKEINTRESOURCE (IDR_TOP_MENU)), // handle to menu
+
           hInstance,            // Handle to instance associated with window        
           NULL);                // pointer to value to pass to window                
 
