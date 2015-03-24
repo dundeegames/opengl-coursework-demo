@@ -20,7 +20,7 @@
 #define COLOUR_GREEN      0.0f, 0.27f, 0.1f
 
 
-// GUI.CPP ---------------------------------------------------------------------
+// GUI -------------------------------------------------------------------------
 #define TEXTURE_WIDTH       256.0f
 
 // Ribbon Coordinates
@@ -43,7 +43,25 @@
 #define RIB_R_UV_X          (38.0f / TEXTURE_WIDTH)
 
 
+// Sidebar Coordinates
+#define SDB_ORIGIN_X        0.0f
+#define SDB_ORIGIN_Y        78.0f
+#define SDB_WIDTH           46.0f
+#define SDB_T_HEIGHT        23.0f
+#define SDB_B_HEIGHT        46.0f
+#define SDB_M_HEIGHT        (windowHeight - SDB_ORIGIN_Y - SDB_T_HEIGHT - SDB_B_HEIGHT)
+#define SDB_M_Y             (SDB_ORIGIN_Y + SDB_T_HEIGHT)
+#define SDB_B_Y             (windowHeight - SDB_B_HEIGHT)
 
+// Sidebar UVs
+#define SDB_UV_X            0.0f
+#define SDB_UV_W            (46.0f / TEXTURE_WIDTH)
+#define SDB_MB_UV_H         (46.0f / TEXTURE_WIDTH)
+
+#define SDB_T_UV_Y          (45.0f / TEXTURE_WIDTH)
+#define SDB_T_UV_H          (23.0f / TEXTURE_WIDTH)
+#define SDB_M_UV_Y          (92.0f / TEXTURE_WIDTH)
+#define SDB_B_UV_Y          (138.0f / TEXTURE_WIDTH)
 
 
 

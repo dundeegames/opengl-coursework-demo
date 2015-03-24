@@ -82,11 +82,11 @@ void Gui::renderText()
   glEnable(GL_BLEND); // enable only when needed
 
   font->RenderText(Colour(COLOUR_WHITE, 1.0f),
-                  150.0f, 105.0f, 0.5f, "Hello, World!");
+                  105.0f, 105.0f, 0.5f, "Hello, World!");
 
   
   font->RenderText(Colour(COLOUR_BLACK, 0.5f),
-                  150.0f, 125.0f, 1.0f, "Buddy");
+                  105.0f, 125.0f, 1.0f, "Buddy");
 
   glDisable(GL_BLEND);
   
@@ -108,7 +108,14 @@ void Gui::resizeMenu()
                                 RIB_R_UV_X, RIB_UV_Y, RIB_LR_UV_W, RIB_UV_H);
 
 
+  sidebarTop.setValues(menuTexture, SDB_ORIGIN_X, SDB_ORIGIN_Y, SDB_WIDTH, SDB_T_HEIGHT,
+                                SDB_UV_X, SDB_T_UV_Y, SDB_UV_W, SDB_T_UV_H);
 
+  sidebarMid.setValues(menuTexture, SDB_ORIGIN_X, SDB_M_Y, SDB_WIDTH, SDB_M_HEIGHT,
+                                SDB_UV_X, SDB_M_UV_Y, SDB_UV_W, SDB_MB_UV_H);
+
+  sidebarBtm.setValues(menuTexture, SDB_ORIGIN_X, SDB_B_Y, SDB_WIDTH, SDB_B_HEIGHT,
+                                SDB_UV_X, SDB_B_UV_Y, SDB_UV_W, SDB_MB_UV_H);
 }
 
 // -----------------------------------------------------------------------------
@@ -123,6 +130,10 @@ void Gui::renderMenu()
     ribbonLeft.draw();
     ribbonMiddle.draw();
     ribbonRight.draw();
+
+    sidebarTop.draw();
+    sidebarMid.draw();
+    sidebarBtm.draw();
 
   glDisable(GL_BLEND);
   
