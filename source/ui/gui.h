@@ -40,13 +40,19 @@ public:
   ~Gui();
 
   void init(ResourceManager* resMngr);
+  void setWindowSize(float width, float height);
   void drawGrid();
   void renderText();
   void renderMenu();
 
 
 private:
-  Sprite ribbon;
+  float windowWidth;
+  float windowHeight;
+
+  Sprite ribbonLeft;
+  Sprite ribbonMiddle;
+  Sprite ribbonRight;
 //  Sprite sidebar;
 
 

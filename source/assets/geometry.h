@@ -52,10 +52,6 @@ public:
   void setHeight(float h_) {height = h_; };
   void setDepth(float d_) {depth = d_; };
 
-  void set_uv_position(float x_, float y_);
-  void set_uv_width(float w_) {uv_width = w_; };
-  void set_uv_height(float h_) {uv_height = h_; };
-
 
 protected:
   float positionX;

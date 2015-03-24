@@ -65,6 +65,7 @@ void Scene3D::ResizeGLWindow(int width, int height)
 
   viewport5.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
 
+  gui.setWindowSize( (float)width, (float)height);
 }
 
 // ------------------------------------------------------------------------------
@@ -188,7 +189,7 @@ void Scene3D::DrawScene(float dt)
     viewport5.end();
       //gui.test1();
 
-  //viewport1.end();
+  viewport1.end();
     gui.renderMenu();
     gui.renderText();
 

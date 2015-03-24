@@ -55,11 +55,7 @@ void Geometry::move(float x_, float y_)
 
 // -----------------------------------------------------------------------------
 
-void Geometry::set_uv_position(float x_, float y_)
-{
-  uv_posX = x_;
-  uv_posY = y_;
-}
+
 
 
 

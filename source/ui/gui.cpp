@@ -1,6 +1,38 @@
 #include <ui/gui.h>
 
 
+// DEFINES /////////////////////////////////////////////////////////////////////
+#define RIB_ORIGIN_X        0.0f
+#define RIB_ORIGIN_Y        32.0f
+#define RIB_HEIGHT          46.0f
+#define RIB_LR_WIDTH        8.0f
+#define RIB_M_WIDTH         (windowWidth - (2*RIB_LR_WIDTH))
+#define RIB_M_X             (RIB_ORIGIN_X + RIB_LR_WIDTH)
+#define RIB_R_X             (windowWidth - RIB_LR_WIDTH)
+
+#define TEXTURE_WIDTH       256.0f
+#define RIB_L_UV_X          (0.0f / TEXTURE_WIDTH)
+#define RIB_L_UV_Y          (0.0f / TEXTURE_WIDTH)
+#define RIB_L_UV_W          (0.0f / TEXTURE_WIDTH)
+#define RIB_L_UV_W          (0.0f / TEXTURE_WIDTH)
+
+#define RIB_M_UV_X          (0.0f / TEXTURE_WIDTH)
+#define RIB_M_UV_Y          (0.0f / TEXTURE_WIDTH)
+#define RIB_M_UV_W          (0.0f / TEXTURE_WIDTH)
+#define RIB_M_UV_W          (0.0f / TEXTURE_WIDTH)
+
+#define RIB_UV_X            (0.0f / TEXTURE_WIDTH)
+#define RIB_UV_Y            (0.0f / TEXTURE_WIDTH)
+#define RIB_UV_W            (0.0f / TEXTURE_WIDTH)
+#define RIB_UV_W            (0.0f / TEXTURE_WIDTH)
+//#define RIB_HEIGHT
+
+
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
 Gui::Gui()
 {
 
@@ -22,6 +54,15 @@ void Gui::init(ResourceManager* resMngr)
 
 
   initMenu();
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Gui::setWindowSize(float width, float height)
+{
+  windowWidth = width;
+  windowHeight = height;
 
 }
 
@@ -70,11 +111,11 @@ void Gui::renderText()
   glEnable(GL_BLEND); // enable only when needed
 
   font->RenderText(Colour(COLOUR_WHITE, 1.0f),
-                  150.0f, 35.0f, 0.5f, "Hello, World!");
+                  150.0f, 105.0f, 0.5f, "Hello, World!");
 
   
   font->RenderText(Colour(COLOUR_BLACK, 0.5f),
-                  150.0f, 55.0f, 1.0f, "Buddy");
+                  150.0f, 125.0f, 1.0f, "Buddy");
 
   glDisable(GL_BLEND);
   
@@ -86,8 +127,14 @@ void Gui::renderText()
 
 void Gui::initMenu()
 {
-  //ribbon.init(menuTexture, 0.0f, 0.0f, 46.0f, 46.0f, 0.0f, 0.0f, (46.0f / 256.0f), (46.0f / 256.0f));
-  ribbon.init();
+  ribbonLeft.init(menuTexture, RIB_ORIGIN_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
+          (0.0f / 256.0f), 0.0f, (8.0f / 256.0f), (46.0f / 256.0f));
+
+  ribbonMiddle.init(menuTexture, RIB_M_X, RIB_ORIGIN_Y, RIB_M_WIDTH, RIB_HEIGHT,
+          (8.0f / 256.0f), 0.0f, (30.0f / 256.0f), (46.0f / 256.0f));
+
+  ribbonRight.init(menuTexture, RIB_R_X, RIB_ORIGIN_Y, RIB_LR_WIDTH, RIB_HEIGHT,
+          (38.0f / 256.0f), 0.0f, (8.0f / 256.0f), (46.0f / 256.0f));
 
 
 
@@ -102,7 +149,9 @@ void Gui::renderMenu()
   
   glEnable(GL_BLEND); // enable only when needed
 
-    ribbon.draw();
+    ribbonLeft.draw();
+    ribbonMiddle.draw();
+    ribbonRight.draw();
 
   glDisable(GL_BLEND);
   

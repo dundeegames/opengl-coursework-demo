@@ -176,7 +176,7 @@ void Font::RenderText(Colour colour, float x_, float y_,
   glPopMatrix();                            // go back to origin
 
   glBindTexture(GL_TEXTURE_2D, NULL);       // tells opengl which texture to use
-
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);        // reset colour to white TODO: refactr macros
 }
 
 // -----------------------------------------------------------------------------

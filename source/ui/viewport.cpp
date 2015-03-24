@@ -281,7 +281,7 @@ void Viewport::drawSelectionRect()
 
 
   glColor3f(COLOUR_WHITE);      // reset colour
-
+  glLineWidth(1.0f);            // reset line with
 }
 
 // -----------------------------------------------------------------------------
