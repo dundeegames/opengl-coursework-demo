@@ -18,7 +18,10 @@ Gui::~Gui()
 void Gui::init(ResourceManager* resMngr)
 {  
   font = resMngr->getFont("tahoma");
-  myTexture = resMngr->getTexture("menuSheet.png");
+  menuTexture = resMngr->getTexture("menuSheet.png");
+
+
+  initMenu();
 
 }
 
@@ -81,7 +84,34 @@ void Gui::renderText()
 
 // -----------------------------------------------------------------------------
 
+void Gui::initMenu()
+{
+  //ribbon.init(menuTexture, 0.0f, 0.0f, 46.0f, 46.0f, 0.0f, 0.0f, (46.0f / 256.0f), (46.0f / 256.0f));
+  ribbon.init();
 
+
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Gui::renderMenu()
+{
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_LIGHTING);
+  
+  glEnable(GL_BLEND); // enable only when needed
+
+    ribbon.draw();
+
+  glDisable(GL_BLEND);
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_DEPTH_TEST);
+
+}
+
+// -----------------------------------------------------------------------------
 
 
 

@@ -44,8 +44,8 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 */
 void Scene3D::ResizeGLWindow(int width, int height)
 { 
-  const GLint VIEW_POS_X  = 35;
-  const GLint VIEW_POS_Y = 90;
+  const GLint VIEW_POS_X  = 46;
+  const GLint VIEW_POS_Y = 78;
 
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
@@ -146,7 +146,6 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //box1.init();
   box = new Cube();
   box->setTexture(resManager.getTexture("crate.png") );
-  quad = new Sprite();
   triangle = new Triangle();
   triangle->setColor3f(255.0, 0.0, 0.0);
 
@@ -189,7 +188,8 @@ void Scene3D::DrawScene(float dt)
     viewport5.end();
       //gui.test1();
 
-  viewport1.end();
+  //viewport1.end();
+    gui.renderMenu();
     gui.renderText();
 
 
@@ -386,12 +386,6 @@ void Scene3D::render()
     box->draw();
     //robotArm.render();
   
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    glTranslatef(-3.0f, 0.0f, 0.0f);
-    quad->draw();
-
   glPopMatrix();    // go back to origin
   glPushMatrix();   // Remember where we are.
 

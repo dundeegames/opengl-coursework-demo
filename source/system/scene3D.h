@@ -73,7 +73,6 @@ private:
   Light* ambient;
   Light* light1;
   Geometry* box;
-  Geometry* quad;
   Geometry* triangle;
   Arm robotArm;
   Planets solarSystem;

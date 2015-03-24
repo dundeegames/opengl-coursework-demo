@@ -15,8 +15,10 @@
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <vector>
 
 #include <ui/font.h>
+#include <assets/sprite.h>
 #include <system/resourcemanager.h>
 
 
@@ -40,11 +42,18 @@ public:
   void init(ResourceManager* resMngr);
   void drawGrid();
   void renderText();
+  void renderMenu();
 
 
 private:
+  Sprite ribbon;
+//  Sprite sidebar;
+
+
+  void initMenu();
+  
   Font* font;
-  GLuint myTexture;
+  GLuint menuTexture;
 
 };
 

@@ -15,24 +15,68 @@
 #include <Windows.h>
 #include <Gl/gl.h>
 #include <gl/glu.h>
-#include <assets/geometry.h>
 
 
 
-class Sprite : public Geometry
+
+class Sprite
 {
 
 public:
   Sprite();
   ~Sprite();
-  
+  void init(GLuint tex_ = NULL, float x_ = -0.5f, float y_ = 0.5f, float w_ = 1.0f, float h_ = 1.0f,
+            float uvx_ = 0.0f, float uvy_ = 0.0f, float uvw = 1.0f, float uvh = 1.0f);
+
   void draw();
 
+  void setTexture(GLuint texture_) {myTexture = texture_; }
 
-  //void setUV(float )
+  void setColor3f(GLfloat red_, GLfloat green_, GLfloat blue_);
+  void setColor4f(GLfloat red_, GLfloat green_, GLfloat blue_, GLfloat alpha_);
+  void serOpacity(GLfloat alpha_) {alpha = alpha_; };
+  
+  void setPosition(float x_, float y_);
+  void move(float x_, float y_);
+
+  inline const float x() const {return positionX; }
+  inline const float y() const {return positionY; }
+  inline const float z() const {return positionZ; }
+  inline const float getWidth() const {return width; }
+  inline const float getHeight() const {return height; }
+
+  void setWidth(float w_) {width = w_; };
+  void setHeight(float h_) {height = h_; };
+  void setDepth(float d_) {depth = d_; };
+
+  void set_uv_position(float x_, float y_);
+  void set_uv_width(float w_) {uv_width = w_; };
+  void set_uv_height(float h_) {uv_height = h_; };
 
 
 private:
+  float positionX;
+  float positionY;
+  float positionZ;
+
+  float width;
+  float height;
+  float depth;
+
+  float uv_posX;
+  float uv_posY;
+  float uv_width;
+  float uv_height;
+
+
+  GLuint myTexture;
+  GLfloat red;
+  GLfloat green;
+  GLfloat blue;
+  GLfloat alpha;
+
+
+
   GLuint DisplayList;
 
   void setDList();
