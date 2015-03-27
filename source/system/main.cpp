@@ -118,7 +118,13 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
       myScene.Resize();
       //myScene.DrawScene(timer.GetTime());
       //myScene.setBuffers();
-      break;  
+      break;
+
+    case WM_GETMINMAXINFO:
+      ((MINMAXINFO*)lParam)->ptMinTrackSize.x = WIN_MIN_WIDTH;
+      ((MINMAXINFO*)lParam)->ptMinTrackSize.y = WIN_MIN_HEIGHT;
+      break;
+
 
     case WM_KEYDOWN:
       myInput.SetKeyDown(wParam);        // Pass key value into input objI:/03_STUDY/02_YEAR2/03_GRAPHICS/graphics

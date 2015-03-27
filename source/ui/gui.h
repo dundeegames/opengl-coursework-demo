@@ -52,8 +52,32 @@ private:
   Sprite sidebarMid;
   Sprite sidebarBtm;
 
+  Sprite logo3D;
+  Sprite logoTri;
+
+
+  Sprite topBtn1;
+  Sprite topBtn2;
+  Sprite topBtn3;
+  Sprite topBtn4;
+  Sprite topBtn5;
+  Sprite topBtn6;
+  Sprite topBtn7;
+  Sprite topBtn8;
+  Sprite topBtn9;
+
+  Sprite sideBtn1;
+  Sprite sideBtn2;
+  Sprite sideBtn3;
+  Sprite sideBtn4;
+  Sprite sideBtn5;
+  Sprite sideBtn6;
+
+
+
 
   void resizeMenu();
+  void setButtons();
   
   Font* font;
   GLuint menuTexture;

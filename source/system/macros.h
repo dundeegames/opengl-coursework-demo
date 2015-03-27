@@ -19,6 +19,12 @@
 #define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
 #define COLOUR_GREEN      0.0f, 0.27f, 0.1f
 
+// MAIN ------------------------------------------------------------------------
+#define WIN_MIN_WIDTH     500     
+#define WIN_MIN_HEIGHT    500
+
+
+
 
 // GUI -------------------------------------------------------------------------
 #define TEXTURE_WIDTH       256.0f
@@ -64,6 +70,68 @@
 #define SDB_B_UV_Y          (138.0f / TEXTURE_WIDTH)
 
 
+// Buttons
+#define BTN_SIZE            32.0f
+#define BTN_UV_SIZE         (32.0f / TEXTURE_WIDTH)
+#define TBTN_ORIGIN_Y       7.0f
+
+
+// top buttons
+#define TBTN1_ORIGIN_X      60.0f
+#define TBTN1_UV_X          (46.0f / TEXTURE_WIDTH)
+#define TBTN1_UV_Y          0.0f
+
+#define TBTN2_ORIGIN_X      105.0f
+#define TBTN2_UV_X          (78.0f / TEXTURE_WIDTH)
+#define TBTN2_UV_Y          0.0f
+
+#define TBTN3_ORIGIN_X      150.0f
+#define TBTN3_UV_X          (110.0f / TEXTURE_WIDTH)
+#define TBTN3_UV_Y          0.0f
+
+#define TBTN4_ORIGIN_X      195.0f
+#define TBTN4_UV_X          (142.0f / TEXTURE_WIDTH)
+#define TBTN4_UV_Y          0.0f
+
+#define TBTN5_ORIGIN_X      240.0f
+#define TBTN5_UV_X          (174.0f / TEXTURE_WIDTH)
+#define TBTN5_UV_Y          0.0f
+
+#define TBTN6_ORIGIN_X      285.0f
+#define TBTN6_UV_X          (206.0f / TEXTURE_WIDTH)
+#define TBTN6_UV_Y          0.0f
+
+#define TBTN7_ORIGIN_X      330.0f
+#define TBTN7_UV_X          (46.0f / TEXTURE_WIDTH)
+#define TBTN7_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+#define TBTN8_ORIGIN_X      375.0f
+#define TBTN8_UV_X          (78.0f / TEXTURE_WIDTH)
+#define TBTN8_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+#define TBTN9_ORIGIN_X      420.0f
+#define TBTN9_UV_X          (142.0f / TEXTURE_WIDTH)
+#define TBTN9_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+
+
+
+
+// Logos
+#define TRI_ORIGIN_X        7.0f
+#define TRI_ORIGIN_Y        (SDB_B_Y + 10.0f)
+#define TRI_SIZE            32.0f
+#define TRI_UV_X            (110.0f / TEXTURE_WIDTH)
+#define TRI_UV_Y            (32.0f / TEXTURE_WIDTH)
+#define TRI_UV_SIZE         (32.0f / TEXTURE_WIDTH)
+
+
+#define L3D_ORIGIN_X        0.0f
+#define L3D_ORIGIN_Y        0.0f
+#define L3D_SIZE            46.0f
+#define L3D_UV_X            0.0f
+#define L3D_UV_Y            (184.0f / TEXTURE_WIDTH)
+#define L3D_UV_SIZE         (46.0f / TEXTURE_WIDTH)
 
 
 
