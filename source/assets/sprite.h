@@ -38,7 +38,7 @@ public:
 
   void setColor3f(GLfloat red_, GLfloat green_, GLfloat blue_);
   void setColor4f(GLfloat red_, GLfloat green_, GLfloat blue_, GLfloat alpha_);
-  void serOpacity(GLfloat alpha_) {alpha = alpha_; };
+  void setOpacity(GLfloat alpha_) {alpha = alpha_; };
   
   void setPosition(float x_, float y_);
   void move(float x_, float y_);

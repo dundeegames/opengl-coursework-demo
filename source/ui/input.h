@@ -5,10 +5,19 @@
 
 #include <Windows.h>
 
-typedef struct Mouse
+struct Mouse
 {
   int x,y;
   bool left, middle, right;
+  Mouse()
+  {
+    x = 0;
+    y = 0;
+    left = false;
+    middle = false;
+    right = false;
+  }
+
 };
 
 

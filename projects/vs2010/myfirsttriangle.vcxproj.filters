@@ -127,6 +127,15 @@
     <ClCompile Include="..\..\source\assets\model.cpp">
       <Filter>assets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\ui\button.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\topbutton.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\sidebutton.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\system\resourcemanager.h">
@@ -275,6 +284,15 @@
     </ClInclude>
     <ClInclude Include="..\..\source\system\macros.h">
       <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\button.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\topbutton.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\sidebutton.h">
+      <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

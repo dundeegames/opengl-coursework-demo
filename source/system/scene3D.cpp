@@ -124,7 +124,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
  
-  gui.init(&resManager);
+  gui.init(&resManager, input);
   viewport1.init(VIEW_MAIN, FIXED_POINT, in, &resManager);
   viewport2.init(VIEW_SIDE, FIXED_POINT, in, &resManager);
   viewport3.init(VIEW_FRONT, FIXED_POINT, in, &resManager);
@@ -157,7 +157,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 void Scene3D::DrawScene(float dt) 
 {
   HandleInput(dt);
-  
+  gui.update();
   
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer

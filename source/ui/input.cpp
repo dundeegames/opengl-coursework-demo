@@ -7,12 +7,6 @@
 
 Input::Input()
 {
-  mouse.x = 0;
-  mouse.y = 0;
-  mouse.left = false;
-  mouse.middle = false;
-  mouse.right = false;
-
   sensitivity = 2.5f;
 
   // set all keys to UP

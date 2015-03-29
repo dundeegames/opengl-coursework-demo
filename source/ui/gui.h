@@ -22,6 +22,10 @@
 #include <system/macros.h>
 #include <system/resourcemanager.h>
 
+#include <ui/button.h>
+#include <ui/topbutton.h>
+#include <ui/sidebutton.h>
+#include <ui/input.h>
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////
@@ -33,14 +37,18 @@ public:
   Gui();
   ~Gui();
 
-  void init(ResourceManager* resMngr);
+  void init(ResourceManager* resMngr, Input* in);
   void setWindowSize(float width, float height);
+  void update();
+
   void drawGrid();
   void renderText();
   void renderMenu();
 
 
 private:
+  Input* input;
+
   float windowWidth;
   float windowHeight;
 
@@ -55,16 +63,18 @@ private:
   Sprite logo3D;
   Sprite logoTri;
 
+  std::vector<TopButton> topButtons;
+  std::vector<SideButton> sideButtons;
 
-  Sprite topBtn1;
-  Sprite topBtn2;
-  Sprite topBtn3;
-  Sprite topBtn4;
-  Sprite topBtn5;
-  Sprite topBtn6;
-  Sprite topBtn7;
-  Sprite topBtn8;
-  Sprite topBtn9;
+  //Sprite topBtn1;
+  //Sprite topBtn2;
+  //Sprite topBtn3;
+  //Sprite topBtn4;
+  //Sprite topBtn5;
+  //Sprite topBtn6;
+  //Sprite topBtn7;
+  //Sprite topBtn8;
+  //Sprite topBtn9;
 
   Sprite sideBtn1;
   Sprite sideBtn2;
@@ -78,7 +88,12 @@ private:
 
   void resizeMenu();
   void setButtons();
-  
+  void initTopButton(Input* in, GLuint tex_, float x_, float y_,
+                                             float uvx_, float uvy_);
+
+  void initSideButton(Input* in, GLuint tex_, float x_, float y_,
+                                              float uvx_, float uvy_);
+
   Font* font;
   GLuint menuTexture;
 

@@ -1,5 +1,5 @@
 #include <assets/sprite.h>
-
+#include <system/macros.h>
 
 Sprite::Sprite()
 {
@@ -118,30 +118,10 @@ void Sprite::setDList()
 
 void Sprite::draw()
 {
-
-
-
+  glColor4f(red, green, blue, alpha);
   glBindTexture(GL_TEXTURE_2D, myTexture);  //tells opengl which texture to use
 
   glBegin(GL_TRIANGLES);
-   //glTexCoord2f(0.0f, 0.0f);
-   //glVertex2f(100.0f,100.0f);
- 
-   //glTexCoord2f(0.0f, 1.0f);
-   //glVertex2f(100.0f,200.0f);
-
-   //glTexCoord2f(1.0f, 1.0f);
-   //glVertex2f(200.0f,200.0f);
-
-   //glTexCoord2f(1.0f, 1.0f);
-   //glVertex2f(200.0f,200.0f);
-
-   //glTexCoord2f(1.0f, 0.0f);
-   //glVertex2f(200.0f,100.0f);
-
-   //glTexCoord2f(0.0f, 0.0f);
-   //glVertex2f(100.0f,100.0f);
-
    glTexCoord2f(uv_posX, uv_posY);
    glVertex2f(positionX, positionY);
  
@@ -161,16 +141,8 @@ void Sprite::draw()
    glVertex2f(positionX, positionY);
   glEnd();
 
-
-
-
-  // front face
-  //glColor4f(red, green, blue, alpha);
-
-  //  glCallList(DisplayList);
-
-  //glColor3f(1.0f, 1.0f, 1.0f); // reset colour
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
+  glColor4f(COLOUR_WHITE, 1.0f);        // reset colour
 
 }
 

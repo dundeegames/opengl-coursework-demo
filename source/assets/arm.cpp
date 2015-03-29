@@ -194,48 +194,48 @@ void Arm::render()
     glPushMatrix();
       //render arm
       //glRotatef(rotation,0,0.5,0.5);    
-      glRotatef(elbowYrotation, 0, 1, 0);
-      glTranslatef(0,1,0);
-      glScalef(0.5, 1.6, 0.5);
+      glRotatef(elbowYrotation, 0.0f, 1.0f, 0.0f);
+      glTranslatef(0.0f, 1.0f, 0.0f);
+      glScalef(0.5f, 1.6f, 0.5f);
       glColor3f(0.8f, 0.1f, 0.1f);
       drawCube();
 
       // render elbow
-      glTranslatef(0,0.625,0);
+      glTranslatef(0.0f, 0.625f, 0.0f);
       glColor3f(1.0f, 1.0f, 1.0f);
       glScalef(2.0f, 0.625f, 2.0f);
       gluSphere(gluNewQuadric(), 0.25, 12,12);
 
       // render forearm
-      glRotatef(elbowXrotation, 1, 0, 0);
-      glTranslatef(0,1,0);
-      glScalef(0.5, 1.6, 0.5);
+      glRotatef(elbowXrotation, 1.0f, 0.0f, 0.0f);
+      glTranslatef(0.0f, 1.0f, 0.0f);
+      glScalef(0.5f, 1.6f, 0.5f);
       glColor3f(0.8f, 0.1f, 0.1f);
       // is there glCube primitive? [like gluSphere()]
       drawCube();
 
       // scaling to compensate for previous scaling? Ask for more efficient method
       // render wrist
-      glRotatef(wristYrotation, 0, 1, 0);
-      glTranslatef(0,0.625,0);
+      glRotatef(wristYrotation, 0.0f, 1.0f, 0.0);
+      glTranslatef(0.0f, 0.625f, 0.0f);
       glColor3f(1.0f, 1.0f, 1.0f);
       glScalef(2.0f, 0.625f, 2.0f);
       gluSphere(gluNewQuadric(), 0.25, 12,12);
       glPushMatrix();  // Remember where we are.  THE WRIST
 
         //Render Finger1
-        glRotatef(wristOpen,0,0,1);
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
         drawFinger();
       glPopMatrix();  // GO BACK TO WRIST
       glPushMatrix(); // REMEMBER WHERE WE ARE
         //Render Finger2
         glRotatef(120,0,1,0);
-        glRotatef(wristOpen,0,0,1);
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
         drawFinger();
       glPopMatrix();  // GO BACK TO WRIST
       glPushMatrix(); // REMEMBER WHERE WE ARE
-        glRotatef(240,0,1,0);
-        glRotatef(wristOpen,0,0,1);
+        glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
         drawFinger();          
   glPopMatrix();//GO BACK TO SHOULDER
 }
@@ -333,25 +333,25 @@ void Arm::drawCube()
 
 void Arm::drawFinger()
 {
-  glScalef(0.2, 0.2, 0.2);
+  glScalef(0.2f, 0.2f, 0.2f);
   //render finger
         
-  glTranslatef(0,2,0);
-  glScalef(0.5, 1.6, 0.5);
+  glTranslatef(0.0f, 2.0f, 0.0f);
+  glScalef(0.5f, 1.6f, 0.5f);
   glColor3f(0.8f, 0.1f, 0.1f);
   drawCube();
 
   // render elbow
-  glTranslatef(0,0.625,0);
+  glTranslatef(0.0f, 0.625f, 0.0f);
   glColor3f(1.0f, 1.0f, 1.0f);
   glScalef(2.0f, 0.625f, 2.0f);
   gluSphere(
       gluNewQuadric(), 0.25, 40,40);
 
   // render forearm
-  glRotatef(60, 0, 0, 1);
-  glTranslatef(0,1,0);
-  glScalef(0.5, 1.6, 0.5);
+  glRotatef(60.0f, 0.0f, 0.0f, 1.0f);
+  glTranslatef(0.0f, 1.0f, 0.0f);
+  glScalef(0.5f, 1.6f, 0.5f);
   glColor3f(0.8f, 0.1f, 0.1f);
   // is there glCube primitive? [like gluSphere()]
   drawCube();

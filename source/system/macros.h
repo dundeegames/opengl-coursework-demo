@@ -18,10 +18,27 @@
 #define COLOUR_BROWN      0.27f, 0.27f, 0.27f
 #define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
 #define COLOUR_GREEN      0.0f, 0.27f, 0.1f
+#define COLOUR_DRKGRAY    0.2f, 0.2f, 0.2f
+#define COLOUR_YELLOW     1.0f, 0.8f, 0.0f
+#define COLOUR_DRKYELLOW  0.49f, 0.41f, 0.17f
 
 // MAIN ------------------------------------------------------------------------
 #define WIN_MIN_WIDTH     500     
 #define WIN_MIN_HEIGHT    500
+
+
+// VIEWPORT --------------------------------------------------------------------
+#define Z_POSITION        0.0f
+
+// Background
+#define GRADIENT_TOP      0.533f, 0.615f, 0.698f
+#define GRADIENT_BOTTOM   0.07f, 0.07f, 0.07f
+
+// Label offsets
+#define PERSP_OFFSET      ( (float)(width >> 1) - 15.0f)
+#define TOP_OFFSET        ( (float)(width >> 1) - 11.0f)
+#define SIDE_OFFSET       ( (float)(width >> 1) - 12.0f)
+#define FRONT_OFFSET      ( (float)(width >> 1) - 14.0f)
 
 
 
@@ -75,8 +92,18 @@
 #define BTN_UV_SIZE         (32.0f / TEXTURE_WIDTH)
 #define TBTN_ORIGIN_Y       7.0f
 
+// Button Input
+#define BTN_LEFT            foreground.x()
+#define BTN_RIGHT           (foreground.x() + BTN_SIZE)
+#define BTN_TOP             foreground.y()
+#define BTN_BOTTOM          (foreground.y() + BTN_SIZE)
+
 
 // top buttons
+#define TBTN_HIGHTLIGHT     1.0f
+#define TBTN_FADE           0.5f
+
+
 #define TBTN1_ORIGIN_X      60.0f
 #define TBTN1_UV_X          (46.0f / TEXTURE_WIDTH)
 #define TBTN1_UV_Y          0.0f

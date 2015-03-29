@@ -56,10 +56,13 @@
     <ClCompile Include="..\..\source\system\scene3D.cpp" />
     <ClCompile Include="..\..\source\system\timerclass.cpp" />
     <ClCompile Include="..\..\source\system\TokenStream.cpp" />
+    <ClCompile Include="..\..\source\ui\button.cpp" />
     <ClCompile Include="..\..\source\ui\camera.cpp" />
     <ClCompile Include="..\..\source\ui\font.cpp" />
     <ClCompile Include="..\..\source\ui\gui.cpp" />
     <ClCompile Include="..\..\source\ui\input.cpp" />
+    <ClCompile Include="..\..\source\ui\sidebutton.cpp" />
+    <ClCompile Include="..\..\source\ui\topbutton.cpp" />
     <ClCompile Include="..\..\source\ui\viewport.cpp" />
     <ClCompile Include="..\..\source\ui\winmanager.cpp" />
   </ItemGroup>
@@ -161,10 +164,13 @@
     <ClInclude Include="..\..\source\system\scene3D.h" />
     <ClInclude Include="..\..\source\system\timerclass.h" />
     <ClInclude Include="..\..\source\system\TokenStream.h" />
+    <ClInclude Include="..\..\source\ui\button.h" />
     <ClInclude Include="..\..\source\ui\camera.h" />
     <ClInclude Include="..\..\source\ui\font.h" />
     <ClInclude Include="..\..\source\ui\gui.h" />
     <ClInclude Include="..\..\source\ui\input.h" />
+    <ClInclude Include="..\..\source\ui\sidebutton.h" />
+    <ClInclude Include="..\..\source\ui\topbutton.h" />
     <ClInclude Include="..\..\source\ui\viewport.h" />
     <ClInclude Include="..\..\source\ui\winmanager.h" />
   </ItemGroup>
