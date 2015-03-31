@@ -68,6 +68,12 @@ void Gui::update()
     it->update();
   }
 
+  for(std::vector<SideButton>::iterator it = sideButtons.begin(); it != sideButtons.end(); it++)
+  {
+    it->update();
+  }
+
+
 }
 
 // -----------------------------------------------------------------------------
@@ -163,53 +169,37 @@ void Gui::resizeMenu()
 
 void Gui::setButtons()
 {
-  initTopButton(input, menuTexture, TBTN1_ORIGIN_X, TBTN_ORIGIN_Y, TBTN1_UV_X, TBTN1_UV_Y);
+  initTopButton(TBTN1_SPHERE, TBTN1_ORIGIN_X, TBTN_ORIGIN_Y, TBTN1_UV_X, TBTN1_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN2_ORIGIN_X, TBTN_ORIGIN_Y, TBTN2_UV_X, TBTN2_UV_Y);
+  initTopButton(TBTN2_CUBE, TBTN2_ORIGIN_X, TBTN_ORIGIN_Y, TBTN2_UV_X, TBTN2_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN3_ORIGIN_X, TBTN_ORIGIN_Y, TBTN3_UV_X, TBTN3_UV_Y);
+  initTopButton(TBTN3_CYLINDER, TBTN3_ORIGIN_X, TBTN_ORIGIN_Y, TBTN3_UV_X, TBTN3_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN4_ORIGIN_X, TBTN_ORIGIN_Y, TBTN4_UV_X, TBTN4_UV_Y);
+  initTopButton(TBTN4_CONE, TBTN4_ORIGIN_X, TBTN_ORIGIN_Y, TBTN4_UV_X, TBTN4_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, TBTN5_UV_X, TBTN5_UV_Y);
+  initTopButton(TBTN5_PLANE, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, TBTN5_UV_X, TBTN5_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, TBTN6_UV_X, TBTN6_UV_Y);
+  initTopButton(TBTN6_TORUS, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, TBTN6_UV_X, TBTN6_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, TBTN7_UV_X, TBTN7_UV_Y);
+  initTopButton(TBTN7_PYRAMID, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, TBTN7_UV_X, TBTN7_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, TBTN8_UV_X, TBTN8_UV_Y);
+  initTopButton(TBTN8_PIPE, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, TBTN8_UV_X, TBTN8_UV_Y);
 
-  initTopButton(input, menuTexture, TBTN9_ORIGIN_X, TBTN_ORIGIN_Y, TBTN9_UV_X, TBTN9_UV_Y);
+  initTopButton(TBTN9_GAME, TBTN9_ORIGIN_X, TBTN_ORIGIN_Y, TBTN9_UV_X, TBTN9_UV_Y);
 
 
-  //topBtn1.setValues(menuTexture, TBTN1_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN1_UV_X, TBTN1_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
 
-  //topBtn2.setValues(menuTexture, TBTN2_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN2_UV_X, TBTN2_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+  initSideButton(SBTN1_SELECT, SBTN_ORIGIN_X, SBTN1_ORIGIN_Y, SBTN1_UV_X, SBTN1_UV_Y);
 
-  //topBtn3.setValues(menuTexture, TBTN3_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN3_UV_X, TBTN3_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+  initSideButton(SBTN2_MOVE, SBTN_ORIGIN_X, SBTN2_ORIGIN_Y, SBTN2_UV_X, SBTN2_UV_Y);
 
-  //topBtn4.setValues(menuTexture, TBTN4_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN4_UV_X, TBTN4_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+  initSideButton(SBTN3_ROTATE, SBTN_ORIGIN_X, SBTN3_ORIGIN_Y, SBTN3_UV_X, SBTN3_UV_Y);
 
-  //topBtn5.setValues(menuTexture, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN5_UV_X, TBTN5_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+  initSideButton(SBTN4_SCALE, SBTN_ORIGIN_X, SBTN4_ORIGIN_Y, SBTN4_UV_X, SBTN4_UV_Y);
 
-  //topBtn6.setValues(menuTexture, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN6_UV_X, TBTN6_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+  initSideButton(SBTN5_1VIEW, SBTN_ORIGIN_X, SBTN5_ORIGIN_Y, SBTN5_UV_X, SBTN5_UV_Y);
 
-  //topBtn7.setValues(menuTexture, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN7_UV_X, TBTN7_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
-
-  //topBtn8.setValues(menuTexture, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN8_UV_X, TBTN8_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
-
-  //topBtn9.setValues(menuTexture, TBTN9_ORIGIN_X, TBTN_ORIGIN_Y, BTN_SIZE, BTN_SIZE,
-  //                              TBTN9_UV_X, TBTN9_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
-
- 
+  initSideButton(SBTN6_4VIEW, SBTN_ORIGIN_X, SBTN6_ORIGIN_Y, SBTN6_UV_X, SBTN6_UV_Y); 
 
 }
 
@@ -233,22 +223,16 @@ void Gui::renderMenu()
     logoTri.draw();
     logo3D.draw();
 
-    //topBtn1.draw();
-    //topBtn2.draw();
-    //topBtn3.draw();
-    //topBtn4.draw();
-    //topBtn5.draw();
-    //topBtn6.draw();
-    //topBtn7.draw();
-    //topBtn8.draw();
-    //topBtn9.draw();
 
     for(std::vector<TopButton>::iterator it = topButtons.begin(); it != topButtons.end(); it++)
     {
       it->draw();
     }
 
-
+    for(std::vector<SideButton>::iterator it = sideButtons.begin(); it != sideButtons.end(); it++)
+    {
+      it->draw();
+    }
 
   glDisable(GL_BLEND);
   
@@ -259,11 +243,10 @@ void Gui::renderMenu()
 
 // -----------------------------------------------------------------------------
 
-void Gui::initTopButton(Input* in, GLuint tex_, float x_, float y_,
-                                             float uvx_, float uvy_)
+void Gui::initTopButton(int btnID, float x_, float y_, float uvx_, float uvy_)
 {
   TopButton button;
-  button.init(in, tex_, x_, y_, uvx_, uvy_);
+  button.init(btnID, input, menuTexture, x_, y_, uvx_, uvy_);
 
   topButtons.push_back(button);
 
@@ -271,11 +254,10 @@ void Gui::initTopButton(Input* in, GLuint tex_, float x_, float y_,
 
 // -----------------------------------------------------------------------------
 
-void Gui::initSideButton(Input* in, GLuint tex_, float x_, float y_,
-                                             float uvx_, float uvy_)
+void Gui::initSideButton(int btnID, float x_, float y_, float uvx_, float uvy_)
 {
   SideButton button;
-  button.init(in, tex_, x_, y_, uvx_, uvy_);
+  button.init(btnID, input, menuTexture, x_, y_, uvx_, uvy_);
 
   sideButtons.push_back(button);
 

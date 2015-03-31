@@ -23,7 +23,7 @@ public:
   SideButton();
   ~SideButton();
 
-  void init(Input* in, GLuint tex_, float x_, float y_, float uvx_, float uvy_);
+  void init(int btnID, Input* in, GLuint tex_, float x_, float y_, float uvx_, float uvy_);
   void update();
   void draw();
 

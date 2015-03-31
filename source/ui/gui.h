@@ -66,33 +66,10 @@ private:
   std::vector<TopButton> topButtons;
   std::vector<SideButton> sideButtons;
 
-  //Sprite topBtn1;
-  //Sprite topBtn2;
-  //Sprite topBtn3;
-  //Sprite topBtn4;
-  //Sprite topBtn5;
-  //Sprite topBtn6;
-  //Sprite topBtn7;
-  //Sprite topBtn8;
-  //Sprite topBtn9;
-
-  Sprite sideBtn1;
-  Sprite sideBtn2;
-  Sprite sideBtn3;
-  Sprite sideBtn4;
-  Sprite sideBtn5;
-  Sprite sideBtn6;
-
-
-
-
   void resizeMenu();
   void setButtons();
-  void initTopButton(Input* in, GLuint tex_, float x_, float y_,
-                                             float uvx_, float uvy_);
-
-  void initSideButton(Input* in, GLuint tex_, float x_, float y_,
-                                              float uvx_, float uvy_);
+  void initTopButton(int btnID, float x_, float y_, float uvx_, float uvy_);
+  void initSideButton(int btnID, float x_, float y_, float uvx_, float uvy_);
 
   Font* font;
   GLuint menuTexture;

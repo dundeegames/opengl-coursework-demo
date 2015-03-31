@@ -25,7 +25,7 @@ public:
   Button();
   ~Button();
 
-  virtual void init(Input* in, GLuint tex_, float x_, float y_,
+  virtual void init(int btnID, Input* in, GLuint tex_, float x_, float y_,
                                             float uvx_, float uvy_) = 0;
 
   virtual void update() = 0;
@@ -39,6 +39,7 @@ private:
 
 
 protected:
+  int buttonID;
   bool mouseHower;
   bool selected;
   Input* input;
