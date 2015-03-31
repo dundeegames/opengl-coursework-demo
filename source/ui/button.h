@@ -31,9 +31,9 @@ public:
   virtual void update() = 0;
   virtual void draw() = 0;
 
-  bool isSelected() {return selected;}
-  void select() {selected = true;}
-  void unselect() {selected = false;}
+  //bool isSelected() {return selected;}
+  //void select() {selected = true;}
+  //void unselect() {selected = false;}
 
 private:
 
@@ -41,7 +41,7 @@ private:
 protected:
   int buttonID;
   bool mouseHower;
-  bool selected;
+  //bool selected;
   Input* input;
   Sprite foreground;
   

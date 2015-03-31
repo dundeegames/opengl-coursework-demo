@@ -4,7 +4,7 @@
 Button::Button()
 {
   mouseHower = false;
-  selected = false;
+  //selected = false;
   input = NULL;
   foreground.setValues();
 }
@@ -27,7 +27,8 @@ void Button::handleInput()
 
       if(input->leftMouseBtn())
       {
-        selected = true;
+        input->selectButton(buttonID);
+        //selected = true;
       }
 
     }

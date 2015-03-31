@@ -23,8 +23,8 @@
 #include <system/resourcemanager.h>
 
 #include <ui/button.h>
-#include <ui/topbutton.h>
-#include <ui/sidebutton.h>
+#include <ui/transpbutton.h>
+#include <ui/bgrbutton.h>
 #include <ui/input.h>
 
 
@@ -60,16 +60,18 @@ private:
   Sprite sidebarMid;
   Sprite sidebarBtm;
 
+  Sprite sidebarSep;    // separator line
+
   Sprite logo3D;
   Sprite logoTri;
 
-  std::vector<TopButton> topButtons;
-  std::vector<SideButton> sideButtons;
+  std::vector<TranspButton> transpButtons;
+  std::vector<BgrButton> bgrButtons;
 
   void resizeMenu();
   void setButtons();
-  void initTopButton(int btnID, float x_, float y_, float uvx_, float uvy_);
-  void initSideButton(int btnID, float x_, float y_, float uvx_, float uvy_);
+  void initTranspButton(int btnID, float x_, float y_, float uvx_, float uvy_);
+  void initBgrButton(int btnID, float x_, float y_, float uvx_, float uvy_);
 
   Font* font;
   GLuint menuTexture;

@@ -75,6 +75,10 @@
 #define SDB_M_HEIGHT        (windowHeight - SDB_ORIGIN_Y - SDB_T_HEIGHT - SDB_B_HEIGHT)
 #define SDB_M_Y             (SDB_ORIGIN_Y + SDB_T_HEIGHT)
 #define SDB_B_Y             (windowHeight - SDB_B_HEIGHT)
+#define SDB_S_HEIGHT        23.0f
+#define SDB_S_Y             220.0f
+
+
 
 // Sidebar UVs
 //#define SDB_UV_X            0.0f
@@ -83,12 +87,20 @@
 #define SDB_MB_UV_H         (46.0f / TEXTURE_WIDTH)
 
 #define SDB_T_UV_Y          (45.0f / TEXTURE_WIDTH)
-#define SDB_T_UV_H          (23.0f / TEXTURE_WIDTH)
+#define SDB_TS_UV_H         (23.0f / TEXTURE_WIDTH)
 #define SDB_M_UV_Y          (92.0f / TEXTURE_WIDTH)
 #define SDB_B_UV_Y          (138.0f / TEXTURE_WIDTH)
-
+#define SDB_S_UV_Y          (69.0f / TEXTURE_WIDTH)
 
 // Buttons
+#define TOP_BUTTONS         100
+#define SIDE_BUTTONS        200
+#define VIEW_BUTTONS        300
+#define MAX_TOP_BUTTONS     8
+#define MAX_SIDE_BUTTONS    4
+#define MAX_VIEW_BUTTONS    3
+
+
 #define BTN_SIZE            32.0f
 #define BTN_UV_SIZE         (32.0f / TEXTURE_WIDTH)
 #define TBTN_ORIGIN_Y       7.0f
@@ -141,21 +153,16 @@
 #define TBTN7_UV_Y          (32.0f / TEXTURE_WIDTH)
 
 #define TBTN8_PIPE          107
-#define TBTN8_ORIGIN_X      375.0f  // Pipe
+#define TBTN8_ORIGIN_X      375.0f
 #define TBTN8_UV_X          (78.0f / TEXTURE_WIDTH)
 #define TBTN8_UV_Y          (32.0f / TEXTURE_WIDTH)
 
-#define TBTN9_GAME          108
-#define TBTN9_ORIGIN_X      420.0f  // Game
-#define TBTN9_UV_X          (142.0f / TEXTURE_WIDTH)
-#define TBTN9_UV_Y          (32.0f / TEXTURE_WIDTH)
-
 
 // side buttons
-#define SBGR_SEL_UV_X       (46.0f / TEXTURE_WIDTH)
-#define SBGR_SEL_UV_Y       (64.0f / TEXTURE_WIDTH)
-#define SBGR_UNSEL_UV_X     (78.0f / TEXTURE_WIDTH)
-#define SBGR_UNSEL_UV_Y     (64.0f / TEXTURE_WIDTH)
+#define BGR_SEL_UV_X       (46.0f / TEXTURE_WIDTH)
+#define BGR_SEL_UV_Y       (64.0f / TEXTURE_WIDTH)
+#define BGR_UNSEL_UV_X     (78.0f / TEXTURE_WIDTH)
+#define BGR_UNSEL_UV_Y     (64.0f / TEXTURE_WIDTH)
 
 #define SBTN1_SELECT        200
 #define SBTN1_ORIGIN_Y      60.0f
@@ -177,15 +184,22 @@
 #define SBTN4_UV_X          (206.0f / TEXTURE_WIDTH)
 #define SBTN4_UV_Y          (64.0f / TEXTURE_WIDTH)
 
-#define SBTN5_1VIEW         204
-#define SBTN5_ORIGIN_Y      200.0f
-#define SBTN5_UV_X          (174.0f / TEXTURE_WIDTH)
-#define SBTN5_UV_Y          (32.0f / TEXTURE_WIDTH)
 
-#define SBTN6_4VIEW         205
-#define SBTN6_ORIGIN_Y      235.0f
-#define SBTN6_UV_X          (206.0f / TEXTURE_WIDTH)
-#define SBTN6_UV_Y          (32.0f / TEXTURE_WIDTH)
+// view buttons
+#define VBTN1_1VIEW         300
+#define VBTN1_ORIGIN_Y      270.0f
+#define VBTN1_UV_X          (174.0f / TEXTURE_WIDTH)
+#define VBTN1_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+#define VBTN2_4VIEW         301
+#define VBTN2_ORIGIN_Y      305.0f
+#define VBTN2_UV_X          (206.0f / TEXTURE_WIDTH)
+#define VBTN2_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+#define VBTN3_GAME          302
+#define VBTN3_ORIGIN_Y      340.0f
+#define VBTN3_UV_X          (142.0f / TEXTURE_WIDTH)
+#define VBTN3_UV_Y          (32.0f / TEXTURE_WIDTH)
 
 
 // Logos

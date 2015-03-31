@@ -1,31 +1,34 @@
-#include <ui/topbutton.h>
+#include <ui/bgrbutton.h>
 #include <system/macros.h>
 
-
-TopButton::TopButton()
+BgrButton::BgrButton()
 {
-
+  background.setValues();
 }
 
 
-TopButton::~TopButton()
+BgrButton::~BgrButton()
 {
 
 }
-
 
 // -----------------------------------------------------------------------------
 
-void TopButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
+void BgrButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
                                              float uvx_, float uvy_)
 {
   buttonID = btnID;
   input = in;
 
+
   foreground.setValues(tex_, x_, y_, BTN_SIZE, BTN_SIZE,
                        uvx_, uvy_, BTN_UV_SIZE, BTN_UV_SIZE);
 
 
+  background.setValues(tex_, x_, y_, BTN_SIZE, BTN_SIZE,
+                       BGR_UNSEL_UV_X, BGR_UNSEL_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
+
+
 
 
 
@@ -33,25 +36,27 @@ void TopButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
 
 // -----------------------------------------------------------------------------
 
-void TopButton::update()
+void BgrButton::update()
 {
   handleInput();
 
-  if(mouseHower)
+  //if(selected)
+  if(input->isBottonSelected(buttonID))
   {
-    foreground.setOpacity(TBTN_HIGHTLIGHT);
+    background.set_uv_position(BGR_SEL_UV_X, BGR_SEL_UV_Y);
   }
   else
   {
-    foreground.setOpacity(TBTN_FADE);
+    background.set_uv_position(BGR_UNSEL_UV_X, BGR_UNSEL_UV_Y);
   }
 
 }
 
 // -----------------------------------------------------------------------------
 
-void TopButton::draw()
+void BgrButton::draw()
 {
+  background.draw();
   foreground.draw();
 }
 

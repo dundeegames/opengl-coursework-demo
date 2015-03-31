@@ -130,10 +130,10 @@
     <ClCompile Include="..\..\source\ui\button.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\ui\topbutton.cpp">
+    <ClCompile Include="..\..\source\ui\transpbutton.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\ui\sidebutton.cpp">
+    <ClCompile Include="..\..\source\ui\bgrbutton.cpp">
       <Filter>ui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -288,10 +288,10 @@
     <ClInclude Include="..\..\source\ui\button.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\ui\topbutton.h">
+    <ClInclude Include="..\..\source\ui\transpbutton.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\ui\sidebutton.h">
+    <ClInclude Include="..\..\source\ui\bgrbutton.h">
       <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,14 +1,16 @@
 // /////////////////////////////////////////////////////////////////////////////
 /*!                                                                           \n
-*                TopButton class - WinAPI and OpenGL laboratory               \n
+*                 BgrButton class - WinAPI and OpenGL laboratory              \n
 *                             by Jiri Klic, Jan 2015                          \n
+*                                                                             \n
+*  Button with background effect                                              \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
 
 
 
-#ifndef TOPBUTTON_H
-#define TOPBUTTON_H
+#ifndef BGRBUTTON_H
+#define BGRBUTTON_H
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
@@ -16,23 +18,25 @@
 
 
 
-class TopButton : public Button
+class BgrButton : public Button
 {
 
 public:
-  TopButton();
-  ~TopButton();
+  BgrButton();
+  ~BgrButton();
 
   void init(int btnID, Input* in, GLuint tex_, float x_, float y_, float uvx_, float uvy_);
   void update();
   void draw();
 
 private:
+  Sprite background;
+
 
 };
 
 
-#endif // TOPBUTTON_H
+#endif // BGRBUTTON_H
 
 
 

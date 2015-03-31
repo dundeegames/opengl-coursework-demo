@@ -120,16 +120,104 @@ float Input::getSensitivity()
 
 bool Input::isBottonSelected(int btnID)
 {
+  switch(btnID / 100)   // result 1-3 thakns to concatenating decimals
+  {
+  case 1:
+    if((btnID % TOP_BUTTONS) < MAX_TOP_BUTTONS)
+    {
+      return topButtons[(btnID % TOP_BUTTONS)];
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_TOP_BUTTONS", "Button ID Error", MB_OK);
+      return false;
+    }
+    break;
 
-  return true;
+  case 2:
+    if((btnID % SIDE_BUTTONS) < MAX_SIDE_BUTTONS)
+    {
+      return sideButtons[(btnID % SIDE_BUTTONS)];
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_SIDE_BUTTONS", "Button ID Error", MB_OK);
+      return false;
+    }
+    break;
+
+  case 3:
+    if((btnID % VIEW_BUTTONS) < MAX_VIEW_BUTTONS)
+    {
+      return viewButtons[(btnID % VIEW_BUTTONS)];
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_VIEW_BUTTONS", "Button ID Error", MB_OK);
+      return false;
+    }    
+    break;
+
+  default:
+    MessageBox(NULL, "wrong btnID", "Button ID Error", MB_OK);
+    return false;
+    break;
+
+  }
+
 }
 
 // -----------------------------------------------------------------------------
 
 void Input::selectButton(int btnID)
 {
+  switch(btnID / 100)   // result 1-3 thakns to concatenating decimals
+  {
+  case 1:
+    if((btnID % TOP_BUTTONS) < MAX_TOP_BUTTONS)
+    {
+      topButtons[(btnID % TOP_BUTTONS)] = true;
+    }
+    break;
 
+  case 2:
+    if((btnID % SIDE_BUTTONS) < MAX_SIDE_BUTTONS)
+    {
+      for(int i = 0; i < MAX_SIDE_BUTTONS; i++) // only one selected at the time
+      {
+        if(i == (btnID % SIDE_BUTTONS))
+        {
+          sideButtons[i] = true;
+        }
+        else
+        {
+          sideButtons[i] = false;
+        }
+      }
+    }
+    break;
 
+  case 3:
+    if((btnID % VIEW_BUTTONS) < MAX_VIEW_BUTTONS)
+    {
+      for(int i = 0; i < MAX_VIEW_BUTTONS; i++) // only one selected at the time
+      {
+        if(i == (btnID % VIEW_BUTTONS))
+        {
+          viewButtons[i] = true;
+        }
+        else
+        {
+          viewButtons[i] = false;
+        }
+      }
+    }
+    break;
+
+  default:
+    break;
+
+  }
 
 }
 
@@ -137,7 +225,33 @@ void Input::selectButton(int btnID)
 
 void Input::unselectButton(int btnID)
 {
+  switch(btnID / 100)   // result 1-3 thakns to concatenating decimals
+  {
+  case 1:
+    if((btnID % TOP_BUTTONS) < MAX_TOP_BUTTONS)
+    {
+      topButtons[(btnID % TOP_BUTTONS)] = false;
+    }
+    break;
 
+  case 2:
+    if((btnID % SIDE_BUTTONS) < MAX_SIDE_BUTTONS)
+    {
+      sideButtons[(btnID % SIDE_BUTTONS)] = false;
+    }
+    break;
+
+  case 3:
+    if((btnID % VIEW_BUTTONS) < MAX_VIEW_BUTTONS)
+    {
+      viewButtons[(btnID % VIEW_BUTTONS)] = false;
+    }
+    break;
+
+  default:
+    break;
+
+  }
 
 }
 

@@ -15,7 +15,7 @@
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <Windows.h>
-
+#include <system/macros.h>
 
 
 struct Mouse
@@ -72,8 +72,9 @@ public:
   // add missing functions for handling mouse buttons etc
 private:
   bool keys[256];
-  bool topButtons[9];   // TODO: make more flexible for future UI
-  bool sideButtons[6];
+  bool topButtons[MAX_TOP_BUTTONS];
+  bool sideButtons[MAX_SIDE_BUTTONS];
+  bool viewButtons[MAX_VIEW_BUTTONS];
   Mouse mouse;
   float sensitivity;
 

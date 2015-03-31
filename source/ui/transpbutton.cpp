@@ -1,34 +1,31 @@
-#include <ui/sidebutton.h>
+#include <ui/transpbutton.h>
 #include <system/macros.h>
 
-SideButton::SideButton()
-{
-  background.setValues();
-}
 
-
-SideButton::~SideButton()
+TranspButton::TranspButton()
 {
 
 }
+
+
+TranspButton::~TranspButton()
+{
+
+}
+
 
 // -----------------------------------------------------------------------------
 
-void SideButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
+void TranspButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
                                              float uvx_, float uvy_)
 {
   buttonID = btnID;
   input = in;
 
-
   foreground.setValues(tex_, x_, y_, BTN_SIZE, BTN_SIZE,
                        uvx_, uvy_, BTN_UV_SIZE, BTN_UV_SIZE);
 
 
-  background.setValues(tex_, x_, y_, BTN_SIZE, BTN_SIZE,
-                       SBGR_UNSEL_UV_X, SBGR_UNSEL_UV_Y, BTN_UV_SIZE, BTN_UV_SIZE);
-
-
 
 
 
@@ -36,26 +33,25 @@ void SideButton::init(int btnID, Input* in, GLuint tex_, float x_, float y_,
 
 // -----------------------------------------------------------------------------
 
-void SideButton::update()
+void TranspButton::update()
 {
   handleInput();
 
-  if(selected)
+  if(mouseHower || (input->isBottonSelected(buttonID)) )
   {
-    background.set_uv_position(SBGR_SEL_UV_X, SBGR_SEL_UV_Y);
+    foreground.setOpacity(TBTN_HIGHTLIGHT);
   }
   else
   {
-    background.set_uv_position(SBGR_UNSEL_UV_X, SBGR_UNSEL_UV_Y);
+    foreground.setOpacity(TBTN_FADE);
   }
 
 }
 
 // -----------------------------------------------------------------------------
 
-void SideButton::draw()
+void TranspButton::draw()
 {
-  background.draw();
   foreground.draw();
 }
 

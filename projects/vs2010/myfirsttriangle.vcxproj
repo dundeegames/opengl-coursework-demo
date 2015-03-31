@@ -61,8 +61,8 @@
     <ClCompile Include="..\..\source\ui\font.cpp" />
     <ClCompile Include="..\..\source\ui\gui.cpp" />
     <ClCompile Include="..\..\source\ui\input.cpp" />
-    <ClCompile Include="..\..\source\ui\sidebutton.cpp" />
-    <ClCompile Include="..\..\source\ui\topbutton.cpp" />
+    <ClCompile Include="..\..\source\ui\bgrbutton.cpp" />
+    <ClCompile Include="..\..\source\ui\transpbutton.cpp" />
     <ClCompile Include="..\..\source\ui\viewport.cpp" />
     <ClCompile Include="..\..\source\ui\winmanager.cpp" />
   </ItemGroup>
@@ -169,8 +169,8 @@
     <ClInclude Include="..\..\source\ui\font.h" />
     <ClInclude Include="..\..\source\ui\gui.h" />
     <ClInclude Include="..\..\source\ui\input.h" />
-    <ClInclude Include="..\..\source\ui\sidebutton.h" />
-    <ClInclude Include="..\..\source\ui\topbutton.h" />
+    <ClInclude Include="..\..\source\ui\bgrbutton.h" />
+    <ClInclude Include="..\..\source\ui\transpbutton.h" />
     <ClInclude Include="..\..\source\ui\viewport.h" />
     <ClInclude Include="..\..\source\ui\winmanager.h" />
   </ItemGroup>

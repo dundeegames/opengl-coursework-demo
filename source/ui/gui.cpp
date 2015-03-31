@@ -63,12 +63,12 @@ void Gui::setWindowSize(float width, float height)
 
 void Gui::update()
 {
-  for(std::vector<TopButton>::iterator it = topButtons.begin(); it != topButtons.end(); it++)
+  for(std::vector<TranspButton>::iterator it = transpButtons.begin(); it != transpButtons.end(); it++)
   {
     it->update();
   }
 
-  for(std::vector<SideButton>::iterator it = sideButtons.begin(); it != sideButtons.end(); it++)
+  for(std::vector<BgrButton>::iterator it = bgrButtons.begin(); it != bgrButtons.end(); it++)
   {
     it->update();
   }
@@ -148,7 +148,7 @@ void Gui::resizeMenu()
 
 
   sidebarTop.setValues(menuTexture, SDB_ORIGIN_X, SDB_ORIGIN_Y, SDB_WIDTH, SDB_T_HEIGHT,
-                                SDB_UV_X, SDB_T_UV_Y, SDB_UV_W, SDB_T_UV_H);
+                                SDB_UV_X, SDB_T_UV_Y, SDB_UV_W, SDB_TS_UV_H);
 
   sidebarMid.setValues(menuTexture, SDB_ORIGIN_X, SDB_M_Y, SDB_WIDTH, SDB_M_HEIGHT,
                                 SDB_UV_X, SDB_M_UV_Y, SDB_UV_W, SDB_MB_UV_H);
@@ -157,6 +157,10 @@ void Gui::resizeMenu()
                                 SDB_UV_X, SDB_B_UV_Y, SDB_UV_W, SDB_MB_UV_H);
 
   
+  sidebarSep.setValues(menuTexture, SDB_ORIGIN_X, SDB_S_Y, SDB_WIDTH, SDB_S_HEIGHT,
+                                SDB_UV_X, SDB_S_UV_Y, SDB_UV_W, SDB_TS_UV_H);
+
+
   
   logoTri.setValues(menuTexture, TRI_ORIGIN_X, TRI_ORIGIN_Y, TRI_SIZE, TRI_SIZE,
                                 TRI_UV_X, TRI_UV_Y, TRI_UV_SIZE, TRI_UV_SIZE);
@@ -169,38 +173,40 @@ void Gui::resizeMenu()
 
 void Gui::setButtons()
 {
-  initTopButton(TBTN1_SPHERE, TBTN1_ORIGIN_X, TBTN_ORIGIN_Y, TBTN1_UV_X, TBTN1_UV_Y);
+  // top buttons
+  initTranspButton(TBTN1_SPHERE, TBTN1_ORIGIN_X, TBTN_ORIGIN_Y, TBTN1_UV_X, TBTN1_UV_Y);
 
-  initTopButton(TBTN2_CUBE, TBTN2_ORIGIN_X, TBTN_ORIGIN_Y, TBTN2_UV_X, TBTN2_UV_Y);
+  initTranspButton(TBTN2_CUBE, TBTN2_ORIGIN_X, TBTN_ORIGIN_Y, TBTN2_UV_X, TBTN2_UV_Y);
 
-  initTopButton(TBTN3_CYLINDER, TBTN3_ORIGIN_X, TBTN_ORIGIN_Y, TBTN3_UV_X, TBTN3_UV_Y);
+  initTranspButton(TBTN3_CYLINDER, TBTN3_ORIGIN_X, TBTN_ORIGIN_Y, TBTN3_UV_X, TBTN3_UV_Y);
 
-  initTopButton(TBTN4_CONE, TBTN4_ORIGIN_X, TBTN_ORIGIN_Y, TBTN4_UV_X, TBTN4_UV_Y);
+  initTranspButton(TBTN4_CONE, TBTN4_ORIGIN_X, TBTN_ORIGIN_Y, TBTN4_UV_X, TBTN4_UV_Y);
 
-  initTopButton(TBTN5_PLANE, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, TBTN5_UV_X, TBTN5_UV_Y);
+  initTranspButton(TBTN5_PLANE, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, TBTN5_UV_X, TBTN5_UV_Y);
 
-  initTopButton(TBTN6_TORUS, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, TBTN6_UV_X, TBTN6_UV_Y);
+  initTranspButton(TBTN6_TORUS, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, TBTN6_UV_X, TBTN6_UV_Y);
 
-  initTopButton(TBTN7_PYRAMID, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, TBTN7_UV_X, TBTN7_UV_Y);
+  initTranspButton(TBTN7_PYRAMID, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, TBTN7_UV_X, TBTN7_UV_Y);
 
-  initTopButton(TBTN8_PIPE, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, TBTN8_UV_X, TBTN8_UV_Y);
-
-  initTopButton(TBTN9_GAME, TBTN9_ORIGIN_X, TBTN_ORIGIN_Y, TBTN9_UV_X, TBTN9_UV_Y);
-
+  initTranspButton(TBTN8_PIPE, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, TBTN8_UV_X, TBTN8_UV_Y);
 
 
-  initSideButton(SBTN1_SELECT, SBTN_ORIGIN_X, SBTN1_ORIGIN_Y, SBTN1_UV_X, SBTN1_UV_Y);
+  // side buttons
+  initBgrButton(SBTN1_SELECT, SBTN_ORIGIN_X, SBTN1_ORIGIN_Y, SBTN1_UV_X, SBTN1_UV_Y);
 
-  initSideButton(SBTN2_MOVE, SBTN_ORIGIN_X, SBTN2_ORIGIN_Y, SBTN2_UV_X, SBTN2_UV_Y);
+  initBgrButton(SBTN2_MOVE, SBTN_ORIGIN_X, SBTN2_ORIGIN_Y, SBTN2_UV_X, SBTN2_UV_Y);
 
-  initSideButton(SBTN3_ROTATE, SBTN_ORIGIN_X, SBTN3_ORIGIN_Y, SBTN3_UV_X, SBTN3_UV_Y);
+  initBgrButton(SBTN3_ROTATE, SBTN_ORIGIN_X, SBTN3_ORIGIN_Y, SBTN3_UV_X, SBTN3_UV_Y);
 
-  initSideButton(SBTN4_SCALE, SBTN_ORIGIN_X, SBTN4_ORIGIN_Y, SBTN4_UV_X, SBTN4_UV_Y);
+  initBgrButton(SBTN4_SCALE, SBTN_ORIGIN_X, SBTN4_ORIGIN_Y, SBTN4_UV_X, SBTN4_UV_Y);
 
-  initSideButton(SBTN5_1VIEW, SBTN_ORIGIN_X, SBTN5_ORIGIN_Y, SBTN5_UV_X, SBTN5_UV_Y);
 
-  initSideButton(SBTN6_4VIEW, SBTN_ORIGIN_X, SBTN6_ORIGIN_Y, SBTN6_UV_X, SBTN6_UV_Y); 
+  // view buttons (rendered as TranspButton)
+  initTranspButton(VBTN1_1VIEW, SBTN_ORIGIN_X, VBTN1_ORIGIN_Y, VBTN1_UV_X, VBTN1_UV_Y);
 
+  initTranspButton(VBTN2_4VIEW, SBTN_ORIGIN_X, VBTN2_ORIGIN_Y, VBTN2_UV_X, VBTN2_UV_Y); 
+
+  initTranspButton(VBTN3_GAME, SBTN_ORIGIN_X, VBTN3_ORIGIN_Y, VBTN3_UV_X, VBTN3_UV_Y);
 }
 
 // -----------------------------------------------------------------------------
@@ -220,16 +226,19 @@ void Gui::renderMenu()
     sidebarMid.draw();
     sidebarBtm.draw();
 
+    sidebarSep.draw();
+
+
     logoTri.draw();
     logo3D.draw();
 
 
-    for(std::vector<TopButton>::iterator it = topButtons.begin(); it != topButtons.end(); it++)
+    for(std::vector<TranspButton>::iterator it = transpButtons.begin(); it != transpButtons.end(); it++)
     {
       it->draw();
     }
 
-    for(std::vector<SideButton>::iterator it = sideButtons.begin(); it != sideButtons.end(); it++)
+    for(std::vector<BgrButton>::iterator it = bgrButtons.begin(); it != bgrButtons.end(); it++)
     {
       it->draw();
     }
@@ -243,23 +252,23 @@ void Gui::renderMenu()
 
 // -----------------------------------------------------------------------------
 
-void Gui::initTopButton(int btnID, float x_, float y_, float uvx_, float uvy_)
+void Gui::initTranspButton(int btnID, float x_, float y_, float uvx_, float uvy_)
 {
-  TopButton button;
+  TranspButton button;
   button.init(btnID, input, menuTexture, x_, y_, uvx_, uvy_);
 
-  topButtons.push_back(button);
+  transpButtons.push_back(button);
 
 }
 
 // -----------------------------------------------------------------------------
 
-void Gui::initSideButton(int btnID, float x_, float y_, float uvx_, float uvy_)
+void Gui::initBgrButton(int btnID, float x_, float y_, float uvx_, float uvy_)
 {
-  SideButton button;
+  BgrButton button;
   button.init(btnID, input, menuTexture, x_, y_, uvx_, uvy_);
 
-  sideButtons.push_back(button);
+  bgrButtons.push_back(button);
 
 }
 
