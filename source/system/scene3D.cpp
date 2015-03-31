@@ -107,10 +107,9 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //glShadeModel(GL_FLAT);                  // Enable Flat Shading
   glShadeModel(GL_SMOOTH);                  // Enable Smooth Shading
   //glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   // Black(Transparent) Background
-  //glClearColor(0.5f, 0.5f, 0.5f, 1.0f);   // Gray Background
-  glClearDepth(1.0f);                     // Depth Buffer Setup
-  glEnable(GL_DEPTH_TEST);                // Enables Depth Testing
-  glDepthFunc(GL_LEQUAL);                 // The Type Of Depth Testing To Do
+  glClearDepth(1.0f);                       // Depth Buffer Setup
+  glEnable(GL_DEPTH_TEST);                  // Enables Depth Testing
+  glDepthFunc(GL_LEQUAL);                   // The Type Of Depth Testing To Do
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Really Nice Perspective Calculations
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -123,13 +122,16 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
+
+  input->selectButton(SBTN1_SELECT);
+  input->selectButton(VBTN2_4VIEW);
  
   gui.init(&resManager, input);
-  viewport1.init(VIEW_MAIN, FIXED_POINT, in, &resManager);
-  viewport2.init(VIEW_SIDE, FIXED_POINT, in, &resManager);
-  viewport3.init(VIEW_FRONT, FIXED_POINT, in, &resManager);
-  viewport4.init(VIEW_TOP, FIXED_POINT, in, &resManager);
-  viewport5.init(VIEW_PERSP, FIXED_POINT, in, &resManager);
+  viewport1.init(VIEW_MAIN, input, &resManager);
+  viewport2.init(VIEW_SIDE, input, &resManager);
+  viewport3.init(VIEW_FRONT, input, &resManager);
+  viewport4.init(VIEW_TOP, input, &resManager);
+  viewport5.init(VIEW_PERSP, input, &resManager);
   viewport5.select();
 
   ambient = new Light(GL_LIGHT0);
@@ -166,32 +168,29 @@ void Scene3D::DrawScene(float dt)
 
   viewport1.begin(true, false);
 
-    //render(); // render all lighting, geometry, etc.
-
 
     viewport2.begin();
       render(); // render all lighting, geometry, etc.
     viewport2.end();
-      //gui.test1();
+
 
     viewport3.begin();
       render(); // render all lighting, geometry, etc.
     viewport3.end();
-      //gui.test1();
+
 
     viewport4.begin();
       render(); // render all lighting, geometry, etc.
     viewport4.end();
-      //gui.test1();
+
 
     viewport5.begin();
       render(); // render all lighting, geometry, etc.
     viewport5.end();
-      //gui.test1();
+
 
   viewport1.end();
     gui.renderMenu();
-    gui.renderText();
 
 
 
@@ -234,7 +233,6 @@ void Scene3D::HandleInput(float dt)
 
   //robotArm.update(dt);
 
-  //camera.update(dt);
   viewport1.update(dt);
   viewport2.update(dt);
   viewport3.update(dt);
@@ -275,6 +273,59 @@ void Scene3D::HandleInput(float dt)
     loadFile();
     input->SetKeyUp('L');                   //force un-pressing of L
   }
+
+
+
+  if(input->isBottonSelected(TBTN1_SPHERE))
+  {
+    // generate model
+    input->unselectButton(TBTN1_SPHERE);
+  }
+
+  if(input->isBottonSelected(TBTN2_CUBE))
+  {
+    // generate model
+    input->unselectButton(TBTN2_CUBE);
+  }
+
+  if(input->isBottonSelected(TBTN3_CYLINDER))
+  {
+    // generate model
+    input->unselectButton(TBTN3_CYLINDER);
+  }
+
+  if(input->isBottonSelected(TBTN4_CONE))
+  {
+    // generate model
+    input->unselectButton(TBTN4_CONE);
+  }
+
+  if(input->isBottonSelected(TBTN5_PLANE))
+  {
+    // generate model
+    input->unselectButton(TBTN5_PLANE);
+  }
+
+  if(input->isBottonSelected(TBTN6_TORUS))
+  {
+    // generate model
+    input->unselectButton(TBTN6_TORUS);
+  }
+
+  if(input->isBottonSelected(TBTN7_PYRAMID))
+  {
+    // generate model
+    input->unselectButton(TBTN7_PYRAMID);
+  }
+
+  if(input->isBottonSelected(TBTN8_PIPE))
+  {
+    // generate model
+    input->unselectButton(TBTN8_PIPE);
+  }
+
+
+
 
 }// end of HandleInput
 

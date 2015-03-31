@@ -20,11 +20,24 @@
 #include <math/vec3.h>
 
 
-enum CameraType {FIXED_POINT, ROTATING, SCROLLING, MOVEABLE, FLOATING, TRACKING, THIRD_PERSON, FIRST_PERSON};
-#define PI 3.1415f
+enum CameraType { FXP_MAIN,         // Fixed Point
+                  MOV_TOP,          // Movable 2D / Ortho
+                  MOV_SIDE,
+                  MOV_FRONT,
+                  FLT_PERSP,        // floating perspective
+                  FST_PERSON,       // 1st person game
+
+                  // unused options
+                  ROTATING,         // rotate only
+                  SCROLLING,        // similar to Movable, but autoscrolling 
+                  TRACKING,
+                  TRD_PERSON       // 3rd person game
+
+                };
 
 
-// TODO does camera need dt in update?
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Camera
 {
@@ -61,6 +74,12 @@ private:
   CameraType type;
   Input* input;
   //float sensitivity;
+
+  void checkKeyborard(int frwd, int back, int rgt, int lft,
+                      int up_, int dwn, float dt);
+
+
+
 };
 
 

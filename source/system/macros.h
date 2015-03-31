@@ -27,6 +27,46 @@
 #define WIN_MIN_HEIGHT    500
 
 
+// CAMERA ----------------------------------------------------------------------
+
+#define PI                3.1415f
+#define RADS              PI/180
+#define YAW               0
+#define PITCH             1
+#define ROLL              2
+
+// Default values for FXP_MAIN camera
+#define DEF_MAIN_POS      10.0f, 7.0f, 10.0f
+#define DEF_MAIN_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_MAIN_FWD      0.0f, 0.0f, 0.0f
+#define DEF_MAIN_UP       0.0f, 1.0f, 0.0f
+
+// Default values for MOV_TOP camera
+#define DEF_TOP_POS       10.0f, 7.0f, 10.0f
+#define DEF_TOP_ROT       -45.0f, -30.0f, 0.0f
+#define DEF_TOP_FWD       0.0f, 0.0f, 0.0f
+#define DEF_TOP_UP        0.0f, 1.0f, 0.0f
+
+// Default values for MOV_SIDE camera
+#define DEF_SIDE_POS      10.0f, 7.0f, 10.0f
+#define DEF_SIDE_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_SIDE_FWD      0.0f, 0.0f, 0.0f
+#define DEF_SIDE_UP       0.0f, 1.0f, 0.0f
+
+// Default values for MOV_FRONT camera
+#define DEF_FRNT_POS      10.0f, 7.0f, 10.0f
+#define DEF_FRNT_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_FRNT_FWD      0.0f, 0.0f, 0.0f
+#define DEF_FRNT_UP       0.0f, 1.0f, 0.0f
+
+// Default values for FLT_PERSP camera
+#define DEF_PERS_POS      10.0f, 7.0f, 10.0f
+#define DEF_PERS_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_PERS_FWD      0.0f, 0.0f, 0.0f
+#define DEF_PERS_UP       0.0f, 1.0f, 0.0f
+
+
+
 // VIEWPORT --------------------------------------------------------------------
 #define Z_POSITION        0.0f
 

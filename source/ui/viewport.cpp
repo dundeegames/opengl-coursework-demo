@@ -14,10 +14,41 @@ Viewport::~Viewport()
 
 // -----------------------------------------------------------------------------
 
-void Viewport::init(ViewportType view, CameraType cmr, Input* in, ResourceManager* resMngr)
+void Viewport::init(ViewportType view, Input* in, ResourceManager* resMngr)
 {
   type = view;
-  camera.init(cmr, in);
+
+  switch(type)
+  {
+  case VIEW_MAIN:
+    camera.init(FXP_MAIN, NULL);
+    break;
+
+  case VIEW_PERSP:
+    camera.init(FLT_PERSP, in);
+    break;
+
+  case VIEW_TOP:
+    camera.init(MOV_TOP, in);
+    break;
+
+  case VIEW_SIDE:
+    camera.init(MOV_SIDE, in);
+    break;
+
+  case VIEW_FRONT:
+    camera.init(MOV_FRONT, in);
+    break;
+
+  case VIEW_GAME:
+    camera.init(FST_PERSON, in);
+    break;
+
+  default:
+    break;
+
+  }
+  
   font = resMngr->getFont("tahoma");
   selected = false;
   activated = true;
