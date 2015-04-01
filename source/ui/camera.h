@@ -31,7 +31,7 @@ enum CameraType { FXP_MAIN,         // Fixed Point
                   ROTATING,         // rotate only
                   SCROLLING,        // similar to Movable, but autoscrolling 
                   TRACKING,
-                  TRD_PERSON       // 3rd person game
+                  TRD_PERSON        // 3rd person game
 
                 };
 
@@ -73,6 +73,8 @@ private:
 
   CameraType type;
   Input* input;
+
+  bool mouseDragging;
   //float sensitivity;
 
   void checkKeyborard(int frwd, int back, int rgt, int lft,

@@ -151,96 +151,42 @@ void Camera::handleInput(float dt)
   case MOV_SIDE:
   case MOV_FRONT:
 
-    // TODO: check if not causing an error 
-    //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+    checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
     break;
 
   case FLT_PERSP:
-
-    checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-
+    //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
     //checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
 
-    //if(input->isKeyDown('A'))                  // if W key is pressed
-    //{
-    //  position = position.add( forward, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown('Z'))             // if S key is pressed
-    //{
-    //  position = position.subtract( forward, dt * input->getSensitivity() );
-    //}
+    if(input->getWheelDelta() != 0)
+    {
+      position = position.add( forward, (  dt * input->getSensitivity() * input->getWheelDelta()) );
+      input->setWheelDelta(0);
+
+    }
+
+    if(input->isKeyDown(VK_SPACE) && input->leftMouseBtn())
+    {
+      rotation = rotation.add(Vec3(input->getDragXdt(), input->getDragYdt(), 0.0f), (16.0f * dt * input->getSensitivity()) );
+      input->resetDragCoords();
+    }
 
 
-    //if(input->isKeyDown(VK_RIGHT))                  // if D key is pressed
-    //{
-    //  position = position.add( right, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown(VK_LEFT))             // if A key is pressed
-    //{
-    //  position = position.subtract( right, dt * input->getSensitivity() );
-    //}
 
 
-    //if(input->isKeyDown(VK_UP))                  // if E key is pressed
-    //{
-    //  position = position.add( up, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown(VK_DOWN))             // if F key is pressed
-    //{
-    //  position = position.subtract( up, dt * input->getSensitivity() );
-    //}
+
     
     break;
 
-
-
   case FST_PERSON:
     checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
-
-    //if(input->isKeyDown('W'))                  // forward
-    //{
-    //  position = position.add( forward, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown('S'))             // backward
-    //{
-    //  position = position.subtract( forward, dt * input->getSensitivity() );
-    //}
-
-
-    //if(input->isKeyDown('D'))                  // right
-    //{
-    //  position = position.add( right, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown('A'))             // left
-    //{
-    //  position = position.subtract( right, dt * input->getSensitivity() );
-    //}
-
-
-    //if(input->isKeyDown('E'))                  // up
-    //{
-    //  position = position.add( up, dt * input->getSensitivity() );
-    //}
-    //else if(input->isKeyDown('F'))             // down
-    //{
-    //  position = position.subtract( up, dt * input->getSensitivity() );
-    //}
 
     break;
 
   default:
     break;
 
-
-
-
-
   }
-
-
-
-
-
 
 }
 

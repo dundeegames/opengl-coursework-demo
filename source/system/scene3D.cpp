@@ -132,6 +132,9 @@ void Scene3D::Init(HWND* wnd, Input* in)
   viewport3.init(VIEW_FRONT, input, &resManager);
   viewport4.init(VIEW_TOP, input, &resManager);
   viewport5.init(VIEW_PERSP, input, &resManager);
+  viewport2.select();
+  viewport3.select();
+  viewport4.select();
   viewport5.select();
 
   ambient = new Light(GL_LIGHT0);

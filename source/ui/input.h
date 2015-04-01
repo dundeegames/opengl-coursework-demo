@@ -20,12 +20,14 @@
 
 struct Mouse
 {
-  int x,y;
+  int x,y, dragX, dragY;
   bool left, middle, right;
   Mouse()
   {
     x = 0;
     y = 0;
+    dragX = 0;
+    dragY = 0;
     left = false;
     middle = false;
     right = false;
@@ -66,11 +68,30 @@ public:
   void selectButton(int btnID);
   void unselectButton(int btnID);
 
+
+  void setWheelDelta(int wdt) {wheelDelta = wdt;}
+  int getWheelDelta() const {return wheelDelta;}
+
+  void resetDragCoords();
+  void setDragX(int x_) {mouse.dragX = x_;}
+  void setDragY(int y_) {mouse.dragY = y_;}
+
+  /*!
+  * returns delta from original coords
+  */
+  int getDragXdt();
+  int getDragYdt();
+
+
+
+
+
   // set mouse botton down (left, right, middle)
   // set mouse botton up
 
   // add missing functions for handling mouse buttons etc
 private:
+  int wheelDelta;
   bool keys[256];
   bool topButtons[MAX_TOP_BUTTONS];
   bool sideButtons[MAX_SIDE_BUTTONS];

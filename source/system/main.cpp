@@ -141,6 +141,8 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     case WM_LBUTTONDOWN:
       myInput.setLeftMouseBtn(true);
+      myInput.setDragX(LOWORD (lParam));
+      myInput.setDragY(HIWORD (lParam));
       /*
       char position[20];
       sprintf(position, "x=%d y=%d" ,myInput.getMouseX(), myInput.getMouseY());
@@ -150,6 +152,10 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     case WM_LBUTTONUP:
       myInput.setLeftMouseBtn(false);
+      break;
+
+    case WM_MOUSEWHEEL:
+      myInput.setWheelDelta(GET_WHEEL_DELTA_WPARAM(wParam) );
       break;
 
     case WM_PAINT:

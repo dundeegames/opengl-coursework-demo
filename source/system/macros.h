@@ -36,26 +36,26 @@
 #define ROLL              2
 
 // Default values for FXP_MAIN camera
-#define DEF_MAIN_POS      10.0f, 7.0f, 10.0f
-#define DEF_MAIN_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_MAIN_POS      0.0f, 0.0f, 10.0f
+#define DEF_MAIN_ROT      0.0f, 0.0f, 0.0f
 #define DEF_MAIN_FWD      0.0f, 0.0f, 0.0f
 #define DEF_MAIN_UP       0.0f, 1.0f, 0.0f
 
 // Default values for MOV_TOP camera
-#define DEF_TOP_POS       10.0f, 7.0f, 10.0f
-#define DEF_TOP_ROT       -45.0f, -30.0f, 0.0f
+#define DEF_TOP_POS       0.0f, 10.0f, 0.0f
+#define DEF_TOP_ROT       0.0f, -90.0f, 0.0f
 #define DEF_TOP_FWD       0.0f, 0.0f, 0.0f
 #define DEF_TOP_UP        0.0f, 1.0f, 0.0f
 
 // Default values for MOV_SIDE camera
-#define DEF_SIDE_POS      10.0f, 7.0f, 10.0f
-#define DEF_SIDE_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_SIDE_POS      -10.0f, 0.0f, 0.0f
+#define DEF_SIDE_ROT      90.0f, 0.0f, 0.0f
 #define DEF_SIDE_FWD      0.0f, 0.0f, 0.0f
 #define DEF_SIDE_UP       0.0f, 1.0f, 0.0f
 
 // Default values for MOV_FRONT camera
-#define DEF_FRNT_POS      10.0f, 7.0f, 10.0f
-#define DEF_FRNT_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_FRNT_POS      0.0f, 0.0f, 10.0f
+#define DEF_FRNT_ROT      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_FWD      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_UP       0.0f, 1.0f, 0.0f
 

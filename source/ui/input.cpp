@@ -11,6 +11,9 @@ Input::Input()
   {
     keys[i] = false;
   }
+
+  wheelDelta = 0;
+
 }
 
 Input::~Input()
@@ -252,6 +255,29 @@ void Input::unselectButton(int btnID)
     break;
 
   }
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Input::resetDragCoords()
+{
+  mouse.dragX = mouse.x;
+  mouse.dragY = mouse.y;
+}
+
+// -----------------------------------------------------------------------------
+
+int Input::getDragXdt()
+{
+  return (mouse.x - mouse.dragX);
+}
+
+// -----------------------------------------------------------------------------
+
+int Input::getDragYdt()
+{
+  return (mouse.dragY - mouse.y);
 
 }
 
