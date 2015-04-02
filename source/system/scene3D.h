@@ -22,6 +22,7 @@
 #include <ui/input.h>
 #include <ui/gui.h>
 #include <ui/viewport.h>
+#include <ui/viewmanager.h>
 
 #include <assets/cube.h>
 #include <assets/arm.h>
@@ -55,7 +56,10 @@ public:
 
 protected:
   bool CreatePixelFormat(HDC);
-  void ResizeGLWindow(int, int);    //width and height
+  void resizeGLWindow(int width, int height);
+  void resizeViewport();
+
+
   void InitializeOpenGL(int, int);  // width and height
   void HandleInput(float dt);
 
@@ -79,11 +83,14 @@ private:
   COORD center;
 
   Gui gui;
-  Viewport viewport0;   // Main
-  Viewport viewport1;   // Bottom-Left
-  Viewport viewport2;   // Bottom-Right
-  Viewport viewport3;   // Top-Left
-  Viewport viewport4;   // Top-Right
+  ViewManager viewManager;
+
+
+  //Viewport viewport0;   // Main
+  //Viewport viewport1;   // Bottom-Left
+  //Viewport viewport2;   // Bottom-Right
+  //Viewport viewport3;   // Top-Left
+  //Viewport viewport4;   // Top-Right
 
   std::vector<Model> models;
 

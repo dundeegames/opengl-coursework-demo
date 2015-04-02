@@ -136,6 +136,9 @@
     <ClCompile Include="..\..\source\ui\bgrbutton.cpp">
       <Filter>ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\ui\viewmanager.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\system\resourcemanager.h">
@@ -292,6 +295,9 @@
       <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\ui\bgrbutton.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\viewmanager.h">
       <Filter>ui</Filter>
     </ClInclude>
   </ItemGroup>

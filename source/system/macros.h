@@ -27,6 +27,33 @@
 #define WIN_MIN_HEIGHT    500
 
 
+// SCENE3D ---------------------------------------------------------------------
+#define VIEW_XPOS         46.0f
+#define VIEW_YPOS         46.0f
+
+#define VIEW_XOFFSET      (VIEW_XPOS + 4.0f)
+#define VIEW_YOFFSET      (VIEW_YPOS + 4.0f)
+
+// VIEWPORT / VIEWMANAGER ------------------------------------------------------
+#define Z_POSITION        0.0f
+
+// Background
+#define GRADIENT_TOP      0.533f, 0.615f, 0.698f
+#define GRADIENT_BOTTOM   0.07f, 0.07f, 0.07f
+
+// Label offsets
+#define PERSP_OFFSET      ( (float)(width >> 1) - 15.0f)
+#define TOP_OFFSET        ( (float)(width >> 1) - 11.0f)
+#define SIDE_OFFSET       ( (float)(width >> 1) - 12.0f)
+#define FRONT_OFFSET      ( (float)(width >> 1) - 14.0f)
+
+#define MAX_VIEWPORTS     5
+#define VIEWPORT_MAIN     0
+#define VIEWPORT_SIDE     1
+#define VIEWPORT_FRNT     2
+#define VIEWPORT_TOP      3
+#define VIEWPORT_PERS     4
+
 // CAMERA ----------------------------------------------------------------------
 
 #define PI                3.1415f
@@ -69,26 +96,6 @@
 //#define DEF_PERS_ROT      0.0f, 0.0f, 0.0f
 //#define DEF_PERS_FWD      0.0f, 0.0f, 0.0f
 //#define DEF_PERS_UP       0.0f, 1.0f, 0.0f
-
-// VIEWPORT --------------------------------------------------------------------
-#define Z_POSITION        0.0f
-
-// Background
-#define GRADIENT_TOP      0.533f, 0.615f, 0.698f
-#define GRADIENT_BOTTOM   0.07f, 0.07f, 0.07f
-
-// Label offsets
-#define PERSP_OFFSET      ( (float)(width >> 1) - 15.0f)
-#define TOP_OFFSET        ( (float)(width >> 1) - 11.0f)
-#define SIDE_OFFSET       ( (float)(width >> 1) - 12.0f)
-#define FRONT_OFFSET      ( (float)(width >> 1) - 14.0f)
-
-#define MAX_VIEWPORTS     5
-#define VIEW0             0
-#define VIEW1             1
-#define VIEW2             2
-#define VIEW3             3
-#define VIEW4             4
 
 // GUI -------------------------------------------------------------------------
 #define TEXTURE_WIDTH       256.0f

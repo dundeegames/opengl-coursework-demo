@@ -1,5 +1,5 @@
 #include <system/scene3D.h>
-
+#include <system/macros.h>
 
 
 // ------------------------------------------------------------------------------
@@ -42,33 +42,16 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
 /*!
 * Initialize The GL Window
 */
-void Scene3D::ResizeGLWindow(int width, int height)
+void Scene3D::resizeGLWindow(int width, int height)
 { 
-  const GLint VIEW_POS_X  = 46;
-  const GLint VIEW_POS_Y = 46;
-
-  GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
-  GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
-
-  // Main
-  viewport0.setSize(0, 0, width, height);
-  
-  // Bottom-Left
-  viewport1.setSize(VIEW_POS_X, 0, viewWidth, viewHeight);
-  
-  
-  viewport2.setSize( (VIEW_POS_X + viewWidth + 4), 0, viewWidth, viewHeight);
-  
-  
-  viewport3.setSize(VIEW_POS_X, (viewHeight + 4), viewWidth, viewHeight);
-
-
-  viewport4.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
-
+  viewManager.setWindowSize( (float)width, (float)height);
   gui.setWindowSize( (float)width, (float)height);
 }
 
 // ------------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------
 
 void Scene3D::InitializeOpenGL(int width, int height) 
 { 
@@ -81,7 +64,7 @@ void Scene3D::InitializeOpenGL(int width, int height)
     hrc = wglCreateContext(hdc);  //  creates  rendering context from  hdc
     wglMakeCurrent(hdc, hrc);     //  Use this HRC.
 
-  ResizeGLWindow(width, height);  // Setup the Screen
+  resizeGLWindow(width, height);  // Setup the Screen
 }
 
 // -----------------------------------------------------------------------------
@@ -113,30 +96,18 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Really Nice Perspective Calculations
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
   // BMFont
-  glAlphaFunc( GL_GREATER, 0 );              // set the alpha transparency
+  glAlphaFunc( GL_GREATER, 0 );             // set the alpha transparency
   glEnable( GL_ALPHA_TEST );                // and turn it on
 
 
-  //Also, do any other setting variables here for your app if you wish
   // Initialise other variables
-
   input->selectButton(SBTN1_SELECT);
   input->selectButton(VBTN2_4VIEW);
  
   gui.init(&resManager, input);
-  viewport0.init(VIEW0, VIEW_MAIN, input, &resManager);
-  viewport1.init(VIEW1, VIEW_SIDE, input, &resManager);
-  viewport2.init(VIEW2, VIEW_FRONT, input, &resManager);
-  viewport3.init(VIEW3, VIEW_TOP, input, &resManager);
-  viewport4.init(VIEW4, VIEW_PERSP, input, &resManager);
-  //viewport1.select();
-  //viewport2.select();
-  //viewport3.select();
-  input->selectViewport(VIEW4);
-  //viewport4.select();
+  viewManager.init(&resManager, input);
+
 
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
@@ -170,33 +141,31 @@ void Scene3D::DrawScene(float dt)
   glLoadIdentity();       // load Identity Matrix
 
 
-  viewport0.begin(true, false);
+  viewManager.beginView(VIEWPORT_MAIN, true, false);
 
 
-    viewport1.begin();
+    viewManager.beginView(VIEWPORT_SIDE);
       render(); // render all lighting, geometry, etc.
-    viewport1.end();
+    viewManager.endView(VIEWPORT_SIDE);
 
 
-    viewport2.begin();
+    viewManager.beginView(VIEWPORT_FRNT);
       render(); // render all lighting, geometry, etc.
-    viewport2.end();
+    viewManager.endView(VIEWPORT_FRNT);
 
 
-    viewport3.begin();
+    viewManager.beginView(VIEWPORT_TOP);
       render(); // render all lighting, geometry, etc.
-    viewport3.end();
+    viewManager.endView(VIEWPORT_TOP);
 
 
-    viewport4.begin();
+    viewManager.beginView(VIEWPORT_PERS);
       render(); // render all lighting, geometry, etc.
-    viewport4.end();
+    viewManager.endView(VIEWPORT_PERS);
 
 
-  viewport0.end();
+  viewManager.endView(VIEWPORT_MAIN);
     gui.renderMenu();
-
-
 
   SwapBuffers(hdc);       // Swap the frame buffers
 
@@ -210,7 +179,7 @@ void Scene3D::Resize()
     return;
 
   GetClientRect(*hwnd, &screenRect);  
-  ResizeGLWindow(screenRect.right, screenRect.bottom);
+  resizeGLWindow(screenRect.right, screenRect.bottom);
 
 }
 
@@ -237,40 +206,36 @@ void Scene3D::HandleInput(float dt)
 
   //robotArm.update(dt);
 
-  viewport0.update(dt);
-  viewport1.update(dt);
-  viewport2.update(dt);
-  viewport3.update(dt);
-  viewport4.update(dt);
+  viewManager.update(dt);
 
 
-  if(input->isKeyDown('1'))                 // if 4 is pressed
-  {
-    // makes the front face wireframe, not the back face
-    input->selectViewport(VIEW1);   
-    input->SetKeyUp('1');                   //force un-pressing of 4
-  }
+  //if(input->isKeyDown('1'))                 // if 4 is pressed
+  //{
+  //  // makes the front face wireframe, not the back face
+  //  input->selectViewport(VIEWPORT_SIDE);   
+  //  input->SetKeyUp('1');                   //force un-pressing of 4
+  //}
 
-  if(input->isKeyDown('2'))                 // if 5 is pressed
-  {
-    //turns on normal filled rendering
-    input->selectViewport(VIEW2);
-    input->SetKeyUp('2');                   //force un-pressing of 5
-  }
+  //if(input->isKeyDown('2'))                 // if 5 is pressed
+  //{
+  //  //turns on normal filled rendering
+  //  input->selectViewport(VIEWPORT_FRNT);
+  //  input->SetKeyUp('2');                   //force un-pressing of 5
+  //}
 
-  if(input->isKeyDown('3'))                 // if 4 is pressed
-  {
-    // makes the front face wireframe, not the back face
-    input->selectViewport(VIEW3);    
-    input->SetKeyUp('3');                   //force un-pressing of 4
-  }
+  //if(input->isKeyDown('3'))                 // if 4 is pressed
+  //{
+  //  // makes the front face wireframe, not the back face
+  //  input->selectViewport(VIEWPORT_TOP);    
+  //  input->SetKeyUp('3');                   //force un-pressing of 4
+  //}
 
-  if(input->isKeyDown('4'))                 // if 5 is pressed
-  {
-    //turns on normal filled rendering
-    input->selectViewport(VIEW4);
-    input->SetKeyUp('4');                   //force un-pressing of 5
-  }
+  //if(input->isKeyDown('4'))                 // if 5 is pressed
+  //{
+  //  //turns on normal filled rendering
+  //  input->selectViewport(VIEWPORT_PERS);
+  //  input->SetKeyUp('4');                   //force un-pressing of 5
+  //}
 
   if(input->isKeyDown('5'))                 // if 4 is pressed
   {
