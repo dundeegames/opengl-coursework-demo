@@ -49,21 +49,21 @@ void Scene3D::ResizeGLWindow(int width, int height)
 
   GLsizei viewWidth = (GLsizei)( (width - VIEW_POS_X - 4) / 2);
   GLsizei viewHeight =(GLsizei)( (height - VIEW_POS_Y - 4) / 2);
-  
+
   // Main
-  viewport1.setSize(0, 0, width, height);
+  viewport0.setSize(0, 0, width, height);
   
   // Bottom-Left
-  viewport2.setSize(VIEW_POS_X, 0, viewWidth, viewHeight);
+  viewport1.setSize(VIEW_POS_X, 0, viewWidth, viewHeight);
   
   
-  viewport3.setSize( (VIEW_POS_X + viewWidth + 4), 0, viewWidth, viewHeight);
+  viewport2.setSize( (VIEW_POS_X + viewWidth + 4), 0, viewWidth, viewHeight);
   
   
-  viewport4.setSize(VIEW_POS_X, (viewHeight + 4), viewWidth, viewHeight);
+  viewport3.setSize(VIEW_POS_X, (viewHeight + 4), viewWidth, viewHeight);
 
 
-  viewport5.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
+  viewport4.setSize( (VIEW_POS_X + viewWidth + 4), (viewHeight + 4), viewWidth, viewHeight);
 
   gui.setWindowSize( (float)width, (float)height);
 }
@@ -127,15 +127,16 @@ void Scene3D::Init(HWND* wnd, Input* in)
   input->selectButton(VBTN2_4VIEW);
  
   gui.init(&resManager, input);
-  viewport1.init(VIEW_MAIN, input, &resManager);
-  viewport2.init(VIEW_SIDE, input, &resManager);
-  viewport3.init(VIEW_FRONT, input, &resManager);
-  viewport4.init(VIEW_TOP, input, &resManager);
-  viewport5.init(VIEW_PERSP, input, &resManager);
-  viewport2.select();
-  viewport3.select();
-  viewport4.select();
-  viewport5.select();
+  viewport0.init(VIEW0, VIEW_MAIN, input, &resManager);
+  viewport1.init(VIEW1, VIEW_SIDE, input, &resManager);
+  viewport2.init(VIEW2, VIEW_FRONT, input, &resManager);
+  viewport3.init(VIEW3, VIEW_TOP, input, &resManager);
+  viewport4.init(VIEW4, VIEW_PERSP, input, &resManager);
+  //viewport1.select();
+  //viewport2.select();
+  //viewport3.select();
+  input->selectViewport(VIEW4);
+  //viewport4.select();
 
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
@@ -169,7 +170,12 @@ void Scene3D::DrawScene(float dt)
   glLoadIdentity();       // load Identity Matrix
 
 
-  viewport1.begin(true, false);
+  viewport0.begin(true, false);
+
+
+    viewport1.begin();
+      render(); // render all lighting, geometry, etc.
+    viewport1.end();
 
 
     viewport2.begin();
@@ -187,12 +193,7 @@ void Scene3D::DrawScene(float dt)
     viewport4.end();
 
 
-    viewport5.begin();
-      render(); // render all lighting, geometry, etc.
-    viewport5.end();
-
-
-  viewport1.end();
+  viewport0.end();
     gui.renderMenu();
 
 
@@ -236,26 +237,57 @@ void Scene3D::HandleInput(float dt)
 
   //robotArm.update(dt);
 
+  viewport0.update(dt);
   viewport1.update(dt);
   viewport2.update(dt);
   viewport3.update(dt);
   viewport4.update(dt);
-  viewport5.update(dt);
 
 
-  if(input->isKeyDown('4'))                 // if 4 is pressed
+  if(input->isKeyDown('1'))                 // if 4 is pressed
+  {
+    // makes the front face wireframe, not the back face
+    input->selectViewport(VIEW1);   
+    input->SetKeyUp('1');                   //force un-pressing of 4
+  }
+
+  if(input->isKeyDown('2'))                 // if 5 is pressed
+  {
+    //turns on normal filled rendering
+    input->selectViewport(VIEW2);
+    input->SetKeyUp('2');                   //force un-pressing of 5
+  }
+
+  if(input->isKeyDown('3'))                 // if 4 is pressed
+  {
+    // makes the front face wireframe, not the back face
+    input->selectViewport(VIEW3);    
+    input->SetKeyUp('3');                   //force un-pressing of 4
+  }
+
+  if(input->isKeyDown('4'))                 // if 5 is pressed
+  {
+    //turns on normal filled rendering
+    input->selectViewport(VIEW4);
+    input->SetKeyUp('4');                   //force un-pressing of 5
+  }
+
+  if(input->isKeyDown('5'))                 // if 4 is pressed
   {
     // makes the front face wireframe, not the back face
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
-    input->SetKeyUp('4');                   //force un-pressing of 4
+    input->SetKeyUp('5');                   //force un-pressing of 4
   }
 
-  if(input->isKeyDown('5'))                 // if 5 is pressed
+  if(input->isKeyDown('6'))                 // if 5 is pressed
   {
     //turns on normal filled rendering
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    input->SetKeyUp('5');                   //force un-pressing of 5
+    input->SetKeyUp('6');                   //force un-pressing of 5
   }
+
+
+
 
   if(input->isKeyDown(VK_MENU))             // if ALT is pressed
   {

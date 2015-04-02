@@ -79,11 +79,11 @@ private:
   COORD center;
 
   Gui gui;
-  Viewport viewport1;   // Main
-  Viewport viewport2;   // Bottom-Left
-  Viewport viewport3;   // Bottom-Right
-  Viewport viewport4;   // Top-Left
-  Viewport viewport5;   // Top-Right
+  Viewport viewport0;   // Main
+  Viewport viewport1;   // Bottom-Left
+  Viewport viewport2;   // Bottom-Right
+  Viewport viewport3;   // Top-Left
+  Viewport viewport4;   // Top-Right
 
   std::vector<Model> models;
 

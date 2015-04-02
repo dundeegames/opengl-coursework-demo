@@ -33,7 +33,7 @@ public:
   Viewport();
   ~Viewport();
 
-  void init(ViewportType view, Input* in, ResourceManager* resMngr);
+  void init(int viewID, ViewportType view, Input* in, ResourceManager* resMngr);
   void setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_);
 
 
@@ -41,17 +41,13 @@ public:
   void begin(bool perspective = true, bool grad_bgr = true);
   void end();
 
-  void select() {selected = true;}
-  void deselect() {selected = false;}
-  bool isSelected() {return selected;}
-
   void activate() {activated = true;}
   void deactivate() {activated = false;}
   bool isActivated() {return activated;}
 
 private:
+  int viewportID;
   ViewportType type;
-  bool selected;
   bool activated;
 
   GLint x;
@@ -65,6 +61,7 @@ private:
 
   Camera camera;
   Font* font;
+  Input* input;
 
   void orthographicView();
   void perspectiveView();

@@ -14,6 +14,17 @@ Input::Input()
 
   wheelDelta = 0;
 
+
+  for(int i = 0; i < 256; i++)
+  {
+    keys[i] = false;
+  }
+
+
+
+
+
+
 }
 
 Input::~Input()
@@ -93,6 +104,13 @@ void Input::setRightMouseBtn(bool r)
 
 // -----------------------------------------------------------------------------
 
+void Input::setLeftMouseDClick(bool d)
+{
+  mouse.leftDClick = d;
+}
+
+// -----------------------------------------------------------------------------
+
 bool Input::leftMouseBtn()
 {
   return mouse.left;
@@ -110,6 +128,13 @@ bool Input::middleMouseBtn()
 bool Input::rightMouseBtn()
 {
   return mouse.right;
+}
+
+// -----------------------------------------------------------------------------
+
+bool Input::leftMouseDClick()
+{
+  return mouse.leftDClick;
 }
 
 // -----------------------------------------------------------------------------
@@ -260,30 +285,83 @@ void Input::unselectButton(int btnID)
 
 // -----------------------------------------------------------------------------
 
-void Input::resetDragCoords()
+bool Input::isViewportSelected(int viewID)
 {
-  mouse.dragX = mouse.x;
-  mouse.dragY = mouse.y;
+  return   viewports[viewID];
 }
 
 // -----------------------------------------------------------------------------
 
-int Input::getDragXdt()
+void Input::selectViewport(int viewID)
 {
-  return (mouse.x - mouse.dragX);
+  for(int i = 0; i < MAX_VIEWPORTS; i++) // only one selected at the time
+  {
+    if(i == viewID)
+    {
+      viewports[i] = true;
+    }
+    else
+    {
+      viewports[i] = false;
+    }
+  }
+
 }
 
 // -----------------------------------------------------------------------------
 
-int Input::getDragYdt()
+//void Input::unselectViewport(int viewID)
+//{
+//  viewports[viewID] = false;
+//}
+
+// -----------------------------------------------------------------------------
+
+void Input::resetLDragCoords()
 {
-  return (mouse.dragY - mouse.y);
+  mouse.leftDragX = mouse.x;
+  mouse.leftDragY = mouse.y;
+}
+
+// -----------------------------------------------------------------------------
+
+int Input::getLDragXdt()
+{
+  return (mouse.x - mouse.leftDragX);
+}
+
+// -----------------------------------------------------------------------------
+
+int Input::getLDragYdt()
+{
+  return (mouse.leftDragY - mouse.y);
 
 }
 
 // -----------------------------------------------------------------------------
 
+void Input::resetRDragCoords()
+{
+  mouse.rightDragX = mouse.x;
+  mouse.rightDragY = mouse.y;
+}
 
+// -----------------------------------------------------------------------------
+
+int Input::getRDragXdt()
+{
+  return (mouse.x - mouse.rightDragX);
+}
+
+// -----------------------------------------------------------------------------
+
+int Input::getRDragYdt()
+{
+  return (mouse.rightDragY - mouse.y);
+
+}
+
+// -----------------------------------------------------------------------------
 
 
 

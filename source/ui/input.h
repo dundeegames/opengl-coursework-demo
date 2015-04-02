@@ -20,17 +20,20 @@
 
 struct Mouse
 {
-  int x,y, dragX, dragY;
-  bool left, middle, right;
+  int x,y, leftDragX, leftDragY, rightDragX, rightDragY;
+  bool left, middle, right, leftDClick;
   Mouse()
   {
     x = 0;
     y = 0;
-    dragX = 0;
-    dragY = 0;
+    leftDragX = 0;
+    leftDragY = 0;
+    rightDragX = 0;
+    rightDragY = 0;
     left = false;
     middle = false;
     right = false;
+    leftDClick = false;
   }
 
 };
@@ -59,30 +62,47 @@ public:
   void setLeftMouseBtn(bool l);
   void setMiddleMouseBtn(bool m);
   void setRightMouseBtn(bool r);
+  void setLeftMouseDClick(bool d);
 
   bool leftMouseBtn();
   bool middleMouseBtn();
   bool rightMouseBtn();
+  bool leftMouseDClick();
 
   bool isBottonSelected(int btnID);
   void selectButton(int btnID);
   void unselectButton(int btnID);
 
 
+  bool isViewportSelected(int viewID);
+  void selectViewport(int viewID);
+  //void unselectViewport(int viewID);
+
+
   void setWheelDelta(int wdt) {wheelDelta = wdt;}
   int getWheelDelta() const {return wheelDelta;}
 
-  void resetDragCoords();
-  void setDragX(int x_) {mouse.dragX = x_;}
-  void setDragY(int y_) {mouse.dragY = y_;}
+
+  void resetLDragCoords();
+  void setLDragX(int x_) {mouse.leftDragX = x_;}
+  void setLDragY(int y_) {mouse.leftDragY = y_;}
 
   /*!
   * returns delta from original coords
   */
-  int getDragXdt();
-  int getDragYdt();
+  int getLDragXdt();
+  int getLDragYdt();
 
 
+  void resetRDragCoords();
+  void setRDragX(int x_) {mouse.rightDragX = x_;}
+  void setRDragY(int y_) {mouse.rightDragY = y_;}
+
+  /*!
+  * returns delta from original coords
+  */
+  int getRDragXdt();
+  int getRDragYdt();
 
 
 
@@ -91,11 +111,13 @@ public:
 
   // add missing functions for handling mouse buttons etc
 private:
+  int windowHeight;
   int wheelDelta;
   bool keys[256];
   bool topButtons[MAX_TOP_BUTTONS];
   bool sideButtons[MAX_SIDE_BUTTONS];
   bool viewButtons[MAX_VIEW_BUTTONS];
+  bool viewports[MAX_VIEWPORTS];
   Mouse mouse;
   float sensitivity;
 

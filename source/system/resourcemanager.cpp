@@ -36,6 +36,7 @@ GLuint ResourceManager::getTexture(const char* file, bool stdandard_path)
       // report an error
       std::string message = ("SOIL loading error: '%s'\n", SOIL_last_result() );
       MessageBox(NULL, (LPCSTR)message.c_str(), "Load Error", MB_OK);
+      return NULL;
     }
   }
   else

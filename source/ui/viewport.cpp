@@ -3,7 +3,8 @@
 
 Viewport::Viewport()
 {
-
+  input = NULL;
+  activated = false;
 }
 
 
@@ -14,9 +15,11 @@ Viewport::~Viewport()
 
 // -----------------------------------------------------------------------------
 
-void Viewport::init(ViewportType view, Input* in, ResourceManager* resMngr)
+void Viewport::init(int viewID, ViewportType view, Input* in, ResourceManager* resMngr)
 {
+  viewportID = viewID;
   type = view;
+  input  = in;
 
   switch(type)
   {
@@ -25,23 +28,23 @@ void Viewport::init(ViewportType view, Input* in, ResourceManager* resMngr)
     break;
 
   case VIEW_PERSP:
-    camera.init(FLT_PERSP, in);
+    camera.init(FLT_PERSP, input);
     break;
 
   case VIEW_TOP:
-    camera.init(MOV_TOP, in);
+    camera.init(MOV_TOP, input);
     break;
 
   case VIEW_SIDE:
-    camera.init(MOV_SIDE, in);
+    camera.init(MOV_SIDE, input);
     break;
 
   case VIEW_FRONT:
-    camera.init(MOV_FRONT, in);
+    camera.init(MOV_FRONT, input);
     break;
 
   case VIEW_GAME:
-    camera.init(FST_PERSON, in);
+    camera.init(FST_PERSON, input);
     break;
 
   default:
@@ -50,7 +53,6 @@ void Viewport::init(ViewportType view, Input* in, ResourceManager* resMngr)
   }
   
   font = resMngr->getFont("tahoma");
-  selected = false;
   activated = true;
 }
 
@@ -97,7 +99,7 @@ void Viewport::setSize(GLint x_, GLint y_, GLsizei w_, GLsizei h_)
 
 void Viewport::update(float dt)
 {
-  if(selected)
+  if(input->isViewportSelected(viewportID))
   {
     camera.handleInput(dt);
   }
@@ -118,6 +120,7 @@ void Viewport::begin(bool perspective, bool grad_bgr)
   glViewport(x, y, width, height);
 
   orthographicView();
+
   drawBackground(grad_bgr);
 
 
@@ -284,7 +287,7 @@ void Viewport::drawLabel()
 
 void Viewport::drawSelectionRect()
 {
-  if(selected)
+  if(input->isViewportSelected(viewportID))
   {
     glColor3f(COLOUR_DRKYELLOW);
   }

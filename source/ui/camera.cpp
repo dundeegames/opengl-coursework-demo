@@ -97,13 +97,13 @@ void Camera::update()
   * Only Want to calculate these values once. 
   * For speeds sake. 
   */
-  cosY = cosf( rotation[YAW]*RADS);
-  cosP = cosf( rotation[PITCH]*RADS);
-  cosR = cosf( rotation[ROLL]*RADS);
+  cosY = cosf(RADIANS(rotation[YAW]) );
+  cosP = cosf(RADIANS(rotation[PITCH]) );
+  cosR = cosf(RADIANS(rotation[ROLL]) );
 
-  sinY = sinf( rotation[YAW]*RADS);
-  sinP = sinf( rotation[PITCH]*RADS);
-  sinR = sinf( rotation[ROLL]*RADS);
+  sinY = sinf(RADIANS(rotation[YAW]) );
+  sinP = sinf(RADIANS(rotation[PITCH] ));
+  sinR = sinf(RADIANS(rotation[ROLL]) );
 
 
   /*!
@@ -151,29 +151,51 @@ void Camera::handleInput(float dt)
   case MOV_SIDE:
   case MOV_FRONT:
 
-    checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-    break;
-
-  case FLT_PERSP:
-    //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-    //checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
+    checkKeyborard('Z', 'X', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
 
     if(input->getWheelDelta() != 0)
     {
-      position = position.add( forward, (  dt * input->getSensitivity() * input->getWheelDelta()) );
+      position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
       input->setWheelDelta(0);
 
     }
 
-    if(input->isKeyDown(VK_SPACE) && input->leftMouseBtn())
+
+    break;
+
+  case FLT_PERSP:
+    //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+    checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
+    
+    if(input->getWheelDelta() != 0)
     {
-      rotation = rotation.add(Vec3(input->getDragXdt(), input->getDragYdt(), 0.0f), (16.0f * dt * input->getSensitivity()) );
-      input->resetDragCoords();
+      position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
+      input->setWheelDelta(0);
+
     }
 
+    if(input->isKeyDown(VK_CONTROL) && input->rightMouseBtn())
+    {
+      rotation = rotation.add(Vec3((float)input->getRDragXdt(), (float)input->getRDragYdt(), 0.0f), (16.0f * dt * input->getSensitivity()) );
+      input->resetRDragCoords();
+    }
 
+    if(input->isKeyDown(VK_CONTROL) && input->leftMouseBtn())
+    {
+      position = position.rotateInX( (float)input->getLDragXdt(), (64.0f * dt * input->getSensitivity()) );
+      rotation = rotation.add(Vec3( -(float)input->getLDragXdt(), 0.0f, 0.0f), (64.0f * dt * input->getSensitivity()) );
 
+      //position = position.rotateInY( (float)input->getDragYdt(), (64.0f * dt * input->getSensitivity()) );
+      //rotation = rotation.add(Vec3(0.0f, -(float)input->getDragYdt(), 0.0f), (64.0f * dt * input->getSensitivity()) );
+      input->resetLDragCoords();
+    }
 
+    //if(input->isKeyDown(VK_SPACE) && input->leftMouseBtn())
+    //{
+    //  position = position.rotateInY( (float)input->getDragYdt(), (64.0f * dt * input->getSensitivity()) );
+    //  rotation = rotation.add(Vec3(0.0f, -(float)input->getDragYdt(), 0.0f), (64.0f * dt * input->getSensitivity()) );
+    //  input->resetDragCoords();
+    //}
 
     
     break;
@@ -262,6 +284,7 @@ void Camera::checkKeyborard(int frwd, int back, int rgt, int lft,
 }
 
 // -----------------------------------------------------------------------------
+
 
 
 
