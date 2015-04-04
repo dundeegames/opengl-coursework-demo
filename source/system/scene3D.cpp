@@ -127,6 +127,11 @@ void Scene3D::Init(HWND* wnd, Input* in)
   triangle = new Triangle();
   triangle->setColor3f(255.0, 0.0, 0.0);
 
+  quad = modelGen.getQuad();
+  quad.setPosition(Vec3(0.0f, 0.0f, 2.0f));
+  models.push_back(quad);
+
+
 } // end of Init
 
 // ------------------------------------------------------------------------------
@@ -209,47 +214,19 @@ void Scene3D::HandleInput(float dt)
   viewManager.update(dt);
 
 
-  //if(input->isKeyDown('1'))                 // if 4 is pressed
+  //if(input->isKeyDown('4'))                 // if 4 is pressed
   //{
   //  // makes the front face wireframe, not the back face
-  //  input->selectViewport(VIEWPORT_SIDE);   
-  //  input->SetKeyUp('1');                   //force un-pressing of 4
+  //  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
+  //  input->SetKeyUp('4');                   //force un-pressing of 4
   //}
 
-  //if(input->isKeyDown('2'))                 // if 5 is pressed
+  //if(input->isKeyDown('5'))                 // if 5 is pressed
   //{
   //  //turns on normal filled rendering
-  //  input->selectViewport(VIEWPORT_FRNT);
-  //  input->SetKeyUp('2');                   //force un-pressing of 5
+  //  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  //  input->SetKeyUp('5');                   //force un-pressing of 5
   //}
-
-  //if(input->isKeyDown('3'))                 // if 4 is pressed
-  //{
-  //  // makes the front face wireframe, not the back face
-  //  input->selectViewport(VIEWPORT_TOP);    
-  //  input->SetKeyUp('3');                   //force un-pressing of 4
-  //}
-
-  //if(input->isKeyDown('4'))                 // if 5 is pressed
-  //{
-  //  //turns on normal filled rendering
-  //  input->selectViewport(VIEWPORT_PERS);
-  //  input->SetKeyUp('4');                   //force un-pressing of 5
-  //}
-
-  if(input->isKeyDown('5'))                 // if 4 is pressed
-  {
-    // makes the front face wireframe, not the back face
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
-    input->SetKeyUp('5');                   //force un-pressing of 4
-  }
-
-  if(input->isKeyDown('6'))                 // if 5 is pressed
-  {
-    //turns on normal filled rendering
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    input->SetKeyUp('6');                   //force un-pressing of 5
-  }
 
 
 
@@ -405,6 +382,7 @@ void Scene3D::insertFile()
 
   if(tempModel != NULL)
   {
+    //tempModel->setColour(1.0f, 0.0f, 0.0f, 1.0f);
     models.push_back(*tempModel);
   }
   else
@@ -450,7 +428,7 @@ void Scene3D::render()
 
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {
-      glTranslatef(0.2f, 0.0f, 2.0f);
+      //glTranslatef(0.2f, 0.0f, 2.0f);
       it->Render();
     }
 

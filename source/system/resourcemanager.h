@@ -44,19 +44,8 @@ public:
   Model* getModel(const char* file, bool stdandard_path = true);
 
 
-  // TODO edit for different subdivisions in x and y
-  Model* getQuad();
-  Model* getPlane(float width, float height, int sub_w, int sub_h);
-  Model* getCube();
-  Model* getSphere();     // made from quads, pitching on poles
-  Model* getSoccerBall(); // Sphere from pentagons
-  Model* getCubeSPhere(); // Sphere from cube
-  Model* getCylinder();
-  Model* getTorus();
-
 private:
-  void drawQuad();
-  void drawPlane(float width, float height, int sub_w, int sub_h);
+
 
   std::string fonts_path;
   std::string images_path;

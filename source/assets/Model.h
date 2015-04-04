@@ -24,8 +24,8 @@
 #include <system/TokenStream.h>
 #include <vector>
 #include <math/vec3.h>
-#include <SOIL.h>
-
+//#include <SOIL.h>
+#include <math/vec3.h>
 
 
 
@@ -41,13 +41,32 @@ public:
 
   void setTexture(GLuint texture_) {texture = texture_; }
 
-  void setModel(int vCount, std::vector<float>& vert,
+  void setModel(int vCount, int mode_, std::vector<float>& vert,
                 std::vector<float>& norm, std::vector<float>& tex);
+
+  void setScale(Vec3 s) {scale = s;}
+  void resize(Vec3 s, float magnitude = 1.0) {scale.add(s, magnitude);}
+
+  void setRotation(Vec3 r) {rotation = r;}
+  void rotate(Vec3 r, float magnitude = 1.0) {rotation.add(r, magnitude);}
+
+  void setPosition(Vec3 p) {position = p;}
+  void move(Vec3 p, float magnitude = 1.0) {position.add(p, magnitude);}
+
+  void setColour(float R=1.0f, float G=1.0f, float B=1.0f, float A=1.0f);
 
   void Render();
 
 
 private:
+  int mode;
+  float colour[4];
+
+
+  Vec3 position;
+  Vec3 rotation;
+  Vec3 scale;
+
   int m_vertexCount;
   GLuint texture;
 

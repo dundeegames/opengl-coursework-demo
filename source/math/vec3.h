@@ -68,13 +68,14 @@ public:
   /*!
   * rotates Vec3 in X, Y or Z axis by angle in degrees
   */
-  Vec3& rotateInX(float angleX, float scale = 1.0f);
-  Vec3& rotateInY(float angleY, float scale = 1.0f);
-  Vec3& rotateInZ(float angleZ, float scale = 1.0f);
+  Vec3 rotateInX(float angleX, float scale = 1.0f);
+  Vec3 rotateInY(float angleY, float scale = 1.0f);
+  Vec3 rotateInZ(float angleZ, float scale = 1.0f);
   //Vec3& rotateXY(float angleX, float angleY, float scale = 1.0f);
 
-
-
+  // rotate by angle about axis v(x,y,z)
+  Vec3 rotate(float angle, float x, float y, float z);
+  
 private:
   float elements[3];
 

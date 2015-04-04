@@ -5,6 +5,7 @@ Viewport::Viewport()
 {
   input = NULL;
   activated = false;
+  wiremode = false;
 }
 
 
@@ -101,6 +102,7 @@ void Viewport::update(float dt)
 {
   if(input->isViewportSelected(viewportID))
   {
+    handleInput();
     camera.handleInput(dt);
   }
   camera.update();
@@ -121,6 +123,10 @@ void Viewport::begin(bool perspective, bool grad_bgr)
 
   orthographicView();
 
+  //turns on normal filled rendering
+  glPolygonMode(GL_FRONT, GL_FILL);
+  //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // debuging normals
+
   drawBackground(grad_bgr);
 
 
@@ -130,6 +136,14 @@ void Viewport::begin(bool perspective, bool grad_bgr)
   }
 
   camera.view();
+
+  if(wiremode)
+  {
+    // makes the front and back face wireframe
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  }
+
+
 
 }
 
@@ -148,6 +162,11 @@ void Viewport::end()
   
   
   orthographicView();
+
+  //turns on normal filled rendering
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
   drawLabel();
   
 }
@@ -320,7 +339,26 @@ void Viewport::drawSelectionRect()
 
 // -----------------------------------------------------------------------------
 
+void Viewport::handleInput()
+{
+  if(input->isKeyDown('4'))                 // if 4 is pressed
+  {
+    // makes the front face wireframe, not the back face
+    wiremode = true;
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
+    input->SetKeyUp('4');                   //force un-pressing of 4
+  }
 
+  if(input->isKeyDown('5'))                 // if 5 is pressed
+  {
+    //turns on normal filled rendering
+    wiremode = false;
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    input->SetKeyUp('5');                   //force un-pressing of 5
+  }
+
+
+}
 
 
 

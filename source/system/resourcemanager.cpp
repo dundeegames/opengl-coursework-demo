@@ -325,7 +325,7 @@ Model* ResourceManager::loadModel(const char* file, bool stdandard_path)
 
 
   Model* model = new Model();
-  model->setModel(vertexCount, vertices, normals, uvs);
+  model->setModel(vertexCount, GL_TRIANGLES, vertices, normals, uvs);
   //model_list[file] = model;
 
 
@@ -335,119 +335,12 @@ Model* ResourceManager::loadModel(const char* file, bool stdandard_path)
 
 // -----------------------------------------------------------------------------
 
-void ResourceManager::drawQuad()
-{
-  glBegin(GL_TRIANGLES);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, 0.0f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-0.5f, -0.5f, 0.0f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(0.5f, -0.5f, 0.0f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(0.5f, -0.5f, 0.0f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, 0.0f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, 0.0f);
-
-  glEnd();
-
-}
-
-// -----------------------------------------------------------------------------
-
-void ResourceManager::drawPlane(float width, float height, int sub_w, int sub_h)
-{
 
 
-}
 
-// -----------------------------------------------------------------------------
 
-Model* ResourceManager::getQuad()
-{
-  Model* model = new Model();
 
-  return model;
-}
 
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getPlane(float width, float height, int sub_w, int sub_h)
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getCube()
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getSphere()     // made from quads, pitching on poles
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getSoccerBall() // Sphere from pentagons
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getCubeSPhere() // Sphere from cube
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getCylinder()
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
-
-Model* ResourceManager::getTorus()
-{
-  Model* model = new Model();
-
-  return model;
-}
-
-// -----------------------------------------------------------------------------
 
 
 

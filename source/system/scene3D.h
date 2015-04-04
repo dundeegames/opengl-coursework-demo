@@ -33,6 +33,7 @@
 #include <assets/model.h>
 
 #include <system/resourcemanager.h>
+#include <system/modelgenerator.h>
 
 
 
@@ -73,11 +74,16 @@ protected:
 
 private:
   ResourceManager resManager;
+  ModelGenerator modelGen;
 
   Light* ambient;
   Light* light1;
   Geometry* box;
   Geometry* triangle;
+  Model quad;
+
+
+
   Arm robotArm;
   Planets solarSystem;
   COORD center;
@@ -85,12 +91,6 @@ private:
   Gui gui;
   ViewManager viewManager;
 
-
-  //Viewport viewport0;   // Main
-  //Viewport viewport1;   // Bottom-Left
-  //Viewport viewport2;   // Bottom-Right
-  //Viewport viewport3;   // Top-Left
-  //Viewport viewport4;   // Top-Right
 
   std::vector<Model> models;
 

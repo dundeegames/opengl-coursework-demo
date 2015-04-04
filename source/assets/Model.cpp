@@ -6,6 +6,13 @@ Model::Model()
   //ready = true;
   m_vertexCount = NULL;
   texture = NULL;
+
+  position = Vec3();
+  rotation = Vec3();
+  scale = Vec3(1.0f, 1.0f, 1.0f);
+
+  setColour();
+
 }
 
 // -----------------------------------------------------------------------------
@@ -31,9 +38,10 @@ Model& Model::operator=(const Model& m2)
 
 // -----------------------------------------------------------------------------
 
-void Model::setModel(int vCount, std::vector<float>& vert,
+void Model::setModel(int vCount, int mode_, std::vector<float>& vert,
                      std::vector<float>& norm, std::vector<float>& tex)
 {
+  mode = mode_;
   m_vertexCount = vCount;
   vertex = vert;
   normals = norm;
@@ -45,8 +53,8 @@ void Model::setModel(int vCount, std::vector<float>& vert,
 
 void Model::Render()
 {
-  // You must insert code here to render your model
-  // This function will be called from Scene3D.drawScene()
+  glColor4f(colour[0], colour[1], colour[2], colour[3]);
+
   // enble and specify pointers to vertex arrays
   glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
 
@@ -66,8 +74,14 @@ void Model::Render()
 
   //dereferencing method of choice
   glPushMatrix();
-    //glTranslatef(10, 10, 30);                  // move to upper-right corner
+    glTranslatef(position.getX(), position.getY(), position.getZ());
+    glRotatef(rotation.getX(), 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.getY(), 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.getZ(), 0.0f, 0.0f, 1.0f);
+    glScalef(scale.getX(), scale.getY(), scale.getZ());
+
     glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
+    //glDrawArrays(mode, 0, m_vertexCount);     // bug with generated models
   glPopMatrix();
 
 
@@ -78,10 +92,24 @@ void Model::Render()
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
-
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);    // reset colour
 }
 
 // -----------------------------------------------------------------------------
+
+void Model::setColour(float R, float G, float B, float A)
+{
+  colour[0] = R;
+  colour[1] = G;
+  colour[2] = B;
+  colour[3] = A;
+}
+
+// -----------------------------------------------------------------------------
+
+
+
+
 
 
 

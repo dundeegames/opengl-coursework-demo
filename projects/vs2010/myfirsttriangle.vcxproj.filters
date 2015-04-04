@@ -139,6 +139,9 @@
     <ClCompile Include="..\..\source\ui\viewmanager.cpp">
       <Filter>ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\system\modelgenerator.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\system\resourcemanager.h">
@@ -299,6 +302,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\ui\viewmanager.h">
       <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\modelgenerator.h">
+      <Filter>system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

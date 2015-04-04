@@ -201,7 +201,7 @@ Vec3& Vec3::operator-=(const Vec3& v2) {
 
 // -----------------------------------------------------------------------------
 
-Vec3& Vec3::rotateInX(float angleX, float scale)
+Vec3 Vec3::rotateInX(float angleX, float scale)
 {
   float sinX = sinf(RADIANS(angleX*scale));
   float cosX = cosf(RADIANS(angleX*scale));
@@ -218,15 +218,15 @@ Vec3& Vec3::rotateInX(float angleX, float scale)
 
 // -----------------------------------------------------------------------------
 
-Vec3& Vec3::rotateInY(float angleY, float scale)
+Vec3 Vec3::rotateInY(float angleY, float scale)
 {
   float sinY = sinf(RADIANS(angleY*scale));
   float cosY = cosf(RADIANS(angleY*scale));
 
   Vec3 rotY(
            (this->elements[0]),
-           ((this->elements[2] * sinY) + (this->elements[1] * cosY)),
-           ((this->elements[2] * cosY) - (this->elements[1] * sinY))
+           ((this->elements[1] * cosY) - (this->elements[2] * sinY)),
+           ((this->elements[1] * sinY) + (this->elements[2] * cosY))
            );
   return rotY;
 
@@ -234,7 +234,7 @@ Vec3& Vec3::rotateInY(float angleY, float scale)
 
 // -----------------------------------------------------------------------------
 
-Vec3& Vec3::rotateInZ(float angleZ, float scale)
+Vec3 Vec3::rotateInZ(float angleZ, float scale)
 {
   float sinZ = sinf(RADIANS(angleZ*scale));
   float cosZ = cosf(RADIANS(angleZ*scale));

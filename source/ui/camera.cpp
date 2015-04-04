@@ -176,17 +176,24 @@ void Camera::handleInput(float dt)
 
     if(input->isKeyDown(VK_CONTROL) && input->rightMouseBtn())
     {
-      rotation = rotation.add(Vec3((float)input->getRDragXdt(), (float)input->getRDragYdt(), 0.0f), (16.0f * dt * input->getSensitivity()) );
+      //position = position.rotateInX( (float)input->getRDragXdt(), (64.0f * dt * input->getSensitivity()) );
+      //rotation = rotation.add(Vec3( -(float)input->getRDragXdt(), 0.0f, 0.0f),
+      //                                (64.0f * dt * input->getSensitivity()) );
+
+      rotation = rotation.add(Vec3((float)input->getRDragXdt(), (float)input->getRDragYdt(), 0.0f),
+                                     (16.0f * dt * input->getSensitivity()) );
       input->resetRDragCoords();
     }
 
     if(input->isKeyDown(VK_CONTROL) && input->leftMouseBtn())
     {
       position = position.rotateInX( (float)input->getLDragXdt(), (64.0f * dt * input->getSensitivity()) );
-      rotation = rotation.add(Vec3( -(float)input->getLDragXdt(), 0.0f, 0.0f), (64.0f * dt * input->getSensitivity()) );
+      rotation = rotation.add(Vec3( -(float)input->getLDragXdt(), 0.0f, 0.0f),
+                                     (64.0f * dt * input->getSensitivity()) );
 
-      //position = position.rotateInY( (float)input->getDragYdt(), (64.0f * dt * input->getSensitivity()) );
-      //rotation = rotation.add(Vec3(0.0f, -(float)input->getDragYdt(), 0.0f), (64.0f * dt * input->getSensitivity()) );
+      //position = position.rotateInY( (float)input->getLDragYdt(), (64.0f * dt * input->getSensitivity()) );
+      //rotation = rotation.add(Vec3(0.0f, (float)input->getLDragYdt(), 0.0f),
+      //                                   (64.0f * dt * input->getSensitivity()) );
       input->resetLDragCoords();
     }
 
@@ -239,7 +246,6 @@ void Camera::view()
 {
   //! LookAt = position + forward
   Vec3 lookAt = position + forward;
-
 
   gluLookAt(position.getX(),  position.getY(),  position.getZ(),
             lookAt.getX(),    lookAt.getY(),    lookAt.getZ(),

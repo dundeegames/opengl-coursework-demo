@@ -49,6 +49,7 @@ private:
   int viewportID;
   ViewportType type;
   bool activated;
+  bool wiremode;
 
   GLint x;
   GLint y;
@@ -63,6 +64,7 @@ private:
   Font* font;
   Input* input;
 
+  void handleInput();
   void orthographicView();
   void perspectiveView();
   void drawBackground(bool gradient);

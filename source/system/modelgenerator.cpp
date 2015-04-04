@@ -1,0 +1,231 @@
+#include <system/modelgenerator.h>
+
+
+ModelGenerator::ModelGenerator()
+{
+  vertexCount = 0;
+}
+
+
+ModelGenerator::~ModelGenerator()
+{
+
+}
+
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getQuad()
+{
+  //Model model = getPlane(1,1);
+  Model model;
+  vertexCount = 6;
+
+  Vec3 vecs[] = {
+                  Vec3(-0.5f, 0.5f, 0.5f),
+                  Vec3(-0.5f, -0.5f, 0.5f),
+                  Vec3(0.5f, -0.5f, 0.5f),
+                  Vec3(0.5f, 0.5f, 0.5f),
+                };
+
+  getTriangle(vecs[0], vecs[1], vecs[2]);
+  getTriangle(vecs[2], vecs[3], vecs[0]);
+
+
+  float texC;
+
+  for(int j = 0; j < 4; j++)
+  {
+    switch(j)
+    {
+    case 0:
+    case 3:
+      texC = 0.0f;
+      break;
+        
+    case 1:
+    case 2:
+      texC = 1.0f;
+      break;
+        
+    default:
+      exit(-1);
+    }
+
+    for(int i = 0; i < 3; i++)
+    {
+      uvs.push_back(texC);
+    }
+  }
+
+
+
+
+
+
+    //float texC[] = {
+    //                 0.0f, 0.0f,
+    //                 0.0f, 1.0f,
+    //                 1.0f, 1.0f,
+
+    //                 1.0f, 1.0f,
+    //                 1.0f, 0.0f,
+    //                 0.0f, 0.0f
+    //               };
+    //for(int u = 0; u < texCount; u++)
+    //{
+    //  uvs.push_back(texC[u]);
+    //}
+    
+
+  for(int n = 0; n < vertexCount; n++)
+  {
+    normals.push_back(0.0f);
+    normals.push_back(0.0f);
+    normals.push_back(1.0f);
+  }
+
+
+
+  model.setModel(vertexCount, GL_TRIANGLES, vertices, normals, uvs);
+  model.setColour(1.0f, 0.0f, 0.0f, 1.0f);
+
+
+  cleanContainers();
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getPlane(int subX, int subY)
+{
+  vertexCount = 0;
+
+
+  float dx = (1.0f / (float)subX);
+  float dy = (1.0f / (float)subY);
+
+  for(int j = 0; j < subY; j++)
+  {
+    for(int i = 0; i < subX; i++)
+    {
+
+
+    }
+  }
+
+
+
+
+
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getCube(int subX, int subY, int subZ)
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getSphere(int subX, int subY, int subZ)
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getSoccerBall()
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getCubeSPhere()
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getCylinder()
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getTorus()
+{
+  Model model;
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+void ModelGenerator::getTriangle(Vec3 v1, Vec3 v2, Vec3 v3)
+{
+  vertices.push_back(v1.getX());
+  vertices.push_back(v1.getY());
+  vertices.push_back(v1.getZ());
+
+  vertices.push_back(v2.getX());
+  vertices.push_back(v2.getY());
+  vertices.push_back(v2.getZ());
+
+  vertices.push_back(v3.getX());
+  vertices.push_back(v3.getY());
+  vertices.push_back(v3.getZ());
+
+}
+
+// -----------------------------------------------------------------------------
+
+Vec3 ModelGenerator::getNormal(Vec3 v1, Vec3 v2, Vec3 v3)
+{
+  Vec3 normal = (v3 - v2).cross(v1 - v2);
+
+  return normal;
+}
+
+// -----------------------------------------------------------------------------
+
+void ModelGenerator::cleanContainers()
+{
+  vertexCount = 0;
+  vertices.clear();
+  normals.clear();
+  uvs.clear();
+}
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////
