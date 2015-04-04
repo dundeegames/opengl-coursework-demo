@@ -22,14 +22,14 @@ Model ModelGenerator::getQuad()
   vertexCount = 6;
 
   Vec3 vecs[] = {
-                  Vec3(-0.5f, 0.5f, 0.5f),
-                  Vec3(-0.5f, -0.5f, 0.5f),
-                  Vec3(0.5f, -0.5f, 0.5f),
-                  Vec3(0.5f, 0.5f, 0.5f),
+                  Vec3(-0.5f, 0.5f, 0.0f),
+                  Vec3(-0.5f, -0.5f, 0.0f),
+                  Vec3(0.5f, -0.5f, 0.0f),
+                  Vec3(0.5f, 0.5f, 0.0f),
                 };
 
-  getTriangle(vecs[0], vecs[1], vecs[2]);
-  getTriangle(vecs[2], vecs[3], vecs[0]);
+  setTriangle(vecs[0], vecs[1], vecs[2]);
+  setTriangle(vecs[2], vecs[3], vecs[0]);
 
 
   float texC;
@@ -85,11 +85,77 @@ Model ModelGenerator::getQuad()
     normals.push_back(1.0f);
   }
 
+  //float verts[] = {
+  //                  -0.5f, 0.5f, 0.5f,
+  //                  -0.5f, -0.5f, 0.5f,
+  //                  0.5f, -0.5f, 0.5f,
+  //                  0.5f, -0.5f, 0.5f,
+  //                  0.5f, 0.5f, 0.5f,
+  //                  -0.5f, 0.5f, 0.5f    
+  //                };
 
 
-  model.setModel(vertexCount, GL_TRIANGLES, vertices, normals, uvs);
-  model.setColour(1.0f, 0.0f, 0.0f, 1.0f);
+  //float norms[] = {
+  //                  0.0f, 0.0f, 1.0f,
+  //                  0.0f, 0.0f, 1.0f,
+  //                  0.0f, 0.0f, 1.0f,
+  //                  0.0f, 0.0f, 1.0f,
+  //                  0.0f, 0.0f, 1.0f,
+  //                  0.0f, 0.0f, 1.0f    
+  //                };
 
+  //float texC[] = {
+  //                  0.0f, 0.0f,
+  //                  0.0f, 1.0f,
+  //                  1.0f, 1.0f,
+  //                  1.0f, 1.0f,
+  //                  1.0f, 0.0f,
+  //                  0.0f, 0.0f 
+  //                };
+
+  //vertices.assign(verts, verts + 18);
+  //normals.assign(norms, norms + 18);
+  //uvs.assign(texC, texC + 12);
+
+  model.setModel(vertexCount, vertices, normals, uvs);
+
+
+
+  cleanContainers();
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
+Model ModelGenerator::getTriangle(float slope)
+{
+  Model model;
+
+  float verts[] = {
+                    0.0f, 0.5f, 0.0f,
+                    -0.5f, -0.5f, 0.0f,
+                    slope, -0.5f, 0.0f
+                  };
+
+  float norms[] = {
+                    0.0f, 0.0f, 1.0f,
+                    0.0f, 0.0f, 1.0f,
+                    0.0f, 0.0f, 1.0f,
+                  };
+
+  float tex[] = {
+                  0.0f, 0.0f,
+                  0.0f, 1.0f,
+                  1.0f, 1.0f
+                };
+
+  vertices.assign(verts, verts + 9);
+  normals.assign(norms, norms + 9);
+  uvs.assign(tex, tex + 6);
+
+
+  model.setModel(3, vertices, normals, uvs);
 
   cleanContainers();
 
@@ -180,7 +246,7 @@ Model ModelGenerator::getTorus()
 
 // -----------------------------------------------------------------------------
 
-void ModelGenerator::getTriangle(Vec3 v1, Vec3 v2, Vec3 v3)
+void ModelGenerator::setTriangle(Vec3 v1, Vec3 v2, Vec3 v3)
 {
   vertices.push_back(v1.getX());
   vertices.push_back(v1.getY());

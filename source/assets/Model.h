@@ -41,7 +41,10 @@ public:
 
   void setTexture(GLuint texture_) {texture = texture_; }
 
-  void setModel(int vCount, int mode_, std::vector<float>& vert,
+  //void setModel(int vCount, int mode_, std::vector<float>& vert,
+  //              std::vector<float>& norm, std::vector<float>& tex);
+
+  void setModel(int vCount, std::vector<float>& vert,
                 std::vector<float>& norm, std::vector<float>& tex);
 
   void setScale(Vec3 s) {scale = s;}

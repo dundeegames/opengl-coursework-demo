@@ -16,7 +16,7 @@
 #include <Gl/gl.h>
 #include <gl/glu.h>
 #include <assets/geometry.h>
-
+#include <vector>
 
 
 class Triangle : public Geometry
@@ -33,7 +33,7 @@ public:
 
 private:
   float slope;
-
+  std::vector<float> ver, nor, tex;
 };
 
 

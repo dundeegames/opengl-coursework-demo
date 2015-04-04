@@ -325,7 +325,8 @@ Model* ResourceManager::loadModel(const char* file, bool stdandard_path)
 
 
   Model* model = new Model();
-  model->setModel(vertexCount, GL_TRIANGLES, vertices, normals, uvs);
+  //model->setModel(vertexCount, GL_TRIANGLES, vertices, normals, uvs);
+  model->setModel(vertexCount, vertices, normals, uvs);
   //model_list[file] = model;
 
 

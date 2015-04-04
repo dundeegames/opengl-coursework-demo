@@ -124,11 +124,16 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //box1.init();
   box = new Cube();
   box->setTexture(resManager.getTexture("crate.png") );
-  triangle = new Triangle();
-  triangle->setColor3f(255.0, 0.0, 0.0);
+  
+  Model triangle = modelGen.getTriangle(0.5f);
+  triangle.setPosition(Vec3(-0.5f, 0.0f, -1.0f));
+  triangle.setRotation(Vec3(0.0f, -45.0f, 0.0f));
+  triangle.setColour(1.0f, 0.0f, 0.0f, 1.0f);
+  models.push_back(triangle);
 
-  quad = modelGen.getQuad();
-  quad.setPosition(Vec3(0.0f, 0.0f, 2.0f));
+  Model quad = modelGen.getQuad();
+  quad.setPosition(Vec3(-1.5f, 0.0f, -1.0f));
+  quad.setRotation(Vec3(0.0f, -45.0f, 0.0f));
   models.push_back(quad);
 
 
@@ -201,10 +206,10 @@ void Scene3D::HandleInput(float dt)
     //releaseMouse();
   }
 
-  if(mouseCaptured)
-  {
-    rotateCamera();
-  }
+  //if(mouseCaptured)
+  //{
+  //  rotateCamera();
+  //}
 
 
   solarSystem.update(dt);
@@ -212,23 +217,6 @@ void Scene3D::HandleInput(float dt)
   //robotArm.update(dt);
 
   viewManager.update(dt);
-
-
-  //if(input->isKeyDown('4'))                 // if 4 is pressed
-  //{
-  //  // makes the front face wireframe, not the back face
-  //  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);    
-  //  input->SetKeyUp('4');                   //force un-pressing of 4
-  //}
-
-  //if(input->isKeyDown('5'))                 // if 5 is pressed
-  //{
-  //  //turns on normal filled rendering
-  //  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  //  input->SetKeyUp('5');                   //force un-pressing of 5
-  //}
-
-
 
 
   if(input->isKeyDown(VK_MENU))             // if ALT is pressed
@@ -306,37 +294,6 @@ void Scene3D::HandleInput(float dt)
 
 }// end of HandleInput
 
-// -----------------------------------------------------------------------------
-
-void Scene3D::captureMouse()
-{
-  mouseCaptured = true;
-  ShowCursor(FALSE);
-
-  center.X = (SHORT)(screenRect.right / 2);
-  center.Y = (SHORT)(screenRect.bottom / 2);
-
-}
-
-// -----------------------------------------------------------------------------
-
-void Scene3D::releaseMouse()
-{
-  mouseCaptured = false;
-  ShowCursor(TRUE);
-}
-
-// -----------------------------------------------------------------------------
-
-void Scene3D::rotateCamera()
-{
-  int deltaX = input->getMouseX() - center.X;
-  int deltaY = input->getMouseY() - center.Y;
-
-
-
-}
-
 // ------------------------------------------------------------------------------
 
 void Scene3D::loadFile()
@@ -412,19 +369,12 @@ void Scene3D::render()
 
     //based on shoulder
     glTranslatef(3.0f, 0.0f, 0.0f);
-    //box1.render();
     box->draw();
     //robotArm.render();
   
   glPopMatrix();    // go back to origin
+
   glPushMatrix();   // Remember where we are.
-
-    triangle->draw();
-
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    //glScalef(0.1f, 0.1f, 0.1f);
 
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {

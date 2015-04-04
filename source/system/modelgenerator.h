@@ -25,6 +25,7 @@ public:
 
   // TODO edit for different subdivisions in x and y
   Model getQuad();
+  Model getTriangle(float slope);
   Model getPlane(int subX, int subY);
   Model getCube(int subX, int subY, int subZ);
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
@@ -38,7 +39,7 @@ private:
   int vertexCount;
   std::vector<float> vertices, normals, uvs;
 
-  void getTriangle(Vec3 v1, Vec3 v2, Vec3 v3);
+  void setTriangle(Vec3 v1, Vec3 v2, Vec3 v3);
   Vec3 getNormal(Vec3 v1, Vec3 v2, Vec3 v3);
   void cleanContainers();
 };

@@ -38,10 +38,12 @@ Model& Model::operator=(const Model& m2)
 
 // -----------------------------------------------------------------------------
 
-void Model::setModel(int vCount, int mode_, std::vector<float>& vert,
+//void Model::setModel(int vCount, int mode_, std::vector<float>& vert,
+//                     std::vector<float>& norm, std::vector<float>& tex)
+void Model::setModel(int vCount, std::vector<float>& vert,
                      std::vector<float>& norm, std::vector<float>& tex)
 {
-  mode = mode_;
+  //mode = mode_;
   m_vertexCount = vCount;
   vertex = vert;
   normals = norm;
@@ -53,11 +55,13 @@ void Model::setModel(int vCount, int mode_, std::vector<float>& vert,
 
 void Model::Render()
 {
-  glColor4f(colour[0], colour[1], colour[2], colour[3]);
+  
+  
 
   // enble and specify pointers to vertex arrays
   glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
 
+  glEnable(GL_BLEND);
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
   //glEnableClientState(GL_COLOR_ARRAY);
@@ -70,7 +74,7 @@ void Model::Render()
   //glColorPointer(3, GL_FLOAT, 0, colors.data());
   glTexCoordPointer(2, GL_FLOAT, 0, texCoords.data());
 
-
+  glColor4f(colour[0], colour[1], colour[2], colour[3]);
 
   //dereferencing method of choice
   glPushMatrix();
@@ -84,15 +88,17 @@ void Model::Render()
     //glDrawArrays(mode, 0, m_vertexCount);     // bug with generated models
   glPopMatrix();
 
-
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);    // reset colour
 
   glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
   glDisableClientState(GL_NORMAL_ARRAY);
   //glDisableClientState(GL_COLOR_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  glDisable(GL_BLEND);
+
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
-  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);    // reset colour
+  
 }
 
 // -----------------------------------------------------------------------------

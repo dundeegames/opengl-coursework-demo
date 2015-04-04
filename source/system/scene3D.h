@@ -79,9 +79,6 @@ private:
   Light* ambient;
   Light* light1;
   Geometry* box;
-  Geometry* triangle;
-  Model quad;
-
 
 
   Arm robotArm;
@@ -93,12 +90,6 @@ private:
 
 
   std::vector<Model> models;
-
-  bool mouseCaptured;
-
-  void captureMouse();
-  void releaseMouse();
-  void rotateCamera();
 
   void insertFile();
   void loadFile();
