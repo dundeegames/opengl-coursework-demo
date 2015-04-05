@@ -131,7 +131,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   triangle.setColour(1.0f, 0.0f, 0.0f, 1.0f);
   models.push_back(triangle);
 
-  Model quad = modelGen.getQuad();
+  Model quad = modelGen.getQuad(1.5f, 0.75f);
   quad.setPosition(Vec3(-1.5f, 0.0f, -1.0f));
   quad.setRotation(Vec3(0.0f, -45.0f, 0.0f));
   models.push_back(quad);

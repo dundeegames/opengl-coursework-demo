@@ -16,88 +16,38 @@ ModelGenerator::~ModelGenerator()
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getQuad()
+Model ModelGenerator::getQuad(float w, float h)
 {
   Model model;
-  vertexCount = 6;
+  float cosT, sinT;
+  float r = 1.0f / sqrt(2.0f);
 
-  Vec3 vecs[] = {
-                  Vec3(-0.5f, 0.5f, 0.0f),
-                  Vec3(-0.5f, -0.5f, 0.0f),
-                  Vec3(0.5f, -0.5f, 0.0f),
-                  Vec3(0.5f, 0.5f, 0.0f),
-                };
-
-  setTriangle(vecs[0], vecs[1], vecs[2]);
-  setTriangle(vecs[2], vecs[3], vecs[0]);
-
-
-  float texC;
-
-  for(int j = 0; j < 4; j++)
+  for(float i = 45.0f; i < 360.0f; i += 180.0f)
   {
-    switch(j)
+    for(float theta = i; theta < (270.0f + i); theta += 90.0f)
     {
-    case 0:
-    case 3:
-      texC = 0.0f;
-      break;
-        
-    case 1:
-    case 2:
-      texC = 1.0f;
-      break;
-        
-    default:
-      exit(-1);
-    }
+      // r = radius
+      cosT = cosf(RADIANS(theta));
+      sinT = sinf(RADIANS(theta));
 
-    for(int i = 0; i < 3; i++)
-    {
-      uvs.push_back(texC);
+      vertices.push_back( (r * cosT) );
+      vertices.push_back( (r * sinT) );
+      vertices.push_back(0.0f);
+
+      normals.push_back(0.0f);
+      normals.push_back(0.0f);
+      normals.push_back(1.0f);
+
+      uvs.push_back( ((cosT / (2.0f * r)) + 0.5f) );
+      uvs.push_back( ((sinT / (2.0f * r)) + 0.5f) );
+
+      vertexCount++;
+
     }
   }
-
-  for(int n = 0; n < vertexCount; n++)
-  {
-    normals.push_back(0.0f);
-    normals.push_back(0.0f);
-    normals.push_back(1.0f);
-  }
-
-  //float verts[] = {
-  //                  -0.5f, 0.5f, 0.5f,
-  //                  -0.5f, -0.5f, 0.5f,
-  //                  0.5f, -0.5f, 0.5f,
-  //                  0.5f, -0.5f, 0.5f,
-  //                  0.5f, 0.5f, 0.5f,
-  //                  -0.5f, 0.5f, 0.5f    
-  //                };
-
-
-  //float norms[] = {
-  //                  0.0f, 0.0f, 1.0f,
-  //                  0.0f, 0.0f, 1.0f,
-  //                  0.0f, 0.0f, 1.0f,
-  //                  0.0f, 0.0f, 1.0f,
-  //                  0.0f, 0.0f, 1.0f,
-  //                  0.0f, 0.0f, 1.0f    
-  //                };
-
-  //float texC[] = {
-  //                  0.0f, 0.0f,
-  //                  0.0f, 1.0f,
-  //                  1.0f, 1.0f,
-  //                  1.0f, 1.0f,
-  //                  1.0f, 0.0f,
-  //                  0.0f, 0.0f 
-  //                };
-
-  //vertices.assign(verts, verts + 18);
-  //normals.assign(norms, norms + 18);
-  //uvs.assign(texC, texC + 12);
 
   model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(w, h, 1.0f));
   cleanContainers();
 
   return model;
@@ -105,32 +55,34 @@ Model ModelGenerator::getQuad()
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getTriangle()
+Model ModelGenerator::getTriangle(float r)
 {
   Model model;
-  float x, y;
+  float cosT, sinT;
 
 
   for(float theta = 90.0f; theta < 360.0f; theta += 120.0f)
   {
-    // radius = 1.0
-    x = cosf(RADIANS(theta));
-    y = sinf(RADIANS(theta));
+    // r = radius
+    cosT = cosf(RADIANS(theta));
+    sinT = sinf(RADIANS(theta));
 
-    vertices.push_back(x);
-    vertices.push_back(y);
+    vertices.push_back( (r * cosT) );
+    vertices.push_back( (r * sinT) );
     vertices.push_back(0.0f);
 
     normals.push_back(0.0f);
     normals.push_back(0.0f);
     normals.push_back(1.0f);
 
-    uvs.push_back( ((x * 0.5f) + 0.5f) );
-    uvs.push_back( ((y * 0.5f) + 0.5f) );
+    uvs.push_back( ((cosT / (2.0f * r)) + 0.5f) );
+    uvs.push_back( ((sinT / (2.0f * r)) + 0.5f) );
+
+    vertexCount++;
 
   }
 
-  model.setModel(3, vertices, normals, uvs);
+  model.setModel(vertexCount, vertices, normals, uvs);
 
   cleanContainers();
 

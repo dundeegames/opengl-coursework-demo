@@ -23,9 +23,9 @@ public:
   ModelGenerator();
   ~ModelGenerator();
 
-  // TODO edit for different subdivisions in x and y
-  Model getQuad();
-  Model getTriangle();
+  Model getQuad(float w = 1.0f, float h = 1.0f);
+  Model getTriangle(float r = 1.0f);
+
   Model getPlane(int subX, int subY);
   Model getCube(int subX, int subY, int subZ);
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
