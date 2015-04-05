@@ -89,28 +89,36 @@ void Sprite::setDList()
 
   glNewList(DisplayList, GL_COMPILE);    // Like glBegin and End
 
-  glBegin(GL_TRIANGLES);
-   //glTexCoord2f(0.0f, 0.0f);
-   //glVertex2f(100.0f,100.0f);
+    glBegin(GL_TRIANGLES);
+      glTexCoord2f(uv_posX, uv_posY);
+      glVertex2f(positionX, positionY);
  
-   //glTexCoord2f(0.0f, 1.0f);
-   //glVertex2f(100.0f,200.0f);
+      glTexCoord2f(uv_posX, (uv_posY + uv_height));
+      glVertex2f(positionX, (positionY + height));
 
-   //glTexCoord2f(1.0f, 1.0f);
-   //glVertex2f(200.0f,200.0f);
+      glTexCoord2f( (uv_posX + uv_width), (uv_posY + uv_height));
+      glVertex2f( (positionX + width), (positionY + height));
 
-   //glTexCoord2f(1.0f, 1.0f);
-   //glVertex2f(200.0f,200.0f);
+      glTexCoord2f( (uv_posX + uv_width), (uv_posY + uv_height));
+      glVertex2f( (positionX + width), (positionY + height));
  
-   //glTexCoord2f(1.0f, 1.0f);
-   //glVertex2f(200.0f,100.0f);
+      glTexCoord2f( (uv_posX + uv_width), uv_posY);
+      glVertex2f( (positionX + width), positionY);
 
-   //glTexCoord2f(0.0f, 1.0f);
-   //glVertex2f(100.0f,100.0f);
-
- glEnd();
+      glTexCoord2f(uv_posX, uv_posY);
+      glVertex2f(positionX, positionY);
+    glEnd();
 
   glEndList();
+
+}
+
+// -----------------------------------------------------------------------------
+
+void Sprite::setVArrays()
+{
+
+
 
 }
 

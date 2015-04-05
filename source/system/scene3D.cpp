@@ -125,7 +125,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   box = new Cube();
   box->setTexture(resManager.getTexture("crate.png") );
   
-  Model triangle = modelGen.getTriangle(0.5f);
+  Model triangle = modelGen.getTriangle();
   triangle.setPosition(Vec3(-0.5f, 0.0f, -1.0f));
   triangle.setRotation(Vec3(0.0f, -45.0f, 0.0f));
   triangle.setColour(1.0f, 0.0f, 0.0f, 1.0f);
@@ -153,26 +153,17 @@ void Scene3D::DrawScene(float dt)
 
   viewManager.beginView(VIEWPORT_MAIN, true, false);
 
+  //! Updating viewports
+  for(int i = 1; i < MAX_VIEWPORTS; i++)
+  {
+    if(input->isViewportActive(i))
+    {
+      viewManager.beginView(i);
+        render();                         // render all lighting, geometry, etc.
+      viewManager.endView(i);
 
-    viewManager.beginView(VIEWPORT_SIDE);
-      render(); // render all lighting, geometry, etc.
-    viewManager.endView(VIEWPORT_SIDE);
-
-
-    viewManager.beginView(VIEWPORT_FRNT);
-      render(); // render all lighting, geometry, etc.
-    viewManager.endView(VIEWPORT_FRNT);
-
-
-    viewManager.beginView(VIEWPORT_TOP);
-      render(); // render all lighting, geometry, etc.
-    viewManager.endView(VIEWPORT_TOP);
-
-
-    viewManager.beginView(VIEWPORT_PERS);
-      render(); // render all lighting, geometry, etc.
-    viewManager.endView(VIEWPORT_PERS);
-
+    }
+  }
 
   viewManager.endView(VIEWPORT_MAIN);
     gui.renderMenu();

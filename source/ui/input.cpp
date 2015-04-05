@@ -287,7 +287,7 @@ void Input::unselectButton(int btnID)
 
 bool Input::isViewportSelected(int viewID)
 {
-  return   viewports[viewID];
+  return   viewports[viewID].selected;
 }
 
 // -----------------------------------------------------------------------------
@@ -298,11 +298,11 @@ void Input::selectViewport(int viewID)
   {
     if(i == viewID)
     {
-      viewports[i] = true;
+      viewports[i].selected = true;
     }
     else
     {
-      viewports[i] = false;
+      viewports[i].selected = false;
     }
   }
 
@@ -310,10 +310,10 @@ void Input::selectViewport(int viewID)
 
 // -----------------------------------------------------------------------------
 
-//void Input::unselectViewport(int viewID)
-//{
-//  viewports[viewID] = false;
-//}
+bool Input::isViewportActive(int viewID)
+{
+  return viewports[viewID].active;
+}
 
 // -----------------------------------------------------------------------------
 

@@ -85,9 +85,6 @@
     <ClCompile Include="..\..\source\assets\sprite.cpp">
       <Filter>assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\assets\triangle.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\math\quaternion.cpp">
       <Filter>math</Filter>
     </ClCompile>
@@ -190,9 +187,6 @@
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\sprite.h">
-      <Filter>assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\assets\triangle.h">
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\math\quaternion.h">

@@ -18,7 +18,6 @@
     <ClCompile Include="..\..\source\assets\model.cpp" />
     <ClCompile Include="..\..\source\assets\planets.cpp" />
     <ClCompile Include="..\..\source\assets\sprite.cpp" />
-    <ClCompile Include="..\..\source\assets\triangle.cpp" />
     <ClCompile Include="..\..\source\math\abertay\aabb.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -76,7 +75,6 @@
     <ClInclude Include="..\..\source\assets\model.h" />
     <ClInclude Include="..\..\source\assets\planets.h" />
     <ClInclude Include="..\..\source\assets\sprite.h" />
-    <ClInclude Include="..\..\source\assets\triangle.h" />
     <ClInclude Include="..\..\source\math\abertay\aabb.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>

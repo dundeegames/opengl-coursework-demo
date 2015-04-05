@@ -75,11 +75,13 @@ private:
   GLfloat blue;
   GLfloat alpha;
 
-
+  float vertices[12];
+  float uvs[12];
 
   GLuint DisplayList;
 
   void setDList();
+  void setVArrays();
 
 };
 

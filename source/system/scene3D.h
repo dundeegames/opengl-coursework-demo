@@ -29,7 +29,7 @@
 #include <assets/planets.h>
 #include <assets/light.h>
 #include <assets/sprite.h>
-#include <assets/triangle.h>
+//#include <assets/triangle.h>
 #include <assets/model.h>
 
 #include <system/resourcemanager.h>

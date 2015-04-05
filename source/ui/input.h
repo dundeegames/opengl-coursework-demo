@@ -18,6 +18,10 @@
 #include <system/macros.h>
 
 
+
+
+// -----------------------------------------------------------------------------
+
 struct Mouse
 {
   int x,y, leftDragX, leftDragY, rightDragX, rightDragY;
@@ -37,6 +41,26 @@ struct Mouse
   }
 
 };
+
+// -----------------------------------------------------------------------------
+
+struct ViewportSetting
+{
+  bool selected;
+  bool active;
+  ViewportSetting()
+  {
+    selected = false;
+    active = true;
+  }
+
+};
+
+// -----------------------------------------------------------------------------
+
+
+
+
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////
@@ -76,6 +100,8 @@ public:
 
   bool isViewportSelected(int viewID);
   void selectViewport(int viewID);
+
+  bool isViewportActive(int viewID);
   //void unselectViewport(int viewID);
 
 
@@ -117,7 +143,7 @@ private:
   bool topButtons[MAX_TOP_BUTTONS];
   bool sideButtons[MAX_SIDE_BUTTONS];
   bool viewButtons[MAX_VIEW_BUTTONS];
-  bool viewports[MAX_VIEWPORTS];
+  ViewportSetting viewports[MAX_VIEWPORTS];
   Mouse mouse;
   float sensitivity;
 

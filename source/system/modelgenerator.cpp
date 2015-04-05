@@ -1,4 +1,5 @@
 #include <system/modelgenerator.h>
+#include <system/macros.h>
 
 
 ModelGenerator::ModelGenerator()
@@ -17,7 +18,6 @@ ModelGenerator::~ModelGenerator()
 
 Model ModelGenerator::getQuad()
 {
-  //Model model = getPlane(1,1);
   Model model;
   vertexCount = 6;
 
@@ -57,26 +57,6 @@ Model ModelGenerator::getQuad()
       uvs.push_back(texC);
     }
   }
-
-
-
-
-
-
-    //float texC[] = {
-    //                 0.0f, 0.0f,
-    //                 0.0f, 1.0f,
-    //                 1.0f, 1.0f,
-
-    //                 1.0f, 1.0f,
-    //                 1.0f, 0.0f,
-    //                 0.0f, 0.0f
-    //               };
-    //for(int u = 0; u < texCount; u++)
-    //{
-    //  uvs.push_back(texC[u]);
-    //}
-    
 
   for(int n = 0; n < vertexCount; n++)
   {
@@ -118,9 +98,6 @@ Model ModelGenerator::getQuad()
   //uvs.assign(texC, texC + 12);
 
   model.setModel(vertexCount, vertices, normals, uvs);
-
-
-
   cleanContainers();
 
   return model;
@@ -128,32 +105,30 @@ Model ModelGenerator::getQuad()
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getTriangle(float slope)
+Model ModelGenerator::getTriangle()
 {
   Model model;
+  float x, y;
 
-  float verts[] = {
-                    0.0f, 0.5f, 0.0f,
-                    -0.5f, -0.5f, 0.0f,
-                    slope, -0.5f, 0.0f
-                  };
 
-  float norms[] = {
-                    0.0f, 0.0f, 1.0f,
-                    0.0f, 0.0f, 1.0f,
-                    0.0f, 0.0f, 1.0f,
-                  };
+  for(float theta = 90.0f; theta < 360.0f; theta += 120.0f)
+  {
+    // radius = 1.0
+    x = cosf(RADIANS(theta));
+    y = sinf(RADIANS(theta));
 
-  float tex[] = {
-                  0.0f, 0.0f,
-                  0.0f, 1.0f,
-                  1.0f, 1.0f
-                };
+    vertices.push_back(x);
+    vertices.push_back(y);
+    vertices.push_back(0.0f);
 
-  vertices.assign(verts, verts + 9);
-  normals.assign(norms, norms + 9);
-  uvs.assign(tex, tex + 6);
+    normals.push_back(0.0f);
+    normals.push_back(0.0f);
+    normals.push_back(1.0f);
 
+    uvs.push_back( ((x * 0.5f) + 0.5f) );
+    uvs.push_back( ((y * 0.5f) + 0.5f) );
+
+  }
 
   model.setModel(3, vertices, normals, uvs);
 

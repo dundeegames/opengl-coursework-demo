@@ -25,7 +25,7 @@ public:
 
   // TODO edit for different subdivisions in x and y
   Model getQuad();
-  Model getTriangle(float slope);
+  Model getTriangle();
   Model getPlane(int subX, int subY);
   Model getCube(int subX, int subY, int subZ);
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles

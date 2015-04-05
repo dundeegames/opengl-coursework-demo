@@ -1,5 +1,5 @@
 #include <assets/model.h>
-
+#include <system/macros.h>
 
 Model::Model()
 {
@@ -88,7 +88,7 @@ void Model::Render()
     //glDrawArrays(mode, 0, m_vertexCount);     // bug with generated models
   glPopMatrix();
 
-  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);    // reset colour
+  glColor4f(COLOUR_WHITE, 1.0f);    // reset colour
 
   glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
   glDisableClientState(GL_NORMAL_ARRAY);
