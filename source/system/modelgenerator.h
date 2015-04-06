@@ -16,6 +16,14 @@
 #include <math/vec3.h>
 
 
+
+
+
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
+
 class ModelGenerator
 {
 
@@ -23,10 +31,10 @@ public:
   ModelGenerator();
   ~ModelGenerator();
 
-  Model getQuad(float w = 1.0f, float h = 1.0f);
+  Model getQuad(float width = 1.0f, float height = 1.0f);
   Model getTriangle(float r = 1.0f);
 
-  Model getPlane(int subX, int subY);
+  Model getPlane(float width, float height, int subX, int subY);
   Model getCube(int subX, int subY, int subZ);
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
   Model getSoccerBall();                          // Sphere from pentagons
@@ -39,7 +47,7 @@ private:
   int vertexCount;
   std::vector<float> vertices, normals, uvs;
 
-  void setTriangle(Vec3 v1, Vec3 v2, Vec3 v3);
+  void quadToTriangle(Vec3 v1, Vec3 v2, Vec3 v3, Vec3 v4, Vec3* norm = NULL);
   Vec3 getNormal(Vec3 v1, Vec3 v2, Vec3 v3);
   void cleanContainers();
 };

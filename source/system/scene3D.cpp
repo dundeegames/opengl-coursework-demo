@@ -137,6 +137,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
   models.push_back(quad);
 
 
+  Model plane = modelGen.getPlane(3.f, 1.5f, 10, 10);
+  plane.setPosition(Vec3(1.5f, 0.0f, 0.0f));
+  plane.setRotation(Vec3(0.0f, -90.0f, 0.0f));
+  models.push_back(plane);
+
+
+
 } // end of Init
 
 // ------------------------------------------------------------------------------
