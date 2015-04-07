@@ -101,6 +101,10 @@ Model ModelGenerator::getCube(float width, float height, float depth,
 
   makePlane(subX, subY, PLN_FRONT);
   makePlane(subX, subY, PLN_BACK);
+  makePlane(subZ, subY, PLN_LEFT);
+  makePlane(subZ, subY, PLN_RIGHT);
+  makePlane(subX, subZ, PLN_TOP);
+  makePlane(subX, subZ, PLN_BOTTOM);
 
   model.setModel(vertexCount, vertices, normals, uvs);
   model.setScale(Vec3(width, height, depth));
@@ -213,77 +217,119 @@ void ModelGenerator::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
 
 // -----------------------------------------------------------------------------
 
-void ModelGenerator::makePlane(int subX, int subY, PlaneType type)
+/*!
+*
+*
+*
+*
+*/
+void ModelGenerator::makePlane(int subW, int subH, PlaneType type)
 {
-  float dx = (1.0f / (float)subX);
-  float dy = (1.0f / (float)subY);
+  float dW = (1.0f / (float)subW);
+  float dH = (1.0f / (float)subH);
   float x1 = 0.0f;
   float x2 = 0.0f;
   float y1 = 0.0f;
   float y2 = 0.0f;
+  float z1 = 0.0f;
+  float z2 = 0.0f;
+
+  float uvLeft = 0.0f;
+  float uvTop = 0.0f;
+  float uvRight = 0.0f;
+  float uvBottom = 0.0f;
 
 
-  for(int j = 0; j < subY; j++)
+  for(int j = 0; j < subH; j++)
   {
-    for(int i = 0; i < subX; i++)
+    for(int i = 0; i < subW; i++)
     {
-      x1 = PLANE_OFFX + (i * dx);
-      x2 = PLANE_OFFX + ((i+1) * dx);
-      y1 = PLANE_OFFY + (j * dy);
-      y2 = PLANE_OFFY + ((j+1) * dy);
-
+      // TODO: once textured, make sure the Top and bottom are not flipped
       switch(type)
       {
       case PLN_LEFT:
-        //quadToTriangle(
-        //                Vec3(x1, y1, 0.0f),
-        //                Vec3(x1, y2, 0.0f),                      
-        //                Vec3(x2, y2, 0.0f),
-        //                Vec3(x2, y1, 0.0f),
-        //                i * dx,
-        //                j * dy,
-        //                (i+1) * dx,
-        //                (j+1) * dy
-        //              );
+        x1 = -0.5f;
+        y1 = PLN_OFFSET + ((j+1) * dH);
+        y2 = PLN_OFFSET + (j * dH);
+        z1 = PLN_OFFSET + (i * dW);
+        z2 = PLN_OFFSET + ((i+1) * dW);
 
-        //for(int n=0; n < 6; n++)
-        //{
-        //  normals.push_back(0.0f);
-        //  normals.push_back(0.0f);
-        //  normals.push_back(1.0f);
-        //}
+        uvLeft =    (i * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   ((i+1) * dW);
+        uvBottom =  (j * dH);
+
+        quadToTriangle(
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y2, z1),                      
+                        Vec3(x1, y2, z2),
+                        Vec3(x1, y1, z2),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(-1.0f);
+          normals.push_back(0.0f);
+          normals.push_back(0.0f);
+        }
         break;
 
       case PLN_RIGHT:
-        //quadToTriangle(
-        //                Vec3(x1, y1, 0.0f),
-        //                Vec3(x1, y2, 0.0f),                      
-        //                Vec3(x2, y2, 0.0f),
-        //                Vec3(x2, y1, 0.0f),
-        //                i * dx,
-        //                j * dy,
-        //                (i+1) * dx,
-        //                (j+1) * dy
-        //              );
+        x1 = 0.5f;
+        y1 = PLN_OFFSET + ((j+1) * dH);
+        y2 = PLN_OFFSET + (j * dH);
+        z1 = PLN_OFFSET + ((i+1) * dW);
+        z2 = PLN_OFFSET + (i * dW);
 
-        //for(int n=0; n < 6; n++)
-        //{
-        //  normals.push_back(0.0f);
-        //  normals.push_back(0.0f);
-        //  normals.push_back(1.0f);
-        //}
+        uvLeft =    ((i+1) * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   (i * dW);
+        uvBottom =  (j * dH);
+
+        quadToTriangle(
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y2, z1),                      
+                        Vec3(x1, y2, z2),
+                        Vec3(x1, y1, z2),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(1.0f);
+          normals.push_back(0.0f);
+          normals.push_back(0.0f);
+        }
         break;
 
       case PLN_FRONT:
+        x1 = PLN_OFFSET + (i * dW);
+        x2 = PLN_OFFSET + ((i+1) * dW);
+        y1 = PLN_OFFSET + ((j+1) * dH);
+        y2 = PLN_OFFSET + (j * dH);
+        z1 = 0.5f;
+
+        uvLeft =    (i * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   ((i+1) * dW);
+        uvBottom =  (j * dH);
+        
         quadToTriangle(
-                        Vec3(x1, y1, 0.5f),
-                        Vec3(x1, y2, 0.5f),                      
-                        Vec3(x2, y2, 0.5f),
-                        Vec3(x2, y1, 0.5f),
-                        i * dx,
-                        j * dy,
-                        (i+1) * dx,
-                        (j+1) * dy
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y2, z1),                      
+                        Vec3(x2, y2, z1),
+                        Vec3(x2, y1, z1),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
                       );
 
         for(int n=0; n < 6; n++)
@@ -296,15 +342,26 @@ void ModelGenerator::makePlane(int subX, int subY, PlaneType type)
 
 
       case PLN_CENTER:
+        x1 = PLN_OFFSET + (i * dW);
+        x2 = PLN_OFFSET + ((i+1) * dW);
+        y1 = PLN_OFFSET + ((j+1) * dH);
+        y2 = PLN_OFFSET + (j * dH);
+        z1 = 0.0f;
+
+        uvLeft =    (i * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   ((i+1) * dW);
+        uvBottom =  (j * dH);
+
         quadToTriangle(
-                        Vec3(x1, y1, 0.0f),
-                        Vec3(x1, y2, 0.0f),                      
-                        Vec3(x2, y2, 0.0f),
-                        Vec3(x2, y1, 0.0f),
-                        i * dx,
-                        j * dy,
-                        (i+1) * dx,
-                        (j+1) * dy
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y2, z1),                      
+                        Vec3(x2, y2, z1),
+                        Vec3(x2, y1, z1),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
                       );
 
         for(int n=0; n < 6; n++)
@@ -317,16 +374,29 @@ void ModelGenerator::makePlane(int subX, int subY, PlaneType type)
 
 
       case PLN_BACK:
+        x1 = PLN_OFFSET + ((i+1) * dW);
+        x2 = PLN_OFFSET + (i * dW);
+        y1 = PLN_OFFSET + ((j+1) * dH);
+        y2 = PLN_OFFSET + (j * dH);
+        z1 = -0.5f;
+
+        uvLeft =    ((i+1) * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   (i * dW);
+        uvBottom =  (j * dH);
+
+
         quadToTriangle(
-                        Vec3(x2, y1, -0.5f),
-                        Vec3(x2, y2, -0.5f),                      
-                        Vec3(x1, y2, -0.5f),
-                        Vec3(x1, y1, -0.5f),
-                        i * dx,
-                        j * dy,
-                        (i+1) * dx,
-                        (j+1) * dy
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y2, z1),                      
+                        Vec3(x2, y2, z1),
+                        Vec3(x2, y1, z1),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
                       );
+
 
         for(int n=0; n < 6; n++)
         {
@@ -337,43 +407,65 @@ void ModelGenerator::makePlane(int subX, int subY, PlaneType type)
         break;
 
       case PLN_TOP:
-        //quadToTriangle(
-        //                Vec3(x1, y1, 0.0f),
-        //                Vec3(x1, y2, 0.0f),                      
-        //                Vec3(x2, y2, 0.0f),
-        //                Vec3(x2, y1, 0.0f),
-        //                i * dx,
-        //                j * dy,
-        //                (i+1) * dx,
-        //                (j+1) * dy
-        //              );
+        x1 = PLN_OFFSET + (i * dW);
+        x2 = PLN_OFFSET + ((i+1) * dW);
+        z1 = PLN_OFFSET + (j * dH);
+        z2 = PLN_OFFSET + ((j+1) * dH);
+        y1 = 0.5f;
 
-        //for(int n=0; n < 6; n++)
-        //{
-        //  normals.push_back(0.0f);
-        //  normals.push_back(0.0f);
-        //  normals.push_back(1.0f);
-        //}
+        uvLeft =    (i * dW);
+        uvTop =     (j * dH);
+        uvRight =   ((i+1) * dW);
+        uvBottom =  ((j+1) * dH);
+        
+        quadToTriangle(
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y1, z2),                      
+                        Vec3(x2, y1, z2),
+                        Vec3(x2, y1, z1),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(0.0f);
+          normals.push_back(1.0f);
+          normals.push_back(0.0f);
+        }
         break;
 
       case PLN_BOTTOM:
-        //quadToTriangle(
-        //                Vec3(x1, y1, 0.0f),
-        //                Vec3(x1, y2, 0.0f),                      
-        //                Vec3(x2, y2, 0.0f),
-        //                Vec3(x2, y1, 0.0f),
-        //                i * dx,
-        //                j * dy,
-        //                (i+1) * dx,
-        //                (j+1) * dy
-        //              );
+        x1 = PLN_OFFSET + (i * dW);
+        x2 = PLN_OFFSET + ((i+1) * dW);
+        z1 = PLN_OFFSET + ((j+1) * dH);
+        z2 = PLN_OFFSET + (j * dH);
+        y1 = -0.5f;
 
-        //for(int n=0; n < 6; n++)
-        //{
-        //  normals.push_back(0.0f);
-        //  normals.push_back(0.0f);
-        //  normals.push_back(1.0f);
-        //}
+        uvLeft =    (i * dW);
+        uvTop =     ((j+1) * dH);
+        uvRight =   ((i+1) * dW);
+        uvBottom =  (j * dH);
+        
+        quadToTriangle(
+                        Vec3(x1, y1, z1),
+                        Vec3(x1, y1, z2),                      
+                        Vec3(x2, y1, z2),
+                        Vec3(x2, y1, z1),
+                        uvLeft,
+                        uvTop,
+                        uvRight,
+                        uvBottom
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(0.0f);
+          normals.push_back(-1.0f);
+          normals.push_back(0.0f);
+        }
         break;
 
 

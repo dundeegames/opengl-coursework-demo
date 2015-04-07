@@ -73,7 +73,7 @@ private:
                       float uvL = 0.0f, float uvT = 0.0f,
                       float uvR = 1.0f, float uvB = 1.0f);
 
-  void makePlane(int subX, int subY, PlaneType type);
+  void makePlane(int subW, int subH, PlaneType type);
 
   Vec3 getNormal(Vec3 v1, Vec3 v2, Vec3 v3);
   void cleanContainers();
