@@ -273,6 +273,26 @@
 #define L3D_UV_SIZE         (46.0f / TEXTURE_WIDTH)
 
 
+// MODEL MANAGER ---------------------------------------------------------------
+
+// procedural quad
+#define QUAD_TOP            0.5f
+#define QUAD_BTM            -0.5f
+#define QUAD_LFT            -0.5f
+#define QUAD_RGT            0.5f
+
+// procedural plane
+#define PLANE_OFFX           -0.5f
+#define PLANE_OFFY           -0.5f
+//#define PLANE_LFT            -0.5f
+//#define PLANE_RGT            0.5f
+
+
+
+
+
+
+
 
 
 

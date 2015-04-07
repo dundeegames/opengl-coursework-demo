@@ -19,90 +19,13 @@ ModelGenerator::~ModelGenerator()
 Model ModelGenerator::getQuad(float width, float height)
 {
   Model model;
-  //float cosT, sinT;
-  //float r = 1.0f / sqrt(2.0f);
 
-  //for(float i = 45.0f; i < 360.0f; i += 180.0f)
-  //{
-  //  for(float theta = i; theta < (270.0f + i); theta += 90.0f)
-  //  {
-  //    // r = radius
-  //    cosT = cosf(RADIANS(theta));
-  //    sinT = sinf(RADIANS(theta));
-
-  //    vertices.push_back( (r * cosT) );
-  //    vertices.push_back( (r * sinT) );
-  //    vertices.push_back(0.0f);
-
-  //    normals.push_back(0.0f);
-  //    normals.push_back(0.0f);
-  //    normals.push_back(1.0f);
-
-  //    uvs.push_back( ((cosT / (2.0f * r)) + 0.5f) );
-  //    uvs.push_back( ((sinT / (2.0f * r)) + 0.5f) );
-
-  //    vertexCount++;
-
-  //  }
-  //}
-  float offsetX = (-width * 0.5f);
-  float offsetY = (-height * 0.5f);
-
-  //quadToTriangle(
-  //                Vec3(),
-  //                Vec3(),
-  //                Vec3(),
-  //                Vec3(),
-  //                Vec3(),
-  //              );
-
-
-
-
-
-
-
-  vertices.push_back(offsetX + width);
-  vertices.push_back(offsetY);
-  vertices.push_back(0.0f);
-  uvs.push_back(1.0f);
-  uvs.push_back(0.0f);
-      
-
-  vertices.push_back(offsetX);
-  vertices.push_back(offsetY);
-  vertices.push_back(0.0f);
-  uvs.push_back(0.0f);
-  uvs.push_back(0.0f);
-      
-
-  vertices.push_back(offsetX);
-  vertices.push_back(offsetY + height);
-  vertices.push_back(0.0f);
-  uvs.push_back(0.0f);
-  uvs.push_back(1.0f);
-
-      
-  vertices.push_back(offsetX);
-  vertices.push_back(offsetY + height);
-  vertices.push_back(0.0f);
-  uvs.push_back(0.0f);
-  uvs.push_back(1.0f);
-      
-
-  vertices.push_back(offsetX + width);
-  vertices.push_back(offsetY + height);
-  vertices.push_back(0.0f);
-  uvs.push_back(1.0f);
-  uvs.push_back(1.0f);
-      
-
-  vertices.push_back(offsetX + width);
-  vertices.push_back(offsetY);
-  vertices.push_back(0.0f);
-  uvs.push_back(1.0f);
-  uvs.push_back(0.0f);
-
+  quadToTriangle(
+                  Vec3(QUAD_LFT, QUAD_TOP, 0.0f),
+                  Vec3(QUAD_LFT, QUAD_BTM, 0.0f),
+                  Vec3(QUAD_RGT, QUAD_BTM, 0.0f),
+                  Vec3(QUAD_RGT, QUAD_TOP, 0.0f)
+                );
 
   for(int n=0; n < 6; n++)
   {
@@ -111,15 +34,8 @@ Model ModelGenerator::getQuad(float width, float height)
     normals.push_back(1.0f);
   }
 
-  vertexCount += 6;
-
-
-
-
-
-
   model.setModel(vertexCount, vertices, normals, uvs);
-  //model.setScale(Vec3(w, h, 1.0f));
+  model.setScale(Vec3(width, height, 1.0f));
   cleanContainers();
 
   return model;
@@ -163,83 +79,14 @@ Model ModelGenerator::getTriangle(float r)
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getPlane(float width, float height, int subX, int subY)
+Model ModelGenerator::getPlane(float width, float height, int subX, int subY, PlaneType type)
 {
-  //vertexCount = 0;
   Model model;
-  float offsetX = (-width * 0.5f);
-  float offsetY = (-height * 0.5f);
-  float dx = (1.0f / (float)subX);
-  float dy = (1.0f / (float)subY);
-  float wdx = width * dx;
-  float hdy = height * dy;
 
-
-  for(int j = 0; j < subY; j++)
-  {
-    for(int i = 0; i < subX; i++)
-    {
-      vertices.push_back(offsetX + ((i+1) * wdx));
-      vertices.push_back(offsetY + (j * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back((i+1) * dx);
-      uvs.push_back(j * dy);
-      
-
-      vertices.push_back(offsetX + (i * wdx));
-      vertices.push_back(offsetY + (j * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back(i * dx);
-      uvs.push_back(j * dy);
-      
-
-      vertices.push_back(offsetX + (i * wdx));
-      vertices.push_back(offsetY + ((j+1) * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back(i * dx);
-      uvs.push_back((j+1) * dy);
-
-      
-      vertices.push_back(offsetX + (i * wdx));
-      vertices.push_back(offsetY + ((j+1) * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back(i * dx);
-      uvs.push_back((j+1) * dy);
-      
-
-      vertices.push_back(offsetX + ((i+1) * wdx));
-      vertices.push_back(offsetY + ((j+1) * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back((i+1) * dx);
-      uvs.push_back((j+1) * dy);
-      
-
-      vertices.push_back(offsetX + ((i+1) * wdx));
-      vertices.push_back(offsetY + (j * hdy));
-      vertices.push_back(0.0f);
-
-      uvs.push_back((i+1) * dx);
-      uvs.push_back(j * dy);
-
-
-      for(int n=0; n < 6; n++)
-      {
-        normals.push_back(0.0f);
-        normals.push_back(0.0f);
-        normals.push_back(1.0f);
-      }
-
-      vertexCount += 6;
-
-    }
-  }
+  makePlane(width, height, subX, subY, type);
 
   model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(width, height, 1.0f));
   cleanContainers();
   return model;
 }
@@ -300,71 +147,132 @@ Model ModelGenerator::getTorus()
 
 // -----------------------------------------------------------------------------
 
-void ModelGenerator::quadToTriangle(Vec3 v1, Vec3 v2, Vec3 v3, Vec3 v4, Vec3* norm)
+void ModelGenerator::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
+                                    float uvL, float uvT, float uvR, float uvB)
 {
-  vertices.push_back(v1.getX());
-  vertices.push_back(v1.getY());
-  vertices.push_back(v1.getZ());
+  vertices.push_back(vTL.getX());
+  vertices.push_back(vTL.getY());
+  vertices.push_back(vTL.getZ());
 
-  vertices.push_back(v2.getX());
-  vertices.push_back(v2.getY());
-  vertices.push_back(v2.getZ());
-
-  vertices.push_back(v3.getX());
-  vertices.push_back(v3.getY());
-  vertices.push_back(v3.getZ());
-
-  vertices.push_back(v3.getX());
-  vertices.push_back(v3.getY());
-  vertices.push_back(v3.getZ());
-
-  vertices.push_back(v4.getX());
-  vertices.push_back(v4.getY());
-  vertices.push_back(v4.getZ());
-
-  vertices.push_back(v1.getX());
-  vertices.push_back(v1.getY());
-  vertices.push_back(v1.getZ());
-
-  if(norm != NULL)
-  {
-    for(int n=0; n < 6; n++)
-    {
-      normals.push_back(norm->getX());
-      normals.push_back(norm->getY());
-      normals.push_back(norm->getZ());
-    }
-  }
-  else
-  {
-    Vec3* tempN = new Vec3(getNormal(v1, v2, v3));
-
-    for(int n=0; n < 3; n++)
-    {
-      normals.push_back(tempN->getX());
-      normals.push_back(tempN->getY());
-      normals.push_back(tempN->getZ());
-    }
+  uvs.push_back(uvL);
+  uvs.push_back(uvT);
 
 
-    *tempN = getNormal(v3, v4, v1);
-    
-    for(int n=0; n < 3; n++)
-    {
-      normals.push_back(tempN->getX());
-      normals.push_back(tempN->getY());
-      normals.push_back(tempN->getZ());
-    }
+  vertices.push_back(vBL.getX());
+  vertices.push_back(vBL.getY());
+  vertices.push_back(vBL.getZ());
 
-    delete tempN;
+  uvs.push_back(uvL);
+  uvs.push_back(uvB);
 
-  }
+
+  vertices.push_back(vBR.getX());
+  vertices.push_back(vBR.getY());
+  vertices.push_back(vBR.getZ());
+
+  uvs.push_back(uvR);
+  uvs.push_back(uvB);
+
+
+  vertices.push_back(vBR.getX());
+  vertices.push_back(vBR.getY());
+  vertices.push_back(vBR.getZ());
+
+  uvs.push_back(uvR);
+  uvs.push_back(uvB);
+
+
+  vertices.push_back(vTR.getX());
+  vertices.push_back(vTR.getY());
+  vertices.push_back(vTR.getZ());
+
+  uvs.push_back(uvR);
+  uvs.push_back(uvT);
+
+
+  vertices.push_back(vTL.getX());
+  vertices.push_back(vTL.getY());
+  vertices.push_back(vTL.getZ());
+
+  uvs.push_back(uvL);
+  uvs.push_back(uvT);
+
 
   vertexCount += 6;
 
+}
+
+// -----------------------------------------------------------------------------
+
+void ModelGenerator::makePlane(float width, float height, int subX, int subY,
+                               PlaneType type)
+{
+  float dx = (1.0f / (float)subX);
+  float dy = (1.0f / (float)subY);
+  float x1 = 0.0f;
+  float x2 = 0.0f;
+  float y1 = 0.0f;
+  float y2 = 0.0f;
 
 
+  for(int j = 0; j < subY; j++)
+  {
+    for(int i = 0; i < subX; i++)
+    {
+      x1 = PLANE_OFFX + (i * dx);
+      x2 = PLANE_OFFX + ((i+1) * dx);
+      y1 = PLANE_OFFY + (j * dy);
+      y2 = PLANE_OFFY + ((j+1) * dy);
 
+      switch(type)
+      {
+      case PLN_LEFT:
+        break;
+
+      case PLN_RIGHT:
+        break;
+
+      case PLN_FRONT:
+        break;
+
+
+      case PLN_CENTER:
+        quadToTriangle(
+                        Vec3(x1, y1, 0.0f),
+                        Vec3(x1, y2, 0.0f),                      
+                        Vec3(x2, y2, 0.0f),
+                        Vec3(x2, y1, 0.0f),
+                        i * dx,
+                        j * dy,
+                        (i+1) * dx,
+                        (j+1) * dy
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(0.0f);
+          normals.push_back(0.0f);
+          normals.push_back(1.0f);
+        }
+        break;
+
+
+      case PLN_BACK:
+        break;
+
+      case PLN_TOP:
+        break;
+
+      case PLN_BOTTOM:
+        break;
+
+
+      default:
+        break;
+      }
+
+    }
+  }
 
 }
 

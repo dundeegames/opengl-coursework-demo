@@ -151,7 +151,8 @@ void Camera::handleInput(float dt)
   case MOV_SIDE:
   case MOV_FRONT:
 
-    checkKeyborard('Z', 'X', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+    //checkKeyborard('Z', 'X', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+    checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
 
     if(input->getWheelDelta() != 0)
     {
@@ -165,7 +166,7 @@ void Camera::handleInput(float dt)
 
   case FLT_PERSP:
     //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-    checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
+    checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
     
     if(input->getWheelDelta() != 0)
     {
