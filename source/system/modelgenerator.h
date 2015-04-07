@@ -39,12 +39,15 @@ public:
   ~ModelGenerator();
 
   Model getQuad(float width = 1.0f, float height = 1.0f);
+
   Model getTriangle(float r = 1.0f);
 
-  Model getPlane(float width, float height, int subX, int subY,
-                 PlaneType type = PLN_CENTER);
+  Model getPlane(float width = 1.0f, float height = 1.0f,
+                 int subX = 1.0f, int subY = 1.0f, PlaneType type = PLN_CENTER);
 
-  Model getCube(int subX, int subY, int subZ);
+  Model getCube(float width = 1.0f, float height = 1.0f, float depth = 1.0f,
+                int subX = 1, int subY = 1, int subZ = 1);
+
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
   Model getSoccerBall();                          // Sphere from pentagons
   Model getCubeSPhere();                          // Sphere from cube
@@ -70,7 +73,7 @@ private:
                       float uvL = 0.0f, float uvT = 0.0f,
                       float uvR = 1.0f, float uvB = 1.0f);
 
-  void makePlane(float width, float height, int subX, int subY, PlaneType type);
+  void makePlane(int subX, int subY, PlaneType type);
 
   Vec3 getNormal(Vec3 v1, Vec3 v2, Vec3 v3);
   void cleanContainers();

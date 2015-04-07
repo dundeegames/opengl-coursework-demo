@@ -83,7 +83,7 @@ Model ModelGenerator::getPlane(float width, float height, int subX, int subY, Pl
 {
   Model model;
 
-  makePlane(width, height, subX, subY, type);
+  makePlane(subX, subY, type);
 
   model.setModel(vertexCount, vertices, normals, uvs);
   model.setScale(Vec3(width, height, 1.0f));
@@ -93,9 +93,18 @@ Model ModelGenerator::getPlane(float width, float height, int subX, int subY, Pl
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getCube(int subX, int subY, int subZ)
+Model ModelGenerator::getCube(float width, float height, float depth,
+                              int subX, int subY, int subZ)
 {
   Model model;
+
+
+  makePlane(subX, subY, PLN_FRONT);
+  makePlane(subX, subY, PLN_BACK);
+
+  model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(width, height, depth));
+  cleanContainers();
 
   return model;
 }
@@ -204,8 +213,7 @@ void ModelGenerator::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
 
 // -----------------------------------------------------------------------------
 
-void ModelGenerator::makePlane(float width, float height, int subX, int subY,
-                               PlaneType type)
+void ModelGenerator::makePlane(int subX, int subY, PlaneType type)
 {
   float dx = (1.0f / (float)subX);
   float dy = (1.0f / (float)subY);
@@ -227,12 +235,63 @@ void ModelGenerator::makePlane(float width, float height, int subX, int subY,
       switch(type)
       {
       case PLN_LEFT:
+        //quadToTriangle(
+        //                Vec3(x1, y1, 0.0f),
+        //                Vec3(x1, y2, 0.0f),                      
+        //                Vec3(x2, y2, 0.0f),
+        //                Vec3(x2, y1, 0.0f),
+        //                i * dx,
+        //                j * dy,
+        //                (i+1) * dx,
+        //                (j+1) * dy
+        //              );
+
+        //for(int n=0; n < 6; n++)
+        //{
+        //  normals.push_back(0.0f);
+        //  normals.push_back(0.0f);
+        //  normals.push_back(1.0f);
+        //}
         break;
 
       case PLN_RIGHT:
+        //quadToTriangle(
+        //                Vec3(x1, y1, 0.0f),
+        //                Vec3(x1, y2, 0.0f),                      
+        //                Vec3(x2, y2, 0.0f),
+        //                Vec3(x2, y1, 0.0f),
+        //                i * dx,
+        //                j * dy,
+        //                (i+1) * dx,
+        //                (j+1) * dy
+        //              );
+
+        //for(int n=0; n < 6; n++)
+        //{
+        //  normals.push_back(0.0f);
+        //  normals.push_back(0.0f);
+        //  normals.push_back(1.0f);
+        //}
         break;
 
       case PLN_FRONT:
+        quadToTriangle(
+                        Vec3(x1, y1, 0.5f),
+                        Vec3(x1, y2, 0.5f),                      
+                        Vec3(x2, y2, 0.5f),
+                        Vec3(x2, y1, 0.5f),
+                        i * dx,
+                        j * dy,
+                        (i+1) * dx,
+                        (j+1) * dy
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(0.0f);
+          normals.push_back(0.0f);
+          normals.push_back(1.0f);
+        }
         break;
 
 
@@ -258,12 +317,63 @@ void ModelGenerator::makePlane(float width, float height, int subX, int subY,
 
 
       case PLN_BACK:
+        quadToTriangle(
+                        Vec3(x2, y1, -0.5f),
+                        Vec3(x2, y2, -0.5f),                      
+                        Vec3(x1, y2, -0.5f),
+                        Vec3(x1, y1, -0.5f),
+                        i * dx,
+                        j * dy,
+                        (i+1) * dx,
+                        (j+1) * dy
+                      );
+
+        for(int n=0; n < 6; n++)
+        {
+          normals.push_back(0.0f);
+          normals.push_back(0.0f);
+          normals.push_back(-1.0f);
+        }
         break;
 
       case PLN_TOP:
+        //quadToTriangle(
+        //                Vec3(x1, y1, 0.0f),
+        //                Vec3(x1, y2, 0.0f),                      
+        //                Vec3(x2, y2, 0.0f),
+        //                Vec3(x2, y1, 0.0f),
+        //                i * dx,
+        //                j * dy,
+        //                (i+1) * dx,
+        //                (j+1) * dy
+        //              );
+
+        //for(int n=0; n < 6; n++)
+        //{
+        //  normals.push_back(0.0f);
+        //  normals.push_back(0.0f);
+        //  normals.push_back(1.0f);
+        //}
         break;
 
       case PLN_BOTTOM:
+        //quadToTriangle(
+        //                Vec3(x1, y1, 0.0f),
+        //                Vec3(x1, y2, 0.0f),                      
+        //                Vec3(x2, y2, 0.0f),
+        //                Vec3(x2, y1, 0.0f),
+        //                i * dx,
+        //                j * dy,
+        //                (i+1) * dx,
+        //                (j+1) * dy
+        //              );
+
+        //for(int n=0; n < 6; n++)
+        //{
+        //  normals.push_back(0.0f);
+        //  normals.push_back(0.0f);
+        //  normals.push_back(1.0f);
+        //}
         break;
 
 

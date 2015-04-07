@@ -248,6 +248,8 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN2_CUBE))
   {
     // generate model
+    Model cube = modelGen.getCube(2.0f, 2.0f, 2.0f, 7, 5, 3);
+    models.push_back(cube);
     input->unselectButton(TBTN2_CUBE);
   }
 
