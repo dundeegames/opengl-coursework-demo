@@ -242,6 +242,8 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN1_SPHERE))
   {
     // generate model
+    Model cSphere = modelGen.getCubeSPhere(1.0f, 5);
+    models.push_back(cSphere);
     input->unselectButton(TBTN1_SPHERE);
   }
 

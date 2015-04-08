@@ -133,9 +133,35 @@ Model ModelGenerator::getSoccerBall()
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getCubeSPhere()
+Model ModelGenerator::getCubeSPhere(float r, int sub)
 {
   Model model;
+  Vec3 tempVec;
+
+  makePlane(sub, sub, PLN_FRONT);
+  makePlane(sub, sub, PLN_BACK);
+  makePlane(sub, sub, PLN_LEFT);
+  makePlane(sub, sub, PLN_RIGHT);
+  makePlane(sub, sub, PLN_TOP);
+  makePlane(sub, sub, PLN_BOTTOM);
+
+  // normalize vertices
+  for(int i = 0; i < vertexCount; i++)
+  {
+    tempVec = Vec3(vertices[(3*i)], vertices[((3*i) + 1)], vertices[((3*i) + 2)]);
+    tempVec.normalize();
+
+    vertices[(3*i)] = tempVec.getX();
+    vertices[((3*i) + 1)] = tempVec.getY();
+    vertices[((3*i) + 2)] = tempVec.getZ();
+  }
+
+  // normals same as pos vectors for vertices
+  normals = vertices;
+
+  model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(r, r, r));
+  cleanContainers();
 
   return model;
 }
@@ -160,6 +186,11 @@ Model ModelGenerator::getTorus()
 
 // -----------------------------------------------------------------------------
 
+/*!
+* vTL - vertex TopLeft, vBL - vertex BottomLeft, vBR - vertex BottmRight,
+* vTR - vertex TopRight, uvL - uvCoord Left, uvR - uvCoord Right,
+* uvT - uvCoord Top, uvB - uvCoord Bottom
+*/
 void ModelGenerator::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
                                     float uvL, float uvT, float uvR, float uvB)
 {

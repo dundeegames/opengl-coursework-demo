@@ -48,9 +48,11 @@ public:
   Model getCube(float width = 1.0f, float height = 1.0f, float depth = 1.0f,
                 int subX = 1, int subY = 1, int subZ = 1);
 
+   Model getCubeSPhere(float r, int sub);       // Sphere from cube
+
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
   Model getSoccerBall();                          // Sphere from pentagons
-  Model getCubeSPhere();                          // Sphere from cube
+ 
   Model getCylinder();
   Model getTorus();
 
