@@ -27,11 +27,7 @@ GLuint ResourceManager::getTexture(const char* file, bool stdandard_path)
 {
   if(texture_list.find(file) == texture_list.end())
   {
-    if(loadTexture(file, stdandard_path) )
-    {
-      return texture_list[file];
-    }
-    else
+    if(loadTexture(file, stdandard_path) == false)
     {
       // report an error
       std::string message = ("SOIL loading error: '%s'\n", SOIL_last_result() );
@@ -39,10 +35,8 @@ GLuint ResourceManager::getTexture(const char* file, bool stdandard_path)
       return NULL;
     }
   }
-  else
-  {
-    return texture_list[file];
-  }
+
+  return texture_list[file];
 }
 
 // -----------------------------------------------------------------------------

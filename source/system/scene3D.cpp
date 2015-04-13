@@ -120,10 +120,10 @@ void Scene3D::Init(HWND* wnd, Input* in)
   //robotArm.Init(in);
   solarSystem.init();
 
-
-  //box1.init();
-  box = new Cube();
-  box->setTexture(resManager.getTexture("crate.png") );
+  Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
+  crate.setPosition(Vec3(3.0f, 0.0f, 0.0f));
+  crate.setTexture(resManager.getTexture("crate.png") );
+  models.push_back(crate);
   
   Model triangle = modelGen.getTriangle();
   triangle.setPosition(Vec3(-0.5f, 0.0f, -1.0f));
@@ -371,14 +371,6 @@ void Scene3D::render()
 
     solarSystem.render();
 
-  glPopMatrix();    // go back to origin
-  glPushMatrix();   // Remember where we are.
-
-    //based on shoulder
-    glTranslatef(3.0f, 0.0f, 0.0f);
-    box->draw();
-    //robotArm.render();
-  
   glPopMatrix();    // go back to origin
 
   glPushMatrix();   // Remember where we are.

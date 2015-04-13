@@ -24,12 +24,10 @@
 #include <ui/viewport.h>
 #include <ui/viewmanager.h>
 
-#include <assets/cube.h>
 #include <assets/arm.h>
 #include <assets/planets.h>
 #include <assets/light.h>
 #include <assets/sprite.h>
-//#include <assets/triangle.h>
 #include <assets/model.h>
 
 #include <system/resourcemanager.h>
@@ -78,8 +76,6 @@ private:
 
   Light* ambient;
   Light* light1;
-  Geometry* box;
-
 
   Arm robotArm;
   Planets solarSystem;
