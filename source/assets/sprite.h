@@ -20,6 +20,11 @@
 
 
 
+#define VERTEX_COUNT          12
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Sprite
 {
@@ -75,13 +80,10 @@ private:
   GLfloat blue;
   GLfloat alpha;
 
-  float vertices[12];
-  float uvs[12];
-
-  GLuint DisplayList;
-
-  void setDList();
-  void setVArrays();
+  float vertices[VERTEX_COUNT];
+  float uvs[VERTEX_COUNT];
+  void calculateVerts();
+  void calculateUVs();
 
 };
 

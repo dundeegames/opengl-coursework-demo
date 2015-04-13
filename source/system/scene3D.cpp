@@ -117,7 +117,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   ambient->init(AMBIENT, 0.0f, 0.0f, 0.0f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f);
   light1->init(DIFFUSE, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
 
-  //robotArm.Init(in);
+  robotArm.Init(in);
   solarSystem.init();
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
@@ -212,7 +212,7 @@ void Scene3D::HandleInput(float dt)
 
   solarSystem.update(dt);
 
-  //robotArm.update(dt);
+  robotArm.update(dt);
 
   viewManager.update(dt);
 
@@ -370,6 +370,12 @@ void Scene3D::render()
   glPushMatrix();   // Remember where we are.
 
     solarSystem.render();
+
+  glPopMatrix();    // go back to origin
+
+  glPushMatrix();   // Remember where we are.
+
+    //robotArm.render();
 
   glPopMatrix();    // go back to origin
 
