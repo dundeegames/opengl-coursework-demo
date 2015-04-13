@@ -117,7 +117,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   ambient->init(AMBIENT, 0.0f, 0.0f, 0.0f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f);
   light1->init(DIFFUSE, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
 
-  robotArm.Init(in);
+  robotArm.Init(input, &modelGen);
   solarSystem.init();
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
@@ -229,15 +229,6 @@ void Scene3D::HandleInput(float dt)
     insertFile();
     input->SetKeyUp('I');                   //force un-pressing of L
   }
-
-  if(input->isKeyDown('L'))                 // if L is pressed
-  {
-    // Load file
-    loadFile();
-    input->SetKeyUp('L');                   //force un-pressing of L
-  }
-
-
 
   if(input->isBottonSelected(TBTN1_SPHERE))
   {

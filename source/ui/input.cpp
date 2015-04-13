@@ -20,12 +20,8 @@ Input::Input()
     keys[i] = false;
   }
 
-
-
-
-
-
 }
+
 
 Input::~Input()
 {

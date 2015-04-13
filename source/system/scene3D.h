@@ -52,6 +52,8 @@ public:
   void Init(HWND*, Input*);         //initialse function
   void DrawScene(float);            // render scene
   void Resize();
+  void loadFile();
+
 
 protected:
   bool CreatePixelFormat(HDC);
@@ -88,7 +90,7 @@ private:
   std::vector<Model> models;
 
   void insertFile();
-  void loadFile();
+
 
   void render();
 

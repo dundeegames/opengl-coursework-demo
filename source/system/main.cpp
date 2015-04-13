@@ -182,8 +182,29 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
       myInput.setWheelDelta(GET_WHEEL_DELTA_WPARAM(wParam) );
       break;
 
-    case WM_PAINT:
+    case WM_COMMAND:
+
+      // handle menu slections
+      switch(LOWORD(wParam))
+      {        
+      case ID_FILE_OPEN:
+        myScene.loadFile();
         break;
+
+      case ID_VIEW_1VIEW:
+        break;
+
+      case ID_VIEW_4VIEW:
+        break;
+
+      case ID_HELP_ABOUT:
+        break;
+
+      }
+      break;  // end of WM_COMMAND
+
+    case WM_PAINT:
+      break;
 
     case WM_CLOSE:
 

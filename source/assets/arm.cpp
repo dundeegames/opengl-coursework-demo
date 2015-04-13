@@ -1,19 +1,13 @@
-// Arm class
-// Jiri Klic 2014
-
 #include <assets/arm.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
-
-#define WRIST_MAXCLOSE -28.0
-#define WRIST_MAXOPEN -60.0
-#define ELBOW_MAXROTATION 70.0
-#define ELBOW_MINROTATION -70.0
+#include <system/macros.h>
 
 
-void Arm::Init(Input* in)
+
+
+void Arm::Init(Input* in, ModelGenerator* mg)
 {
   input = in;
+  modelGen = mg;
 
   armXrotation = 0.0f;
   armYrotation = 0.0f;

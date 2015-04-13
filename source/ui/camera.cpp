@@ -156,7 +156,8 @@ void Camera::handleInput(float dt)
 
     if(input->getWheelDelta() != 0)
     {
-      position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
+      //position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
+      position = position.add( forward, (dt * input->getWheelDelta()) );
       input->setWheelDelta(0);
 
     }

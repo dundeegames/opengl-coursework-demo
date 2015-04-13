@@ -272,7 +272,6 @@
 #define L3D_UV_Y            (184.0f / TEXTURE_WIDTH)
 #define L3D_UV_SIZE         (46.0f / TEXTURE_WIDTH)
 
-
 // MODEL MANAGER ---------------------------------------------------------------
 
 // procedural quad
@@ -286,6 +285,11 @@
 
 
 
+// ARM -------------------------------------------------------------------------
+#define WRIST_MAXCLOSE      -28.0f
+#define WRIST_MAXOPEN       -60.0f
+#define ELBOW_MAXROTATION   70.0f
+#define ELBOW_MINROTATION   -70.0f
 
 
 

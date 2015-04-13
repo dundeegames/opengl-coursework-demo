@@ -1,28 +1,43 @@
+// /////////////////////////////////////////////////////////////////////////////
+/*!                                                                           \n
+*                   Arm class - WinAPI and OpenGL laboratory                  \n
+*                             by Jiri Klic, Apr 2015                          \n
+*                                                                             \n
+*/ /////////////////////////////////////////////////////////////////////////////
+
+
+
 #ifndef ARM_H
 #define ARM_H
 
-// Arm class
 
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/input.h>
-
+#include <assets/model.h>
+#include <system/modelgenerator.h>
 
 enum State{ARM, ELBOW, WRIST};
 
 
+
+// CLASS ///////////////////////////////////////////////////////////////////////
+
 class Arm
 {
+
+public:
+  void Init(Input* in, ModelGenerator* mg);  //initialse function
+  void update(float dt);
+  void render();
+
+private:
   float armXrotation, armYrotation;
   float elbowXrotation, elbowYrotation;
   float wristYrotation;
   float wristOpen;
 
-public:
-  void Init(Input*);  //initialse function
-  void update(float dt);
-  void render();
-
-private:
   Input* input;
+  ModelGenerator* modelGen;
   State state;
   float speed;
 
@@ -33,4 +48,9 @@ private:
 };
 
 
-#endif
+#endif // ARM_H
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////
