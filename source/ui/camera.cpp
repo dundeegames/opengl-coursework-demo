@@ -3,7 +3,8 @@
 
 Camera::Camera()
 {
-
+  timer = 0.0f;
+  returning = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -141,82 +142,84 @@ void Camera::update()
 
 void Camera::handleInput(float dt)
 {
-  switch(type)
+  if(returning)
   {
-  case FXP_MAIN:
-    // Do not use!!! input set to NULL
-    break;
-
-  case MOV_TOP:               // same for all orthographic cameras
-  case MOV_SIDE:
-  case MOV_FRONT:
-
-    //checkKeyborard('Z', 'X', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-    checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
-
-    if(input->getWheelDelta() != 0)
+    backToOrigin(dt);
+  }
+  else
+  {
+    switch(type)
     {
-      //position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
-      position = position.add( forward, (dt * input->getWheelDelta()) );
-      input->setWheelDelta(0);
+    case FXP_MAIN:
+      // Do not use!!! input set to NULL
+      break;
 
-    }
+    case MOV_TOP:               // same for all orthographic cameras
+    case MOV_SIDE:
+    case MOV_FRONT:
 
+      //checkKeyborard('Z', 'X', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+      checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
 
-    break;
+      if(input->getWheelDelta() != 0)
+      {
+        //position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
+        position = position.add( forward, (dt * input->getWheelDelta()) );
+        input->setWheelDelta(0);
 
-  case FLT_PERSP:
-    //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
-    checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
+      }
+      break;
+
+    case FLT_PERSP:
+      //checkKeyborard('A', 'Z', VK_RIGHT, VK_LEFT, VK_UP, VK_DOWN, dt);
+      checkKeyborard('W', 'S', 'D', 'A', 'Q', 'E', dt);
     
-    if(input->getWheelDelta() != 0)
-    {
-      position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
-      input->setWheelDelta(0);
+      if(input->getWheelDelta() != 0)
+      {
+        position = position.add( forward, (dt * input->getSensitivity() * input->getWheelDelta()) );
+        input->setWheelDelta(0);
+
+      }
+
+      if(input->isKeyDown(VK_CONTROL) && input->rightMouseBtn())
+      {
+        //position = position.rotateInX( (float)input->getRDragXdt(), (64.0f * dt * input->getSensitivity()) );
+        //rotation = rotation.add(Vec3( -(float)input->getRDragXdt(), 0.0f, 0.0f),
+        //                                (64.0f * dt * input->getSensitivity()) );
+
+        rotation = rotation.add(Vec3((float)input->getRDragXdt(), (float)input->getRDragYdt(), 0.0f),
+                                       (16.0f * dt * input->getSensitivity()) );
+        input->resetRDragCoords();
+      }
+
+      if(input->isKeyDown(VK_CONTROL) && input->leftMouseBtn())
+      {
+        position = position.rotateInX( (float)input->getLDragXdt(), (64.0f * dt * input->getSensitivity()) );
+        rotation = rotation.add(Vec3( -(float)input->getLDragXdt(), 0.0f, 0.0f),
+                                       (64.0f * dt * input->getSensitivity()) );
+
+        //position = position.rotateInY( (float)input->getLDragYdt(), (64.0f * dt * input->getSensitivity()) );
+        //rotation = rotation.add(Vec3(0.0f, (float)input->getLDragYdt(), 0.0f),
+        //                                   (64.0f * dt * input->getSensitivity()) );
+        input->resetLDragCoords();
+      }
+
+      //if(input->isKeyDown(VK_SPACE) && input->leftMouseBtn())
+      //{
+      //  position = position.rotateInY( (float)input->getDragYdt(), (64.0f * dt * input->getSensitivity()) );
+      //  rotation = rotation.add(Vec3(0.0f, -(float)input->getDragYdt(), 0.0f), (64.0f * dt * input->getSensitivity()) );
+      //  input->resetDragCoords();
+      //}    
+      break;
+
+    case FST_PERSON:
+      checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
+      break;
+
+    default:
+      break;
 
     }
-
-    if(input->isKeyDown(VK_CONTROL) && input->rightMouseBtn())
-    {
-      //position = position.rotateInX( (float)input->getRDragXdt(), (64.0f * dt * input->getSensitivity()) );
-      //rotation = rotation.add(Vec3( -(float)input->getRDragXdt(), 0.0f, 0.0f),
-      //                                (64.0f * dt * input->getSensitivity()) );
-
-      rotation = rotation.add(Vec3((float)input->getRDragXdt(), (float)input->getRDragYdt(), 0.0f),
-                                     (16.0f * dt * input->getSensitivity()) );
-      input->resetRDragCoords();
-    }
-
-    if(input->isKeyDown(VK_CONTROL) && input->leftMouseBtn())
-    {
-      position = position.rotateInX( (float)input->getLDragXdt(), (64.0f * dt * input->getSensitivity()) );
-      rotation = rotation.add(Vec3( -(float)input->getLDragXdt(), 0.0f, 0.0f),
-                                     (64.0f * dt * input->getSensitivity()) );
-
-      //position = position.rotateInY( (float)input->getLDragYdt(), (64.0f * dt * input->getSensitivity()) );
-      //rotation = rotation.add(Vec3(0.0f, (float)input->getLDragYdt(), 0.0f),
-      //                                   (64.0f * dt * input->getSensitivity()) );
-      input->resetLDragCoords();
-    }
-
-    //if(input->isKeyDown(VK_SPACE) && input->leftMouseBtn())
-    //{
-    //  position = position.rotateInY( (float)input->getDragYdt(), (64.0f * dt * input->getSensitivity()) );
-    //  rotation = rotation.add(Vec3(0.0f, -(float)input->getDragYdt(), 0.0f), (64.0f * dt * input->getSensitivity()) );
-    //  input->resetDragCoords();
-    //}
-
-    
-    break;
-
-  case FST_PERSON:
-    checkKeyborard('W', 'S', 'D', 'A', 'E', 'F', dt);
-
-    break;
-
-  default:
-    break;
-
   }
 
 }
@@ -289,11 +292,90 @@ void Camera::checkKeyborard(int frwd, int back, int rgt, int lft,
     position = position.subtract( up, dt * input->getSensitivity() );
   }
 
+  if(input->isKeyDown(up_))                  // if E key is pressed
+  {
+    position = position.add( up, dt * input->getSensitivity() );
+  }
+
+  if(input->isKeyDown('F'))                 // if F is pressed
+  {
+    returning = true;
+    input->SetKeyUp('F');                   //force un-pressing of F
+  }
+
 }
 
 // -----------------------------------------------------------------------------
 
+void Camera::backToOrigin(float dt)
+{
+  Vec3 posOrigin;
+  Vec3 rotOrigin;
 
+  timer += dt;
+
+
+  switch(type)
+  {
+  case FXP_MAIN:
+    posOrigin = Vec3(DEF_MAIN_POS);
+    rotOrigin = Vec3(DEF_MAIN_ROT);
+    break;
+
+  case MOV_TOP:
+    posOrigin = Vec3(DEF_TOP_POS);
+    rotOrigin = Vec3(DEF_TOP_ROT);
+    break;
+
+  case MOV_SIDE:
+    posOrigin = Vec3(DEF_SIDE_POS);
+    rotOrigin = Vec3(DEF_SIDE_ROT);
+    break;
+
+  case MOV_FRONT:
+    posOrigin = Vec3(DEF_FRNT_POS);
+    rotOrigin = Vec3(DEF_FRNT_ROT);
+    break;
+
+  case FLT_PERSP:
+    posOrigin = Vec3(DEF_PERS_POS);
+    rotOrigin = Vec3(DEF_PERS_ROT);
+    break;
+
+  case FST_PERSON:
+    // TODO: create attachment by ptr* to a 3D object
+    // camera.values based on object.values
+    posOrigin = Vec3(DEF_PERS_POS);
+    rotOrigin = Vec3(DEF_PERS_ROT);
+    break;
+
+  default:
+    break;
+
+  }
+
+  Vec3 posOffset = (posOrigin - position);
+  Vec3 rotOffset = (rotOrigin - rotation);
+  float x = (timer / RETURN_TIME);
+
+
+  if( x < 1.0f)
+  {
+    position = position.add(posOffset, x);
+    rotation = rotation.add(rotOffset, x);
+  }
+  else
+  {
+    timer = 0.0f;
+    returning = false;
+
+    position = posOrigin;
+    rotation = rotOrigin;
+  }
+
+}
+
+// -----------------------------------------------------------------------------
 
 
 

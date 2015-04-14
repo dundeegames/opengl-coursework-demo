@@ -74,8 +74,10 @@ private:
   CameraType type;
   Input* input;
 
-  bool mouseDragging;
-  //float sensitivity;
+  bool returning;
+  float timer;
+  void backToOrigin(float dt);
+  //bool mouseDragging;
 
   void checkKeyborard(int frwd, int back, int rgt, int lft,
                       int up_, int dwn, float dt);
