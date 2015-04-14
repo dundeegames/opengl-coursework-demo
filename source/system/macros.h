@@ -61,7 +61,7 @@
 #define YAW               0
 #define PITCH             1
 #define ROLL              2
-#define RETURN_TIME       2.0f
+#define RETURN_TIME       0.5f
 
 
 // Default values for FXP_MAIN camera

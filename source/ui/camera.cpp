@@ -5,6 +5,10 @@ Camera::Camera()
 {
   timer = 0.0f;
   returning = false;
+  posOffset = Vec3();
+  rotOffset = Vec3();
+  posOrigin = Vec3();
+  rotOrigin = Vec3();
 }
 
 // -----------------------------------------------------------------------------
@@ -78,7 +82,9 @@ void Camera::init(CameraType type_, Input* in)
 
   }
 
-
+  // store original position and rotation for returning ref
+  posOrigin = position;
+  rotOrigin = rotation;
 
 }
 
@@ -300,6 +306,7 @@ void Camera::checkKeyborard(int frwd, int back, int rgt, int lft,
   if(input->isKeyDown('F'))                 // if F is pressed
   {
     returning = true;
+    setOffsets();
     input->SetKeyUp('F');                   //force un-pressing of F
   }
 
@@ -309,60 +316,14 @@ void Camera::checkKeyborard(int frwd, int back, int rgt, int lft,
 
 void Camera::backToOrigin(float dt)
 {
-  Vec3 posOrigin;
-  Vec3 rotOrigin;
+  float increment = (dt / RETURN_TIME);
 
-  timer += dt;
+  timer += increment;
 
-
-  switch(type)
+  if( timer < 1.0f)
   {
-  case FXP_MAIN:
-    posOrigin = Vec3(DEF_MAIN_POS);
-    rotOrigin = Vec3(DEF_MAIN_ROT);
-    break;
-
-  case MOV_TOP:
-    posOrigin = Vec3(DEF_TOP_POS);
-    rotOrigin = Vec3(DEF_TOP_ROT);
-    break;
-
-  case MOV_SIDE:
-    posOrigin = Vec3(DEF_SIDE_POS);
-    rotOrigin = Vec3(DEF_SIDE_ROT);
-    break;
-
-  case MOV_FRONT:
-    posOrigin = Vec3(DEF_FRNT_POS);
-    rotOrigin = Vec3(DEF_FRNT_ROT);
-    break;
-
-  case FLT_PERSP:
-    posOrigin = Vec3(DEF_PERS_POS);
-    rotOrigin = Vec3(DEF_PERS_ROT);
-    break;
-
-  case FST_PERSON:
-    // TODO: create attachment by ptr* to a 3D object
-    // camera.values based on object.values
-    posOrigin = Vec3(DEF_PERS_POS);
-    rotOrigin = Vec3(DEF_PERS_ROT);
-    break;
-
-  default:
-    break;
-
-  }
-
-  Vec3 posOffset = (posOrigin - position);
-  Vec3 rotOffset = (rotOrigin - rotation);
-  float x = (timer / RETURN_TIME);
-
-
-  if( x < 1.0f)
-  {
-    position = position.add(posOffset, x);
-    rotation = rotation.add(rotOffset, x);
+    position = position.add(posOffset, increment);
+    rotation = rotation.add(rotOffset, increment);
   }
   else
   {
@@ -376,6 +337,15 @@ void Camera::backToOrigin(float dt)
 }
 
 // -----------------------------------------------------------------------------
+
+void Camera::setOffsets()
+{
+  posOffset = (posOrigin - position);
+  rotOffset = (rotOrigin - rotation);  
+}
+
+// -----------------------------------------------------------------------------
+
 
 
 

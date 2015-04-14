@@ -30,7 +30,7 @@ class Vec3
 {
 
 public:
-  Vec3(float x = 0, float y = 0, float z = 0);
+  Vec3(float x = 0.0f, float y = 0.0f, float z = 0.0f);
   ~Vec3();
 
   Vec3 copy();

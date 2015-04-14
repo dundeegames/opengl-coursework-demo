@@ -76,8 +76,13 @@ private:
 
   bool returning;
   float timer;
+  Vec3 posOrigin;
+  Vec3 rotOrigin;
+  Vec3 posOffset;
+  Vec3 rotOffset;
+
   void backToOrigin(float dt);
-  //bool mouseDragging;
+  void setOffsets();
 
   void checkKeyborard(int frwd, int back, int rgt, int lft,
                       int up_, int dwn, float dt);
