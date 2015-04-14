@@ -122,7 +122,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
   crate.setPosition(Vec3(3.0f, 0.0f, 0.0f));
-  crate.setTexture(resManager.getTexture("crate.png") );
+  //crate.setTexture(resManager.getTexture("crate.png") );
+  crate.setTexture(resManager.getTexture("PortalTexture.png") );
   models.push_back(crate);
   
   Model triangle = modelGen.getTriangle();
@@ -223,11 +224,11 @@ void Scene3D::HandleInput(float dt)
     input->SetKeyUp(VK_MENU);               //force un-pressing of ALT
   }
 
-  if(input->isKeyDown('I'))                 // if L is pressed
+  if(input->isKeyDown('T'))                 // if L is pressed
   {
     // Load file
     insertFile();
-    input->SetKeyUp('I');                   //force un-pressing of L
+    input->SetKeyUp('T');                   //force un-pressing of L
   }
 
   if(input->isBottonSelected(TBTN1_SPHERE))
@@ -366,7 +367,7 @@ void Scene3D::render()
 
   glPushMatrix();   // Remember where we are.
 
-    //robotArm.render();
+    robotArm.render();
 
   glPopMatrix();    // go back to origin
 

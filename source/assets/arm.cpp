@@ -32,41 +32,38 @@ void Arm::update(float dt)
 void Arm::handleInput(float dt)
 {
 
-  if(input->isKeyDown('I'))                  // if A key is pressed
+  if(input->isKeyDown('7'))                  // if A key is pressed
   {
     // change state
     if(state != ARM)
     {
       state = ARM;
     }
-    //input->SetKeyUp('A');                  //force un-pressing of A key
   }
 
 
-  if(input->isKeyDown('O'))                  // if E key is pressed
+  if(input->isKeyDown('8'))                  // if E key is pressed
   {
     // change state
     if(state != ELBOW)
     {
       state = ELBOW;
     }
-    //input->SetKeyUp('E');                  //force un-pressing of E key
   }
 
 
-  if(input->isKeyDown('P'))                  // if W key is pressed
+  if(input->isKeyDown('9'))                  // if W key is pressed
   {
     // change state
     if(state != WRIST)
     {
       state = WRIST;
     }
-    //input->SetKeyUp('W');                  //force un-pressing of W key
   }
 
 
 
-  if(input->isKeyDown(VK_LEFT))                  // if Left arrow key is pressed
+  if(input->isKeyDown('J'))                  // if Left arrow key is pressed
   {
     switch(state)
     {
@@ -85,11 +82,9 @@ void Arm::handleInput(float dt)
     default:
       break;
     }
-      
-    //input->SetKeyUp(VK_LEFT);                  //force un-pressing of Left arrow key
   }
 
-  if(input->isKeyDown(VK_RIGHT))                  // if Right arrow key is pressed
+  if(input->isKeyDown('L'))                  // if Right arrow key is pressed
   {
     switch(state)
     {
@@ -108,11 +103,9 @@ void Arm::handleInput(float dt)
     default:
       break;
     }    
-          
-    //input->SetKeyUp(VK_RIGHT);                  //force un-pressing of Right arrow key
   }
 
-  if(input->isKeyDown(VK_UP))                  // if Left arrow key is pressed
+  if(input->isKeyDown('I'))                  // if Left arrow key is pressed
   {
     switch(state)
     {
@@ -137,11 +130,9 @@ void Arm::handleInput(float dt)
     default:
       break;
     }    
-      
-    //input->SetKeyUp(VK_UP);                  //force un-pressing of Left arrow key
   }
 
-  if(input->isKeyDown(VK_DOWN))                  // if Right arrow key is pressed
+  if(input->isKeyDown('K'))                  // if Right arrow key is pressed
   {
     switch(state)
     {
@@ -166,8 +157,6 @@ void Arm::handleInput(float dt)
     default:
       break;
     }    
-          
-    //input->SetKeyUp(VK_DOWN);                  //force un-pressing of Right arrow key
   }
 
 }
@@ -179,13 +168,15 @@ void Arm::render()
 
 
   glPushMatrix();  // Remember where we are.  THE SHOULDER
+    glTranslatef(-3.9f, 0.0f, -2.5f);
+
     glRotatef(armYrotation, 0, 1, 0);
     glRotatef(armXrotation, 1, 0, 0);
     // render the SHOULDER
     //glColor3f(1.0f, 0.9f, 0.0f);
     gluSphere(gluNewQuadric(), 0.25, 12,12);
 
-    glPushMatrix();
+    glPushMatrix();   // Remember where we are.  THE ELBOW
       //render arm
       //glRotatef(rotation,0,0.5,0.5);    
       glRotatef(elbowYrotation, 0.0f, 1.0f, 0.0f);
@@ -215,23 +206,31 @@ void Arm::render()
       glColor3f(1.0f, 1.0f, 1.0f);
       glScalef(2.0f, 0.625f, 2.0f);
       gluSphere(gluNewQuadric(), 0.25, 12,12);
-      glPushMatrix();  // Remember where we are.  THE WRIST
 
-        //Render Finger1
-        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-        drawFinger();
-      glPopMatrix();  // GO BACK TO WRIST
-      glPushMatrix(); // REMEMBER WHERE WE ARE
-        //Render Finger2
-        glRotatef(120,0,1,0);
-        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-        drawFinger();
-      glPopMatrix();  // GO BACK TO WRIST
-      glPushMatrix(); // REMEMBER WHERE WE ARE
-        glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
-        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-        drawFinger();          
+        glPushMatrix();  // Remember where we are.  THE WRIST
+
+          //Render Finger1
+          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+          drawFinger();
+        glPopMatrix();  // GO BACK TO WRIST
+
+        glPushMatrix(); // REMEMBER WHERE WE ARE
+          //Render Finger2
+          glRotatef(120,0,1,0);
+          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+          drawFinger();
+        glPopMatrix();  // GO BACK TO WRIST
+
+        glPushMatrix(); // REMEMBER WHERE WE ARE
+          glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
+          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+          drawFinger();          
+        glPopMatrix();//GO BACK TO WRIST
+
+    glPopMatrix();//GO BACK TO ELBOW
+
   glPopMatrix();//GO BACK TO SHOULDER
+
 }
 
 // ------------------------------------------------------------------------------
