@@ -11,6 +11,9 @@ Model::Model()
   rotation = Vec3();
   scale = Vec3(1.0f, 1.0f, 1.0f);
 
+  tileW = 1.0f;
+  tileH = 1.0f;
+
   setColour();
 
 }
@@ -60,18 +63,24 @@ void Model::Render()
 
   // enble and specify pointers to vertex arrays
   glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+  glMatrixMode(GL_TEXTURE);
+    glPushMatrix();
+    glScalef(tileW, tileH, 0.0f);
+
+  glMatrixMode(GL_MODELVIEW);
 
   glEnable(GL_BLEND);
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
-  //glEnableClientState(GL_COLOR_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 
 
   glVertexPointer (3, GL_FLOAT, 0, vertex.data());
   glNormalPointer (GL_FLOAT, 0, normals.data());
-  //glColorPointer(3, GL_FLOAT, 0, colors.data());
   glTexCoordPointer(2, GL_FLOAT, 0, texCoords.data());
 
   glColor4f(colour[0], colour[1], colour[2], colour[3]);
@@ -96,6 +105,11 @@ void Model::Render()
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
   glDisable(GL_BLEND);
 
+  glMatrixMode(GL_TEXTURE);
+    glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
   
@@ -113,6 +127,13 @@ void Model::setColour(float R, float G, float B, float A)
 
 // -----------------------------------------------------------------------------
 
+void Model::setTiling(float w, float h)
+{
+  tileW = w;
+  tileH = h;
+}
+
+// -----------------------------------------------------------------------------
 
 
 

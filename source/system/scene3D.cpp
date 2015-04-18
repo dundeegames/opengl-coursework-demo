@@ -113,18 +113,21 @@ void Scene3D::Init(HWND* wnd, Input* in)
   ambient->init(L_AMBIENT, COLOUR_BROWN, 1.0f);
 
   light1 = new Light(GL_LIGHT1);
-  light1->init(L_POINT, COLOUR_LTBLUE, 1.0f, -1.0f, 1.0f, 0.0f);
+  light1->init(L_POINT, COLOUR_LTBLUE, 1.0f, 5.0f, 1.0f, 0.0f);
 
   direct = new Light(GL_LIGHT2);
-  direct->init(L_DIRECTIONAL, COLOUR_DRKYELLOW, 1.0f, -1.0f, 1.0f, -1.0f);
+  direct->init(L_DIRECTIONAL, COLOUR_LTGRAY, 1.0f, -1.0f, 1.0f, -1.0f);
 
 
   robotArm.Init(input, &modelGen);
   solarSystem.init();
   
   //TODO: move loading to Resource manager
-  terrain.init("../../media/images/heightmap.png", &modelGen);
-  terrain.setScale(Vec3(40.0f, 4.0f, 40.0f));
+  terrain.init("../../media/images/Tamriel.png", &modelGen);
+  terrain.setScale(Vec3(40.0f, 1.0f, 40.0f));
+  terrain.setTexture(resManager.getTexture("Tamriel_Dif.png"));
+  terrain.setSeaTexture(resManager.getTexture("sea.png"));
+  terrain.setSeaTiling(4.0f, 4.0f);
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
   crate.setPosition(Vec3(3.0f, 0.0f, 0.0f));
@@ -144,10 +147,15 @@ void Scene3D::Init(HWND* wnd, Input* in)
   models.push_back(quad);
 
 
-  //Model plane = modelGen.getPlane(3.f, 1.5f, 10, 10);
-  //plane.setPosition(Vec3(1.5f, 0.0f, 0.0f));
-  //plane.setRotation(Vec3(0.0f, -90.0f, 0.0f));
-  //models.push_back(plane);
+  // Do something usefull with the filename stored in szFileName
+  Model* prince = resManager.getModel("Prince.obj");
+
+  if(prince != NULL)
+  {
+    //tempModel->setColour(1.0f, 0.0f, 0.0f, 1.0f);
+    prince->setPosition(Vec3(3.0f, 0.5f, 0.0f));
+    models.push_back(*prince);
+  }
 
 
 

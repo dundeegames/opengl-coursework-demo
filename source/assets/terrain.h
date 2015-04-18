@@ -38,12 +38,21 @@ public:
   // Pass ModelGenerator* to have a water
   void init(const char* htMap, ModelGenerator* mdGen, bool waterActive = true);
   void setScale(Vec3 s);
+  void setTexture(GLuint texture_) {texture = texture_; }
+  void setSeaTexture(GLuint texture_) {water.setTexture(texture_); }
+  void setTiling(float w, float h);
+  void setSeaTiling(float w, float h) {water.setTiling(w, h);}
+
   void render();
   void display();
 
 private:
   Vec3 scale;
   GLuint texture;
+  float tileW;
+  float tileH;
+
+
   GLuint terrainDlist;
 
   int vertexCount;

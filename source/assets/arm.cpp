@@ -168,7 +168,7 @@ void Arm::render()
 
 
   glPushMatrix();  // Remember where we are.  THE SHOULDER
-    glTranslatef(-3.9f, 0.0f, -2.5f);
+    glTranslatef(0.5f, 0.25f, -1.5f);
 
     glRotatef(armYrotation, 0, 1, 0);
     glRotatef(armXrotation, 1, 0, 0);

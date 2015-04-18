@@ -8,6 +8,8 @@ Terrain::Terrain()
   texture = NULL;
   terrainDlist = NULL;
   vertexCount = 0;
+  tileW = 1.0f;
+  tileH = 1.0f;
 }
 
 
@@ -32,7 +34,7 @@ void Terrain::init(const char* htMap, ModelGenerator* mdGen, bool waterActive)
   }
 
   water = mdGen->getPlane(scale.getX(), scale.getZ(), 10, 10, PLN_SURFACE);
-  water.setColour(COLOUR_LTBLUE, 0.5f);
+  water.setColour(COLOUR_LTBLUE, 0.75f);
   
   renderWater = waterActive;
 
@@ -250,6 +252,15 @@ void Terrain::render()
 
   // enble and specify pointers to vertex arrays
   glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+  glMatrixMode(GL_TEXTURE);
+    glPushMatrix();
+    glScalef(tileW, tileH, 0.0f);
+
+
+	glMatrixMode(GL_MODELVIEW);
 
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
@@ -273,12 +284,17 @@ void Terrain::render()
   glDisableClientState(GL_NORMAL_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
+  glMatrixMode(GL_TEXTURE);
+    glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
   
 
   if(renderWater)
   {
-    water.Render();
+      water.Render();
   }
   
 }
@@ -293,9 +309,13 @@ void Terrain::setScale(Vec3 s)
 
 // -----------------------------------------------------------------------------
 
+void Terrain::setTiling(float w, float h)
+{
+  tileW = w;
+  tileH = h;
+}
 
-
-
+// -----------------------------------------------------------------------------
 
 
 

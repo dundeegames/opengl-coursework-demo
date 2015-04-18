@@ -40,6 +40,7 @@ public:
   Model& operator=(const Model& m2);
 
   void setTexture(GLuint texture_) {texture = texture_; }
+  void setTiling(float w, float h);
 
   //void setModel(int vCount, int mode_, std::vector<float>& vert,
   //              std::vector<float>& norm, std::vector<float>& tex);
@@ -64,6 +65,8 @@ public:
 private:
   int mode;
   float colour[4];
+  float tileW;
+  float tileH;
 
 
   Vec3 position;
