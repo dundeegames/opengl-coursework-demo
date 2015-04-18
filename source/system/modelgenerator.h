@@ -25,7 +25,8 @@ enum PlaneType{ PLN_LEFT,
                 PLN_CENTER,
                 PLN_BACK,
                 PLN_TOP,
-                PLN_BOTTOM
+                PLN_BOTTOM,
+                PLN_SURFACE
               };
 
 

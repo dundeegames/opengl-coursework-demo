@@ -18,6 +18,7 @@
 #define COLOUR_BROWN      0.27f, 0.27f, 0.27f
 #define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
 #define COLOUR_GREEN      0.0f, 0.27f, 0.1f
+#define COLOUR_LTBLUE     0.0f, 0.75f, 1.0f
 #define COLOUR_DRKGRAY    0.2f, 0.2f, 0.2f
 #define COLOUR_YELLOW     1.0f, 0.8f, 0.0f
 #define COLOUR_DRKYELLOW  0.49f, 0.41f, 0.17f

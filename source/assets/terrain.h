@@ -19,6 +19,8 @@
 #include <vector>
 
 #include <math/vec3.h>
+#include <assets/model.h>
+#include <system/modelgenerator.h>
 
 
 
@@ -33,7 +35,9 @@ public:
   Terrain();
   ~Terrain();
 
-  void init(const char* file);
+  // Pass ModelGenerator* to have a water
+  void init(const char* htMap, ModelGenerator* mdGen, bool waterActive = true);
+  void setScale(Vec3 s);
   void render();
   void display();
 
@@ -44,6 +48,9 @@ private:
 
   int vertexCount;
   std::vector<float> vertices, normals, uvs;
+
+  bool renderWater;
+  Model water;
 
 
   void loadTerrain(const char* file);

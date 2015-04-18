@@ -1,9 +1,10 @@
 #include <assets/light.h>
-
+#include <system/macros.h>
 
 Light::Light(int id_)
 {
   id = id_;
+  visible = true;
 }
 
 
@@ -16,15 +17,22 @@ Light::~Light()
 // -----------------------------------------------------------------------------
 
 void Light::init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
-                  GLfloat x, GLfloat y, GLfloat z)
+                  GLfloat posX, GLfloat posY, GLfloat posZ,
+                  GLfloat dirX, GLfloat dirY, GLfloat dirZ,
+                  float cut, float exp)
 {
   type = tp;
 
-  Position[0] = x;
-  Position[1] = y;
-  Position[2] = z;
+  Colour[0] = R;
+  Colour[1] = G;
+  Colour[2] = B;
+  Colour[3] = A;
 
-  if(tp == DIRECTIONAL)
+  Position[0] = posX;
+  Position[1] = posY;
+  Position[2] = posZ;
+
+  if(tp == L_DIRECTIONAL)
   {
     Position[3] = 0.0f;
   }
@@ -33,13 +41,12 @@ void Light::init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
     Position[3] = 1.0f;
   }
 
+  Direction[0] = dirX;
+  Direction[1] = dirY;
+  Direction[2] = dirZ;
 
-
-  Colour[0] = R;
-  Colour[1] = G;
-  Colour[2] = B;
-  Colour[3] = A;
-
+  CutOff = cut;
+  Exponent = exp;
 }
 
 // -----------------------------------------------------------------------------
@@ -48,18 +55,28 @@ void Light::render()
 {
   switch(type)
   {
-  case AMBIENT:
+  case L_AMBIENT:
+    glColor3f(COLOUR_DRKGRAY);
     glLightfv(id, GL_AMBIENT,  Colour);
     break;
 
-  case DIFFUSE:
+  case L_POINT:
+    glColor3f(COLOUR_LTBLUE);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
-  case DIRECTIONAL:
+  case L_DIRECTIONAL:
+    glColor3f(COLOUR_YELLOW);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
+  case L_SPOT:
+    glColor3f(COLOUR_GREEN);
+    glLightfv(id, GL_DIFFUSE,  Colour);
+    glLightfv(id, GL_SPOT_DIRECTION, Direction);
+    glLightf(id, GL_SPOT_CUTOFF, CutOff);
+    glLightf(id, GL_SPOT_EXPONENT, Exponent);
+    break;
 
 
   default:
@@ -70,6 +87,17 @@ void Light::render()
   glLightfv(id, GL_POSITION, Position);
   glEnable(id);
 
+
+  if(visible)
+  {
+    glPushMatrix(); // REMEMBER WHERE WE ARE
+      glTranslatef(Position[0], Position[1], Position[2]);     
+      gluSphere(gluNewQuadric(), 0.05f, 16, 16);
+    glPopMatrix();
+
+  }
+
+  glColor3f(COLOUR_WHITE);      // reset colour
 
 }
 

@@ -4,7 +4,7 @@
 
 Terrain::Terrain()
 {
-  scale = Vec3(20.0f, 1.0f, 20.0f);
+  scale = Vec3(1.0f, 1.0f, 1.0f);
   texture = NULL;
   terrainDlist = NULL;
   vertexCount = 0;
@@ -19,17 +19,23 @@ Terrain::~Terrain()
 
 // -----------------------------------------------------------------------------
 
-void Terrain::init(const char* file)
+void Terrain::init(const char* htMap, ModelGenerator* mdGen, bool waterActive)
 {
   if(vertexCount == 0)
   {
-    loadTerrain(file);
+    loadTerrain(htMap);
   }
   else
   {
     cleanContainers();
-    loadTerrain(file);
+    loadTerrain(htMap);
   }
+
+  water = mdGen->getPlane(scale.getX(), scale.getZ(), 10, 10, PLN_SURFACE);
+  water.setColour(COLOUR_LTBLUE, 0.5f);
+  
+  renderWater = waterActive;
+
 }
 
 // -----------------------------------------------------------------------------
@@ -145,13 +151,13 @@ void Terrain::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
   uvs.push_back(uvB);
 
 
-  tempNormal = getNormal(vTL, vBL, vBR);
-  for(int n=0; n < 3; n++)
-  {
-    normals.push_back(tempNormal.getX());
-    normals.push_back(tempNormal.getY());
-    normals.push_back(tempNormal.getZ());
-  }
+  //tempNormal = getNormal(vTL, vBL, vBR);
+  //for(int n=0; n < 3; n++)
+  //{
+  //  normals.push_back(tempNormal.getX());
+  //  normals.push_back(tempNormal.getY());
+  //  normals.push_back(tempNormal.getZ());
+  //}
   
   
   vertices.push_back(vBR.getX());
@@ -178,13 +184,21 @@ void Terrain::quadToTriangle(Vec3 vTL, Vec3 vBL, Vec3 vBR, Vec3 vTR,
   uvs.push_back(uvT);
 
 
-  tempNormal = getNormal(vBR, vTR, vTL);
-  for(int n=0; n < 3; n++)
+  //tempNormal = getNormal(vBR, vTR, vTL);
+  //for(int n=0; n < 3; n++)
+  //{
+  //  normals.push_back(tempNormal.getX());
+  //  normals.push_back(tempNormal.getY());
+  //  normals.push_back(tempNormal.getZ());
+  //}
+
+  for(int n=0; n < 6; n++)
   {
-    normals.push_back(tempNormal.getX());
-    normals.push_back(tempNormal.getY());
-    normals.push_back(tempNormal.getZ());
+    normals.push_back(0.0f);
+    normals.push_back(1.0f);
+    normals.push_back(0.0f);
   }
+
 
   vertexCount += 6;
 
@@ -260,14 +274,24 @@ void Terrain::render()
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
+  
 
+  if(renderWater)
+  {
+    water.Render();
+  }
+  
 }
 
 // -----------------------------------------------------------------------------
 
+void Terrain::setScale(Vec3 s)
+{
+  scale = s;
+  water.setScale(s);
+}
 
-
-
+// -----------------------------------------------------------------------------
 
 
 

@@ -437,12 +437,22 @@ void ModelGenerator::makePlane(int subW, int subH, PlaneType type)
         }
         break;
 
+      case PLN_SURFACE:
       case PLN_TOP:
         x1 = PLN_OFFSET + (i * dW);
         x2 = PLN_OFFSET + ((i+1) * dW);
         z1 = PLN_OFFSET + (j * dH);
         z2 = PLN_OFFSET + ((j+1) * dH);
-        y1 = 0.5f;
+
+        if(type == PLN_SURFACE)
+        {
+          y1 = 0.0f;
+        }
+        else
+        {
+          y1 = 0.5f;
+        }
+        
 
         uvLeft =    (i * dW);
         uvTop =     (j * dH);
@@ -498,7 +508,6 @@ void ModelGenerator::makePlane(int subW, int subH, PlaneType type)
           normals.push_back(0.0f);
         }
         break;
-
 
       default:
         break;

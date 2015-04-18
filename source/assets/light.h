@@ -18,7 +18,7 @@
 
 
 
-enum Light_Type {AMBIENT, DIFFUSE, DIRECTIONAL};
+enum Light_Type {L_AMBIENT, L_POINT, L_DIRECTIONAL, L_SPOT};
 
 
 class Light
@@ -28,16 +28,27 @@ public:
   Light(int id_);
   ~Light();
   void init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
-            GLfloat x = 0.0f, GLfloat y = 0.0f, GLfloat z = 0.0f);
+            GLfloat posX = 0.0f, GLfloat posY = 0.0f, GLfloat posZ = 0.0f,
+            GLfloat dirX = 0.0f, GLfloat dirY = 0.0f, GLfloat dirZ = 0.0f,
+            float cut = 0.0f, float exp = 45.0f
+            );
 
+  void setVisibility(bool vis) {visible = vis;}
   void render();
 
 
 private:
   GLfloat Colour[4];
   GLfloat Position[4];
+  GLfloat Direction[3];
+
+  float CutOff;
+  float Exponent;
+
   int id;
   Light_Type type;
+
+  bool visible;
 
 };
 
