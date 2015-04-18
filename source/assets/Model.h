@@ -41,6 +41,8 @@ public:
 
   void setTexture(GLuint texture_) {texture = texture_; }
   void setTiling(float w, float h);
+  void setUVoffset(float u, float v);
+  void moveUVoffset(float u, float v);
 
   //void setModel(int vCount, int mode_, std::vector<float>& vert,
   //              std::vector<float>& norm, std::vector<float>& tex);
@@ -67,6 +69,8 @@ private:
   float colour[4];
   float tileW;
   float tileH;
+  float offsetU;
+  float offsetV;
 
 
   Vec3 position;

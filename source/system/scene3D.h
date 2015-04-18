@@ -25,7 +25,6 @@
 #include <ui/viewmanager.h>
 
 #include <assets/arm.h>
-#include <assets/planets.h>
 #include <assets/light.h>
 #include <assets/sprite.h>
 #include <assets/model.h>
@@ -83,7 +82,6 @@ private:
 
   Terrain terrain;
   Arm robotArm;
-  Planets solarSystem;
   COORD center;
 
   Gui gui;

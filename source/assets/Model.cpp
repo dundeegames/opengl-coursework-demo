@@ -13,6 +13,8 @@ Model::Model()
 
   tileW = 1.0f;
   tileH = 1.0f;
+  offsetU = 0.0f;
+  offsetV = 0.0f;
 
   setColour();
 
@@ -68,6 +70,7 @@ void Model::Render()
 
   glMatrixMode(GL_TEXTURE);
     glPushMatrix();
+    glTranslatef(offsetU, offsetV, 0.0f);
     glScalef(tileW, tileH, 0.0f);
 
   glMatrixMode(GL_MODELVIEW);
@@ -134,6 +137,25 @@ void Model::setTiling(float w, float h)
 }
 
 // -----------------------------------------------------------------------------
+
+void Model::setUVoffset(float u, float v)
+{
+  offsetU = u;
+  offsetV = v;
+}
+
+// -----------------------------------------------------------------------------
+
+void Model::moveUVoffset(float u, float v)
+{
+  offsetU += u;
+  offsetV += v;
+}
+
+// -----------------------------------------------------------------------------
+
+
+
 
 
 

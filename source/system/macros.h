@@ -81,20 +81,20 @@
 #define DEF_TOP_UP        0.0f, 1.0f, 0.0f
 
 // Default values for MOV_SIDE camera
-#define DEF_SIDE_POS      -10.0f, 0.0f, 0.0f
+#define DEF_SIDE_POS      -10.0f, 2.0f, 0.0f
 #define DEF_SIDE_ROT      90.0f, 0.0f, 0.0f
 #define DEF_SIDE_FWD      0.0f, 0.0f, 0.0f
 #define DEF_SIDE_UP       0.0f, 1.0f, 0.0f
 
 // Default values for MOV_FRONT camera
-#define DEF_FRNT_POS      0.0f, 0.0f, 10.0f
+#define DEF_FRNT_POS      0.0f, 2.0f, 10.0f
 #define DEF_FRNT_ROT      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_FWD      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_UP       0.0f, 1.0f, 0.0f
 
 // Default values for FLT_PERSP camera
-#define DEF_PERS_POS      10.0f, 7.0f, 10.0f
-#define DEF_PERS_ROT      -45.0f, -30.0f, 0.0f
+#define DEF_PERS_POS      12.0f, 9.0f, 12.0f
+#define DEF_PERS_ROT      -45.0f, -25.0f, 0.0f
 #define DEF_PERS_FWD      0.0f, 0.0f, 0.0f
 #define DEF_PERS_UP       0.0f, 1.0f, 0.0f
 

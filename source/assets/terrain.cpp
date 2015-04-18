@@ -34,7 +34,7 @@ void Terrain::init(const char* htMap, ModelGenerator* mdGen, bool waterActive)
   }
 
   water = mdGen->getPlane(scale.getX(), scale.getZ(), 10, 10, PLN_SURFACE);
-  water.setColour(COLOUR_LTBLUE, 0.75f);
+  water.setColour(COLOUR_WHITE, 0.7f);
   
   renderWater = waterActive;
 
@@ -114,6 +114,15 @@ void Terrain::loadTerrain(const char* file)
 
   delete[] heightMap;
   //cleanContainers();
+}
+
+// -----------------------------------------------------------------------------
+
+void Terrain::update(float dt)
+{
+  water.moveUVoffset(0.0f, dt);
+
+
 }
 
 // -----------------------------------------------------------------------------

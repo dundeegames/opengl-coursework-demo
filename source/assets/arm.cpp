@@ -18,6 +18,7 @@ void Arm::Init(Input* in, ModelGenerator* mg)
   speed = 25.0;
 
   state = ARM;
+  orbits.init();
 }
 
 // ------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ void Arm::Init(Input* in, ModelGenerator* mg)
 void Arm::update(float dt)
 {
   handleInput(dt);
+  orbits.update(dt);
 }
 
 // ------------------------------------------------------------------------------
@@ -225,6 +227,12 @@ void Arm::render()
           glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
           glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
           drawFinger();          
+        glPopMatrix();//GO BACK TO WRIST
+
+        glPushMatrix(); // REMEMBER WHERE WE ARE
+          glTranslatef(1.0f, 1.5f, 0.0f);
+          //glScalef(0.75f, 0.75f, 0.75f);
+          orbits.render();          
         glPopMatrix();//GO BACK TO WRIST
 
     glPopMatrix();//GO BACK TO ELBOW

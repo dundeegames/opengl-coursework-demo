@@ -43,6 +43,8 @@ public:
   void setTiling(float w, float h);
   void setSeaTiling(float w, float h) {water.setTiling(w, h);}
 
+  void update(float dt);
+
   void render();
   void display();
 

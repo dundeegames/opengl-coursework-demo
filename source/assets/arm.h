@@ -14,6 +14,7 @@
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/input.h>
 #include <assets/model.h>
+#include <assets/planets.h>
 #include <system/modelgenerator.h>
 
 enum State{ARM, ELBOW, WRIST};
@@ -35,6 +36,7 @@ private:
   float elbowXrotation, elbowYrotation;
   float wristYrotation;
   float wristOpen;
+  Planets orbits;
 
   Input* input;
   ModelGenerator* modelGen;

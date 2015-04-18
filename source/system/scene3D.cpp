@@ -120,7 +120,6 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   robotArm.Init(input, &modelGen);
-  solarSystem.init();
   
   //TODO: move loading to Resource manager
   terrain.init("../../media/images/Tamriel.png", &modelGen);
@@ -210,8 +209,8 @@ void Scene3D::Resize()
 
 void Scene3D::HandleInput(float dt)
 {
-  solarSystem.update(dt);
 
+  terrain.update(-0.1*dt);
   robotArm.update(dt);
 
   viewManager.update(dt);
@@ -360,14 +359,7 @@ void Scene3D::render()
   
   glPushMatrix();   // Remember where we are.
 
-    //glRotatef(90.0f, 0.0f,0.0f, 1.0f);
     terrain.render();
-
-  glPopMatrix();    // go back to origin
-
-  glPushMatrix();   // Remember where we are.
-
-    solarSystem.render();
 
   glPopMatrix();    // go back to origin
 
