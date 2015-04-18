@@ -111,14 +111,19 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   ambient = new Light(GL_LIGHT0);
   light1 = new Light(GL_LIGHT1);
+  direct = new Light(GL_LIGHT2);
 
   //init(LIGHT_TYPE  postionXYZT  colourRGBA)
   //T is type of light: 0.0 = ..., 1.0 = ...
-  ambient->init(AMBIENT, 0.0f, 0.0f, 0.0f, 0.0f, 0.3f, 0.3f, 0.3f, 1.0f);
-  light1->init(DIFFUSE, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
+  ambient->init(AMBIENT, 0.3f, 0.3f, 0.3f, 1.0f);
+  light1->init(DIFFUSE, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f);
+  direct->init(DIRECTIONAL, 1.0f, 0.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f);
 
   robotArm.Init(input, &modelGen);
   solarSystem.init();
+  
+  //TODO: move loading to Resource manager
+  terrain.init("../../media/images/heightmap.png");
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
   crate.setPosition(Vec3(3.0f, 0.0f, 0.0f));
@@ -354,10 +359,17 @@ void Scene3D::render()
 {
   ambient->render();
   light1->render();
+  direct->render();
 
-  gui.drawGrid();
+  //gui.drawGrid();
 
   
+  glPushMatrix();   // Remember where we are.
+
+    //glRotatef(90.0f, 0.0f,0.0f, 1.0f);
+    terrain.render();
+
+  glPopMatrix();    // go back to origin
 
   glPushMatrix();   // Remember where we are.
 

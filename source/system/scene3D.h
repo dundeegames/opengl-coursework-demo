@@ -29,6 +29,7 @@
 #include <assets/light.h>
 #include <assets/sprite.h>
 #include <assets/model.h>
+#include <assets/terrain.h>
 
 #include <system/resourcemanager.h>
 #include <system/modelgenerator.h>
@@ -77,8 +78,10 @@ private:
   ModelGenerator modelGen;
 
   Light* ambient;
+  Light* direct;
   Light* light1;
 
+  Terrain terrain;
   Arm robotArm;
   Planets solarSystem;
   COORD center;

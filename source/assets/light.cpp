@@ -15,15 +15,25 @@ Light::~Light()
 
 // -----------------------------------------------------------------------------
 
-void Light::init(Light_Type tp, GLfloat x, GLfloat y, GLfloat z, GLfloat t,
-                                GLfloat R, GLfloat G, GLfloat B, GLfloat A)
+void Light::init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
+                  GLfloat x, GLfloat y, GLfloat z)
 {
   type = tp;
 
   Position[0] = x;
   Position[1] = y;
   Position[2] = z;
-  Position[3] = t;
+
+  if(tp == DIRECTIONAL)
+  {
+    Position[3] = 0.0f;
+  }
+  else
+  {
+    Position[3] = 1.0f;
+  }
+
+
 
   Colour[0] = R;
   Colour[1] = G;
@@ -45,6 +55,12 @@ void Light::render()
   case DIFFUSE:
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
+
+  case DIRECTIONAL:
+    glLightfv(id, GL_DIFFUSE,  Colour);
+    break;
+
+
 
   default:
     break;

@@ -18,7 +18,7 @@
 
 
 
-enum Light_Type {AMBIENT, DIFFUSE};
+enum Light_Type {AMBIENT, DIFFUSE, DIRECTIONAL};
 
 
 class Light
@@ -27,7 +27,8 @@ class Light
 public:
   Light(int id_);
   ~Light();
-  void init(Light_Type tp, GLfloat x, GLfloat y, GLfloat z, GLfloat t, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
+  void init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
+            GLfloat x = 0.0f, GLfloat y = 0.0f, GLfloat z = 0.0f);
 
   void render();
 
