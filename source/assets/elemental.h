@@ -1,40 +1,46 @@
 // /////////////////////////////////////////////////////////////////////////////
 /*!                                                                           \n
-*                 Planets class - - WinAPI and OpenGL laboratory              \n
+*                    Elemental class - Graphics programming                   \n
 *                             by Jiri Klic, Jan 2015                          \n
 *                                                                             \n
 */ /////////////////////////////////////////////////////////////////////////////
 
 
 
-#ifndef PLANETS_H
-#define PLANETS_H
+#ifndef ELEMENTAL_H
+#define ELEMENTAL_H
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
-#include <windows.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
-#include <assets/light.h>
 
 
-class Planets
+
+
+
+
+
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
+
+
+class Elemental
 {
-  float rotation, rotation2, rotation3, speed;
 
 public:
-  void init();
-  void update(float dt);
-  void render();
+  Elemental();
+  ~Elemental();
+
 
 private:
-  Light* fire;
-  Light* ice;
+
 
 };
 
 
-#endif // PLANETS_H
+#endif // ELEMENTAL_H
+
 
 
 

@@ -15,6 +15,7 @@
 // Colours
 #define COLOUR_WHITE      1.0f, 1.0f, 1.0f
 #define COLOUR_BLACK      0.0f, 0.0f, 0.0f
+#define COLOUR_RED        1.0f, 0.0f, 0.0f
 #define COLOUR_BROWN      0.27f, 0.27f, 0.27f
 #define COLOUR_DRKBROWN   0.17f, 0.17f, 0.17f
 #define COLOUR_GREEN      0.0f, 0.27f, 0.1f
@@ -24,6 +25,8 @@
 #define COLOUR_LTGRAY     0.5f, 0.5f, 0.5f
 #define COLOUR_DRKGRAY    0.2f, 0.2f, 0.2f
 #define COLOUR_YELLOW     1.0f, 0.8f, 0.0f
+#define COLOUR_LTYELLOW   1.0f, 1.0f, 0.0f
+#define COLOUR_ORANGE     1.0f, 0.5f, 0.0f
 #define COLOUR_DRKYELLOW  0.49f, 0.41f, 0.17f
 
 // MAIN ------------------------------------------------------------------------
@@ -87,7 +90,7 @@
 #define DEF_SIDE_UP       0.0f, 1.0f, 0.0f
 
 // Default values for MOV_FRONT camera
-#define DEF_FRNT_POS      0.0f, 2.0f, 10.0f
+#define DEF_FRNT_POS      3.0f, 2.0f, 10.0f
 #define DEF_FRNT_ROT      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_FWD      0.0f, 0.0f, 0.0f
 #define DEF_FRNT_UP       0.0f, 1.0f, 0.0f

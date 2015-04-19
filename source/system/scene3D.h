@@ -25,6 +25,7 @@
 #include <ui/viewmanager.h>
 
 #include <assets/arm.h>
+#include <assets/planets.h>
 #include <assets/light.h>
 #include <assets/sprite.h>
 #include <assets/model.h>
@@ -78,7 +79,8 @@ private:
 
   Light* ambient;
   Light* direct;
-  Light* light1;
+  Light* spot1;
+  Light* spot2;
 
   Terrain terrain;
   Arm robotArm;

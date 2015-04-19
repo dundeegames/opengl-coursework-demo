@@ -27,7 +27,7 @@ class Arm
 {
 
 public:
-  void Init(Input* in, ModelGenerator* mg);  //initialse function
+  void Init(Input* in, ModelGenerator* mg, Planets* plts);  //initialse function
   void update(float dt);
   void render();
 
@@ -36,7 +36,7 @@ private:
   float elbowXrotation, elbowYrotation;
   float wristYrotation;
   float wristOpen;
-  Planets orbits;
+  Planets* orbits;
 
   Input* input;
   ModelGenerator* modelGen;

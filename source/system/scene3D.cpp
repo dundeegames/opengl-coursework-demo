@@ -110,16 +110,22 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   ambient = new Light(GL_LIGHT0);
-  ambient->init(L_AMBIENT, COLOUR_BROWN, 1.0f);
+  ambient->init(L_AMBIENT, COLOUR_BROWN, 1.0f, 0.0f, 0.5f, 0.0f);
 
-  light1 = new Light(GL_LIGHT1);
-  light1->init(L_POINT, COLOUR_LTBLUE, 1.0f, 5.0f, 1.0f, 0.0f);
-
-  direct = new Light(GL_LIGHT2);
+  direct = new Light(GL_LIGHT1);
   direct->init(L_DIRECTIONAL, COLOUR_LTGRAY, 1.0f, -1.0f, 1.0f, -1.0f);
 
+  spot1 = new Light(GL_LIGHT2);
+  spot1->init(L_SPOT, COLOUR_DRKBLUE, 1.0f, 3.9f, 2.2f, 0.1f,
+                                            0.0f, -1.0f, 0.0f, 25.0, 15.0f);
 
-  robotArm.Init(input, &modelGen);
+  spot2 = new Light(GL_LIGHT3);
+  spot2->init(L_SPOT, COLOUR_DRKBLUE, 1.0f, 2.1f, 2.2f, 0.1f,
+                                            0.0f, -1.0f, 0.0f, 25.0, 15.0f);
+
+  Planets* orbits = new Planets();
+  orbits->init();
+  robotArm.Init(input, &modelGen, orbits);
   
   //TODO: move loading to Resource manager
   terrain.init("../../media/images/Tamriel.png", &modelGen);
@@ -129,7 +135,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   terrain.setSeaTiling(4.0f, 4.0f);
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
-  crate.setPosition(Vec3(3.0f, 0.0f, 0.0f));
+  crate.setPosition(Vec3(3.0f, 0.25f, 0.0f));
   //crate.setTexture(resManager.getTexture("crate.png") );
   crate.setTexture(resManager.getTexture("PortalTexture.png") );
   models.push_back(crate);
@@ -152,7 +158,9 @@ void Scene3D::Init(HWND* wnd, Input* in)
   if(prince != NULL)
   {
     //tempModel->setColour(1.0f, 0.0f, 0.0f, 1.0f);
-    prince->setPosition(Vec3(3.0f, 0.5f, 0.0f));
+    prince->setPosition(Vec3(3.0f, 0.75f, 0.0f));
+    prince->setTexture(resManager.getTexture("graymarble256px.png") );
+    prince->setTiling(2.0f, 2.0f);
     models.push_back(*prince);
   }
 
@@ -210,7 +218,7 @@ void Scene3D::Resize()
 void Scene3D::HandleInput(float dt)
 {
 
-  terrain.update(-0.1*dt);
+  terrain.update(-0.1f*dt);
   robotArm.update(dt);
 
   viewManager.update(dt);
@@ -350,9 +358,10 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  ambient->render();
-  light1->render();
+  ambient->render();  
   direct->render();
+  spot1->render();
+  spot2->render();
 
   gui.drawGrid();
 

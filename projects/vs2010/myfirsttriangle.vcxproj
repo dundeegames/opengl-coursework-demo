@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\assets\arm.cpp" />
+    <ClCompile Include="..\..\source\assets\elemental.cpp" />
     <ClCompile Include="..\..\source\assets\geometry.cpp" />
     <ClCompile Include="..\..\source\assets\light.cpp" />
     <ClCompile Include="..\..\source\assets\model.cpp" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\assets\arm.h" />
+    <ClInclude Include="..\..\source\assets\elemental.h" />
     <ClInclude Include="..\..\source\assets\geometry.h" />
     <ClInclude Include="..\..\source\assets\light.h" />
     <ClInclude Include="..\..\source\assets\model.h" />

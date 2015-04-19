@@ -4,7 +4,7 @@
 
 
 
-void Arm::Init(Input* in, ModelGenerator* mg)
+void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
 {
   input = in;
   modelGen = mg;
@@ -18,7 +18,7 @@ void Arm::Init(Input* in, ModelGenerator* mg)
   speed = 25.0;
 
   state = ARM;
-  orbits.init();
+  orbits = plts;
 }
 
 // ------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ void Arm::Init(Input* in, ModelGenerator* mg)
 void Arm::update(float dt)
 {
   handleInput(dt);
-  orbits.update(dt);
+  orbits->update(dt);
 }
 
 // ------------------------------------------------------------------------------
@@ -232,7 +232,7 @@ void Arm::render()
         glPushMatrix(); // REMEMBER WHERE WE ARE
           glTranslatef(1.0f, 1.5f, 0.0f);
           //glScalef(0.75f, 0.75f, 0.75f);
-          orbits.render();          
+          orbits->render();          
         glPopMatrix();//GO BACK TO WRIST
 
     glPopMatrix();//GO BACK TO ELBOW
