@@ -358,7 +358,7 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  ambient->render();  
+  //ambient->render();  
   direct->render();
   spot1->render();
   spot2->render();

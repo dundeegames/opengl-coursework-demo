@@ -167,77 +167,100 @@ void Arm::handleInput(float dt)
 
 void Arm::render()
 {
+  glPushMatrix();  // Remember - INITIAL STATE
 
+    glTranslatef(0.5f, 0.25f, -1.5f); // world position
 
-  glPushMatrix();  // Remember where we are.  THE SHOULDER
-    glTranslatef(0.5f, 0.25f, -1.5f);
+    glRotatef(armYrotation, 0, 1, 0);
+    glRotatef(armXrotation, 1, 0, 0);
+    glRotatef(elbowYrotation, 0.0f, 1.0f, 0.0f);
+    glTranslatef(0.0f, 2.0f, 0.0f);
+      
+    glRotatef(elbowXrotation, 1.0f, 0.0f, 0.0f);
+    glTranslatef(0.0f, 1.0f, 0.0f);
 
+    glRotatef(wristYrotation, 0.0f, 1.0f, 0.0);
+    glTranslatef(0.0f, 2.5f, 0.0f);
+
+    // render orbits first, because they contain lights too
+    orbits->render();
+
+  glPopMatrix();  // Back to - INITIAL STATE
+  glPushMatrix();  // Remember - INITIAL STATE
+
+    glTranslatef(0.5f, 0.25f, -1.5f); // world position
     glRotatef(armYrotation, 0, 1, 0);
     glRotatef(armXrotation, 1, 0, 0);
     // render the SHOULDER
     //glColor3f(1.0f, 0.9f, 0.0f);
     gluSphere(gluNewQuadric(), 0.25, 12,12);
 
-    glPushMatrix();   // Remember where we are.  THE ELBOW
-      //render arm
-      //glRotatef(rotation,0,0.5,0.5);    
+    glPushMatrix();  // Remember - SHOULDER
+      
       glRotatef(elbowYrotation, 0.0f, 1.0f, 0.0f);
       glTranslatef(0.0f, 1.0f, 0.0f);
-      glScalef(0.5f, 1.6f, 0.5f);
-      glColor3f(0.8f, 0.1f, 0.1f);
-      drawCube();
+
+      glPushMatrix();  // Remember - ARM
+        glScalef(0.5f, 1.6f, 0.5f);
+        //render arm
+        glColor3f(0.8f, 0.1f, 0.1f);
+        drawCube();
+      glPopMatrix();  // Back to - ARM
 
       // render elbow
-      glTranslatef(0.0f, 0.625f, 0.0f);
+      glTranslatef(0.0f, 1.0f, 0.0f);
       glColor3f(1.0f, 1.0f, 1.0f);
-      glScalef(2.0f, 0.625f, 2.0f);
       gluSphere(gluNewQuadric(), 0.25, 12,12);
 
-      // render forearm
+      
       glRotatef(elbowXrotation, 1.0f, 0.0f, 0.0f);
       glTranslatef(0.0f, 1.0f, 0.0f);
-      glScalef(0.5f, 1.6f, 0.5f);
-      glColor3f(0.8f, 0.1f, 0.1f);
-      // is there glCube primitive? [like gluSphere()]
-      drawCube();
 
-      // scaling to compensate for previous scaling? Ask for more efficient method
+      glPushMatrix();  // Remember - FOREARM
+        glScalef(0.5f, 1.6f, 0.5f);
+        // render forearm
+        glColor3f(0.8f, 0.1f, 0.1f);
+        drawCube();
+      glPopMatrix();  // Back to - FOREARM
+
       // render wrist
       glRotatef(wristYrotation, 0.0f, 1.0f, 0.0);
-      glTranslatef(0.0f, 0.625f, 0.0f);
+      glTranslatef(0.0f, 1.0f, 0.0f);
       glColor3f(1.0f, 1.0f, 1.0f);
-      glScalef(2.0f, 0.625f, 2.0f);
       gluSphere(gluNewQuadric(), 0.25, 12,12);
 
-        glPushMatrix();  // Remember where we are.  THE WRIST
+      glPushMatrix();  // Remember - WRIST
 
-          //Render Finger1
-          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-          drawFinger();
-        glPopMatrix();  // GO BACK TO WRIST
+        //Render Finger1
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+        drawFinger();
 
-        glPushMatrix(); // REMEMBER WHERE WE ARE
-          //Render Finger2
-          glRotatef(120,0,1,0);
-          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-          drawFinger();
-        glPopMatrix();  // GO BACK TO WRIST
+      glPopMatrix();  // Back to - WRIST
+      glPushMatrix();  // Remember - WRIST
 
-        glPushMatrix(); // REMEMBER WHERE WE ARE
-          glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
-          glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
-          drawFinger();          
-        glPopMatrix();//GO BACK TO WRIST
+        //Render Finger2
+        glRotatef(120,0,1,0);
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+        drawFinger();
 
-        glPushMatrix(); // REMEMBER WHERE WE ARE
-          glTranslatef(1.0f, 1.5f, 0.0f);
-          //glScalef(0.75f, 0.75f, 0.75f);
-          orbits->render();          
-        glPopMatrix();//GO BACK TO WRIST
+      glPopMatrix();  // Back to - WRIST
+      glPushMatrix();  // Remember - WRIST
 
-    glPopMatrix();//GO BACK TO ELBOW
+        glRotatef(240.0f, 0.0f, 1.0f, 0.0f);
+        glRotatef(wristOpen, 0.0f, 0.0f, 1.0f);
+        drawFinger();
 
-  glPopMatrix();//GO BACK TO SHOULDER
+      glPopMatrix();  // Back to - WRIST
+      //glPushMatrix();  // Remember - WRIST
+
+      //  glTranslatef(1.0f, 1.5f, 0.0f);
+      //  orbits->render();
+
+      //glPopMatrix();  // Back to - WRIST
+
+    glPopMatrix();  // Back to - SHOULDER
+
+  glPopMatrix();  // Back to - INITIAL STATE
 
 }
 

@@ -33,11 +33,6 @@ void Planets::render()
 {
   glEnable(GL_BLEND);
 
-
-  glPushMatrix();  // Remember - INITIAL STATE
-
-  glTranslatef(-1.0f, 0.0f, 0.0f);
-
   glPushMatrix();  // Remember - ORIGIN
 
     glRotatef(rotation, 0.0f, 1.0f, 0.0f);
@@ -116,9 +111,6 @@ void Planets::render()
       
     glPopMatrix();  // Back to - PLANET3
   glPopMatrix();  // Back to - ORIGIN
-
-
-  glPopMatrix();  // Back to - INITIAL STATE
 
 
   glDisable(GL_BLEND);
