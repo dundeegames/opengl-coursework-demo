@@ -353,6 +353,8 @@ Model ModelGenerator::getCone(float r, float h, int subR)
 
 
   // Cone tip
+  // TODO: calculate better UVs for cone tip.
+  // atm it's using only top half of texture, like cylinder.
   for(int i = 0; i < subR; i++)
   {
     // center

@@ -7,7 +7,11 @@
 void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
 {
   input = in;
-  modelGen = mg;
+
+  sphere = mg->getCubeSPhere(0.125f, 12);
+  sphere.setColour(COLOUR_WHITE, 1.0f);
+  cylinder = mg->getCylinder(0.1f, 3.0f, 16, 8);
+  cylinder.setColour(COLOUR_RED, 1.0f);
 
   armXrotation = 0.0f;
   armYrotation = 0.0f;
@@ -191,43 +195,50 @@ void Arm::render()
     glTranslatef(0.5f, 0.25f, -1.5f); // world position
     glRotatef(armYrotation, 0, 1, 0);
     glRotatef(armXrotation, 1, 0, 0);
+
     // render the SHOULDER
-    //glColor3f(1.0f, 0.9f, 0.0f);
-    gluSphere(gluNewQuadric(), 0.25, 12,12);
+    glPushMatrix();  // Remember - SHOULDER
+      glScalef(0.25f, 0.25f, 0.25f);
+      sphere.Render();
+    glPopMatrix();  // Back to - SHOULDER
 
     glPushMatrix();  // Remember - SHOULDER
       
       glRotatef(elbowYrotation, 0.0f, 1.0f, 0.0f);
-      glTranslatef(0.0f, 1.0f, 0.0f);
+      glTranslatef(0.0f, 0.2f, 0.0f);
 
+      //render arm
       glPushMatrix();  // Remember - ARM
-        glScalef(0.5f, 1.6f, 0.5f);
-        //render arm
-        glColor3f(0.8f, 0.1f, 0.1f);
-        drawCube();
+        glScalef(0.25f, 1.6f, 0.25f);
+        cylinder.Render();
       glPopMatrix();  // Back to - ARM
 
-      // render elbow
-      glTranslatef(0.0f, 1.0f, 0.0f);
-      glColor3f(1.0f, 1.0f, 1.0f);
-      gluSphere(gluNewQuadric(), 0.25, 12,12);
+      glTranslatef(0.0f, 1.75f, 0.0f);
 
+      // render elbow
+      glPushMatrix();  // Remember - ELBOW
+        glScalef(0.25f, 0.25f, 0.25f);
+        sphere.Render();
+      glPopMatrix();  // Back to - ELBOW
       
       glRotatef(elbowXrotation, 1.0f, 0.0f, 0.0f);
-      glTranslatef(0.0f, 1.0f, 0.0f);
+      glTranslatef(0.0f, 0.2f, 0.0f);
 
+      // render forearm
       glPushMatrix();  // Remember - FOREARM
-        glScalef(0.5f, 1.6f, 0.5f);
-        // render forearm
-        glColor3f(0.8f, 0.1f, 0.1f);
-        drawCube();
+        glScalef(0.25f, 1.6f, 0.25f);
+        cylinder.Render();
       glPopMatrix();  // Back to - FOREARM
 
-      // render wrist
       glRotatef(wristYrotation, 0.0f, 1.0f, 0.0);
-      glTranslatef(0.0f, 1.0f, 0.0f);
-      glColor3f(1.0f, 1.0f, 1.0f);
-      gluSphere(gluNewQuadric(), 0.25, 12,12);
+      glTranslatef(0.0f, 1.75f, 0.0f);
+
+      // render wrist
+      glPushMatrix();  // Remember - WRIST
+        glScalef(0.25f, 0.25f, 0.25f);
+        sphere.Render();
+      glPopMatrix();  // Back to - WRIST
+
 
       glPushMatrix();  // Remember - WRIST
 
@@ -251,12 +262,6 @@ void Arm::render()
         drawFinger();
 
       glPopMatrix();  // Back to - WRIST
-      //glPushMatrix();  // Remember - WRIST
-
-      //  glTranslatef(1.0f, 1.5f, 0.0f);
-      //  orbits->render();
-
-      //glPopMatrix();  // Back to - WRIST
 
     glPopMatrix();  // Back to - SHOULDER
 
@@ -266,121 +271,31 @@ void Arm::render()
 
 // ------------------------------------------------------------------------------
 
-void Arm::drawCube()
-{
-  glBegin(GL_QUADS);
-
-    // front face
-    glNormal3f(0.0f, 0.0f, 1.0f); 
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0.5f, 0.5f, 0.5f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    // back face
-    glNormal3f(0.0f, 0.0f, -1.0f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-
-    glNormal3f(0.0f, 0.0f, -1.0f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-
-    glNormal3f(0.0f, 0.0f, -1.0f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-
-    glNormal3f(0.0f, 0.0f, -1.0f);
-    glVertex3f(0.5f, -0.5f, -0.5f);
-    
-    // right face
-    glNormal3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, 0.5f);
-
-    glNormal3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-
-    glNormal3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.5f, -0.5f, -0.5f);
-
-    glNormal3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-
-    // left face
-    glNormal3f(-1.0f, 0.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-
-    glNormal3f(-1.0f, 0.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-
-    glNormal3f(-1.0f, 0.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    glNormal3f(-1.0f, 0.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-  
-    // bottom face
-    glNormal3f(0.0f, -1.0f, 0.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-
-    glNormal3f(0.0f, -1.0f, 0.0f);
-    glVertex3f(0.5f, -0.5f, -0.5f);
-
-    glNormal3f(0.0f, -1.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-
-    glNormal3f(0.0f, -1.0f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    // top face
-    glNormal3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-
-    glNormal3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0.5f, 0.5f, 0.5f);
-
-    glNormal3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-
-    glNormal3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-    
-
-  glEnd();
-
-}
-
-// ------------------------------------------------------------------------------
-
 void Arm::drawFinger()
 {
-  glScalef(0.2f, 0.2f, 0.2f);
-  //render finger
-        
-  glTranslatef(0.0f, 2.0f, 0.0f);
-  glScalef(0.5f, 1.6f, 0.5f);
-  glColor3f(0.8f, 0.1f, 0.1f);
-  drawCube();
+  glTranslatef(0.0f, 0.25f, 0.0f);
 
-  // render elbow
-  glTranslatef(0.0f, 0.625f, 0.0f);
-  glColor3f(1.0f, 1.0f, 1.0f);
-  glScalef(2.0f, 0.625f, 2.0f);
-  gluSphere(
-      gluNewQuadric(), 0.25, 40,40);
+  // render proximal
+  glPushMatrix();  // Remember - PROXIMAL
+    glScalef(0.05f, 0.32f, 0.05f);
+    cylinder.Render();
+  glPopMatrix();  // Back to - PROXIMAL
 
-  // render forearm
+  glTranslatef(0.0f, 0.35f, 0.0f);
+
+  // render joint
+  glPushMatrix();  // Remember - JOINT
+    glScalef(0.05f, 0.05f, 0.05f);
+    sphere.Render();
+  glPopMatrix();  // Back to - JOINT
+      
   glRotatef(60.0f, 0.0f, 0.0f, 1.0f);
-  glTranslatef(0.0f, 1.0f, 0.0f);
-  glScalef(0.5f, 1.6f, 0.5f);
-  glColor3f(0.8f, 0.1f, 0.1f);
-  // is there glCube primitive? [like gluSphere()]
-  drawCube();
+  glTranslatef(0.0f, 0.05f, 0.0f);
 
-
-
+  // render distal
+  glPushMatrix();  // Remember - DISTAL
+    glScalef(0.05f, 0.32f, 0.05f);
+    cylinder.Render();
+  glPopMatrix();  // Back to - DISTAL
 
 }

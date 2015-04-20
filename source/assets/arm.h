@@ -37,14 +37,14 @@ private:
   float wristYrotation;
   float wristOpen;
   Planets* orbits;
+  Model sphere;
+  Model cylinder;
 
   Input* input;
-  ModelGenerator* modelGen;
   State state;
   float speed;
 
   void handleInput(float dt);
-  void drawCube();
   void drawFinger();
 
 };

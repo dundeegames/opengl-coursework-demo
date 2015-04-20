@@ -256,7 +256,7 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN3_CYLINDER))
   {
     // generate model
-    Model cylinder = modelGen.getCylinder(2.0f, 2.0f, 16, 4);
+    Model cylinder = modelGen.getCylinder(0.5f, 1.5f, 16, 4);
     models.push_back(cylinder);
     input->unselectButton(TBTN3_CYLINDER);
   }
@@ -264,7 +264,7 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN4_CONE))
   {
     // generate model
-    Model cone = modelGen.getCone(2.0f, 2.0f, 16);
+    Model cone = modelGen.getCone(1.0f, 2.0f, 16);
     models.push_back(cone);
     input->unselectButton(TBTN4_CONE);
   }

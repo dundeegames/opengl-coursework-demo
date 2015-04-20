@@ -60,7 +60,12 @@ void Model::setModel(int vCount, std::vector<float>& vert,
 
 void Model::Render()
 {
-  
+  glPushMatrix();
+    glTranslatef(position.getX(), position.getY(), position.getZ());
+    glRotatef(rotation.getX(), 1.0f, 0.0f, 0.0f);
+    glRotatef(rotation.getY(), 0.0f, 1.0f, 0.0f);
+    glRotatef(rotation.getZ(), 0.0f, 0.0f, 1.0f);
+    glScalef(scale.getX(), scale.getY(), scale.getZ());  
   
 
   // enble and specify pointers to vertex arrays
@@ -89,16 +94,11 @@ void Model::Render()
   glColor4f(colour[0], colour[1], colour[2], colour[3]);
 
   //dereferencing method of choice
-  glPushMatrix();
-    glTranslatef(position.getX(), position.getY(), position.getZ());
-    glRotatef(rotation.getX(), 1.0f, 0.0f, 0.0f);
-    glRotatef(rotation.getY(), 0.0f, 1.0f, 0.0f);
-    glRotatef(rotation.getZ(), 0.0f, 0.0f, 1.0f);
-    glScalef(scale.getX(), scale.getY(), scale.getZ());
+
 
     glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
     //glDrawArrays(mode, 0, m_vertexCount);     // bug with generated models
-  glPopMatrix();
+  
 
   glColor4f(COLOUR_WHITE, 1.0f);    // reset colour
 
@@ -111,7 +111,7 @@ void Model::Render()
   glMatrixMode(GL_TEXTURE);
     glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-
+    glPopMatrix();
 
 
   glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
