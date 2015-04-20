@@ -326,6 +326,122 @@ Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
 
 // -----------------------------------------------------------------------------
 
+Model ModelGenerator::getCone(float r, float h, int subR)
+{
+  Model model;
+  std::vector<float> cosT, sinT;;
+
+  float dTheta = (360.0f / (float)subR);
+  float dW = (1.0f / (float)subR);
+
+  float uvLeft = 0.0f;  
+  float uvTop = 0.0f;   
+  float uvRight = 0.0f; 
+  float uvBottom = 0.0f;
+
+
+
+  for(float theta = 0.0f; theta < 360.0f; theta += dTheta)
+  {
+    cosT.push_back(cosf(RADIANS(theta)) );
+    sinT.push_back(sinf(RADIANS(theta)) );
+  }
+
+  // push back the orgin values again to complete cyrcle
+  cosT.push_back(1.0f);
+  sinT.push_back(0.0f);
+
+
+  // Cone tip
+  for(int i = 0; i < subR; i++)
+  {
+    // center
+    vertices.push_back(0.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(0.0f);
+
+    uvs.push_back(0.25f);
+    uvs.push_back(0.25f);
+
+
+    vertices.push_back(cosT[i]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[i]);
+
+    uvs.push_back((0.25f + (cosT[i]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+
+
+    vertices.push_back(cosT[(i+1)]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[(i+1)]);
+
+    uvs.push_back((0.25f + (cosT[(i+1)]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+    
+
+    for(int n = 0; n < 3; n++)
+    {
+      normals.push_back(0.0f);
+      normals.push_back(1.0f);
+      normals.push_back(0.0f);
+    }
+    
+    vertexCount += 3;
+  }
+
+
+  // Bottom Disk
+  for(int i = 0; i < subR; i++)
+  {
+    // center
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+
+    uvs.push_back(0.75f);
+    uvs.push_back(0.75f);
+
+
+    vertices.push_back(cosT[(i+1)]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[(i+1)]);
+
+    uvs.push_back((0.75f + (cosT[(i+1)]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+
+
+    vertices.push_back(cosT[i]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[i]);
+
+    uvs.push_back((0.75f + (cosT[i]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+    
+
+    for(int n = 0; n < 3; n++)
+    {
+      normals.push_back(0.0f);
+      normals.push_back(-1.0f);
+      normals.push_back(0.0f);
+    }
+    
+    vertexCount += 3;
+  }
+
+  
+  model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(r, h, r));
+
+  sinT.clear();
+  cosT.clear();
+  cleanContainers();
+
+  return model;
+}
+
+// -----------------------------------------------------------------------------
+
 Model ModelGenerator::getTorus()
 {
   Model model;

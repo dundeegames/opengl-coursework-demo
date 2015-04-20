@@ -53,7 +53,7 @@ public:
 
   Model getCylinder(float r, float h, int subR, int subH);
 
-
+  Model getCone(float r, float h, int subR);
 
   Model getSphere(int subX, int subY, int subZ);  // made from quads, pitching on poles
   Model getSoccerBall();                          // Sphere from pentagons

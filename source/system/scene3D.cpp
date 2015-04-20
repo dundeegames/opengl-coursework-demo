@@ -264,6 +264,8 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN4_CONE))
   {
     // generate model
+    Model cone = modelGen.getCone(2.0f, 2.0f, 16);
+    models.push_back(cone);
     input->unselectButton(TBTN4_CONE);
   }
 
