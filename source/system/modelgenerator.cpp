@@ -175,12 +175,19 @@ Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
 
   float dTheta = (360.0f / (float)subR);
   float dH = (1.0f / (float)subH); 
+  float dW = (1.0f / (float)subR);
   float x1 = 0.0f;
   float x2 = 0.0f;
   float y1 = 0.0f;
   float y2 = 0.0f;
   float z1 = 0.0f;
   float z2 = 0.0f;
+
+  float uvLeft = 0.0f;  
+  float uvTop = 0.0f;   
+  float uvRight = 0.0f; 
+  float uvBottom = 0.0f;
+
 
 
   for(float theta = 0.0f; theta < 360.0f; theta += dTheta)
@@ -193,6 +200,40 @@ Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
   cosT.push_back(1.0f);
   sinT.push_back(0.0f);
 
+  // Sides
+  for(int j = 0; j < subH; j++)
+  {
+    for(int i = 0; i < subR; i++)
+    {
+      // TODO: once textured, make sure the Top and bottom are not flipped
+      x1 = cosT[i];
+      x2 = cosT[(i+1)];
+      y1 = ((j+1) * dH);
+      y2 = (j * dH);
+      z1 = -sinT[i];
+      z2 = -sinT[(i+1)];
+
+      uvLeft =    (i * dW);
+      uvTop =     (1 - (0.5*((j+1) * dH)));
+      uvRight =   ((i+1) * dW);
+      uvBottom =  (1 - (0.5*(j * dH)));
+
+      quadToTriangle(
+                      Vec3(x1, y1, z1),
+                      Vec3(x1, y2, z1),                      
+                      Vec3(x2, y2, z2),
+                      Vec3(x2, y1, z2),
+                      uvLeft,
+                      uvTop,
+                      uvRight,
+                      uvBottom
+                    );
+
+    }
+  }
+
+  // Side normals are same as Side pos vectors
+  normals = vertices;
 
 
   // Top Disk
@@ -231,14 +272,46 @@ Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
     }
     
     vertexCount += 3;
-
   }
 
 
+  // Bottom Disk
+  for(int i = 0; i < subR; i++)
+  {
+    // center
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+    vertices.push_back(0.0f);
+
+    uvs.push_back(0.75f);
+    uvs.push_back(0.75f);
 
 
+    vertices.push_back(cosT[(i+1)]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[(i+1)]);
+
+    uvs.push_back((0.75f + (cosT[(i+1)]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
 
 
+    vertices.push_back(cosT[i]);
+    vertices.push_back(0.0f);
+    vertices.push_back(-sinT[i]);
+
+    uvs.push_back((0.75f + (cosT[i]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+    
+
+    for(int n = 0; n < 3; n++)
+    {
+      normals.push_back(0.0f);
+      normals.push_back(-1.0f);
+      normals.push_back(0.0f);
+    }
+    
+    vertexCount += 3;
+  }
 
   
   model.setModel(vertexCount, vertices, normals, uvs);
