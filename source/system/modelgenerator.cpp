@@ -168,9 +168,85 @@ Model ModelGenerator::getCubeSPhere(float r, int sub)
 
 // -----------------------------------------------------------------------------
 
-Model ModelGenerator::getCylinder()
+Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
 {
   Model model;
+  std::vector<float> cosT, sinT;;
+
+  float dTheta = (360.0f / (float)subR);
+  float dH = (1.0f / (float)subH); 
+  float x1 = 0.0f;
+  float x2 = 0.0f;
+  float y1 = 0.0f;
+  float y2 = 0.0f;
+  float z1 = 0.0f;
+  float z2 = 0.0f;
+
+
+  for(float theta = 0.0f; theta < 360.0f; theta += dTheta)
+  {
+    cosT.push_back(cosf(RADIANS(theta)) );
+    sinT.push_back(sinf(RADIANS(theta)) );
+  }
+
+  // push back the orgin values again to complete cyrcle
+  cosT.push_back(1.0f);
+  sinT.push_back(0.0f);
+
+
+
+  // Top Disk
+  for(int i = 0; i < subR; i++)
+  {
+    // center
+    vertices.push_back(0.0f);
+    vertices.push_back(1.0f);
+    vertices.push_back(0.0f);
+
+    uvs.push_back(0.25f);
+    uvs.push_back(0.25f);
+
+
+    vertices.push_back(cosT[i]);
+    vertices.push_back(1.0f);
+    vertices.push_back(-sinT[i]);
+
+    uvs.push_back((0.25f + (cosT[i]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+
+
+    vertices.push_back(cosT[(i+1)]);
+    vertices.push_back(1.0f);
+    vertices.push_back(-sinT[(i+1)]);
+
+    uvs.push_back((0.25f + (cosT[(i+1)]*0.25f)));
+    uvs.push_back((0.25f - (sinT[i]*0.25f)));
+    
+
+    for(int n = 0; n < 3; n++)
+    {
+      normals.push_back(0.0f);
+      normals.push_back(1.0f);
+      normals.push_back(0.0f);
+    }
+    
+    vertexCount += 3;
+
+  }
+
+
+
+
+
+
+
+  
+  model.setModel(vertexCount, vertices, normals, uvs);
+  model.setScale(Vec3(r, h, r));
+
+  sinT.clear();
+  cosT.clear();
+  cleanContainers();
 
   return model;
 }

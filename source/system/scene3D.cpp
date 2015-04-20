@@ -256,6 +256,8 @@ void Scene3D::HandleInput(float dt)
   if(input->isBottonSelected(TBTN3_CYLINDER))
   {
     // generate model
+    Model cylinder = modelGen.getCylinder(2.0f, 2.0f, 16, 4);
+    models.push_back(cylinder);
     input->unselectButton(TBTN3_CYLINDER);
   }
 
@@ -358,14 +360,14 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  //ambient->render();  
+  ambient->render();  
   direct->render();
   spot1->render();
   spot2->render();
 
   gui.drawGrid();
+ 
 
-  
   glPushMatrix();   // Remember where we are.
 
     terrain.render();
