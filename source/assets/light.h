@@ -33,6 +33,7 @@ public:
             float cut = 0.0f, float exp = 45.0f
             );
 
+  void setAttenuation(GLfloat con = 1.0f, GLfloat lin = 0.0f, GLfloat quad = 0.0f);
   void setVisibility(bool vis) {visible = vis;}
   void render();
 
@@ -41,6 +42,12 @@ private:
   GLfloat Colour[4];
   GLfloat Position[4];
   GLfloat Direction[3];
+
+  // attenuation
+  GLfloat constant;
+  GLfloat linear;
+  GLfloat quadratic;
+
 
   float CutOff;
   float Exponent;

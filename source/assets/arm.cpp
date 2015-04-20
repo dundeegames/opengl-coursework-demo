@@ -8,9 +8,9 @@ void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
 {
   input = in;
 
-  sphere = mg->getCubeSPhere(0.125f, 12);
+  sphere = mg->getCubeSPhere(0.125f, 20);
   sphere.setColour(COLOUR_WHITE, 1.0f);
-  cylinder = mg->getCylinder(0.1f, 3.0f, 16, 8);
+  cylinder = mg->getCylinder(0.1f, 3.0f, 32, 16);
   cylinder.setColour(COLOUR_RED, 1.0f);
 
   armXrotation = 0.0f;
@@ -234,11 +234,11 @@ void Arm::render()
       glTranslatef(0.0f, 1.75f, 0.0f);
 
       // render wrist
-      glPushMatrix();  // Remember - WRIST
-        glScalef(0.25f, 0.25f, 0.25f);
-        sphere.Render();
-      glPopMatrix();  // Back to - WRIST
-
+      //glPushMatrix();  // Remember - WRIST
+      //  glScalef(0.25f, 0.25f, 0.25f);
+      //  sphere.Render();
+      //glPopMatrix();  // Back to - WRIST
+      gluSphere(gluNewQuadric(), 0.25f, 20, 20);
 
       glPushMatrix();  // Remember - WRIST
 

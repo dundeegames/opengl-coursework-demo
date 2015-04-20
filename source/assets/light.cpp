@@ -5,6 +5,7 @@ Light::Light(int id_)
 {
   id = id_;
   visible = true;
+  setAttenuation();
 }
 
 
@@ -85,6 +86,12 @@ void Light::render()
   }  
   
   glLightfv(id, GL_POSITION, Position);
+
+  glLightf(id, GL_CONSTANT_ATTENUATION, constant);
+  glLightf(id, GL_LINEAR_ATTENUATION, linear);
+  glLightf(id, GL_QUADRATIC_ATTENUATION, quadratic);
+
+
   glEnable(id);
 
 
@@ -100,6 +107,23 @@ void Light::render()
   glColor3f(COLOUR_WHITE);      // reset colour
 
 }
+
+// -----------------------------------------------------------------------------
+
+void Light::setAttenuation(GLfloat con, GLfloat lin, GLfloat quad)
+{
+  constant = con;
+  linear = lin;
+  quadratic = quad;
+}
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 

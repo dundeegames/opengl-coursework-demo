@@ -10,10 +10,12 @@ void Planets::init()
 
   fire = new Light(GL_LIGHT4);
   fire->init(L_POINT, COLOUR_RED, 1.0f, 1.5f, 0.0f, 0.0f);
+  fire->setAttenuation(1.0f, 1.0f);
 
   ice = new Light(GL_LIGHT5);
   ice->init(L_POINT, COLOUR_LTBLUE, 1.0f, -1.5f, 0.0f, 0.0f);
-
+  //ice->setAttenuation(1.0f, 0.2f);
+  ice->setAttenuation(1.0f, 1.0f);
 
 
 }
