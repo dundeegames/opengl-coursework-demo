@@ -214,9 +214,9 @@ Model ModelGenerator::getCylinder(float r, float h, int subR, int subH)
       z2 = -sinT[(i+1)];
 
       uvLeft =    (i * dW);
-      uvTop =     (1 - (0.5*((j+1) * dH)));
+      uvTop =     (1.0f - (float)(0.5f*((j+1) * dH)));
       uvRight =   ((i+1) * dW);
-      uvBottom =  (1 - (0.5*(j * dH)));
+      uvBottom =  (1.0f - (float)(0.5*(j * dH)));
 
       quadToTriangle(
                       Vec3(x1, y1, z1),

@@ -187,7 +187,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
       // handle menu slections
       switch(LOWORD(wParam))
       {        
-      case ID_FILE_OPEN:
+      case ID_MENU_OPEN:
         myScene.loadFile();
         break;
 

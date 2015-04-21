@@ -29,8 +29,8 @@ void WinManager::RegisterMyWindow(HINSTANCE hInstance, LRESULT (CALLBACK *WinPro
     //wcex.hIcon         = 0;                               // System default icon
     wcex.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE (IDI_ICON1));   // custom icon    
 
-    wcex.hCursor       = LoadCursor (NULL, IDC_ARROW);    // System default cursor
-    //wcex.hCursor       = LoadCursor (NULL, IDC_HELP);   // System default cursor  
+    wcex.hCursor       = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CUR_NORMAL));    // System default cursor
+    //wcex.hCursor       = LoadCursor(NULL, IDC_ARROW);   // System default cursor  
                               
     wcex.hbrBackground = (HBRUSH) (COLOR_WINDOW+1);       // Handle for background brush (colour)
     wcex.lpszMenuName  = MAKEINTRESOURCE (IDR_TOP_MENU);  // Set menu, in this case none              
