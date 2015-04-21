@@ -22,9 +22,8 @@
 #include <gl/glu.h>
 
 #include <system/TokenStream.h>
+#include <assets/material.h>
 #include <vector>
-#include <math/vec3.h>
-//#include <SOIL.h>
 #include <math/vec3.h>
 
 
@@ -39,13 +38,9 @@ public:
   ~Model();
   Model& operator=(const Model& m2);
 
-  void setTexture(GLuint texture_) {texture = texture_; }
   void setTiling(float w, float h);
   void setUVoffset(float u, float v);
   void moveUVoffset(float u, float v);
-
-  //void setModel(int vCount, int mode_, std::vector<float>& vert,
-  //              std::vector<float>& norm, std::vector<float>& tex);
 
   void setModel(int vCount, std::vector<float>& vert,
                 std::vector<float>& norm, std::vector<float>& tex);
@@ -59,26 +54,23 @@ public:
   void setPosition(Vec3 p) {position = p;}
   void move(Vec3 p, float magnitude = 1.0) {position.add(p, magnitude);}
 
-  void setColour(float R=1.0f, float G=1.0f, float B=1.0f, float A=1.0f);
+  void setMaterial(const Material& mat) {material = mat;}
 
   void Render();
 
 
 private:
-  int mode;
-  float colour[4];
+  Material material;
+
   float tileW;
   float tileH;
   float offsetU;
   float offsetV;
-
+  int m_vertexCount;
 
   Vec3 position;
   Vec3 rotation;
   Vec3 scale;
-
-  int m_vertexCount;
-  GLuint texture;
 
   // vectors for storing model data, for your use
   std::vector<float> vertex, normals, texCoords;

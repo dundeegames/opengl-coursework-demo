@@ -5,7 +5,6 @@
 Terrain::Terrain()
 {
   scale = Vec3(1.0f, 1.0f, 1.0f);
-  texture = NULL;
   terrainDlist = NULL;
   vertexCount = 0;
   tileW = 1.0f;
@@ -34,7 +33,9 @@ void Terrain::init(const char* htMap, ModelGenerator* mdGen, bool waterActive)
   }
 
   water = mdGen->getPlane(scale.getX(), scale.getZ(), 10, 10, PLN_SURFACE);
-  water.setColour(COLOUR_WHITE, 0.7f);
+  Material waterMat;
+  waterMat.setDiffuse(COLOUR_WHITE, 0.7f);
+  water.setMaterial(waterMat);
   
   renderWater = waterActive;
 
@@ -256,11 +257,10 @@ void Terrain::compileTerrain()
 
 void Terrain::render()
 {
-  //Rotate();
   //glCallList(terrainDlist);  
 
-  // enble and specify pointers to vertex arrays
-  glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+  material.render(); 
+  
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
@@ -271,6 +271,7 @@ void Terrain::render()
 
 	glMatrixMode(GL_MODELVIEW);
 
+  // enble and specify pointers to vertex arrays
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_NORMAL_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);

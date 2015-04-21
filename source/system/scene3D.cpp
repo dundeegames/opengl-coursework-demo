@@ -132,38 +132,41 @@ void Scene3D::Init(HWND* wnd, Input* in)
   robotArm.Init(input, &modelGen, orbits);
   
   //TODO: move loading to Resource manager
+  Material terMat;
+  Material seaMat;
+
+  terMat.setDiffuse(COLOUR_WHITE, 1.0f);
+  terMat.setTexture(resManager.getTexture("Tamriel_Dif.png"));
+  seaMat.setDiffuse(COLOUR_WHITE, 0.7f);
+  seaMat.setTexture(resManager.getTexture("sea.png"));
+
   terrain.init("../../media/images/Tamriel.png", &modelGen);
   terrain.setScale(Vec3(40.0f, 1.0f, 40.0f));
-  terrain.setTexture(resManager.getTexture("Tamriel_Dif.png"));
-  terrain.setSeaTexture(resManager.getTexture("sea.png"));
+  terrain.setMaterial(terMat);
+  terrain.setSeaMaterial(seaMat);
   terrain.setSeaTiling(4.0f, 4.0f);
 
+
+
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
+  Material crateMat;
+  crateMat.setTexture(resManager.getTexture("PortalTexture.png") );  
+  crate.setMaterial(crateMat);
   crate.setPosition(Vec3(3.0f, 0.25f, 0.0f));
-  //crate.setTexture(resManager.getTexture("crate.png") );
-  crate.setTexture(resManager.getTexture("PortalTexture.png") );
   models.push_back(crate);
   
-  Model triangle = modelGen.getTriangle();
-  triangle.setPosition(Vec3(-0.5f, 0.0f, -1.0f));
-  triangle.setRotation(Vec3(0.0f, -45.0f, 0.0f));
-  triangle.setColour(1.0f, 0.0f, 0.0f, 1.0f);
-  models.push_back(triangle);
-
-  Model quad = modelGen.getQuad(1.5f, 0.75f);
-  quad.setPosition(Vec3(-1.5f, 0.0f, -1.0f));
-  quad.setRotation(Vec3(0.0f, -45.0f, 0.0f));
-  models.push_back(quad);
-
 
   // Do something usefull with the filename stored in szFileName
   Model* prince = resManager.getModel("Prince.obj");
 
   if(prince != NULL)
   {
-    //tempModel->setColour(1.0f, 0.0f, 0.0f, 1.0f);
     prince->setPosition(Vec3(3.0f, 0.75f, 0.0f));
-    prince->setTexture(resManager.getTexture("graymarble256px.png") );
+
+    Material princeMat;
+    princeMat.setTexture(resManager.getTexture("graymarble256px.png") );
+    prince->setMaterial(princeMat);
+
     prince->setTiling(2.0f, 2.0f);
     models.push_back(*prince);
   }

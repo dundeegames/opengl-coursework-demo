@@ -33,6 +33,7 @@ public:
             float cut = 0.0f, float exp = 45.0f
             );
 
+  void setSpecularity(GLfloat R, GLfloat G, GLfloat B, GLfloat A);
   void setAttenuation(GLfloat con = 1.0f, GLfloat lin = 0.0f, GLfloat quad = 0.0f);
   void showHandle(bool visible) {handleIsVisible = visible;}
   void setActive(bool actv) {active = actv;}
@@ -42,6 +43,7 @@ public:
 
 private:
   GLfloat Colour[4];
+  GLfloat Specular[4];
   GLfloat Position[4];
   GLfloat Direction[3];
 

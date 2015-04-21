@@ -14,6 +14,7 @@
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/input.h>
 #include <assets/model.h>
+#include <assets/material.h>
 #include <assets/planets.h>
 #include <system/modelgenerator.h>
 

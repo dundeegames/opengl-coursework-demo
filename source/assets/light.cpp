@@ -30,6 +30,13 @@ void Light::init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
   Colour[2] = B;
   Colour[3] = A;
 
+  Specular[0] = 0.0f;
+  Specular[1] = 0.0f;
+  Specular[2] = 0.0f;
+  Specular[3] = 0.0f;
+
+
+
   Position[0] = posX;
   Position[1] = posY;
   Position[2] = posZ;
@@ -58,22 +65,18 @@ void Light::render()
   switch(type)
   {
   case L_AMBIENT:
-    //glColor3f(COLOUR_DRKGRAY);
     glLightfv(id, GL_AMBIENT,  Colour);
     break;
 
   case L_POINT:
-    //glColor3f(COLOUR_LTBLUE);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
   case L_DIRECTIONAL:
-    //glColor3f(COLOUR_YELLOW);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
   case L_SPOT:
-    //glColor3f(COLOUR_GREEN);
     glLightfv(id, GL_DIFFUSE,  Colour);
     glLightfv(id, GL_SPOT_DIRECTION, Direction);
     glLightf(id, GL_SPOT_CUTOFF, CutOff);
@@ -87,6 +90,7 @@ void Light::render()
   }  
   
   glLightfv(id, GL_POSITION, Position);
+  //glLightfv(id, GL_SPECULAR, Specular);
 
   glLightf(id, GL_CONSTANT_ATTENUATION, constant);
   glLightf(id, GL_LINEAR_ATTENUATION, linear);
@@ -127,9 +131,15 @@ void Light::setAttenuation(GLfloat con, GLfloat lin, GLfloat quad)
 
 // -----------------------------------------------------------------------------
 
+void Light::setSpecularity(GLfloat R, GLfloat G, GLfloat B, GLfloat A)
+{
+  Specular[0] = R;
+  Specular[1] = G;
+  Specular[2] = B;
+  Specular[3] = A;
+}
 
-
-
+// -----------------------------------------------------------------------------
 
 
 

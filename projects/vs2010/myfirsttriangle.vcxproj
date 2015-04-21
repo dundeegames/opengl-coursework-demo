@@ -15,6 +15,7 @@
     <ClCompile Include="..\..\source\assets\elemental.cpp" />
     <ClCompile Include="..\..\source\assets\geometry.cpp" />
     <ClCompile Include="..\..\source\assets\light.cpp" />
+    <ClCompile Include="..\..\source\assets\material.cpp" />
     <ClCompile Include="..\..\source\assets\model.cpp" />
     <ClCompile Include="..\..\source\assets\planets.cpp" />
     <ClCompile Include="..\..\source\assets\sprite.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="..\..\source\assets\elemental.h" />
     <ClInclude Include="..\..\source\assets\geometry.h" />
     <ClInclude Include="..\..\source\assets\light.h" />
+    <ClInclude Include="..\..\source\assets\material.h" />
     <ClInclude Include="..\..\source\assets\model.h" />
     <ClInclude Include="..\..\source\assets\planets.h" />
     <ClInclude Include="..\..\source\assets\sprite.h" />

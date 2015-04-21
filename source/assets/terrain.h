@@ -20,6 +20,7 @@
 
 #include <math/vec3.h>
 #include <assets/model.h>
+#include <assets/material.h>
 #include <system/modelgenerator.h>
 
 
@@ -38,8 +39,8 @@ public:
   // Pass ModelGenerator* to have a water
   void init(const char* htMap, ModelGenerator* mdGen, bool waterActive = true);
   void setScale(Vec3 s);
-  void setTexture(GLuint texture_) {texture = texture_; }
-  void setSeaTexture(GLuint texture_) {water.setTexture(texture_); }
+  void setMaterial(Material mat) {material = mat; }
+  void setSeaMaterial(Material mat) {water.setMaterial(mat); }
   void setTiling(float w, float h);
   void setSeaTiling(float w, float h) {water.setTiling(w, h);}
 
@@ -50,10 +51,9 @@ public:
 
 private:
   Vec3 scale;
-  GLuint texture;
   float tileW;
   float tileH;
-
+  Material material;
 
   GLuint terrainDlist;
 

@@ -21,7 +21,6 @@
 
 class Planets
 {
-  float rotation, rotation2, rotation3, speed;
 
 public:
   void init(Input* in);
@@ -29,6 +28,11 @@ public:
   void render();
 
 private:
+  float rotation;
+  float rotation2;
+  float rotation3;
+  float speed;
+
   Light* fire;
   Light* ice;
   Input* input;

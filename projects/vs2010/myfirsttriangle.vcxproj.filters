@@ -97,6 +97,9 @@
     <ClCompile Include="..\..\source\assets\elemental.cpp">
       <Filter>assets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\assets\material.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\system\resourcemanager.h">
@@ -178,6 +181,9 @@
       <Filter>system</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\elemental.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\material.h">
       <Filter>assets</Filter>
     </ClInclude>
   </ItemGroup>

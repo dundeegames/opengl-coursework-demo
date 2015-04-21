@@ -29,6 +29,7 @@
 #include <assets/light.h>
 #include <assets/sprite.h>
 #include <assets/model.h>
+#include <assets/material.h>
 #include <assets/terrain.h>
 
 #include <system/resourcemanager.h>
