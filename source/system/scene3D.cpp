@@ -118,13 +118,17 @@ void Scene3D::Init(HWND* wnd, Input* in)
   spot1 = new Light(GL_LIGHT2);
   spot1->init(L_SPOT, COLOUR_DRKBLUE, 1.0f, 3.9f, 2.2f, 0.1f,
                                             0.0f, -1.0f, 0.0f, 25.0, 15.0f);
+  spot1->setActive(true);
+
 
   spot2 = new Light(GL_LIGHT3);
   spot2->init(L_SPOT, COLOUR_DRKBLUE, 1.0f, 2.1f, 2.2f, 0.1f,
                                             0.0f, -1.0f, 0.0f, 25.0, 15.0f);
+  spot2->setActive(true);
+
 
   Planets* orbits = new Planets();
-  orbits->init();
+  orbits->init(input);
   robotArm.Init(input, &modelGen, orbits);
   
   //TODO: move loading to Resource manager

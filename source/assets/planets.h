@@ -16,6 +16,7 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <assets/light.h>
+#include <ui/input.h>
 
 
 class Planets
@@ -23,13 +24,14 @@ class Planets
   float rotation, rotation2, rotation3, speed;
 
 public:
-  void init();
+  void init(Input* in);
   void update(float dt);
   void render();
 
 private:
   Light* fire;
   Light* ice;
+  Input* input;
 
 };
 

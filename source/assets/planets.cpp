@@ -1,8 +1,13 @@
 #include <assets/planets.h>
 #include <system/macros.h>
 
-void Planets::init()
+
+
+
+void Planets::init(Input* in)
 {
+  input = in;
+
   rotation = 0;
   rotation2 = 0;
   rotation3 = 0;
@@ -11,12 +16,13 @@ void Planets::init()
   fire = new Light(GL_LIGHT4);
   fire->init(L_POINT, COLOUR_RED, 1.0f, 1.5f, 0.0f, 0.0f);
   fire->setAttenuation(1.0f, 1.0f);
+  fire->setActive(true);
 
   ice = new Light(GL_LIGHT5);
   ice->init(L_POINT, COLOUR_LTBLUE, 1.0f, -1.5f, 0.0f, 0.0f);
   //ice->setAttenuation(1.0f, 0.2f);
   ice->setAttenuation(1.0f, 1.0f);
-
+  ice->setActive(true);
 
 }
 
@@ -27,6 +33,21 @@ void Planets::update(float dt)
   rotation += (speed*3) * dt;
   rotation2 += (speed*2) * dt;
   rotation3 += speed * dt;
+
+  if(input->isBottonSelected(LBTN3_L_HANDLE))
+  {
+    fire->showHandle(true);
+    ice->showHandle(true);
+  }
+  else
+  {
+    fire->showHandle(false);
+    ice->showHandle(false);
+  }
+
+
+
+
 }
 
 // -----------------------------------------------------------------------------
