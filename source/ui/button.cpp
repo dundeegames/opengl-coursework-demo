@@ -31,6 +31,12 @@ void Button::handleInput()
         //selected = true;
       }
 
+      if(input->rightMouseBtn())
+      {
+        input->unselectButton(buttonID);
+        //selected = true;
+      }
+
     }
     else
     {

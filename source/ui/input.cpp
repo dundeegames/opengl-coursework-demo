@@ -182,6 +182,21 @@ bool Input::isBottonSelected(int btnID)
     }    
     break;
 
+  case 4:
+    if((btnID % LIGHT_BUTTONS) < MAX_LIGHT_BUTTONS)
+    {
+      return lightButtons[(btnID % LIGHT_BUTTONS)];
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_LIGHT_BUTTONS", "Button ID Error", MB_OK);
+      return false;
+    }    
+    break;
+
+
+
+
   default:
     MessageBox(NULL, "wrong btnID", "Button ID Error", MB_OK);
     return false;
@@ -238,6 +253,21 @@ void Input::selectButton(int btnID)
     }
     break;
 
+  case 4:
+
+    if((btnID % LIGHT_BUTTONS) < MAX_LIGHT_BUTTONS)
+    {
+      lightButtons[(btnID % LIGHT_BUTTONS)] = true;
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_LIGHT_BUTTONS", "Button ID Error", MB_OK);
+    }    
+    break;
+
+
+
+
   default:
     break;
 
@@ -271,6 +301,22 @@ void Input::unselectButton(int btnID)
       viewButtons[(btnID % VIEW_BUTTONS)] = false;
     }
     break;
+
+  case 4:
+    if((btnID % LIGHT_BUTTONS) < MAX_LIGHT_BUTTONS)
+    {
+      lightButtons[(btnID % LIGHT_BUTTONS)] = false;
+    }
+    else
+    {
+      MessageBox(NULL, "btnID > MAX_LIGHT_BUTTONS", "Button ID Error", MB_OK);
+    }    
+    break;
+
+
+
+
+
 
   default:
     break;

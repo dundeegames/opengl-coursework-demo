@@ -280,25 +280,39 @@ void Scene3D::HandleInput(float dt)
     input->unselectButton(TBTN5_PLANE);
   }
 
-
-  if(input->isBottonSelected(TBTN9_L_AMBIENT))
+  if(input->isBottonSelected(LBTN1_L_AMBIENT))
   {
-    // generate model
-    //input->unselectButton(TBTN9_L_AMBIENT);
+    ambient->setActive(true);
+  }
+  else
+  {
+    ambient->setActive(false);
   }
 
-  if(input->isBottonSelected(TBTN10_L_DIRECT))
+  if(input->isBottonSelected(LBTN2_L_DIRECT))
   {
-    // generate model
-    //input->unselectButton(TBTN10_L_DIRECT);
+    direct->setActive(true);
+  }
+  else
+  {
+    direct->setActive(false);
   }
 
-  if(input->isBottonSelected(TBTN11_L_HANDLE))
-  {
-    // generate model
-    //input->unselectButton(TBTN11_L_HANDLE);
-  }
 
+  if(input->isBottonSelected(LBTN3_L_HANDLE))
+  {
+    ambient->showHandle(true);
+    direct->showHandle(true);
+    spot1->showHandle(true);
+    spot2->showHandle(true);
+  }
+  else
+  {
+    ambient->showHandle(false);
+    direct->showHandle(false);
+    spot1->showHandle(false);
+    spot2->showHandle(false);
+  }
 
 
 
@@ -363,23 +377,13 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  if(input->isBottonSelected(TBTN9_L_AMBIENT))
-  {
-    ambient->render();
-  }
-
-  if(input->isBottonSelected(TBTN10_L_DIRECT))
-  {
-    direct->render();
-  }
-
+  ambient->render();
+  direct->render();
   spot1->render();
   spot2->render();
-
-
+  
   gui.drawGrid();
  
-
   glPushMatrix();   // Remember where we are.
 
     terrain.render();

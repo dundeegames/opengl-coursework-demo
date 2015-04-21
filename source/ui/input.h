@@ -143,6 +143,8 @@ private:
   bool topButtons[MAX_TOP_BUTTONS];
   bool sideButtons[MAX_SIDE_BUTTONS];
   bool viewButtons[MAX_VIEW_BUTTONS];
+  bool lightButtons[MAX_LIGHT_BUTTONS];
+
   ViewportSetting viewports[MAX_VIEWPORTS];
   Mouse mouse;
   float sensitivity;

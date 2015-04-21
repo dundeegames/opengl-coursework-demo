@@ -4,7 +4,8 @@
 Light::Light(int id_)
 {
   id = id_;
-  visible = true;
+  active = false;
+  handleIsVisible = false;
   setAttenuation();
 }
 
@@ -57,22 +58,22 @@ void Light::render()
   switch(type)
   {
   case L_AMBIENT:
-    glColor3f(COLOUR_DRKGRAY);
+    //glColor3f(COLOUR_DRKGRAY);
     glLightfv(id, GL_AMBIENT,  Colour);
     break;
 
   case L_POINT:
-    glColor3f(COLOUR_LTBLUE);
+    //glColor3f(COLOUR_LTBLUE);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
   case L_DIRECTIONAL:
-    glColor3f(COLOUR_YELLOW);
+    //glColor3f(COLOUR_YELLOW);
     glLightfv(id, GL_DIFFUSE,  Colour);
     break;
 
   case L_SPOT:
-    glColor3f(COLOUR_GREEN);
+    //glColor3f(COLOUR_GREEN);
     glLightfv(id, GL_DIFFUSE,  Colour);
     glLightfv(id, GL_SPOT_DIRECTION, Direction);
     glLightf(id, GL_SPOT_CUTOFF, CutOff);
@@ -91,11 +92,18 @@ void Light::render()
   glLightf(id, GL_LINEAR_ATTENUATION, linear);
   glLightf(id, GL_QUADRATIC_ATTENUATION, quadratic);
 
+  if(active)
+  {
+    glEnable(id);
+  }
+  else
+  {
+    glDisable(id);
+  }
 
-  glEnable(id);
 
 
-  if(visible)
+  if(handleIsVisible)
   {
     glPushMatrix(); // REMEMBER WHERE WE ARE
       glTranslatef(Position[0], Position[1], Position[2]);     

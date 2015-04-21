@@ -34,7 +34,9 @@ public:
             );
 
   void setAttenuation(GLfloat con = 1.0f, GLfloat lin = 0.0f, GLfloat quad = 0.0f);
-  void setVisibility(bool vis) {visible = vis;}
+  void showHandle(bool visible) {handleIsVisible = visible;}
+  void setActive(bool actv) {active = actv;}
+
   void render();
 
 
@@ -55,7 +57,8 @@ private:
   int id;
   Light_Type type;
 
-  bool visible;
+  bool active;
+  bool handleIsVisible;
 
 };
 

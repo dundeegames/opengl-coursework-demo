@@ -159,9 +159,11 @@
 #define TOP_BUTTONS         100
 #define SIDE_BUTTONS        200
 #define VIEW_BUTTONS        300
-#define MAX_TOP_BUTTONS     11
+#define LIGHT_BUTTONS        400
+#define MAX_TOP_BUTTONS     8
 #define MAX_SIDE_BUTTONS    4
 #define MAX_VIEW_BUTTONS    3
+#define MAX_LIGHT_BUTTONS   3
 
 
 #define BTN_SIZE            32.0f
@@ -220,21 +222,6 @@
 #define TBTN8_UV_X          (78.0f / TEXTURE_WIDTH)
 #define TBTN8_UV_Y          (32.0f / TEXTURE_WIDTH)
 
-#define TBTN9_L_AMBIENT     108
-#define TBTN9_ORIGIN_X      285.0f
-#define TBTN9_UV_X          (78.0f / TEXTURE_WIDTH)
-#define TBTN9_UV_Y          (96.0f / TEXTURE_WIDTH)
-
-#define TBTN10_L_DIRECT     109
-#define TBTN10_ORIGIN_X     330.0f
-#define TBTN10_UV_X         (110.0f / TEXTURE_WIDTH)
-#define TBTN10_UV_Y         (96.0f / TEXTURE_WIDTH)
-
-#define TBTN11_L_HANDLE     110
-#define TBTN11_ORIGIN_X     375.0f
-#define TBTN11_UV_X         (142.0f / TEXTURE_WIDTH)
-#define TBTN11_UV_Y         (96.0f / TEXTURE_WIDTH)
-
 
 // side buttons
 #define BGR_SEL_UV_X       (46.0f / TEXTURE_WIDTH)
@@ -278,6 +265,29 @@
 #define VBTN3_ORIGIN_Y      340.0f
 #define VBTN3_UV_X          (142.0f / TEXTURE_WIDTH)
 #define VBTN3_UV_Y          (32.0f / TEXTURE_WIDTH)
+
+
+// Light Buttons
+#define LBTN1_L_AMBIENT     400
+#define LBTN1_ORIGIN_X      285.0f
+#define LBTN1_UV_X          (78.0f / TEXTURE_WIDTH)
+#define LBTN1_UV_Y          (96.0f / TEXTURE_WIDTH)
+
+#define LBTN2_L_DIRECT      401
+#define LBTN2_ORIGIN_X      330.0f
+#define LBTN2_UV_X          (110.0f / TEXTURE_WIDTH)
+#define LBTN2_UV_Y          (96.0f / TEXTURE_WIDTH)
+
+#define LBTN3_L_HANDLE      402
+#define LBTN3_ORIGIN_X      375.0f
+#define LBTN3_UV_X          (142.0f / TEXTURE_WIDTH)
+#define LBTN3_UV_Y          (96.0f / TEXTURE_WIDTH)
+
+
+
+
+
+
 
 
 // Logos
