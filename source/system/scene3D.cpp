@@ -280,22 +280,23 @@ void Scene3D::HandleInput(float dt)
     input->unselectButton(TBTN5_PLANE);
   }
 
-  if(input->isBottonSelected(TBTN6_TORUS))
+
+  if(input->isBottonSelected(TBTN9_L_AMBIENT))
   {
     // generate model
-    input->unselectButton(TBTN6_TORUS);
+    //input->unselectButton(TBTN9_L_AMBIENT);
   }
 
-  if(input->isBottonSelected(TBTN7_PYRAMID))
+  if(input->isBottonSelected(TBTN10_L_DIRECT))
   {
     // generate model
-    input->unselectButton(TBTN7_PYRAMID);
+    //input->unselectButton(TBTN10_L_DIRECT);
   }
 
-  if(input->isBottonSelected(TBTN8_PIPE))
+  if(input->isBottonSelected(TBTN11_L_HANDLE))
   {
     // generate model
-    input->unselectButton(TBTN8_PIPE);
+    //input->unselectButton(TBTN11_L_HANDLE);
   }
 
 
@@ -362,10 +363,19 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  ambient->render();  
-  direct->render();
+  if(input->isBottonSelected(TBTN9_L_AMBIENT))
+  {
+    ambient->render();
+  }
+
+  if(input->isBottonSelected(TBTN10_L_DIRECT))
+  {
+    direct->render();
+  }
+
   spot1->render();
   spot2->render();
+
 
   gui.drawGrid();
  

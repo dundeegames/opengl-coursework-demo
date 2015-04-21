@@ -184,11 +184,12 @@ void Gui::setButtons()
 
   initTranspButton(TBTN5_PLANE, TBTN5_ORIGIN_X, TBTN_ORIGIN_Y, TBTN5_UV_X, TBTN5_UV_Y);
 
-  initTranspButton(TBTN6_TORUS, TBTN6_ORIGIN_X, TBTN_ORIGIN_Y, TBTN6_UV_X, TBTN6_UV_Y);
+  initTranspButton(TBTN9_L_AMBIENT, TBTN9_ORIGIN_X, TBTN_ORIGIN_Y, TBTN9_UV_X, TBTN9_UV_Y);
 
-  initTranspButton(TBTN7_PYRAMID, TBTN7_ORIGIN_X, TBTN_ORIGIN_Y, TBTN7_UV_X, TBTN7_UV_Y);
+  initTranspButton(TBTN10_L_DIRECT, TBTN10_ORIGIN_X, TBTN_ORIGIN_Y, TBTN10_UV_X, TBTN10_UV_Y);
 
-  initTranspButton(TBTN8_PIPE, TBTN8_ORIGIN_X, TBTN_ORIGIN_Y, TBTN8_UV_X, TBTN8_UV_Y);
+  initTranspButton(TBTN11_L_HANDLE, TBTN11_ORIGIN_X, TBTN_ORIGIN_Y, TBTN11_UV_X, TBTN11_UV_Y);
+
 
 
   // side buttons
@@ -207,6 +208,10 @@ void Gui::setButtons()
   initTranspButton(VBTN2_4VIEW, SBTN_ORIGIN_X, VBTN2_ORIGIN_Y, VBTN2_UV_X, VBTN2_UV_Y); 
 
   initTranspButton(VBTN3_GAME, SBTN_ORIGIN_X, VBTN3_ORIGIN_Y, VBTN3_UV_X, VBTN3_UV_Y);
+
+
+
+
 }
 
 // -----------------------------------------------------------------------------
