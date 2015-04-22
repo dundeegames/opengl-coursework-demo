@@ -110,7 +110,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   ambient = new Light(GL_LIGHT0);
-  ambient->init(L_AMBIENT, COLOUR_BROWN, 1.0f, 0.0f, 0.5f, 0.0f);
+  ambient->init(L_AMBIENT, COLOUR_DRKGRAY, 0.0f, 0.0f, 0.0f, 0.0f);
 
   direct = new Light(GL_LIGHT1);
   direct->init(L_DIRECTIONAL, COLOUR_LTGRAY, 1.0f, -1.0f, 1.0f, -1.0f);
@@ -384,6 +384,8 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
+  //glDisable(GL_LIGHTING);
+
   ambient->render();
   direct->render();
   spot1->render();

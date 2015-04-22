@@ -7,18 +7,18 @@
 void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
 {
   input = in;
-  Material gold;
-  gold.setAmbient(MAT_GOLD_AMBIENT);
-  gold.setDiffuse(MAT_GOLD_DIFFUSE);
-  gold.setSpecular(MAT_GOLD_SPECULAR);
-  gold.setShininess(MAT_GOLD_SHININESS);
+  //Material gold;
+  //gold.setAmbient(MAT_GOLD_AMBIENT);
+  //gold.setDiffuse(MAT_GOLD_DIFFUSE);
+  //gold.setSpecular(MAT_GOLD_SPECULAR);
+  //gold.setShininess(MAT_GOLD_SHININESS);
 
   sphere = mg->getCubeSPhere(0.125f, 20);
   sphere.setMaterial(Material(COLOUR_WHITE, 1.0f));
 
   cylinder = mg->getCylinder(0.1f, 3.0f, 32, 16);
-  //cylinder.setMaterial(Material(COLOUR_RED, 1.0f));
-  cylinder.setMaterial(gold);
+  cylinder.setMaterial(Material(COLOUR_RED, 1.0f));
+  //cylinder.setMaterial(gold);
 
   armXrotation = 0.0f;
   armYrotation = 0.0f;

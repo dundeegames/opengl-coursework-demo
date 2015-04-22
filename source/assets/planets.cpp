@@ -15,13 +15,13 @@ void Planets::init(Input* in)
 
   fire = new Light(GL_LIGHT4);
   fire->init(L_POINT, COLOUR_RED, 1.0f, 1.5f, 0.0f, 0.0f);
-  fire->setAttenuation(1.0f, 1.0f);
+  fire->setAttenuation(2.0f, 1.0f, 0.5f);
   fire->setActive(true);
 
   ice = new Light(GL_LIGHT5);
   ice->init(L_POINT, COLOUR_LTBLUE, 1.0f, -1.5f, 0.0f, 0.0f);
   //ice->setAttenuation(1.0f, 0.2f);
-  ice->setAttenuation(1.0f, 1.0f);
+  ice->setAttenuation(2.0f, 1.0f, 0.5f);
   ice->setActive(true);
 
 }
@@ -139,7 +139,7 @@ void Planets::render()
   glDisable(GL_BLEND);
 
   // reset colour
-  glColor3f(1.0f, 1.0f, 1.0f);
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 }
 
