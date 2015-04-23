@@ -54,13 +54,13 @@ public:
   void setPosition(Vec3 p) {position = p;}
   void move(Vec3 p, float magnitude = 1.0) {position.add(p, magnitude);}
 
-  void setMaterial(const Material& mat) {material = mat;}
+  void setMaterial(Material* mat) {material = mat;}
 
   void Render();
 
 
 private:
-  Material material;
+  Material* material;
 
   float tileW;
   float tileH;

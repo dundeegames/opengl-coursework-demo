@@ -33,7 +33,7 @@ void Light::init(Light_Type tp, GLfloat R, GLfloat G, GLfloat B, GLfloat A,
   Specular[0] = 0.0f;
   Specular[1] = 0.0f;
   Specular[2] = 0.0f;
-  Specular[3] = 0.0f;
+  Specular[3] = 1.0f;
 
 
 
@@ -90,7 +90,7 @@ void Light::render()
   }  
   
   glLightfv(id, GL_POSITION, Position);
-  //glLightfv(id, GL_SPECULAR, Specular);
+  glLightfv(id, GL_SPECULAR, Specular);
 
   glLightf(id, GL_CONSTANT_ATTENUATION, constant);
   glLightf(id, GL_LINEAR_ATTENUATION, linear);

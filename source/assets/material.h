@@ -34,6 +34,7 @@ public:
   Material& operator=(const Material& m2);
 
   void render();
+  void cleanup();
 
   void setAmbient(GLfloat R, GLfloat G, GLfloat B, GLfloat A);
   void setDiffuse(GLfloat R, GLfloat G, GLfloat B, GLfloat A);
@@ -50,8 +51,18 @@ private:
   GLfloat diffuse[4];
   GLfloat specular[4];
   GLfloat emission[4];
+
+  // actual colour the diffuse is not working
+  GLfloat red;
+  GLfloat green;
+  GLfloat blue;
+  GLfloat alpha;
+
   GLfloat shininess;
   GLuint texture;
+
+
+
 
   void init();
 

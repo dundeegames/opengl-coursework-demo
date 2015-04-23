@@ -15,6 +15,8 @@ Model::Model()
   offsetU = 0.0f;
   offsetV = 0.0f;
 
+  material = NULL;
+
 }
 
 // -----------------------------------------------------------------------------
@@ -55,6 +57,11 @@ void Model::setModel(int vCount, std::vector<float>& vert,
 
 void Model::Render()
 {
+  if(material != NULL)
+  {
+    material->render();
+  }
+
   glPushMatrix();
     glTranslatef(position.getX(), position.getY(), position.getZ());
     glRotatef(rotation.getX(), 1.0f, 0.0f, 0.0f);
@@ -62,9 +69,7 @@ void Model::Render()
     glRotatef(rotation.getZ(), 0.0f, 0.0f, 1.0f);
     glScalef(scale.getX(), scale.getY(), scale.getZ());  
   
-  glEnable(GL_BLEND);
-  material.render();
-
+  //glEnable(GL_BLEND);
 
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -94,13 +99,22 @@ void Model::Render()
   glDisableClientState(GL_VERTEX_ARRAY);  // disable vertex arrays
   glDisableClientState(GL_NORMAL_ARRAY);
   glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-  glDisable(GL_BLEND);
+  //glDisable(GL_BLEND);
+
+  glBindTexture(GL_TEXTURE_2D, NULL);  //tells opengl which texture to use
 
   glMatrixMode(GL_TEXTURE);
     glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
-  
+
+  if(material != NULL)
+  {
+    material->cleanup();
+  }
+
+  //glPopAttrib(); 
+
 }
 
 // -----------------------------------------------------------------------------

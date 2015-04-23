@@ -80,9 +80,10 @@ void Gui::update()
 
 void Gui::drawGrid()
 {
-  
-  glLineWidth(0.5f);
-  glColor3f(1.0f, 1.0f, 1.0f);
+  glDisable(GL_LIGHTING);
+
+  glLineWidth(0.25f);
+  glColor3f(0.8f, 0.8f, 0.8f);
 
   glBegin(GL_LINES);    
     for(int i = -11; i < 10; i++)
@@ -108,6 +109,10 @@ void Gui::drawGrid()
     glVertex3f(5.0f, 0.0f, 0.0f);
 
   glEnd();
+
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // reset colour
+
+  glEnable(GL_LIGHTING);
 
 }
 

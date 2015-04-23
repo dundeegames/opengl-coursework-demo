@@ -39,8 +39,8 @@ public:
   // Pass ModelGenerator* to have a water
   void init(const char* htMap, ModelGenerator* mdGen, bool waterActive = true);
   void setScale(Vec3 s);
-  void setMaterial(Material mat) {material = mat; }
-  void setSeaMaterial(Material mat) {water.setMaterial(mat); }
+  void setMaterial(Material* mat) {material = mat; }
+  void setSeaMaterial(Material* mat) {water.setMaterial(mat); }
   void setTiling(float w, float h);
   void setSeaTiling(float w, float h) {water.setTiling(w, h);}
 
@@ -53,7 +53,7 @@ private:
   Vec3 scale;
   float tileW;
   float tileH;
-  Material material;
+  Material* material;
 
   GLuint terrainDlist;
 

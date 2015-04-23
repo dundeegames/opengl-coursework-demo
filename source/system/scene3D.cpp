@@ -1,6 +1,48 @@
 #include <system/scene3D.h>
 #include <system/macros.h>
 
+GLfloat def_mat_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
+GLfloat def_mat_diffuse[] = {0.8f, 0.8f, 0.8f, 1.0f};
+GLfloat def_mat_specular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+GLfloat def_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};
+
+GLfloat no_mat[] = {0.0f, 0.0f, 0.0f, 0.0f};
+GLfloat mat_ambient[] = {0.7f, 0.7f, 0.7f, 1.0f};
+GLfloat mat_ambient_colour[] = {0.8f, 0.8f, 0.2f, 1.0f};
+
+GLfloat mat_diffuse[] = {0.1f, 0.5f, 0.8f, 1.0f};
+GLfloat mat_dif_red[] = {1.0f, 0.0f, 0.0f, 1.0f};
+GLfloat mat_dif_blueAlpha[] = {0.0f, 0.0f, 0.8f, 0.5f};
+
+
+GLfloat mat_hight_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+
+
+GLfloat no_shininess[] = {0.0f};
+GLfloat low_shininess[] = {50};
+GLfloat high_shininess[] = {100};
+GLfloat mat_emission[] = {0.3f, 0.2f, 0.2f, 0.0f};
+
+GLfloat Light_Ambient[] = {0.4f, 0.4f, 0.4f, 1.0f};
+GLfloat Light_Diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat Light_Specular[] = {1.0, 1.0, 1.0, 1.0};
+GLfloat Light_Position[]= {-100.0f, 100.0f, 100.0f, 1.0f};
+
+GLfloat Light_Ambient2[] = {0.2f, 0.2f, 0.2f, 1.0f};
+GLfloat Light_Diffuse2[] = {0.8f, 0.8f, 0.8f, 1.0f};
+GLfloat Light_Specular2[] = {0.8f, 0.8f, 0.8f, 1.0f};
+GLfloat Light_Position2[]= {-100.0f, 100.0f, 100.0f, 1.0f};
+
+
+
+GLfloat gold_mat_ambient[] = {MAT_GOLD_AMBIENT};
+GLfloat gold_mat_diffuse[] = {MAT_GOLD_DIFFUSE};
+GLfloat gold_mat_specular[] = {MAT_GOLD_SPECULAR};
+GLfloat gold_mat_shininess[] = {MAT_GOLD_SHININESS};
+
+
+
 
 // ------------------------------------------------------------------------------
 
@@ -81,6 +123,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glEnable(GL_COLOR_MATERIAL);
   glEnable(GL_LIGHTING);
   glEnable(GL_TEXTURE_2D);
+  glEnable(GL_NORMALIZE);
 
   /*!
   * Specify texture calculation
@@ -89,6 +132,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
   
   //glShadeModel(GL_FLAT);                  // Enable Flat Shading
   glShadeModel(GL_SMOOTH);                  // Enable Smooth Shading
+
+
   //glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   // Black(Transparent) Background
   glClearDepth(1.0f);                       // Depth Buffer Setup
   glEnable(GL_DEPTH_TEST);                  // Enables Depth Testing
@@ -132,13 +177,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
   robotArm.Init(input, &modelGen, orbits);
   
   //TODO: move loading to Resource manager
-  Material terMat;
-  Material seaMat;
+  Material* terMat = new Material();
+  Material* seaMat = new Material(COLOUR_WHITE, 0.7f);
 
-  terMat.setDiffuse(COLOUR_WHITE, 1.0f);
-  terMat.setTexture(resManager.getTexture("Tamriel_Dif.png"));
-  seaMat.setDiffuse(COLOUR_WHITE, 0.7f);
-  seaMat.setTexture(resManager.getTexture("sea.png"));
+  terMat->setDiffuse(COLOUR_WHITE, 1.0f);
+  terMat->setTexture(resManager.getTexture("Tamriel_Dif.png"));
+  seaMat->setDiffuse(COLOUR_WHITE, 0.7f);
+  seaMat->setTexture(resManager.getTexture("sea.png"));
 
   terrain.init("../../media/images/Tamriel.png", &modelGen);
   terrain.setScale(Vec3(40.0f, 1.0f, 40.0f));
@@ -149,8 +194,8 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 
   Model crate = modelGen.getCube(1.0f, 1.0f, 1.0f, 7, 5, 3);
-  Material crateMat;
-  crateMat.setTexture(resManager.getTexture("PortalTexture.png") );  
+  Material* crateMat = new Material();
+  crateMat->setTexture(resManager.getTexture("PortalTexture.png") );  
   crate.setMaterial(crateMat);
   crate.setPosition(Vec3(3.0f, 0.25f, 0.0f));
   models.push_back(crate);
@@ -158,13 +203,13 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
   // Do something usefull with the filename stored in szFileName
   Model* prince = resManager.getModel("Prince.obj");
-
+  
   if(prince != NULL)
   {
     prince->setPosition(Vec3(3.0f, 0.75f, 0.0f));
 
-    Material princeMat;
-    princeMat.setTexture(resManager.getTexture("graymarble256px.png") );
+    Material* princeMat = new Material();
+    princeMat->setTexture(resManager.getTexture("graymarble256px.png") );
     prince->setMaterial(princeMat);
 
     prince->setTiling(2.0f, 2.0f);
@@ -390,14 +435,86 @@ void Scene3D::render()
   direct->render();
   spot1->render();
   spot2->render();
-  
+
+
+  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT);
+  //glPushAttrib(GL_LIGHTING_BIT);
+    glPushMatrix();
+	    glTranslatef(-4.0f, 0.0f, 0.0f);
+	    glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
+	    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
+	    glMaterialfv(GL_FRONT, GL_SHININESS, no_shininess);
+	    glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
+	    gluSphere(gluNewQuadric(), 0.75, 40,40);
+    glPopMatrix();
+  glPopAttrib();
+
+  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT);
+  //glPushAttrib(GL_LIGHTING_BIT);
+    glPushMatrix();
+	    glTranslatef(-2.0f, 0.0f, 0.0f);
+      glMaterialfv(GL_FRONT, GL_SPECULAR, mat_hight_specular);
+      glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
+      glColor3f(0.8f, 0.0f, 0.0f);
+	    gluSphere(gluNewQuadric(), 0.75, 40,40);
+      //glColor3f(1.0f, 1.0f, 1.0f);
+    glPopMatrix();
+  glPopAttrib();
+
+  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
+  //glPushAttrib(GL_LIGHTING_BIT);
+  glEnable(GL_BLEND);
+    glPushMatrix();
+	    glTranslatef(-2.0f, 0.0f, 2.0f);
+      glMaterialfv(GL_FRONT, GL_SPECULAR, mat_hight_specular);
+      glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
+      glColor4f(0.0f, 0.5f, 0.0f, 0.5f);
+	    gluSphere(gluNewQuadric(), 0.75, 40,40);
+      //glColor3f(1.0f, 1.0f, 1.0f);
+    glPopMatrix();
+  glPopAttrib();
+
+  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
+  //glPushAttrib(GL_LIGHTING_BIT);
+  glEnable(GL_BLEND);
+    glPushMatrix();
+	    glTranslatef(0.0f, 0.0f, 0.0f);
+	    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_dif_red);
+	    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_red);
+	    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
+	    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
+	    glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
+      //glColor3f(0.8f, 0.0f, 0.0f);
+	    gluSphere(gluNewQuadric(), 0.75, 40,40);
+      //glColor3f(1.0f, 1.0f, 1.0f);
+    glPopMatrix();
+  glPopAttrib();
+ 
+  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
+  //glPushAttrib(GL_LIGHTING_BIT);
+  glEnable(GL_BLEND);
+
+  //glBindTexture(GL_TEXTURE_2D, resManager.getTexture("PortalTexture.png"));  //texture to use
+
+    glPushMatrix();
+	    glTranslatef(-2.0f, 0.0f, -2.0f);
+	    glMaterialfv(GL_FRONT, GL_AMBIENT, def_mat_ambient);
+	    glMaterialfv(GL_FRONT, GL_DIFFUSE, def_mat_diffuse);
+	    glMaterialfv(GL_FRONT, GL_SPECULAR, def_mat_specular);
+	    glMaterialfv(GL_FRONT, GL_SHININESS, no_shininess);
+	    glMaterialfv(GL_FRONT, GL_EMISSION, def_mat_emission);
+      //glColor3f(0.8f, 0.0f, 0.0f);
+	    gluSphere(gluNewQuadric(), 0.75, 40,40);
+      //glColor3f(1.0f, 1.0f, 1.0f);
+    glPopMatrix();
+  //glBindTexture(GL_TEXTURE_2D, NULL);
+
+  glPopAttrib();
+
   gui.drawGrid();
  
-  glPushMatrix();   // Remember where we are.
 
-    terrain.render();
-
-  glPopMatrix();    // go back to origin
 
   glPushMatrix();   // Remember where we are.
 
@@ -405,15 +522,23 @@ void Scene3D::render()
 
   glPopMatrix();    // go back to origin
 
-  glPushMatrix();   // Remember where we are.
 
+  glPushMatrix();
+	  //glTranslatef(2.0f, 0.0f, 0.0f);
     for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
     {
-      //glTranslatef(0.2f, 0.0f, 2.0f);
       it->Render();
     }
 
   glPopMatrix();    // go back to origin
+
+  glPushMatrix();   // Remember where we are.
+
+    terrain.render();
+
+  glPopMatrix();    // go back to origin
+
+
 
 }
 

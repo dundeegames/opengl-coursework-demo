@@ -2,6 +2,8 @@
 #include <system/macros.h>
 
 
+
+
 Material::Material()
 {
   init();
@@ -11,7 +13,11 @@ Material::Material()
 Material::Material(GLfloat R, GLfloat G, GLfloat B, GLfloat A)
 {
   init();
-  setDiffuse(R, G, B, A);
+  
+  red = R;
+  green = G;
+  blue = B;
+  alpha = A;
 }
 
 
@@ -49,14 +55,30 @@ Material& Material::operator=(const Material& m2)
 
 void Material::render()
 {
-  glMaterialfv(face, GL_AMBIENT, ambient);
-  glMaterialfv(face, GL_DIFFUSE, diffuse);
-  glMaterialfv(face, GL_SPECULAR, specular);
-  glMaterialfv(face, GL_SHININESS, emission);
-  glMaterialfv(face, GL_EMISSION, &shininess);
-
   glBindTexture(GL_TEXTURE_2D, texture);  //tells opengl which texture to use
+  
+  glPushAttrib(GL_LIGHTING_BIT | GL_ENABLE_BIT);
 
+  glEnable(GL_BLEND);
+
+  glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+  glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+  glMaterialfv(GL_FRONT, GL_SHININESS, &shininess);
+
+  glColor4f(red, green, blue, alpha);
+
+  
+}
+
+// -----------------------------------------------------------------------------
+
+void Material::cleanup()
+{
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);      // reset colour
+  glBindTexture(GL_TEXTURE_2D, NULL);     // reset texture
+  glPopAttrib();                          // reset material parameters
 }
 
 // -----------------------------------------------------------------------------
@@ -103,19 +125,25 @@ void Material::setEmission(GLfloat R, GLfloat G, GLfloat B, GLfloat A)
 
 void Material::init()
 {
-  face = GL_FRONT;
+  //face = GL_FRONT;
+
+  GLfloat def_mat_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
+  GLfloat def_mat_diffuse[] = {0.8f, 0.8f, 0.8f, 1.0f};
+  GLfloat def_mat_specular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+  GLfloat def_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};
 
   for(int i = 0; i < 3; i++)
   {
-    ambient[i] = 0.2f;
-    diffuse[i] = 0.8f;
-    specular[i] = 0.0f;
-    emission[i] = 0.0f;
+    ambient[i] = def_mat_ambient[i];
+    diffuse[i] = def_mat_diffuse[i];
+    specular[i] = def_mat_specular[i];
+    emission[i] = def_mat_emission[i];
   }
-  ambient[3] = 1.0f;
-  diffuse[3] = 1.0f;
-  specular[3] = 1.0f;
-  emission[3] = 1.0f;
+
+  red = 1.0f;
+  green = 1.0f;
+  blue = 1.0f;
+  alpha = 1.0f;
 
   shininess = 0.0f;
   texture = NULL;

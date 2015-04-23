@@ -7,18 +7,19 @@
 void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
 {
   input = in;
-  //Material gold;
-  //gold.setAmbient(MAT_GOLD_AMBIENT);
-  //gold.setDiffuse(MAT_GOLD_DIFFUSE);
-  //gold.setSpecular(MAT_GOLD_SPECULAR);
-  //gold.setShininess(MAT_GOLD_SHININESS);
+  Material* gold = new Material(0.8f, 0.8f, 0.0f, 1.0f);
+  gold->setAmbient(MAT_GOLD_AMBIENT);
+  gold->setDiffuse(MAT_GOLD_DIFFUSE);
+  gold->setSpecular(MAT_GOLD_SPECULAR);
+  gold->setShininess(MAT_GOLD_SHININESS);
+  Material* white = new Material(0.8f, 0.8f, 0.8f, 1.0f);
 
   sphere = mg->getCubeSPhere(0.125f, 20);
-  sphere.setMaterial(Material(COLOUR_WHITE, 1.0f));
+  sphere.setMaterial(white);
 
   cylinder = mg->getCylinder(0.1f, 3.0f, 32, 16);
-  cylinder.setMaterial(Material(COLOUR_RED, 1.0f));
-  //cylinder.setMaterial(gold);
+  //cylinder.setMaterial(red);
+  cylinder.setMaterial(gold);
 
   armXrotation = 0.0f;
   armYrotation = 0.0f;
@@ -241,11 +242,11 @@ void Arm::render()
       glTranslatef(0.0f, 1.75f, 0.0f);
 
       // render wrist
-      //glPushMatrix();  // Remember - WRIST
-      //  glScalef(0.25f, 0.25f, 0.25f);
-      //  sphere.Render();
-      //glPopMatrix();  // Back to - WRIST
-      gluSphere(gluNewQuadric(), 0.25f, 20, 20);
+      glPushMatrix();  // Remember - WRIST
+        glScalef(0.25f, 0.25f, 0.25f);
+        sphere.Render();
+      glPopMatrix();  // Back to - WRIST
+      //gluSphere(gluNewQuadric(), 0.25f, 20, 20);
 
       glPushMatrix();  // Remember - WRIST
 

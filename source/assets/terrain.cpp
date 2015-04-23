@@ -9,6 +9,8 @@ Terrain::Terrain()
   vertexCount = 0;
   tileW = 1.0f;
   tileH = 1.0f;
+
+  material = NULL;
 }
 
 
@@ -33,9 +35,9 @@ void Terrain::init(const char* htMap, ModelGenerator* mdGen, bool waterActive)
   }
 
   water = mdGen->getPlane(scale.getX(), scale.getZ(), 10, 10, PLN_SURFACE);
-  Material waterMat;
-  waterMat.setDiffuse(COLOUR_WHITE, 0.7f);
-  water.setMaterial(waterMat);
+  //Material waterMat;
+  //waterMat.setDiffuse(COLOUR_WHITE, 0.7f);
+  //water.setMaterial(waterMat);
   
   renderWater = waterActive;
 
@@ -257,10 +259,14 @@ void Terrain::compileTerrain()
 
 void Terrain::render()
 {
-  //glCallList(terrainDlist);  
+  //glPushAttrib(GL_LIGHTING_BIT);
 
-  material.render(); 
-  
+  //glCallList(terrainDlist);  
+  if(material != NULL)
+  {
+    material->render(); 
+  }
+
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
@@ -299,8 +305,13 @@ void Terrain::render()
 	glMatrixMode(GL_MODELVIEW);
 
 
-  glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
+  //glBindTexture(GL_TEXTURE_2D, NULL);   //set texture to NULL
   
+
+  if(material != NULL)
+  {
+    material->cleanup(); 
+  }
 
   if(renderWater)
   {
