@@ -30,6 +30,7 @@
 #include <ui/input.h>
 #include <system/scene3D.h>
 #include <system/timerclass.h>
+#include <stdlib.h>
 
 
 
@@ -230,6 +231,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
         break;
 
       case ID_HELP_ABOUT:
+        ShellExecute(NULL, "open", "..\\..\\doc\\doxygen\\html\\index.html", NULL, NULL, SW_SHOWNORMAL);
         break;
 
       }

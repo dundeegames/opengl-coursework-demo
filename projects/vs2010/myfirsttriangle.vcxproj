@@ -44,6 +44,7 @@
     <ClInclude Include="..\..\source\assets\planets.h" />
     <ClInclude Include="..\..\source\assets\sprite.h" />
     <ClInclude Include="..\..\source\assets\terrain.h" />
+    <ClInclude Include="..\..\source\documentation\maindox.h" />
     <ClInclude Include="..\..\source\math\vec3.h" />
     <ClInclude Include="..\..\source\resources\resource.h" />
     <ClInclude Include="..\..\source\system\macros.h" />

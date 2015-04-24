@@ -17,6 +17,9 @@
     <Filter Include="ui">
       <UniqueIdentifier>{a3281fa1-132d-4b0d-af66-5ff6675d96fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="documentation">
+      <UniqueIdentifier>{1a1f68c6-932a-478e-87c6-0b5f2aa84eef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\system\main.cpp">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\assets\material.h">
       <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\documentation\maindox.h">
+      <Filter>documentation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

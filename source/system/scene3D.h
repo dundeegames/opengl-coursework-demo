@@ -85,9 +85,7 @@ public:
 
 
   /**
-  * \brief      Call 
-  *
-  * \details    Detailed description 
+  * \brief      Called everytime the window is resized
   * \param      void
   * \return     void
   */

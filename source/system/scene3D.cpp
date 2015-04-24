@@ -12,7 +12,7 @@
 * \post       
 * \bug        No known bugs
 * \warning    <windows.h> needs to be included BEFORE <gl/gl.h> & <gl/glu.h>
-* \todo       
+* \todo       move Material loading and management to Resource manager
 *             
 * \copyright  University of Abertay - Dundee.2013.
 *             Intellectual Property Policy.[online].Available from: 
@@ -32,49 +32,6 @@
 
 
 // FUNCTIONS ///////////////////////////////////////////////////////////////////
-
-
-GLfloat def_mat_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
-GLfloat def_mat_diffuse[] = {0.8f, 0.8f, 0.8f, 1.0f};
-GLfloat def_mat_specular[] = {0.0f, 0.0f, 0.0f, 1.0f};
-GLfloat def_mat_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};
-
-GLfloat no_mat[] = {0.0f, 0.0f, 0.0f, 0.0f};
-GLfloat mat_ambient[] = {0.7f, 0.7f, 0.7f, 1.0f};
-GLfloat mat_ambient_colour[] = {0.8f, 0.8f, 0.2f, 1.0f};
-
-GLfloat mat_diffuse[] = {0.1f, 0.5f, 0.8f, 1.0f};
-GLfloat mat_dif_red[] = {1.0f, 0.0f, 0.0f, 1.0f};
-GLfloat mat_dif_blueAlpha[] = {0.0f, 0.0f, 0.8f, 0.5f};
-
-
-GLfloat mat_hight_specular[] = {1.0f, 1.0f, 1.0f, 1.0f};
-
-
-
-GLfloat no_shininess[] = {0.0f};
-GLfloat low_shininess[] = {50};
-GLfloat high_shininess[] = {100};
-GLfloat mat_emission[] = {0.3f, 0.2f, 0.2f, 0.0f};
-
-GLfloat Light_Ambient[] = {0.4f, 0.4f, 0.4f, 1.0f};
-GLfloat Light_Diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-GLfloat Light_Specular[] = {1.0, 1.0, 1.0, 1.0};
-GLfloat Light_Position[]= {-100.0f, 100.0f, 100.0f, 1.0f};
-
-GLfloat Light_Ambient2[] = {0.2f, 0.2f, 0.2f, 1.0f};
-GLfloat Light_Diffuse2[] = {0.8f, 0.8f, 0.8f, 1.0f};
-GLfloat Light_Specular2[] = {0.8f, 0.8f, 0.8f, 1.0f};
-GLfloat Light_Position2[]= {-100.0f, 100.0f, 100.0f, 1.0f};
-
-
-
-GLfloat gold_mat_ambient[] = {MAT_GOLD_AMBIENT};
-GLfloat gold_mat_diffuse[] = {MAT_GOLD_DIFFUSE};
-GLfloat gold_mat_specular[] = {MAT_GOLD_SPECULAR};
-GLfloat gold_mat_shininess[] = {MAT_GOLD_SHININESS};
-
-// -----------------------------------------------------------------------------
 
 bool Scene3D::CreatePixelFormat(HDC hdc) 
 { 
@@ -174,7 +131,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   glShadeModel(GL_SMOOTH);                  // Enable Smooth Shading
 
 
-  //glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   // Black(Transparent) Background
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);     // Black(Transparent) Background
   glClearDepth(1.0f);                       // Depth Buffer Setup
   glEnable(GL_DEPTH_TEST);                  // Enables Depth Testing
   glDepthFunc(GL_LEQUAL);                   // The Type Of Depth Testing To Do
@@ -241,7 +198,6 @@ void Scene3D::Init(HWND* wnd, Input* in)
   models.push_back(crate);
   
 
-  // Do something usefull with the filename stored in szFileName
   Model* prince = resManager.getModel("Prince.obj");
   
   if(prince != NULL)
@@ -268,19 +224,19 @@ void Scene3D::DrawScene(float dt)
   gui.update();
   
 
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// Clear The Screen And The Depth Buffer
-  glLoadIdentity();       // load Identity Matrix
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); ///< Clear The Screen And The Depth Buffer
+  glLoadIdentity();                                   ///< load Identity Matrix
 
 
   viewManager.beginView(VIEWPORT_MAIN, true, false);
 
-  //! Updating viewports
+  ///< Updating viewports
   for(int i = 1; i < MAX_VIEWPORTS; i++)
   {
     if(input->isViewportActive(i))
     {
       viewManager.beginView(i);
-        render();                         // render all lighting, geometry, etc.
+        render();                         ///< render all lighting, geometry, etc.
       viewManager.endView(i);
 
     }
@@ -289,7 +245,7 @@ void Scene3D::DrawScene(float dt)
   viewManager.endView(VIEWPORT_MAIN);
     gui.renderMenu();
 
-  SwapBuffers(hdc);       // Swap the frame buffers
+  SwapBuffers(hdc);                       ///< Swap the frame buffers
 
 }    
 
@@ -316,17 +272,11 @@ void Scene3D::HandleInput(float dt)
   viewManager.update(dt);
 
 
-  if(input->isKeyDown(VK_MENU))             // if ALT is pressed
-  {
-    // for some reason it pause the rendering (but the variables still updates)
-    input->SetKeyUp(VK_MENU);               //force un-pressing of ALT
-  }
-
-  if(input->isKeyDown('T'))                 // if L is pressed
+  if(input->isKeyDown('T'))                 // if T is pressed
   {
     // Load file
     insertFile();
-    input->SetKeyUp('T');                   //force un-pressing of L
+    input->SetKeyUp('T');                   //force un-pressing of T
   }
 
   if(input->isBottonSelected(TBTN1_SPHERE))
@@ -372,6 +322,7 @@ void Scene3D::HandleInput(float dt)
     input->unselectButton(TBTN5_PLANE);
   }
 
+  ///< Toggle Ambient and Directional Light On/Off
   if(input->isBottonSelected(LBTN1_L_AMBIENT))
   {
     ambient->setActive(true);
@@ -390,7 +341,7 @@ void Scene3D::HandleInput(float dt)
     direct->setActive(false);
   }
 
-
+  ///< Show/Hide Light handles
   if(input->isBottonSelected(LBTN3_L_HANDLE))
   {
     ambient->showHandle(true);
@@ -430,7 +381,7 @@ void Scene3D::loadFile()
 
   if(GetOpenFileName(&ofn))
   {
-    // Do something usefull with the filename stored in szFileName
+    // use filename stored in szFileName
     Model* tempModel = resManager.getModel(ofn.lpstrFile, false);
 
     if(tempModel != NULL)
@@ -450,12 +401,10 @@ void Scene3D::loadFile()
 
 void Scene3D::insertFile()
 {
-  // Do something usefull with the filename stored in szFileName
   Model* tempModel = resManager.getModel("Prince.obj");
 
   if(tempModel != NULL)
   {
-    //tempModel->setColour(1.0f, 0.0f, 0.0f, 1.0f);
     models.push_back(*tempModel);
   }
   else
@@ -469,110 +418,31 @@ void Scene3D::insertFile()
 
 void Scene3D::render()
 {
-  //glDisable(GL_LIGHTING);
-
   ambient->render();
   direct->render();
   spot1->render();
   spot2->render();
 
 
-  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT);
-  //glPushAttrib(GL_LIGHTING_BIT);
-    glPushMatrix();
-	    glTranslatef(-4.0f, 0.0f, 0.0f);
-	    glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat);
-	    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-	    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
-	    glMaterialfv(GL_FRONT, GL_SHININESS, no_shininess);
-	    glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
-	    gluSphere(gluNewQuadric(), 0.75, 40,40);
-    glPopMatrix();
-  glPopAttrib();
-
-  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT);
-  //glPushAttrib(GL_LIGHTING_BIT);
-    glPushMatrix();
-	    glTranslatef(-2.0f, 0.0f, 0.0f);
-      glMaterialfv(GL_FRONT, GL_SPECULAR, mat_hight_specular);
-      glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
-      glColor3f(0.8f, 0.0f, 0.0f);
-	    gluSphere(gluNewQuadric(), 0.75, 40,40);
-      //glColor3f(1.0f, 1.0f, 1.0f);
-    glPopMatrix();
-  glPopAttrib();
-
-  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
-  //glPushAttrib(GL_LIGHTING_BIT);
-  glEnable(GL_BLEND);
-    glPushMatrix();
-	    glTranslatef(-2.0f, 0.0f, 2.0f);
-      glMaterialfv(GL_FRONT, GL_SPECULAR, mat_hight_specular);
-      glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
-      glColor4f(0.0f, 0.5f, 0.0f, 0.5f);
-	    gluSphere(gluNewQuadric(), 0.75, 40,40);
-      //glColor3f(1.0f, 1.0f, 1.0f);
-    glPopMatrix();
-  glPopAttrib();
-
-  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
-  //glPushAttrib(GL_LIGHTING_BIT);
-  glEnable(GL_BLEND);
-    glPushMatrix();
-	    glTranslatef(0.0f, 0.0f, 0.0f);
-	    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_dif_red);
-	    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_dif_red);
-	    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
-	    glMaterialfv(GL_FRONT, GL_SHININESS, low_shininess);
-	    glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
-      //glColor3f(0.8f, 0.0f, 0.0f);
-	    gluSphere(gluNewQuadric(), 0.75, 40,40);
-      //glColor3f(1.0f, 1.0f, 1.0f);
-    glPopMatrix();
-  glPopAttrib();
- 
-  glPushAttrib(GL_CURRENT_BIT | GL_LIGHTING_BIT | GL_ENABLE_BIT);
-  //glPushAttrib(GL_LIGHTING_BIT);
-  glEnable(GL_BLEND);
-
-  //glBindTexture(GL_TEXTURE_2D, resManager.getTexture("PortalTexture.png"));  //texture to use
-
-    glPushMatrix();
-	    glTranslatef(-2.0f, 0.0f, -2.0f);
-	    glMaterialfv(GL_FRONT, GL_AMBIENT, def_mat_ambient);
-	    glMaterialfv(GL_FRONT, GL_DIFFUSE, def_mat_diffuse);
-	    glMaterialfv(GL_FRONT, GL_SPECULAR, def_mat_specular);
-	    glMaterialfv(GL_FRONT, GL_SHININESS, no_shininess);
-	    glMaterialfv(GL_FRONT, GL_EMISSION, def_mat_emission);
-      //glColor3f(0.8f, 0.0f, 0.0f);
-	    gluSphere(gluNewQuadric(), 0.75, 40,40);
-      //glColor3f(1.0f, 1.0f, 1.0f);
-    glPopMatrix();
-  //glBindTexture(GL_TEXTURE_2D, NULL);
-
-  glPopAttrib();
-
-  gui.drawGrid();
- 
+  gui.drawGrid();   ///< draw the line grid in viewport
 
 
-  glPushMatrix();   // Remember where we are.
+  glPushMatrix();   // Remember where we are
+    for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
+    {
+      it->Render();
+    }
+  glPopMatrix();    // go back to origin
+
+
+  glPushMatrix();   // Remember where we are
 
     robotArm.render();
 
   glPopMatrix();    // go back to origin
 
 
-  glPushMatrix();
-	  //glTranslatef(2.0f, 0.0f, 0.0f);
-    for(std::vector<Model>::iterator it = models.begin(); it != models.end(); it++)
-    {
-      it->Render();
-    }
-
-  glPopMatrix();    // go back to origin
-
-  glPushMatrix();   // Remember where we are.
+  glPushMatrix();   // Remember where we are
 
     terrain.render();
 
