@@ -4,10 +4,10 @@
 * \brief      TokenStream class - AG0800A Graphics Programming
 *
 * \details    Used to return blocks of text in a file 
-*
+*             Provided during laboratory exercise
 * \author     
 * \version    1.0
-* \date       [2015] Provided during laboratory exercise
+* \date       February 2015 
 * \pre        
 * \post       
 * \bug        No known bugs

@@ -1,10 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                Terrain class - - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Apr 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       terrain.h
+* \brief      Terrain class - AG0800A Graphics Programming
+*
+* \details    generates and displays the terrain based on height map 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef TERRAIN_H
@@ -22,8 +37,6 @@
 #include <assets/model.h>
 #include <assets/material.h>
 #include <system/modelgenerator.h>
-
-
 
 
 
@@ -87,13 +100,7 @@ private:
   void compileTerrain();
 
   void cleanContainers();
-
-
-
-
-
-
-
+  
 
 };
 

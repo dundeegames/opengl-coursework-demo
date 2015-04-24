@@ -1,10 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                       Light class - Graphics programming                    \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       light.h
+* \brief      Light class - AG0800A Graphics Programming
+*
+* \details    Encapsulates the position and type of 3D light 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        needs to activeted by
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef LIGHT_H
@@ -17,9 +32,14 @@
 #include <gl/glu.h>
 
 
+enum Light_Type {L_AMBIENT,
+                 L_POINT,
+                 L_DIRECTIONAL,
+                 L_SPOT
+                };
 
-enum Light_Type {L_AMBIENT, L_POINT, L_DIRECTIONAL, L_SPOT};
 
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Light
 {
@@ -66,6 +86,7 @@ private:
 
 
 #endif // LIGHT_H
+
 
 
 

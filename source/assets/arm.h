@@ -1,10 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                   Arm class - WinAPI and OpenGL laboratory                  \n
-*                             by Jiri Klic, Apr 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       arm.h
+* \brief      Arm class - AG0800A Graphics Programming
+*
+* \details    Hierarchically modeled robotic arm, animated by user input
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef ARM_H
@@ -18,8 +33,10 @@
 #include <assets/planets.h>
 #include <system/modelgenerator.h>
 
-enum State{ARM, ELBOW, WRIST};
-
+enum State{ARM,
+           ELBOW,
+           WRIST
+          };
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////

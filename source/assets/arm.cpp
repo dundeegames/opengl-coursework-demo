@@ -1,7 +1,37 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       arm.cpp
+* \brief      Arm class - AG0800A Graphics Programming
+*
+* \details    Hierarchically modeled robotic arm, animated by user input
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <assets/arm.h>
 #include <system/macros.h>
 
 
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
 
 
 void Arm::Init(Input* in, ModelGenerator* mg, Planets* plts)
@@ -307,3 +337,29 @@ void Arm::drawFinger()
   glPopMatrix();  // Back to - DISTAL
 
 }
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

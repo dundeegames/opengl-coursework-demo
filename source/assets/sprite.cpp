@@ -1,5 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       sprite.cpp
+* \brief      Sprite class - AG0800A Graphics Programming
+*
+* \details    2D sprite, used mainly for menu 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <assets/sprite.h>
 #include <system/macros.h>
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
 
 Sprite::Sprite()
 {
@@ -161,5 +194,14 @@ void Sprite::draw()
   glColor4f(COLOUR_WHITE, 1.0f);              // reset colour
 
 }
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 // 80 //////////////////////////////////////////////////////////////////////////

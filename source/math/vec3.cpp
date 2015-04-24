@@ -1,6 +1,44 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       vec3.cpp
+* \brief      Vec3 class - AG0800A Graphics Programming
+*
+* \details    Encapsulation of mathematical 3D Vector
+*             Added rotation functionality
+*
+* \author     Jiri Klic
+* \author     Paul Robertson
+* \version    2.0
+* \date       January 2015
+* \date       November 2014
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  Paul Robertson.[2014].Vec3 class.AG0800A Graphics Programming
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <math/vec3.h>
 #include <system/macros.h>
- 
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
+
 Vec3::Vec3(float x, float y, float z){
     this->elements[0] = x;
     this->elements[1] = y;
@@ -265,15 +303,6 @@ Vec3 Vec3::rotateInZ(float angleZ, float scale)
 //}
 
 // -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
 

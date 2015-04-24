@@ -1,5 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       light.cpp
+* \brief      Light class - AG0800A Graphics Programming
+*
+* \details    Encapsulates the position and type of 3D light 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        needs to activeted by
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <assets/light.h>
 #include <system/macros.h>
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
 
 Light::Light(int id_)
 {
@@ -140,6 +173,9 @@ void Light::setSpecularity(GLfloat R, GLfloat G, GLfloat B, GLfloat A)
 }
 
 // -----------------------------------------------------------------------------
+
+
+
 
 
 

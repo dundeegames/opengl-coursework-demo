@@ -1,14 +1,30 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                   Vec3 class - WinAPI and OpenGL laboratory                 \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*    Based on:  Vec3 class.[2014].Paul Robertson                              \n
-*                                                                             \n
-*    Added rotation functionality                                             \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       vec3.h
+* \brief      Vec3 class - AG0800A Graphics Programming
+*
+* \details    Encapsulation of mathematical 3D Vector
+*             Added rotation functionality
+*
+* \author     Jiri Klic
+* \author     Paul Robertson
+* \version    2.0
+* \date       January 2015
+* \date       November 2014
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  Paul Robertson.[2014].Vec3 class.AG0800A Graphics Programming
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef VEC3_H
@@ -18,8 +34,6 @@
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <cmath>
 #include <iostream>
-
-
 
 
 

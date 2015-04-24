@@ -1,12 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                 Sprite class - - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*    Usend for menu                                                           \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       sprite.h
+* \brief      Sprite class - AG0800A Graphics Programming
+*
+* \details    2D sprite, used mainly for menu 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef SPRITE_H
@@ -21,7 +34,6 @@
 
 
 #define VERTEX_COUNT          12
-
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////

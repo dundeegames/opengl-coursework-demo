@@ -55,9 +55,6 @@
     <ClCompile Include="..\..\source\assets\arm.cpp">
       <Filter>assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\assets\geometry.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\assets\light.cpp">
       <Filter>assets</Filter>
     </ClCompile>
@@ -89,9 +86,6 @@
       <Filter>system</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\assets\terrain.cpp">
-      <Filter>assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\assets\elemental.cpp">
       <Filter>assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\assets\material.cpp">
@@ -132,9 +126,6 @@
     <ClInclude Include="..\..\source\assets\arm.h">
       <Filter>assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\assets\geometry.h">
-      <Filter>assets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\assets\light.h">
       <Filter>assets</Filter>
     </ClInclude>
@@ -172,9 +163,6 @@
       <Filter>system</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\terrain.h">
-      <Filter>assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\assets\elemental.h">
       <Filter>assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\material.h">

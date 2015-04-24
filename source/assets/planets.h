@@ -1,10 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                 Planets class - - WinAPI and OpenGL laboratory              \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       planets.h
+* \brief      Planets class - AG0800A Graphics Programming
+*
+* \details    Hierarchicaly animated spheres with animated point lights
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef PLANETS_H
@@ -18,6 +33,8 @@
 #include <assets/light.h>
 #include <ui/input.h>
 
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Planets
 {
@@ -41,6 +58,7 @@ private:
 
 
 #endif // PLANETS_H
+
 
 
 

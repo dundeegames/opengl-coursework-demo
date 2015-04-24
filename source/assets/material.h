@@ -1,10 +1,26 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                 Material class - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Apr 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       material.h
+* \brief      Material class - AG0800A Graphics Programming
+*
+* \details    Handles Ambient, Diffuse, Specularity, Shininess and Emission
+*             of 3D object
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef MATERIAL_H
@@ -15,8 +31,6 @@
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
-
-
 
 
 

@@ -1,14 +1,34 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                  Model class - WinAPI and OpenGL laboratory                 \n
-*                         edited by Jiri Klic, Mar 2015                       \n
-*                                                                             \n
-*      Based on:                                                              \n
-*         Beginning DirectX 11 Game Programming                               \n
-*         By Allen Sherrod and Wendy Jones                                    \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       model.h
+* \brief      Model class - AG0800A Graphics Programming
+*
+* \details    original provided during laboratory exercise
+*             Removed:  model loading moved to ResourceManager
+*             Added:    material
+*                       texture tiling and scrolling
+*                       fuctionality for translation, roation and scale
+*
+* \author     Jiri Klic
+* \author     
+* \version    2.0
+* \date       March 2015
+* \date       February 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  A.Sherrod and W. Jones.2011.Beginning DirectX 11 Game Programming.
+*             Delmar Cengage Learning.
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef MODEL_H
@@ -25,7 +45,6 @@
 #include <assets/material.h>
 #include <vector>
 #include <math/vec3.h>
-
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////
