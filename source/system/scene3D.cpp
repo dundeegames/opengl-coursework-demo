@@ -138,6 +138,19 @@ void Scene3D::InitializeOpenGL(int width, int height)
 
 // -----------------------------------------------------------------------------
 
+/**
+* \brief      Short description
+*
+* \details    anything tricky about how a function does its job,
+*             give an overview of the steps you go through,
+*             or explain why you chose to implement the function in the way
+*             you did rather than using a viable alternative.
+*             Do not just repeat the comments given with the function
+*             declaration, in the .h file or wherever.
+*             It's okay to recapitulate briefly what the function does,
+*             but the focus of the comments should be on how it does it.
+*
+*/
 void Scene3D::Init(HWND* wnd, Input* in)
 {
   hwnd = wnd;

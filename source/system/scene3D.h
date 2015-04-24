@@ -68,19 +68,16 @@ class Scene3D
 
 public:
   /**
-  * \brief      Short description
-  *
-  * \details    Detailed description 
-  * \param
+  * \brief      Set up the window, openGL properties and all objects in the scene  
+  * \param      wnd - pointer to window handle
+  * \param      in  - poiter to input object
   * \return     void
   */
-  void Init(HWND*, Input*);         ///< initialse function
+  void Init(HWND* wnd, Input* in);         ///< initialse function
 
 
   /**
-  * \brief      Short description
-  *
-  * \details    Detailed description 
+  * \brief      renders content of scene
   * \param      dt - delta time
   * \return     void
   */
@@ -88,20 +85,18 @@ public:
 
 
   /**
-  * \brief      Short description
+  * \brief      Call 
   *
   * \details    Detailed description 
-  * \param
+  * \param      void
   * \return     void
   */
   void Resize();
 
 
   /**
-  * \brief      Short description
-  *
-  * \details    Detailed description 
-  * \param
+  * \brief      navigate to and opens the file
+  * \param      void
   * \return     void
   */
   void loadFile();
