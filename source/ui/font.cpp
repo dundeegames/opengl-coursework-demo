@@ -1,4 +1,41 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       font.cpp
+* \brief      Font class - AG0800A Graphics Programming
+*
+* \details    Based on Font class from Abertay Framework for PS Vita
+*             provided during exercise for AG0801A Console Game Development
+*
+* \author     Jiri Klic
+* \author     Grant Clark
+* \version    2.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  Grant Clark.[2015].Abertay Framework.AG0801A Console Game Development
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/font.h>
+
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
 
 
 Font::Font()
@@ -276,6 +313,11 @@ void Font::compileText()
 }
 
 // -----------------------------------------------------------------------------
+
+
+
+
+
 
 
 

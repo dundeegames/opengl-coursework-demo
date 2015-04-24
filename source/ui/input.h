@@ -1,11 +1,29 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                  Input class - WinAPI and OpenGL laboratory                 \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*    Based on:  Input class.[2014].Paul Robertson                             \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       input.h
+* \brief      Input class - AG0800A Graphics Programming
+*
+* \details    Detailed description 
+*
+* \author     Jiri Klic
+* \author     Paul Robertson
+* \version    2.0
+* \date       January 2015    [2.0]
+* \date       September 2014  [1.0]
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  Based on:  Input class.[2014].Paul Robertson
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -17,10 +35,6 @@
 #include <Windows.h>
 #include <system/macros.h>
 
-
-
-
-// -----------------------------------------------------------------------------
 
 struct Mouse
 {
@@ -55,12 +69,6 @@ struct ViewportSetting
   }
 
 };
-
-// -----------------------------------------------------------------------------
-
-
-
-
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////

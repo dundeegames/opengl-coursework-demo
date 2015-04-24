@@ -1,5 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       gui.cpp
+* \brief      Gui class - AG0800A Graphics Programming
+*
+* \details    Creates and manages buttons 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       February 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/gui.h>
 #include <system/macros.h>
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
 
 Gui::Gui()
 {
@@ -283,7 +316,6 @@ void Gui::initBgrButton(int btnID, float x_, float y_, float uvx_, float uvy_)
 }
 
 // -----------------------------------------------------------------------------
-
 
 
 

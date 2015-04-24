@@ -1,9 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                Scene3D class - - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       scene3D.h
+* \brief      Scene3D class - AG0800A Graphics Programming
+*
+* \details    Handles the size of the scene and all main assets
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        Init(HWND*, Input*) needs to be called prior to use
+* \post       
+* \bug        No known bugs
+* \warning    <windows.h> needs to be included BEFORE <gl/gl.h> & <gl/glu.h>
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -51,9 +67,43 @@ class Scene3D
 
 
 public:
-  void Init(HWND*, Input*);         //initialse function
-  void DrawScene(float);            // render scene
+  /**
+  * \brief      Short description
+  *
+  * \details    Detailed description 
+  * \param
+  * \return     void
+  */
+  void Init(HWND*, Input*);         ///< initialse function
+
+
+  /**
+  * \brief      Short description
+  *
+  * \details    Detailed description 
+  * \param      dt - delta time
+  * \return     void
+  */
+  void DrawScene(float dt);            // render scene
+
+
+  /**
+  * \brief      Short description
+  *
+  * \details    Detailed description 
+  * \param
+  * \return     void
+  */
   void Resize();
+
+
+  /**
+  * \brief      Short description
+  *
+  * \details    Detailed description 
+  * \param
+  * \return     void
+  */
   void loadFile();
 
 

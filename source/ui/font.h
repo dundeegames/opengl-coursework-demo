@@ -1,13 +1,29 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                   Font class - WinAPI and OpenGL laboratory                 \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-* Based on Font class from Abertay Framework for PS Vita                      \n
-* Mr. Grant Clark.[2015].Abertay Framework.Console Game Development           \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       font.h
+* \brief      Font class - AG0800A Graphics Programming
+*
+* \details    Based on Font class from Abertay Framework for PS Vita
+*             provided during exercise for AG0801A Console Game Development
+*
+* \author     Jiri Klic
+* \author     Grant Clark
+* \version    2.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo
+*
+* \copyright  Grant Clark.[2015].Abertay Framework.AG0801A Console Game Development
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef FONT_H
@@ -30,6 +46,7 @@
 #define  FONT_MAX_LINE  1024
 #define  FONT_MAX_PATH  256
 
+// -----------------------------------------------------------------------------
 
 struct Colour
 {
@@ -48,6 +65,7 @@ struct Colour
 };
 
 
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class Font
 {

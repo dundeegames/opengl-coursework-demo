@@ -1,10 +1,26 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                  Camera class - WinAPI and OpenGL laboratory                \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       camera.h
+* \brief      Camera class - AG0800A Graphics Programming
+*
+* \details    Provides different types of camera for 3D scene, with various
+*             options for user input
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef CAMERA_H
@@ -19,6 +35,7 @@
 #include <ui/input.h>
 #include <math/vec3.h>
 
+// -----------------------------------------------------------------------------
 
 enum CameraType { FXP_MAIN,         // Fixed Point
                   MOV_TOP,          // Movable 2D / Ortho
@@ -92,5 +109,8 @@ private:
 
 
 #endif // CAMERA_H
+
+
+
 
 // 80 //////////////////////////////////////////////////////////////////////////

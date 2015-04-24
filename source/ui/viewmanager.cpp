@@ -1,5 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       viewmanager.cpp
+* \brief      ViewManager class - AG0800A Graphics Programming
+*
+* \details    manages interaction, resizing and activation of all viewports
+*             in the application
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/viewmanager.h>
 
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
 
 ViewManager::ViewManager()
 {

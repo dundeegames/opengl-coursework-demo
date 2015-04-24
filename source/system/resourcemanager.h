@@ -1,9 +1,26 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*             ResourceManager class - WinAPI and OpenGL laboratory            \n
-*                             by Jiri Klic, Feb 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       resourcemanager.h
+* \brief      ResourceManager class - AG0800A Graphics Programming
+*
+* \details    Handles the file loading, casching, directory paths and distribution
+*             of assets (i.e. textures, meshes, etc) to other objects
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       February 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -25,6 +42,8 @@
 #include <system/TokenStream.h>
 #include <math/vec3.h>
 #include <assets/model.h>
+
+
 
 
 

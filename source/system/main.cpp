@@ -1,24 +1,33 @@
-/*
-********************************************************************************
-*****                                                                      *****
-*****                     WinAPI and OpenGL laboratory                     *****
-*****                        by Jiri Klic, Dec 2014                        *****
-*****                                                                      *****
-********************************************************************************
-*/
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       main.cpp
+* \brief      WinMain(), mainWndProc() - AG0800A Graphics Programming
+*
+* \details    The Win32 Application Entry Point
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       December 2014
+* \pre        
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
 
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
-
 #include <windows.h>
-//#include <stdio.h>  // unused
-//#include <mmsystem.h>  // unused
-//#include <math.h>    // unused
-
 #include <ui/winmanager.h>
 #include <ui/input.h>
-
 #include <system/scene3D.h>
 #include <system/timerclass.h>
 
@@ -26,17 +35,13 @@
 
 // GLOBALS /////////////////////////////////////////////////////////////////////
 
-WinManager myWinManager;
+WinManager myWinManager;    ///< Creates the window (Factory pattern)
 
+Input myInput;              ///< Provides loose coupling between GUI and program
 
-// HWND hwnd;         // Handle to a window
+Scene3D myScene;            ///< Handles the OpenGL functionality
 
-Input myInput;
-
-Scene3D myScene;
-//Scene myScene;
-
-TimerClass timer;
+TimerClass timer;           ///< Handles the Delta time
 
 
 
@@ -46,10 +51,31 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 
 // ENTRY POINT - PROGRAM STARTS HERE ///////////////////////////////////////////
+
+
+/**
+* \brief      Main entry for Win32 program
+*
+* \details    Display the window, initialize myScene & timer object
+*             enter a message retrieval-and-dispatch loop and terminate
+*             when it receives a WM_QUIT message
+*
+* \param      hInstance     - A handle to the current instance of the application
+* \param      hPrevInstance - A handle to the previous instance of the application.
+*                             This parameter is always NULL
+* \param      szCmdLine     - The command line for the application, excluding the program name
+* \param      nCmdShow      - Controls how the window is to be shown
+*
+* \return     exit value contained in that message's wParam parameter if succeeds,
+*             terminating when it receives a WM_QUIT message.
+*             If the function terminates before entering the message loop,
+*             it should return zero
+*
+*/
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int nCmdShow)      
 {
   MSG msg;  
-  HWND myhandle;         // Handle to a window
+  HWND myhandle;         ///< Handle to a window
 
 
   myWinManager.RegisterMyWindow(hInstance, mainWndProc);
@@ -67,7 +93,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
   }
   
 
-  //GAME LOOP
+  ///< GAME LOOP
   while (TRUE)          
   {              
     if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
@@ -92,11 +118,8 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 
       myScene.DrawScene(timer.GetTime());
     }
-    //myScene.update();    // process input
-    //myScene.render();    // call render on scene object
   }
   
-  //myScene.shutdown();      // release HDCs when exiting application
   return msg.wParam ;                    
 }
 
@@ -104,7 +127,23 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 
 // FUNCTION DEFINITIONS ////////////////////////////////////////////////////////
 
-// handles window messages -----------------------------------------------------        
+/**
+* \brief      handles window messages
+*
+* \details    Sets the input flags based on types of messages from
+*             keyboard, mouse and win-menu.
+*             Handles resizing of the window, final closing & end of application
+*             It is a required component during window creation (see: WinManager)
+*             and it will be sole winproc for our program.
+*
+* \param      hwnd    - handle to the window
+* \param      message - the message
+* \param      wParam  - additional message info, depends on value of the message
+* \param      lParam  - additional message info, depends on value of the message
+*
+* \return     The return value is the result of the message processing
+*
+*/
 LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 
@@ -116,8 +155,6 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     case WM_SIZE:
       myScene.Resize();
-      //myScene.DrawScene(timer.GetTime());
-      //myScene.setBuffers();
       break;
 
     case WM_GETMINMAXINFO:
@@ -127,7 +164,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 
     case WM_KEYDOWN:
-      myInput.SetKeyDown(wParam);        // Pass key value into input objI:/03_STUDY/02_YEAR2/03_GRAPHICS/graphics
+      myInput.SetKeyDown(wParam);      // Pass key value into input obj
       break;
 
     case WM_KEYUP:
@@ -135,19 +172,14 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
       break;
 
     case WM_MOUSEMOVE:
-      myInput.setMouseX(LOWORD (lParam));    // Pass X position
-      myInput.setMouseY(HIWORD (lParam));    // Pass Y position
+      myInput.setMouseX(LOWORD (lParam));    // Record mouse X position
+      myInput.setMouseY(HIWORD (lParam));    // Record mouse Y position
       break;
 
     case WM_LBUTTONDOWN:
       myInput.setLeftMouseBtn(true);
       myInput.setLDragX(LOWORD (lParam));
       myInput.setLDragY(HIWORD (lParam));
-      /*
-      char position[20];
-      sprintf(position, "x=%d y=%d" ,myInput.getMouseX(), myInput.getMouseY());
-      MessageBox(NULL, position, "Mouse Position", MB_OK);
-      */
       break;
 
     case WM_LBUTTONUP:

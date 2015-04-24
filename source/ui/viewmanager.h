@@ -1,9 +1,26 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*               ViewManager class - WinAPI and OpenGL laboratory              \n
-*                             by Jiri Klic, Apr 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       viewmanager.h
+* \brief      ViewManager class - AG0800A Graphics Programming
+*
+* \details    manages interaction, resizing and activation of all viewports
+*             in the application
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -15,8 +32,6 @@
 #include <ui/viewport.h>
 #include <ui/input.h>
 #include <system/macros.h>
-
-
 
 struct BoundingBox
 {
@@ -34,8 +49,6 @@ struct BoundingBox
   }
 
 };
-
-
 
 // CLASS ///////////////////////////////////////////////////////////////////////
 

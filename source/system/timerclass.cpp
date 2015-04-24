@@ -1,9 +1,39 @@
-///////////////////////////////////////////////////////////////////////////////
-// Filename: timerclass.cpp
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       timerclass.cpp
+* \brief      TimerClass class - AG0800A Graphics Programming
+*
+* \details    calculates delta time 
+*
+* \author     
+* \version    1.0
+* \date       [2014] Provided during laboratory exercise
+* \pre        Initialize() needs to be called before use
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <system/timerclass.h>
 
 
+
+
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
 TimerClass::TimerClass()
 {
 }
@@ -18,6 +48,8 @@ TimerClass::~TimerClass()
 {
 }
 
+
+// -----------------------------------------------------------------------------
 
 bool TimerClass::Initialize()
 {
@@ -36,6 +68,7 @@ bool TimerClass::Initialize()
   return true;
 }
 
+// -----------------------------------------------------------------------------
 
 void TimerClass::Frame()
 {
@@ -58,8 +91,21 @@ void TimerClass::Frame()
   return;
 }
 
+// -----------------------------------------------------------------------------
 
 float TimerClass::GetTime()
 {
   return m_frameTime;
 }
+
+
+// -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 80 //////////////////////////////////////////////////////////////////////////

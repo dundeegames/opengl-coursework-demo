@@ -91,9 +91,6 @@
     <ClCompile Include="..\..\source\assets\terrain.cpp">
       <Filter>assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\system\functions.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\assets\elemental.cpp">
       <Filter>assets</Filter>
     </ClCompile>
@@ -176,9 +173,6 @@
     </ClInclude>
     <ClInclude Include="..\..\source\assets\terrain.h">
       <Filter>assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\system\functions.h">
-      <Filter>system</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\assets\elemental.h">
       <Filter>assets</Filter>

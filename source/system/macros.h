@@ -1,14 +1,38 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                     MACROS - WinAPI and OpenGL laboratory                   \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       macros.h
+* \brief      collection of defines
+*
+* \details    Created to improve code readibility by elimination of "magic numbers"
+*             separated into sections based on type or place (source file) of use
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+*
+* \warning    editing of this file enforces compilation of every source file
+*             which is using this header. It is only temporary solution until
+*             my skill set rise to the level, when I would be able to write my
+*             own xml/setting parser.
+*
+* \todo       Replace this file with SettingLoader class, which will load
+*             external settings file and parse data into const variables
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
 #ifndef MACROS_H
 #define MACROS_H
+
 
 // DEFINES /////////////////////////////////////////////////////////////////////
 

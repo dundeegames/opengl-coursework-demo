@@ -1,10 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                Button class - - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Jan 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       button.h
+* \brief      Button class - AG0800A Graphics Programming
+*
+* \details    Detailed description 
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 #ifndef BUTTON_H
@@ -14,6 +29,8 @@
 // INCLUDES ////////////////////////////////////////////////////////////////////
 #include <assets/sprite.h>
 #include <ui/input.h>
+
+
 
 
 // CLASS ///////////////////////////////////////////////////////////////////////

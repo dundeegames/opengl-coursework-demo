@@ -1,4 +1,37 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       winmanager.cpp
+* \brief      WinManager class - AG0800A Graphics Programming
+*
+* \details    Generates Window (Factory pattern) with predefine parameters
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       December 2014
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <ui/winmanager.h>
+
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
 
 
 WinManager::WinManager()

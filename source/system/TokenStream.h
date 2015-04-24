@@ -1,11 +1,23 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*      Beginning DirectX 11 Game Programming                                  \n
-*      By Allen Sherrod and Wendy Jones                                       \n
-*                                                                             \n
-*      TokenStream - Used to return blocks of text in a file.                 \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       tokenstream.h
+* \brief      TokenStream class - AG0800A Graphics Programming
+*
+* \details    Used to return blocks of text in a file 
+*
+* \author     
+* \version    1.0
+* \date       [2015] Provided during laboratory exercise
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  A.Sherrod and W. Jones.2011.Beginning DirectX 11 Game Programming.
+*             Delmar Cengage Learning.
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -17,6 +29,10 @@
 
 
 
+
+
+
+// CLASS ///////////////////////////////////////////////////////////////////////
 
 class TokenStream
 {

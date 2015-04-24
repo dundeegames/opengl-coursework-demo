@@ -1,5 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       scene3D.cpp
+* \brief      Scene3D class - AG0800A Graphics Programming
+*
+* \details    Handles the size of the scene and all main assets
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       January 2015
+* \pre        Init(HWND*, Input*) needs to be called prior to use
+* \post       
+* \bug        No known bugs
+* \warning    <windows.h> needs to be included BEFORE <gl/gl.h> & <gl/glu.h>
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+// INCLUDES ////////////////////////////////////////////////////////////////////
 #include <system/scene3D.h>
 #include <system/macros.h>
+
+
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////////
+
 
 GLfloat def_mat_ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
 GLfloat def_mat_diffuse[] = {0.8f, 0.8f, 0.8f, 1.0f};
@@ -41,10 +74,7 @@ GLfloat gold_mat_diffuse[] = {MAT_GOLD_DIFFUSE};
 GLfloat gold_mat_specular[] = {MAT_GOLD_SPECULAR};
 GLfloat gold_mat_shininess[] = {MAT_GOLD_SHININESS};
 
-
-
-
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 bool Scene3D::CreatePixelFormat(HDC hdc) 
 { 
@@ -79,7 +109,7 @@ bool Scene3D::CreatePixelFormat(HDC hdc)
     return true;
 }
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 /*!
 * Initialize The GL Window
@@ -89,9 +119,6 @@ void Scene3D::resizeGLWindow(int width, int height)
   viewManager.setWindowSize( (float)width, (float)height);
   gui.setWindowSize( (float)width, (float)height);
 }
-
-// ------------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
@@ -220,7 +247,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
 
 } // end of Init
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void Scene3D::DrawScene(float dt) 
 {
@@ -265,7 +292,7 @@ void Scene3D::Resize()
 
 }
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void Scene3D::HandleInput(float dt)
 {
@@ -370,7 +397,7 @@ void Scene3D::HandleInput(float dt)
 
 }// end of HandleInput
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void Scene3D::loadFile()
 {

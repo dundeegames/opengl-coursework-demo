@@ -1,9 +1,25 @@
-// /////////////////////////////////////////////////////////////////////////////
-/*!                                                                           \n
-*                Scene3D class - - WinAPI and OpenGL laboratory               \n
-*                             by Jiri Klic, Apr 2015                          \n
-*                                                                             \n
-*/ /////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* \file       modelgenerator.h
+* \brief      ModelGenerator class - AG0800A Graphics Programming
+*
+* \details    Proceduraly generates 3D primitives
+*
+* \author     Jiri Klic
+* \version    1.0
+* \date       April 2015
+* \pre        
+* \post       
+* \bug        No known bugs
+* \warning    
+* \todo       
+*             
+* \copyright  University of Abertay - Dundee.2013.
+*             Intellectual Property Policy.[online].Available from: 
+*             http://www.abertay.ac.uk/media/Intellectual-Property-Policy-v2-01.pdf
+*             [Accessed 22 April 2015].
+*
+*///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -16,9 +32,6 @@
 #include <math/vec3.h>
 
 
-
-
-
 enum PlaneType{ PLN_LEFT,
                 PLN_RIGHT,
                 PLN_FRONT,
@@ -28,7 +41,6 @@ enum PlaneType{ PLN_LEFT,
                 PLN_BOTTOM,
                 PLN_SURFACE
               };
-
 
 // CLASS ///////////////////////////////////////////////////////////////////////
 
