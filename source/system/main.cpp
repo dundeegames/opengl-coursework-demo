@@ -25,12 +25,14 @@
 
 
 // INCLUDES ////////////////////////////////////////////////////////////////////
+#define OEMRESOURCE
 #include <windows.h>
 #include <ui/winmanager.h>
 #include <ui/input.h>
 #include <system/scene3D.h>
 #include <system/timerclass.h>
 #include <stdlib.h>
+
 
 
 
@@ -94,6 +96,9 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
   }
   
 
+
+
+
   ///< GAME LOOP
   while (TRUE)          
   {              
@@ -150,8 +155,7 @@ LRESULT CALLBACK mainWndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
     switch (message)                      
     {                            
-    case WM_CREATE:    
-      
+    case WM_CREATE:      
       break;
 
     case WM_SIZE:

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="system">
+      <UniqueIdentifier>{4cda75bc-a182-439d-90bf-1ab44c890994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{0132ffb4-fd90-4ddc-8ea3-84cc908bcc74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{04ca3d93-76b3-4f9d-b292-37c180d9998f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{a3281fa1-132d-4b0d-af66-5ff6675d96fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="documentation">
+      <UniqueIdentifier>{1a1f68c6-932a-478e-87c6-0b5f2aa84eef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\system\main.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\system\resourcemanager.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\system\scene3D.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\system\timerclass.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\system\TokenStream.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\camera.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\font.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\gui.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\input.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\viewport.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\winmanager.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\arm.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\light.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\planets.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\sprite.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\math\vec3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\model.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\button.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\transpbutton.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\bgrbutton.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ui\viewmanager.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\system\modelgenerator.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\terrain.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\assets\material.cpp">
+      <Filter>assets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\system\resourcemanager.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\scene3D.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\timerclass.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\TokenStream.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\camera.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\font.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\gui.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\input.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\viewport.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\winmanager.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\arm.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\light.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\planets.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\sprite.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\vec3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\resources\resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\model.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\macros.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\button.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\transpbutton.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\bgrbutton.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ui\viewmanager.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\system\modelgenerator.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\terrain.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\assets\material.h">
+      <Filter>assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\documentation\maindox.h">
+      <Filter>documentation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\source\resources\resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

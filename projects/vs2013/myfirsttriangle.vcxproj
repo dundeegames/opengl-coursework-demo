@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\assets\arm.cpp" />
+    <ClCompile Include="..\..\source\assets\light.cpp" />
+    <ClCompile Include="..\..\source\assets\material.cpp" />
+    <ClCompile Include="..\..\source\assets\model.cpp" />
+    <ClCompile Include="..\..\source\assets\planets.cpp" />
+    <ClCompile Include="..\..\source\assets\sprite.cpp" />
+    <ClCompile Include="..\..\source\assets\terrain.cpp" />
+    <ClCompile Include="..\..\source\math\vec3.cpp" />
+    <ClCompile Include="..\..\source\system\main.cpp" />
+    <ClCompile Include="..\..\source\system\modelgenerator.cpp" />
+    <ClCompile Include="..\..\source\system\resourcemanager.cpp" />
+    <ClCompile Include="..\..\source\system\scene3D.cpp" />
+    <ClCompile Include="..\..\source\system\timerclass.cpp" />
+    <ClCompile Include="..\..\source\system\TokenStream.cpp" />
+    <ClCompile Include="..\..\source\ui\button.cpp" />
+    <ClCompile Include="..\..\source\ui\camera.cpp" />
+    <ClCompile Include="..\..\source\ui\font.cpp" />
+    <ClCompile Include="..\..\source\ui\gui.cpp" />
+    <ClCompile Include="..\..\source\ui\input.cpp" />
+    <ClCompile Include="..\..\source\ui\bgrbutton.cpp" />
+    <ClCompile Include="..\..\source\ui\transpbutton.cpp" />
+    <ClCompile Include="..\..\source\ui\viewmanager.cpp" />
+    <ClCompile Include="..\..\source\ui\viewport.cpp" />
+    <ClCompile Include="..\..\source\ui\winmanager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\assets\arm.h" />
+    <ClInclude Include="..\..\source\assets\light.h" />
+    <ClInclude Include="..\..\source\assets\material.h" />
+    <ClInclude Include="..\..\source\assets\model.h" />
+    <ClInclude Include="..\..\source\assets\planets.h" />
+    <ClInclude Include="..\..\source\assets\sprite.h" />
+    <ClInclude Include="..\..\source\assets\terrain.h" />
+    <ClInclude Include="..\..\source\documentation\maindox.h" />
+    <ClInclude Include="..\..\source\math\vec3.h" />
+    <ClInclude Include="..\..\source\resources\resource.h" />
+    <ClInclude Include="..\..\source\system\macros.h" />
+    <ClInclude Include="..\..\source\system\modelgenerator.h" />
+    <ClInclude Include="..\..\source\system\resourcemanager.h" />
+    <ClInclude Include="..\..\source\system\scene3D.h" />
+    <ClInclude Include="..\..\source\system\timerclass.h" />
+    <ClInclude Include="..\..\source\system\TokenStream.h" />
+    <ClInclude Include="..\..\source\ui\button.h" />
+    <ClInclude Include="..\..\source\ui\camera.h" />
+    <ClInclude Include="..\..\source\ui\font.h" />
+    <ClInclude Include="..\..\source\ui\gui.h" />
+    <ClInclude Include="..\..\source\ui\input.h" />
+    <ClInclude Include="..\..\source\ui\bgrbutton.h" />
+    <ClInclude Include="..\..\source\ui\transpbutton.h" />
+    <ClInclude Include="..\..\source\ui\viewmanager.h" />
+    <ClInclude Include="..\..\source\ui\viewport.h" />
+    <ClInclude Include="..\..\source\ui\winmanager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\source\resources\resource.rc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CD336695-A7AE-4D9C-A331-C2A6CDFE99DE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>myfirsttriangle</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\bin\$(Configuration)\</OutDir>
+    <IntDir>..\..\temp\$(Configuration)\</IntDir>
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\include\soil\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>..\..\source;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\$(Configuration)\</OutDir>
+    <IntDir>..\..\temp\$(Configuration)\</IntDir>
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\include\soil\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>..\..\source;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\source;..\..\include\soil</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;Msimg32.lib;opengl32.lib;glu32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\source</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>winmm.lib;Msimg32.lib;opengl32.lib;glu32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

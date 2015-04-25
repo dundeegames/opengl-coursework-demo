@@ -199,7 +199,7 @@ void Scene3D::Init(HWND* wnd, Input* in)
   
 
   Model* prince = resManager.getModel("Prince.obj");
-  
+
   if(prince != NULL)
   {
     prince->setPosition(Vec3(3.0f, 0.75f, 0.0f));
